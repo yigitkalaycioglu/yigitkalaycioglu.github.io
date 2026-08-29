@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hollowfern Uploader</title>
+<style>
+  :root{
+    --ink:#12201B; --pine:#1A3027; --moss:#345441;
+    --fern:#7CA386; --ember:#DF6A34; --cream:#F3EAD9;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--cream);
+    font:16px/1.7 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:88px 28px 72px}
+  .mark{
+    display:inline-block;font-weight:800;letter-spacing:.22em;
+    font-size:13px;color:var(--fern);text-transform:uppercase;margin-bottom:34px;
+  }
+  h1{font-size:40px;line-height:1.15;margin:0 0 10px;letter-spacing:-.01em}
+  .lede{font-size:19px;color:#C9D6CB;margin:0 0 46px;max-width:52ch}
+  .rule{height:1px;background:var(--moss);border:0;margin:46px 0}
+  h2{font-size:15px;letter-spacing:.14em;text-transform:uppercase;
+     color:var(--fern);margin:0 0 16px;font-weight:700}
+  p{margin:0 0 16px;color:#D5E0D6}
+  ul{margin:0 0 16px;padding-left:20px;color:#D5E0D6}
+  li{margin-bottom:9px}
+  a{color:var(--ember);text-decoration:none;border-bottom:1px solid rgba(223,106,52,.4)}
+  a:hover{border-bottom-color:var(--ember)}
+  .card{background:var(--pine);border:1px solid var(--moss);
+        border-radius:12px;padding:26px 28px;margin:0 0 26px}
+  .card h3{margin:0 0 8px;font-size:17px;color:var(--cream)}
+  .card p{margin:0;font-size:15px;color:#B9C9BC}
+  footer{border-top:1px solid var(--moss);margin-top:56px;padding-top:26px;
+         font-size:14px;color:#8FA394}
+  footer a{margin-right:20px}
+  .dot{color:var(--ember)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <span class="mark">Hollowfern <span class="dot">&bull;</span> Studio Tools</span>
+
+  <h1>Hollowfern Uploader</h1>
+  <p class="lede">
+    A small personal automation tool that publishes the daily episode of
+    <strong>Hollowfern</strong>, an animated short-film series, to its own
+    YouTube channel.
+  </p>
+
+  <div class="card">
+    <h3>What it does</h3>
+    <p>
+      Once a day, the tool takes a finished video file produced by the studio,
+      attaches its title, description and tags, and uploads it to the
+      Hollowfern YouTube channel as a private draft for review.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Who it is for</h3>
+    <p>
+      Nobody but the channel owner. This is a single-operator tool that runs on
+      the owner's own machine and signs in with the owner's own Google account.
+      It is not distributed, sold, or offered to other users.
+    </p>
+  </div>
+
+  <hr class="rule">
+
+  <h2>Google account access</h2>
+  <p>
+    The tool signs in with Google and requests one permission:
+    <code>youtube.upload</code>. That scope allows it to upload a video file to
+    the YouTube channel belonging to the signed-in account. Nothing else.
+  </p>
+  <ul>
+    <li>It does not read watch history, subscriptions, comments or analytics.</li>
+    <li>It does not modify or delete existing videos.</li>
+    <li>It does not access Gmail, Drive, Contacts, Calendar or any other Google service.</li>
+  </ul>
+  <p>
+    Full details are in the <a href="./privacy.html">privacy policy</a>.
+  </p>
+
+  <h2>About the series</h2>
+  <p>
+    Hollowfern follows Fen, a young fox a long way from home. Every day, one
+    wordless short: a single quiet moment from the journey back. Episodes are
+    made with AI animation tools, then directed and edited by hand.
+  </p>
+
+  <footer>
+    <a href="./privacy.html">Privacy Policy</a>
+    <a href="mailto:livewithcars107@gmail.com">Contact</a>
+    <br><br>
+    &copy; 2026 Hollowfern
+  </footer>
+
+</div>
+</body>
+</html>
