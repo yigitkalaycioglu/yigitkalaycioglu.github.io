@@ -1,106 +1,329 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="auto">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hollowfern Uploader</title>
-<style>
-  :root{
-    --ink:#12201B; --pine:#1A3027; --moss:#345441;
-    --fern:#7CA386; --ember:#DF6A34; --cream:#F3EAD9;
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Yiğit Kalaycıoğlu · Full-Stack Developer</title>
+  <meta name="description" content="Yiğit Kalaycıoğlu — Information Systems Engineer and full-stack developer (React, Node.js, ASP.NET Core). Projects with live demos: 3D PC builder, warehouse order placement, second-hand marketplace, machine learning and reinforcement learning studies.">
+  <meta name="theme-color" content="#0b0c10">
+  <link rel="canonical" href="https://yigitkalaycioglu.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yigitkalaycioglu.github.io/">
+  <meta property="og:title" content="Yiğit Kalaycıoğlu · Full-Stack Developer">
+  <meta property="og:description" content="Information Systems Engineer · Full-Stack Developer. Projects with live demos.">
+  <meta property="og:image" content="https://yigitkalaycioglu.github.io/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script>
+    // tema ve dil, ilk boyamadan önce uygulanır
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        var t = localStorage.getItem('yk-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        var l = localStorage.getItem('yk-lang') || ((navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en');
+        document.documentElement.setAttribute('lang', l);
+      } catch (e) {}
+    })();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Yiğit Kalaycıoğlu",
+    "jobTitle": "Information Systems Engineer · Full-Stack Developer",
+    "url": "https://yigitkalaycioglu.github.io/",
+    "address": { "@type": "PostalAddress", "addressLocality": "Sakarya", "addressCountry": "TR" },
+    "alumniOf": "Sakarya University",
+    "sameAs": ["https://github.com/yigitkalaycioglu", "https://www.linkedin.com/in/yi%C4%9Fit-kalayc%C4%B1o%C4%9Flu-85bb60373/"]
   }
-  *{box-sizing:border-box}
-  body{
-    margin:0; background:var(--ink); color:var(--cream);
-    font:16px/1.7 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:720px;margin:0 auto;padding:88px 28px 72px}
-  .mark{
-    display:inline-block;font-weight:800;letter-spacing:.22em;
-    font-size:13px;color:var(--fern);text-transform:uppercase;margin-bottom:34px;
-  }
-  h1{font-size:40px;line-height:1.15;margin:0 0 10px;letter-spacing:-.01em}
-  .lede{font-size:19px;color:#C9D6CB;margin:0 0 46px;max-width:52ch}
-  .rule{height:1px;background:var(--moss);border:0;margin:46px 0}
-  h2{font-size:15px;letter-spacing:.14em;text-transform:uppercase;
-     color:var(--fern);margin:0 0 16px;font-weight:700}
-  p{margin:0 0 16px;color:#D5E0D6}
-  ul{margin:0 0 16px;padding-left:20px;color:#D5E0D6}
-  li{margin-bottom:9px}
-  a{color:var(--ember);text-decoration:none;border-bottom:1px solid rgba(223,106,52,.4)}
-  a:hover{border-bottom-color:var(--ember)}
-  .card{background:var(--pine);border:1px solid var(--moss);
-        border-radius:12px;padding:26px 28px;margin:0 0 26px}
-  .card h3{margin:0 0 8px;font-size:17px;color:var(--cream)}
-  .card p{margin:0;font-size:15px;color:#B9C9BC}
-  footer{border-top:1px solid var(--moss);margin-top:56px;padding-top:26px;
-         font-size:14px;color:#8FA394}
-  footer a{margin-right:20px}
-  .dot{color:var(--ember)}
-</style>
+  </script>
 </head>
 <body>
-<div class="wrap">
+  <a class="skip" href="#projects" data-i18n="skip">Skip to projects</a>
 
-  <span class="mark">Hollowfern <span class="dot">&bull;</span> Studio Tools</span>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="logo" href="#top" aria-label="Yiğit Kalaycıoğlu">
+        <span class="logo-mark">YK</span>
+        <span class="logo-text">Yiğit Kalaycıoğlu</span>
+      </a>
+      <nav class="links" aria-label="Main">
+        <a href="#projects" data-i18n="nav.projects">Projects</a>
+        <a href="#experience" data-i18n="nav.experience">Experience</a>
+        <a href="#skills" data-i18n="nav.skills">Skills</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="tools">
+        <button class="pill" id="lang" type="button" aria-label="Türkçe / English"><span data-l="tr">TR</span><span data-l="en">EN</span></button>
+        <button class="icon" id="theme" type="button" data-i18n-attr="aria-label:theme" aria-label="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+          <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
-  <h1>Hollowfern Uploader</h1>
-  <p class="lede">
-    A small personal automation tool that publishes the daily episode of
-    <strong>Hollowfern</strong>, an animated short-film series, to its own
-    YouTube channel.
-  </p>
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-in">
+        <div class="hero-text reveal">
+          <p class="eyebrow"><span class="dot"></span><span>React · Node.js · ASP.NET Core · AI</span></p>
+          <h1>Yiğit Kalaycıoğlu</h1>
+          <p class="role" data-i18n="hero.role">Information Systems Engineer · Full-Stack Developer</p>
+          <p class="lead" data-i18n="hero.lead">I build end-to-end web applications with React, Node.js and ASP.NET Core, and I enjoy debugging and problem-solving in complex systems. Two corporate internships taught me Clean Architecture and SOLID in practice; lately I've been building projects that bring the web together with 3D and AI.</p>
+          <div class="cta">
+            <a class="btn primary" href="#projects" data-i18n="hero.cta">See my projects</a>
+            <a class="btn" href="https://github.com/yigitkalaycioglu" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5m12 4.5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/yi%C4%9Fit-kalayc%C4%B1o%C4%9Flu-85bb60373/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 10.5v6M7.5 7.5v.01M11.5 16.5v-3.4c0-1.6 1-2.6 2.3-2.6s2.2.9 2.2 2.6v3.4M11.5 10.5v6"/></svg>LinkedIn</a>
+          </div>
+          <ul class="facts">
+            <li><b>5</b><span data-i18n="hero.f1">live demos</span></li>
+            <li><b>11</b><span data-i18n="hero.f2">projects</span></li>
+            <li><b>2</b><span data-i18n="hero.f3">internships</span></li>
+            <li><b>Sakarya</b><span data-i18n="hero.f4">Türkiye</span></li>
+          </ul>
+        </div>
+        <div class="hero-art reveal" aria-hidden="true">
+          <div class="shot s1"><img src="assets/img/pc-toplama.webp" alt="" width="1200" height="750" fetchpriority="high"></div>
+          <div class="shot s2"><img src="assets/img/alpasa.webp" alt="" width="1200" height="750"></div>
+          <div class="shot s3"><img src="assets/img/siparis.webp" alt="" width="1200" height="750"></div>
+        </div>
+      </div>
+    </section>
 
-  <div class="card">
-    <h3>What it does</h3>
-    <p>
-      Once a day, the tool takes a finished video file produced by the studio,
-      attaches its title, description and tags, and uploads it to the
-      Hollowfern YouTube channel as a private draft for review.
-    </p>
-  </div>
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="sec-head reveal">
+        <h2 data-i18n="proj.title">Projects</h2>
+        <p data-i18n="proj.sub">Live demos run right in the browser; every project's source code is on GitHub.</p>
+      </div>
 
-  <div class="card">
-    <h3>Who it is for</h3>
-    <p>
-      Nobody but the channel owner. This is a single-operator tool that runs on
-      the owner's own machine and signs in with the owner's own Google account.
-      It is not distributed, sold, or offered to other users.
-    </p>
-  </div>
+      <div class="featured">
+        <article class="feat reveal">
+          <a class="feat-img" href="https://yigitkalaycioglu.github.io/bilgisayar-toplama/" target="_blank" rel="noopener"><img src="assets/img/pc-toplama.webp" alt="3D PC builder screenshot" data-i18n-attr="alt:p1.alt" loading="lazy" width="1200" height="750"></a>
+          <div class="feat-body">
+            <p class="kicker" data-i18n="p1.k">Web · 3D · Data</p>
+            <h3 data-i18n="p1.t">PC Builder with a 3D preview</h3>
+            <p data-i18n="p1.d">A PC configurator that only offers compatible parts — socket, memory type, form factor, GPU length, cooler clearance and PSU wattage are checked both ways — and assembles the chosen build in an interactive 3D scene. About 6,700 products, with prices refreshed daily from epey.com.</p>
+            <ul class="tags"><li>JavaScript</li><li>three.js</li><li>Python</li><li>GitHub Pages</li></ul>
+            <div class="links2">
+              <a class="btn primary sm" href="https://yigitkalaycioglu.github.io/bilgisayar-toplama/" target="_blank" rel="noopener" data-i18n="live">Live demo</a>
+              <a class="btn sm" href="https://github.com/yigitkalaycioglu/bilgisayar-toplama" target="_blank" rel="noopener" data-i18n="code">Source code</a>
+            </div>
+          </div>
+        </article>
 
-  <hr class="rule">
+        <article class="feat reveal">
+          <a class="feat-img" href="https://yigitkalaycioglu.github.io/siparis-yerlestirme-optimizasyonu/" target="_blank" rel="noopener"><img src="assets/img/siparis.webp" alt="3D warehouse view" data-i18n-attr="alt:p2.alt" loading="lazy" width="1200" height="750"></a>
+          <div class="feat-body">
+            <p class="kicker" data-i18n="p2.k">Decision support · Optimization</p>
+            <h3 data-i18n="p2.t">Warehouse Order Placement</h3>
+            <p data-i18n="p2.d">Suggests the best shelf for incoming orders in a corrugated-board warehouse. Shelves are managed as centimetre-based free-space matrices instead of simple counts, with manual overrides and a 3D warehouse view. The Streamlit app runs entirely in the browser via Pyodide — no install, no server.</p>
+            <ul class="tags"><li>Python</li><li>Streamlit</li><li>three.js</li><li>Pyodide</li></ul>
+            <div class="links2">
+              <a class="btn primary sm" href="https://yigitkalaycioglu.github.io/siparis-yerlestirme-optimizasyonu/" target="_blank" rel="noopener" data-i18n="live">Live demo</a>
+              <a class="btn sm" href="https://github.com/yigitkalaycioglu/siparis-yerlestirme-optimizasyonu" target="_blank" rel="noopener" data-i18n="code">Source code</a>
+            </div>
+          </div>
+        </article>
 
-  <h2>Google account access</h2>
-  <p>
-    The tool signs in with Google and requests one permission:
-    <code>youtube.upload</code>. That scope allows it to upload a video file to
-    the YouTube channel belonging to the signed-in account. Nothing else.
-  </p>
-  <ul>
-    <li>It does not read watch history, subscriptions, comments or analytics.</li>
-    <li>It does not modify or delete existing videos.</li>
-    <li>It does not access Gmail, Drive, Contacts, Calendar or any other Google service.</li>
-  </ul>
-  <p>
-    Full details are in the <a href="./privacy.html">privacy policy</a>.
-  </p>
+        <article class="feat reveal">
+          <a class="feat-img" href="https://yigitkalaycioglu.github.io/AlPaSa-Second-Hand-Trading-and-Social-Interaction-Platform/" target="_blank" rel="noopener"><img src="assets/img/alpasa.webp" alt="AlPaSa home page" data-i18n-attr="alt:p3.alt" loading="lazy" width="1200" height="750"></a>
+          <div class="feat-body">
+            <p class="kicker" data-i18n="p3.k">Web app · Marketplace</p>
+            <h3>AlPaSa</h3>
+            <p data-i18n="p3.d">A second-hand marketplace: listings with search and filters, favourites, follow and seller messaging, plus a role-based admin panel for categories, users and activity logs. A single-page app that keeps all data in the browser; demo accounts are on the login screen.</p>
+            <ul class="tags"><li>React 19</li><li>TypeScript</li><li>Vite</li><li>Tailwind CSS</li></ul>
+            <div class="links2">
+              <a class="btn primary sm" href="https://yigitkalaycioglu.github.io/AlPaSa-Second-Hand-Trading-and-Social-Interaction-Platform/" target="_blank" rel="noopener" data-i18n="live">Live demo</a>
+              <a class="btn sm" href="https://github.com/yigitkalaycioglu/AlPaSa-Second-Hand-Trading-and-Social-Interaction-Platform" target="_blank" rel="noopener" data-i18n="code">Source code</a>
+            </div>
+          </div>
+        </article>
+      </div>
 
-  <h2>About the series</h2>
-  <p>
-    Hollowfern follows Fen, a young fox a long way from home. Every day, one
-    wordless short: a single quiet moment from the journey back. Episodes are
-    made with AI animation tools, then directed and edited by hand.
-  </p>
+      <div class="grid">
+        <article class="card reveal">
+          <a class="card-img" href="https://yigitkalaycioglu.github.io/Medical-Diagnostic-Support-System-Unique-Machine-Learning-Approaches-for-Heart-Disease-Diagnosis/" target="_blank" rel="noopener"><img src="assets/img/heart.webp" alt="Heart disease study report" data-i18n-attr="alt:p4.alt" loading="lazy" width="1200" height="750"></a>
+          <p class="kicker" data-i18n="ml">Machine learning</p>
+          <h3 data-i18n="p4.t">Heart Disease Diagnosis with Custom ML Models</h3>
+          <p data-i18n="p4.d">Five standard classifiers compared with variants adapted to medical data on the Cleveland dataset. Best: KNN with a log-quadratic distance — 93.4% accuracy, 96.4% recall.</p>
+          <ul class="tags"><li>Python</li><li>scikit-learn</li><li>Jupyter</li></ul>
+          <div class="links2">
+            <a class="btn primary sm" href="https://yigitkalaycioglu.github.io/Medical-Diagnostic-Support-System-Unique-Machine-Learning-Approaches-for-Heart-Disease-Diagnosis/" target="_blank" rel="noopener" data-i18n="report">Live report</a>
+            <a class="btn sm" href="https://github.com/yigitkalaycioglu/Medical-Diagnostic-Support-System-Unique-Machine-Learning-Approaches-for-Heart-Disease-Diagnosis" target="_blank" rel="noopener" data-i18n="code">Source code</a>
+          </div>
+        </article>
 
-  <footer>
-    <a href="./privacy.html">Privacy Policy</a>
-    <a href="mailto:livewithcars107@gmail.com">Contact</a>
-    <br><br>
-    &copy; 2026 Hollowfern
+        <article class="card reveal">
+          <a class="card-img" href="https://yigitkalaycioglu.github.io/Autonomous-Diabetes-Management-Reinforcement-Learning-Based-Drug-Dose-Optimization/" target="_blank" rel="noopener"><img src="assets/img/diabetes.webp" alt="Reinforcement learning study report" data-i18n-attr="alt:p5.alt" loading="lazy" width="1200" height="750"></a>
+          <p class="kicker" data-i18n="rl">Reinforcement learning</p>
+          <h3 data-i18n="p5.t">Insulin Dose Adjustment with Reinforcement Learning</h3>
+          <p data-i18n="p5.d">A REINFORCE agent that decides to lower, keep or raise the dose in a simulation built from data. Trained for 10,000 episodes; keeps a test patient within 105–114 mg/dL.</p>
+          <ul class="tags"><li>Python</li><li>PyTorch</li><li>Gymnasium</li></ul>
+          <div class="links2">
+            <a class="btn primary sm" href="https://yigitkalaycioglu.github.io/Autonomous-Diabetes-Management-Reinforcement-Learning-Based-Drug-Dose-Optimization/" target="_blank" rel="noopener" data-i18n="report">Live report</a>
+            <a class="btn sm" href="https://github.com/yigitkalaycioglu/Autonomous-Diabetes-Management-Reinforcement-Learning-Based-Drug-Dose-Optimization" target="_blank" rel="noopener" data-i18n="code">Source code</a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-art art-ledger" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg><span>ASP.NET Core</span></div>
+          <p class="kicker" data-i18n="p6.k">Internship project · ESBİ</p>
+          <h3 data-i18n="p6.t">Mini Bookkeeping App</h3>
+          <p data-i18n="p6.d">Accounts, inventory, invoicing, payments and reporting, built end to end in 4 weeks. Invoice lines, stock movements and ledger entries are written in a single transaction; balances are derived from movement records and cancellations use reversing entries. Repository & Unit of Work, role-based authorization with Identity.</p>
+          <ul class="tags"><li>ASP.NET Core MVC</li><li>EF Core</li><li>SQL Server</li></ul>
+          <div class="links2"><a class="btn sm" href="https://github.com/yigitkalaycioglu/Mini-On-Muhasebe" target="_blank" rel="noopener" data-i18n="code">Source code</a></div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-art art-sla" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg><span>Multi-tenant</span></div>
+          <p class="kicker" data-i18n="fs">Full-stack</p>
+          <h3 data-i18n="p7.t">Multi-Tenant SLA Platform</h3>
+          <p data-i18n="p7.d">A ticketing system where each company has its own users, teams and SLA rules but cannot see other tenants' data (PostgreSQL row-level security). First-response and resolution timers, email alerts and real-time updates; everything starts with one Docker Compose command.</p>
+          <ul class="tags"><li>Express 5</li><li>TypeScript</li><li>React 19</li><li>PostgreSQL</li><li>Redis</li><li>Socket.io</li></ul>
+          <div class="links2"><a class="btn sm" href="https://github.com/yigitkalaycioglu/multi-tenant-sla-platform" target="_blank" rel="noopener" data-i18n="code">Source code</a></div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-art art-wol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.6 6.6a7.5 7.5 0 1 0 10.8 0"/></svg><span>Windows Service</span></div>
+          <p class="kicker" data-i18n="tool">Tool</p>
+          <h3>WolCatcher</h3>
+          <p data-i18n="p8.d">A Windows service that catches the Wake-on-LAN magic packet while the PC is on and shuts it down, so the same WoL button on the phone both wakes and turns off the computer. Installs and manages itself as a service.</p>
+          <ul class="tags"><li>C#</li><li>.NET 10</li><li>Windows Service</li></ul>
+          <div class="links2">
+            <a class="btn primary sm" href="https://github.com/yigitkalaycioglu/wol-catcher/releases/latest" target="_blank" rel="noopener" data-i18n="dl">Download</a>
+            <a class="btn sm" href="https://github.com/yigitkalaycioglu/wol-catcher" target="_blank" rel="noopener" data-i18n="code">Source code</a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-art art-reel" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/></svg><span>Android</span></div>
+          <p class="kicker" data-i18n="mobile">Mobile</p>
+          <h3>InstaReel Blocker</h3>
+          <p data-i18n="p9.d">An Android app that automatically skips sponsored videos in Instagram Reels using an accessibility service. No root, no internet permission, no data collection.</p>
+          <ul class="tags"><li>Kotlin</li><li>Android</li><li>AccessibilityService</li></ul>
+          <div class="links2">
+            <a class="btn primary sm" href="https://github.com/yigitkalaycioglu/instareel-blocker/releases/latest" target="_blank" rel="noopener" data-i18n="apk">Download APK</a>
+            <a class="btn sm" href="https://github.com/yigitkalaycioglu/instareel-blocker" target="_blank" rel="noopener" data-i18n="code">Source code</a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-art art-stok" aria-hidden="true"><img src="stokplus/simge.png" alt="" loading="lazy"><span>Stok+</span></div>
+          <p class="kicker" data-i18n="mobile">Mobile</p>
+          <h3>Stok+</h3>
+          <p data-i18n="p10.d">Shelf-by-shelf stock counting with barcodes: scan the product, say the shelf, share the list as Excel. Counting happens on the phone and the data stays there.</p>
+          <ul class="tags"><li>Android</li><li data-i18n="barcode">Barcode</li><li>Excel</li></ul>
+          <div class="links2"><a class="btn primary sm" href="stokplus/" data-i18n="apppage">App page</a></div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-art art-linux" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12.5 15H17"/></svg><span>systemd</span></div>
+          <p class="kicker" data-i18n="sys">Systems</p>
+          <h3 data-i18n="p11.t">Linux File System Monitoring Service</h3>
+          <p data-i18n="p11.d">A background daemon that watches a folder recursively and logs every create, modify, delete and move event as one-line JSON; installed as a systemd service.</p>
+          <ul class="tags"><li>Python</li><li>watchdog</li><li>systemd</li></ul>
+          <div class="links2"><a class="btn sm" href="https://github.com/yigitkalaycioglu/Linux-File-System-Monitoring-and-Logging-Service" target="_blank" rel="noopener" data-i18n="code">Source code</a></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
+      <div class="sec-head reveal"><h2 data-i18n="exp.title">Experience</h2></div>
+      <ol class="timeline">
+        <li class="reveal">
+          <div class="when" data-i18n="e1.when">Sep 2026 – Oct 2026</div>
+          <div class="what">
+            <h3>ESBİ Bilişim ve Telekomünikasyon</h3>
+            <p class="pos" data-i18n="intern">Software Intern</p>
+            <ul>
+              <li data-i18n="e1.a">Built a web-based bookkeeping application end to end in 4 weeks from a requirements document, covering customer/supplier accounts, inventory, invoicing, payments and reporting.</li>
+              <li data-i18n="e1.b">Designed an 11-table relational database schema and managed it with EF Core Code First migrations.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="reveal">
+          <div class="when" data-i18n="e2.when">Jun 2025 – Aug 2025</div>
+          <div class="what">
+            <h3>Tırsan Treyler</h3>
+            <p class="pos" data-i18n="e2.pos">Software Intern — .NET Team</p>
+            <ul>
+              <li data-i18n="e2.a">Contributed to module-based refactoring of internal enterprise apps following Clean Architecture principles.</li>
+              <li data-i18n="e2.b">Took part in optimizing database queries built on Entity Framework Core.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="sec-head reveal"><h2 data-i18n="sk.title">Skills</h2></div>
+      <div class="skills">
+        <div class="skill reveal"><h3 data-i18n="sk.web">Languages & Web</h3><ul class="tags"><li>JavaScript</li><li>TypeScript</li><li>React</li><li>Node.js</li><li>HTML5</li><li>CSS3</li><li>Tailwind CSS</li><li>Bootstrap</li><li>jQuery</li></ul></div>
+        <div class="skill reveal"><h3>Backend</h3><ul class="tags"><li>C#</li><li>ASP.NET Core (MVC, Identity)</li><li>Entity Framework Core</li><li>Express</li></ul></div>
+        <div class="skill reveal"><h3 data-i18n="sk.db">Databases & Tools</h3><ul class="tags"><li>MSSQL</li><li>PostgreSQL</li><li>Redis</li><li>Git</li><li>GitHub</li><li>Docker</li></ul></div>
+        <div class="skill reveal"><h3 data-i18n="sk.ds">Data Science</h3><ul class="tags"><li>Python</li><li>PyTorch</li><li>scikit-learn</li><li>pandas</li><li>Jupyter</li></ul></div>
+        <div class="skill reveal"><h3 data-i18n="sk.other">Also in my projects</h3><ul class="tags"><li>three.js</li><li>Streamlit</li><li>Kotlin (Android)</li><li>Socket.io</li><li>systemd</li></ul></div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section" id="education">
+      <div class="two">
+        <div class="reveal">
+          <h2 data-i18n="ed.title">Education</h2>
+          <div class="edu">
+            <h3 data-i18n="ed.school">Sakarya University</h3>
+            <p data-i18n="ed.dept">Information Systems Engineering</p>
+            <p class="muted" data-i18n="ed.grad">Graduation: June 2026</p>
+          </div>
+        </div>
+        <div class="reveal">
+          <h2 data-i18n="ce.title">Certifications</h2>
+          <ul class="certs">
+            <li><b data-i18n="c1">Full-Stack Web Development (HTML, CSS, JS, Node, React, PostgreSQL)</b><span>Udemy · Angela Yu</span></li>
+            <li><b data-i18n="c2">Odoo Student Diploma</b><span>Odoo S.A.</span></li>
+            <li><b data-i18n="c3">C# and .NET Programming</b><span>Udemy</span></li>
+            <li><b data-i18n="c4">AI Professional Development Program (40 hours)</b><span>Social Office / TNC Group · <a href="https://credsverse.com/credentials/52d198b2-c87b-4daf-abc6-22d6683dae5a?preview=1" target="_blank" rel="noopener" data-i18n="cview">View certificate</a></span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact">
+      <div class="contact-card reveal">
+        <h2 data-i18n="ct.title">Let's talk</h2>
+        <p data-i18n="ct.sub">For job opportunities, projects or just to say hello, email is the quickest way to reach me.</p>
+        <div class="cta">
+          <a class="btn primary" id="mail" href="#contact" data-u="yigit.klycoglu" data-d="gmail.com">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg><span id="mail-text">yigit.klycoglu (at) gmail.com</span></a>
+          <button class="btn" id="copy" type="button" data-i18n="ct.copy">Copy address</button>
+          <a class="btn" href="https://www.linkedin.com/in/yi%C4%9Fit-kalayc%C4%B1o%C4%9Flu-85bb60373/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/yigitkalaycioglu" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>© 2026 Yiğit Kalaycıoğlu · <span data-i18n="foot">Built by hand and published on GitHub Pages.</span></p>
   </footer>
 
-</div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="assets/js/site.js" defer></script>
 </body>
 </html>
