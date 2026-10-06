@@ -41,6 +41,8 @@
     'barcode': 'Barkod',
     'sys': 'Sistem', 'p11.t': 'Linux Dosya Sistemi İzleme Servisi',
     'p11.d': 'Bir klasörü alt klasörleriyle izleyip her oluşturma, değiştirme, silme ve taşıma olayını tek satırlık JSON olarak kaydeden arka plan servisi; systemd ile kurulur.',
+    'p12.t': 'N-Tier Mimari Oluşturucu',
+    'p12.d': 'Katmanlı bir ASP.NET Core çözümünü tek tıkla oluşturan Windows uygulaması: Core, Entities, DataAccess, Business ve Web API projeleri; referanslar, paketler, AOP aspect\'leri, isteğe bağlı JWT, örnek CRUD modülü ve testler. Dosyalar yazılmadan önce önizlenebiliyor; çıktı uyarısız derleniyor.',
     'exp.title': 'Deneyim', 'intern': 'Yazılım Stajyeri',
     'e1.when': 'Eyl 2026 – Eki 2026',
     'e1.a': 'Bir gereksinim dokümanından yola çıkarak cari hesaplar, stok, faturalama, ödemeler ve raporlamayı kapsayan web tabanlı bir ön muhasebe uygulamasını 4 haftada uçtan uca geliştirdim.',
