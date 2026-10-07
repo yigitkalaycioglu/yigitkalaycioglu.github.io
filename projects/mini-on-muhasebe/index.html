@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mini Bookkeeping App · Yiğit Kalaycıoğlu</title>
+  <meta name="description" content="Mini Bookkeeping App (Mini Ön Muhasebe): an ASP.NET Core MVC internship project with customer and supplier accounts, inventory, invoices, collections and payments, stock counts and reports.">
+  <meta name="theme-color" content="#0b0c10">
+  <link rel="canonical" href="https://yigitkalaycioglu.github.io/projects/mini-on-muhasebe/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yigitkalaycioglu.github.io/projects/mini-on-muhasebe/">
+  <meta property="og:title" content="Mini Bookkeeping App · Yiğit Kalaycıoğlu">
+  <meta property="og:description" content="Accounts, inventory, invoices, collections and payments, stock counts and reports — an ASP.NET Core MVC internship project.">
+  <meta property="og:image" content="https://yigitkalaycioglu.github.io/projects/mini-on-muhasebe/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <link rel="stylesheet" href="../../assets/css/proje.css">
+  <script>
+    // tema ve dil, ilk boyamadan önce uygulanır
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        var t = localStorage.getItem('yk-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        var l = localStorage.getItem('yk-lang') || ((navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en');
+        document.documentElement.setAttribute('lang', l);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#features" data-i18n="skip">Skip to content</a>
+
+  <header class="nav">
+    <div class="nav-in">
+      <a class="logo" href="../../" data-i18n-attr="aria-label:home" aria-label="Home">
+        <span class="logo-mark">YK</span>
+        <span class="logo-text">Yiğit Kalaycıoğlu</span>
+      </a>
+      <nav class="links" aria-label="Page">
+        <a href="#features" data-i18n="nav.features">Features</a>
+        <a href="#screens" data-i18n="nav.screens">Screens</a>
+        <a href="#how" data-i18n="nav.how">How it works</a>
+        <a href="#run" data-i18n="nav.run">Run it</a>
+      </nav>
+      <div class="tools">
+        <button class="pill" id="lang" type="button" aria-label="Türkçe / English"><span data-l="tr">TR</span><span data-l="en">EN</span></button>
+        <button class="icon" id="theme" type="button" data-i18n-attr="aria-label:theme" aria-label="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+          <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="p-hero">
+      <div class="p-hero-in">
+        <div class="reveal">
+          <a class="back" href="../../#projects"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-i18n="back">All projects</span></a>
+          <p class="kicker" data-i18n="h.k">Internship project · ESBİ</p>
+          <h1 class="p-title" data-i18n="h.t">Mini Bookkeeping App</h1>
+          <p class="lead" data-i18n="h.lead">A web-based bookkeeping app for small businesses: customer and supplier accounts, inventory, sales and purchase invoices, collections and payments, stock counts and reports. I built it end to end during my internship at ESBİ, following a requirements document and its five-week plan.</p>
+          <ul class="tags"><li>ASP.NET Core MVC</li><li>.NET 10</li><li>EF Core 10</li><li>SQL Server</li><li>Bootstrap 5</li></ul>
+          <div class="cta">
+            <a class="btn primary" href="https://github.com/yigitkalaycioglu/Mini-On-Muhasebe" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5m12 4.5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg><span data-i18n="code">Source code</span></a>
+            <a class="btn" href="https://github.com/yigitkalaycioglu/Mini-On-Muhasebe/blob/main/KULLANIM_KILAVUZU.md" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 8.3 4.5 4 4.5v14c4.3 0 6.5.5 8 2 1.5-1.5 3.7-2 8-2v-14c-4.3 0-6.5.5-8 2zM12 6.5v14"/></svg><span data-i18n="guide">User guide</span></a>
+          </div>
+          <p class="p-note" data-i18n="h.note">No live demo: the app needs a .NET server and SQL Server, so the screenshots below come from a local run with sample data.</p>
+        </div>
+        <figure class="frame reveal">
+          <div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>localhost:5029/Customer/SatisFaturasi/Create</span></div>
+          <img src="img/fatura.webp" width="1440" height="900" fetchpriority="high" alt="New sales invoice with three line items; subtotal, VAT and total are calculated automatically" data-i18n-attr="alt:h.alt">
+        </figure>
+      </div>
+      <ul class="p-facts reveal">
+        <li><b>11</b><span data-i18n="f1">tables, 86 columns, 13 relationships — as in the spec</span></li>
+        <li><b>26</b><span data-i18n="f2">screens, with two roles: admin and standard</span></li>
+        <li><b>1</b><span data-i18n="f3">transaction per invoice for stock and account entries</span></li>
+        <li><b data-i18n="f4.n">600k</b><span data-i18n="f4">PBKDF2 iterations for every password</span></li>
+      </ul>
+    </section>
+
+    <section class="section" id="features">
+      <div class="sec-head reveal">
+        <h2 data-i18n="ft.t">What it does</h2>
+        <p data-i18n="ft.s">Every module in the requirements document, each one checked against the database.</p>
+      </div>
+      <div class="feat-grid">
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.3c2.2.7 3.5 2.8 3.5 5.7"/></svg></div>
+          <h3 data-i18n="a1.t">Customer &amp; supplier accounts</h3>
+          <p data-i18n="a1.d">Customers, suppliers or both. Balances aren't stored; they're calculated from account movements, and the statement shows the opening balance, period totals and a running balance for any date range.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="m3.5 7.5 8.5 4.5 8.5-4.5M12 12v9"/></svg></div>
+          <h3 data-i18n="a2.t">Inventory</h3>
+          <p data-i18n="a2.d">Stock cards with purchase and sales prices, VAT rate and a critical level. Quantities come from stock movements; items at or below the critical level are flagged on the list and the dashboard.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></div>
+          <h3 data-i18n="a3.t">Sales &amp; purchase invoices</h3>
+          <p data-i18n="a3.d">A header plus line items with VAT per line; totals update as you type. Saving writes the invoice, its stock movements and the account entry together, and deleting the invoice reverses all of them.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="m17 3 3 3-3 3"/><path d="M4 11V9a3 3 0 0 1 3-3h13"/><path d="m7 21-3-3 3-3"/><path d="M20 13v2a3 3 0 0 1-3 3H4"/></svg></div>
+          <h3 data-i18n="a4.t">Stock movements &amp; counts</h3>
+          <p data-i18n="a4.d">Every stock movement in one filterable list. Count surplus and shortage slips change stock only and never touch an account, as the spec requires.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h3"/></svg></div>
+          <h3 data-i18n="a5.t">Collections &amp; payments</h3>
+          <p data-i18n="a5.d">Cash, bank transfer or cheque. A collection credits the account, a payment debits it, and each gets its own document number.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 20v-6M11 20V5M17 20v-9M3 20h18"/></svg></div>
+          <h3 data-i18n="a6.t">Reports</h3>
+          <p data-i18n="a6.d">Account balances, stock status, critical stock and sales by salesperson, plus invoice and movement lists. Reports are printable and match the movement records.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1.5 14h5M9.5 8h5M17.5 16h5"/></svg></div>
+          <h3 data-i18n="a7.t">Parameters</h3>
+          <p data-i18n-html="a7.d">Company details, default VAT, currency, decimal places (0–2), negative-stock control, critical-stock warnings and document number formats such as <code>SAT-{yyyy}-{0000}</code>.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3 data-i18n="a8.t">Users &amp; roles</h3>
+          <p data-i18n="a8.d">Admin and standard roles; only admins manage users and parameters. The session is checked on every request, so deactivating a user or changing a role takes effect immediately.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="screens">
+      <div class="sec-head reveal">
+        <h2 data-i18n="sc.t">Screens</h2>
+        <p data-i18n="sc.s">Captured from the running app with sample data. The interface is in Turkish; click to enlarge.</p>
+      </div>
+      <div class="gallery">
+        <figure class="shot-card reveal">
+          <a href="img/panel.webp" data-lightbox data-i18n-attr="aria-label:enlarge" aria-label="Enlarge"><img src="img/panel.webp" width="1440" height="900" loading="lazy" alt="Dashboard" data-i18n-attr="alt:g1.alt"></a>
+          <figcaption data-i18n="g1">Dashboard with quick actions and the critical stock warning</figcaption>
+        </figure>
+        <figure class="shot-card reveal">
+          <a href="img/ekstre.webp" data-lightbox data-i18n-attr="aria-label:enlarge" aria-label="Enlarge"><img src="img/ekstre.webp" width="1440" height="900" loading="lazy" alt="Account statement" data-i18n-attr="alt:g2.alt"></a>
+          <figcaption data-i18n="g2">Account statement: opening balance, period totals and running balance</figcaption>
+        </figure>
+        <figure class="shot-card reveal">
+          <a href="img/stok.webp" data-lightbox data-i18n-attr="aria-label:enlarge" aria-label="Enlarge"><img src="img/stok.webp" width="1440" height="900" loading="lazy" alt="Stock cards" data-i18n-attr="alt:g3.alt"></a>
+          <figcaption data-i18n="g3">Stock cards with quantities summed in SQL and critical items highlighted</figcaption>
+        </figure>
+        <figure class="shot-card reveal">
+          <a href="img/rapor.webp" data-lightbox data-i18n-attr="aria-label:enlarge" aria-label="Enlarge"><img src="img/rapor.webp" width="1440" height="900" loading="lazy" alt="Sales by salesperson report" data-i18n-attr="alt:g4.alt"></a>
+          <figcaption data-i18n="g4">Sales by salesperson for a chosen date range</figcaption>
+        </figure>
+        <figure class="shot-card reveal">
+          <a href="img/tahsilat.webp" data-lightbox data-i18n-attr="aria-label:enlarge" aria-label="Enlarge"><img src="img/tahsilat.webp" width="1440" height="900" loading="lazy" alt="Collections and payments" data-i18n-attr="alt:g5.alt"></a>
+          <figcaption data-i18n="g5">Collections and payments by cash, transfer or cheque</figcaption>
+        </figure>
+        <figure class="shot-card reveal">
+          <a href="img/parametreler.webp" data-lightbox data-i18n-attr="aria-label:enlarge" aria-label="Enlarge"><img src="img/parametreler.webp" width="1440" height="900" loading="lazy" alt="Parameters" data-i18n-attr="alt:g6.alt"></a>
+          <figcaption data-i18n="g6">Parameters, with a live preview of document number formats</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="sec-head reveal">
+        <h2 data-i18n="hw.t">How it works</h2>
+        <p data-i18n="hw.s">A layered MVC app where the rules live in services and the numbers come from the database.</p>
+      </div>
+      <div class="split">
+        <div class="reveal">
+          <div class="layers">
+            <div class="layer top"><b>OnMuhasebeWeb</b><span data-i18n="l1">Controllers, views, view models, filters and session checks</span></div>
+            <div class="layer-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+            <div class="layer"><b>OnMuhasebe.Business</b><span data-i18n="l2">Services behind interfaces, constants and report summaries</span></div>
+            <div class="layer-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+            <div class="layer"><b>OnMuhasebe.DataAccess</b><span data-i18n="l3">DbContext, column types and five migrations</span></div>
+            <div class="layer-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+            <div class="layer"><b>OnMuhasebe.Models</b><span data-i18n="l4">Eleven plain entity classes, one per table</span></div>
+            <div class="layer side"><b>OnMuhasebe.Utility</b><span data-i18n="l5">The PBKDF2 password helper</span></div>
+          </div>
+          <p class="sec-more" data-i18n="l.note">Dependencies point one way. Controllers never touch the DbContext; they call service interfaces injected through DI.</p>
+        </div>
+        <div class="stack">
+          <div class="box reveal">
+            <h3 data-i18n="d1.t">Balances are calculated, not stored</h3>
+            <p data-i18n="d1.d">Stock quantities and account balances are derived from the movement tables. The formula is defined once as an expression and reused inside queries, so the sum runs in SQL instead of loading every movement into memory.</p>
+            <div class="code" data-copy>
+              <div class="code-head">C#</div>
+              <pre><code>.Select(s =&gt; new StokBakiyesi {
+    Stok   = s,
+    Mevcut = s.StokHareketleri.AsQueryable().Sum(Etki)
+})</code></pre>
+            </div>
+          </div>
+          <div class="box reveal">
+            <h3 data-i18n="d2.t">One transaction per document</h3>
+            <p data-i18n="d2.d">An invoice, its stock movements and its account entry are saved with a single SaveChanges call, so either all of them are written or none. When an invoice is deleted, its movements are found by document number and type and removed the same way.</p>
+          </div>
+          <div class="box reveal">
+            <h3 data-i18n="d3.t">History can't disappear</h3>
+            <p data-i18n="d3.d">Links from accounts, stock cards, salespeople and users to documents are Restrict, not Cascade. With negative-stock control on, deleting a purchase invoice that would push stock below zero is blocked, and the app names the item.</p>
+          </div>
+          <div class="box reveal">
+            <h3 data-i18n="d4.t">Amounts don't depend on the server</h3>
+            <p data-i18n="d4.d">Amounts are typed with a decimal comma. The request culture is pinned to tr-TR, so 12,50 can't turn into 1250 on an English server, and rounding follows the decimal-places parameter, half away from zero.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="security">
+      <div class="sec-head reveal">
+        <h2 data-i18n="se.t">Security</h2>
+        <p data-i18n="se.s">Custom cookie authentication on the project's own user table, hardened after a security review.</p>
+      </div>
+      <div class="feat-grid">
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></div>
+          <h3 data-i18n="s1.t">Password storage</h3>
+          <p data-i18n="s1.d">PBKDF2-SHA256 with a 16-byte random salt and 600,000 iterations. Hashes are compared in constant time.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg></div>
+          <h3 data-i18n="s2.t">Login limits</h3>
+          <p data-i18n="s2.d">At most 10 login attempts per minute from one IP; five wrong passwords lock the account for five minutes. Logins and lockouts are logged with user name and IP.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6z"/></svg></div>
+          <h3 data-i18n="s3.t">Browser protection</h3>
+          <p data-i18n="s3.d">A nonce-based Content Security Policy, X-Frame-Options, nosniff and a strict referrer policy. Every POST checks an anti-forgery token, and third-party scripts are served from the app itself.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="m16 11 2 2 4-4"/></svg></div>
+          <h3 data-i18n="s4.t">Live session checks</h3>
+          <p data-i18n="s4.d">Each request re-reads the signed-in user, so deleted, deactivated or changed users are signed out. Admins can't remove themselves or the last active admin.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="challenges">
+      <div class="sec-head reveal">
+        <h2 data-i18n="ch.t">Problems I ran into</h2>
+        <p data-i18n="ch.s">Six of the eleven issues documented in the README, and how each was solved.</p>
+      </div>
+      <div class="chal">
+        <article class="reveal">
+          <h3 data-i18n="c1.t">Invoices silently failed validation</h3>
+          <p data-i18n="c1.p">With nullable reference types on, MVC treated non-nullable properties as required, including the invoice number and navigation properties that never come from the form. ModelState was always invalid, with no visible error.</p>
+          <p class="fix"><b data-i18n="fix">Fix:</b> <span data-i18n="c1.f">server-filled fields are removed from validation, and a test confirmed that bad input such as an empty customer or a negative quantity is still rejected.</span></p>
+        </article>
+        <article class="reveal">
+          <h3 data-i18n="c2.t">Lists showed zero stock</h3>
+          <p data-i18n="c2.p">Quantities and balances come from movements, but the queries didn't load them, so every sum was 0 and the edit screen showed a false critical-stock warning.</p>
+          <p class="fix"><b data-i18n="fix">Fix:</b> <span data-i18n="c2.f">loading the movements fixed the numbers; later the lists were rewritten to sum in SQL so they don't pull every movement into memory.</span></p>
+        </article>
+        <article class="reveal">
+          <h3 data-i18n="c3.t">One formula in six places</h3>
+          <p data-i18n="c3.p">The stock and balance formulas were written by hand in six views each. Changing the critical-stock rule meant finding all of them, and missing one made two screens disagree.</p>
+          <p class="fix"><b data-i18n="fix">Fix:</b> <span data-i18n="c3.f">the formulas moved into services behind interfaces, and views now get ready values through ViewModels, so the compiler keeps business logic out of the views.</span></p>
+        </article>
+        <article class="reveal">
+          <h3 data-i18n="c4.t">Identity didn't fit the spec</h3>
+          <p data-i18n="c4.p">ASP.NET Core Identity adds seven tables and its own user class, while the spec asked for an 11-table schema with its own user table.</p>
+          <p class="fix"><b data-i18n="fix">Fix:</b> <span data-i18n="c4.f">Identity was removed in favour of cookie authentication on the existing table and a PBKDF2 password helper; the seed data hashes were regenerated with it.</span></p>
+        </article>
+        <article class="reveal">
+          <h3 data-i18n="c5.t">Amounts depended on the server language</h3>
+          <p data-i18n="c5.p">Model binding reads 12,50 using the server's culture. It worked on a Turkish machine, but an English server would have saved 1250.</p>
+          <p class="fix"><b data-i18n="fix">Fix:</b> <span data-i18n="c5.f">the app culture is pinned to tr-TR, and the English model binding messages were replaced with Turkish ones.</span></p>
+        </article>
+        <article class="reveal">
+          <h3 data-i18n="c6.t">Open sessions outlived deactivation</h3>
+          <p data-i18n="c6.p">A deactivated user couldn't sign in again, but a session that was already open kept its old rights for up to eight hours.</p>
+          <p class="fix"><b data-i18n="fix">Fix:</b> <span data-i18n="c6.f">the cookie is validated against the database on every request, and removing yourself or the last active admin is blocked.</span></p>
+        </article>
+      </div>
+      <p class="sec-more reveal"><a href="https://github.com/yigitkalaycioglu/Mini-On-Muhasebe#readme" target="_blank" rel="noopener" data-i18n="ch.more">Read all eleven in the README →</a></p>
+    </section>
+
+    <section class="section" id="plan">
+      <div class="sec-head reveal">
+        <h2 data-i18n="pl.t">Five-week plan</h2>
+        <p data-i18n="pl.s">The order of work set by the requirements document.</p>
+      </div>
+      <ol class="weeks reveal">
+        <li><b data-i18n="w1">Week 1</b><span data-i18n="w1.d">Database design, project skeleton, login, user management and salespeople</span></li>
+        <li><b data-i18n="w2">Week 2</b><span data-i18n="w2.d">Customer and supplier accounts, stock cards</span></li>
+        <li><b data-i18n="w3">Week 3</b><span data-i18n="w3.d">Sales and purchase invoices that update stock and accounts</span></li>
+        <li><b data-i18n="w4">Week 4</b><span data-i18n="w4.d">Stock movements, count slips, collections and payments</span></li>
+        <li><b data-i18n="w5">Week 5</b><span data-i18n="w5.d">Parameters, reports, testing and delivery</span></li>
+      </ol>
+    </section>
+
+    <section class="section" id="run">
+      <div class="sec-head reveal">
+        <h2 data-i18n="rn.t">Run it locally</h2>
+        <p data-i18n="rn.s">You need the .NET 10 SDK and SQL Server. Run these from the repository root.</p>
+      </div>
+      <div class="split">
+        <ol class="steps reveal">
+          <li>
+            <h3 data-i18n="r1.t">Create the database</h3>
+            <p data-i18n="r1.d">The UTF-8 code page flag keeps Turkish characters intact.</p>
+            <div class="code" data-copy><div class="code-head">Shell</div><pre><code>sqlcmd -S "localhost\MSSQLSERVER01" -E -f i:65001 -i OnMuhasebe/Database/create_database.sql</code></pre></div>
+          </li>
+          <li>
+            <h3 data-i18n="r2.t">Load the sample data (optional)</h3>
+            <div class="code" data-copy><div class="code-head">Shell</div><pre><code>sqlcmd -S "localhost\MSSQLSERVER01" -E -f i:65001 -i OnMuhasebe/Database/seed_data.sql</code></pre></div>
+          </li>
+          <li>
+            <h3 data-i18n="r3.t">Start the app</h3>
+            <p data-i18n-html="r3.d">It opens at <code>http://localhost:5029</code>.</p>
+            <div class="code" data-copy><div class="code-head">Shell</div><pre><code>cd OnMuhasebe/OnMuhasebeWeb
+dotnet run</code></pre></div>
+          </li>
+        </ol>
+        <div class="stack reveal">
+          <div class="box">
+            <h3 data-i18n="r4.t">Different SQL Server name?</h3>
+            <p data-i18n-html="r4.d">The commands use the <code>localhost\MSSQLSERVER01</code> instance. If yours is <code>localhost</code> or <code>.\SQLEXPRESS</code>, change the server name in the commands and in <code>DefaultConnection</code> inside <code>appsettings.json</code>.</p>
+          </div>
+          <div class="box">
+            <h3 data-i18n="r5.t">Sample users</h3>
+            <p data-i18n-html="r5.d"><code>admin</code> (admin) and <code>ayse.yilmaz</code> (standard), both with the password <code>123456</code>. They exist for testing only and must not be loaded on a live server.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="limits">
+      <div class="sec-head reveal"><h2 data-i18n="nd.t">Not included</h2></div>
+      <ul class="limits reveal">
+        <li data-i18n="n1">The bonus items in the spec (Excel/PDF export, charts, an activity log, backups) weren't built; reports can be printed from the browser.</li>
+        <li data-i18n="n2">Form screens bind to entities instead of ViewModels on purpose, because asp-for binding needs the entity; list and report screens use ViewModels.</li>
+        <li data-i18n-html="n3">The spec defines no number format for collections and payments, so they use a fixed <code>TAH-{yyyy}-{0000}</code> / <code>ODE-{yyyy}-{0000}</code> format.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="more">
+      <div class="sec-head reveal"><h2 data-i18n="more">More projects</h2></div>
+      <nav class="more reveal" aria-label="More projects" data-i18n-attr="aria-label:more">
+        <a href="../ntier-generator/"><span class="mini art-ntier"><svg viewBox="0 0 24 24"><path d="M12 3 21 7.5 12 12 3 7.5z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 16.5 9 4.5 9-4.5"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span data-i18n="pn.ntier">N-Tier Architecture Generator</span></span></a>
+        <a href="../multi-tenant-sla-platform/"><span class="mini art-sla"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg></span><span><small data-i18n="pk.fs">Full-stack</small><span data-i18n="pn.sla">Multi-Tenant SLA Platform</span></span></a>
+        <a href="../wol-catcher/"><span class="mini art-wol"><svg viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.6 6.6a7.5 7.5 0 1 0 10.8 0"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span>WolCatcher</span></span></a>
+        <a href="../instareel-blocker/"><span class="mini art-reel"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/></svg></span><span><small data-i18n="pk.mobile">Mobile</small><span>InstaReel Blocker</span></span></a>
+        <a href="../linux-file-monitoring/"><span class="mini art-linux"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12.5 15H17"/></svg></span><span><small data-i18n="pk.sys">Systems</small><span data-i18n="pn.linux">Linux File Monitoring Service</span></span></a>
+        <a href="../../stokplus/"><span class="mini art-stok"><img src="../../stokplus/simge.png" alt="" loading="lazy"></span><span><small data-i18n="pk.mobile">Mobile</small><span>Stok+</span></span></a>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>© 2026 Yiğit Kalaycıoğlu · <span data-i18n="foot">Built by hand and published on GitHub Pages.</span></p>
+  </footer>
+
+  <script type="application/json" id="tr">
+  {
+    "_title": "Mini Ön Muhasebe · Yiğit Kalaycıoğlu",
+    "h.k": "Staj projesi · ESBİ",
+    "h.t": "Mini Ön Muhasebe",
+    "h.lead": "Küçük işletmeler için web tabanlı bir ön muhasebe uygulaması: cari hesaplar, stok, satış ve alış faturaları, tahsilat ve ödeme, sayım fişleri ve raporlar. ESBİ'deki stajımda bir gereksinim dokümanına ve onun beş haftalık planına göre uçtan uca geliştirdim.",
+    "h.note": "Canlı demo yok: uygulama bir .NET sunucusu ve SQL Server gerektiriyor. Aşağıdaki ekran görüntüleri örnek veriyle yerelde çalışan uygulamadan alındı.",
+    "h.alt": "Üç kalemli yeni satış faturası; ara toplam, KDV ve genel toplam otomatik hesaplanıyor",
+    "f1": "tablo, 86 kolon, 13 ilişki; dokümandakiyle aynı",
+    "f2": "ekran; yönetici ve standart olmak üzere iki rol",
+    "f3": "transaction: fatura, stok ve cari kaydı birlikte",
+    "f4.n": "600 bin",
+    "f4": "PBKDF2 tekrarıyla saklanan parolalar",
+    "ft.t": "Neler yapıyor",
+    "ft.s": "Gereksinim dokümanındaki bütün modüller; her biri veritabanıyla karşılaştırılarak test edildi.",
+    "a1.t": "Cari hesaplar",
+    "a1.d": "Müşteri, tedarikçi ya da her ikisi. Bakiye tabloda saklanmıyor, cari hareketlerinden hesaplanıyor; ekstre istenen tarih aralığı için devir bakiye, dönem toplamları ve yürüyen bakiyeyle gösteriliyor.",
+    "a2.t": "Stok",
+    "a2.d": "Alış ve satış fiyatı, KDV oranı ve kritik seviyesi olan stok kartları. Miktarlar stok hareketlerinden geliyor; kritik seviyedeki ürünler listede ve ana sayfada işaretleniyor.",
+    "a3.t": "Satış ve alış faturaları",
+    "a3.d": "Başlık ve satır bazında KDV'li kalemler; toplamlar yazarken güncelleniyor. Kayıtta fatura, stok hareketleri ve cari kaydı birlikte yazılıyor; fatura silinince hepsi geri alınıyor.",
+    "a4.t": "Stok hareketleri ve sayım",
+    "a4.d": "Bütün stok hareketleri filtrelenebilir tek bir listede. Sayım fazlası ve eksiği fişleri, dokümanın istediği gibi yalnızca stoğu değiştiriyor, cariye hiç dokunmuyor.",
+    "a5.t": "Tahsilat ve ödeme",
+    "a5.d": "Nakit, havale veya çek. Tahsilat cariyi alacaklandırıyor, ödeme borçlandırıyor; her biri kendi belge numarasını alıyor.",
+    "a6.t": "Raporlar",
+    "a6.d": "Cari bakiye, stok durum, kritik stok ve satış elemanına göre satış; ayrıca fatura ve hareket listeleri. Raporlar yazdırılabiliyor ve hareket kayıtlarıyla birebir tutuyor.",
+    "a7.t": "Parametreler",
+    "a7.d": "Firma bilgileri, varsayılan KDV, para birimi, ondalık basamak (0–2), negatif stok kontrolü, kritik stok uyarısı ve <code>SAT-{yyyy}-{0000}</code> gibi belge numarası formatları.",
+    "a8.t": "Kullanıcılar ve roller",
+    "a8.d": "Yönetici ve standart roller; kullanıcıları ve parametreleri yalnızca yönetici yönetiyor. Oturum her istekte kontrol edildiği için kullanıcıyı pasife almak ya da rolünü değiştirmek hemen etkili oluyor.",
+    "sc.t": "Ekranlar",
+    "sc.s": "Örnek veriyle çalışan uygulamadan alındı. Büyütmek için görsele tıklayın.",
+    "g1": "Hızlı işlemler ve kritik stok uyarısıyla ana sayfa",
+    "g1.alt": "Ana sayfa",
+    "g2": "Cari ekstre: devir bakiye, dönem toplamları ve yürüyen bakiye",
+    "g2.alt": "Cari ekstre",
+    "g3": "Miktarları SQL'de toplanan, kritik ürünleri işaretlenmiş stok kartları",
+    "g3.alt": "Stok kartları",
+    "g4": "Seçilen tarih aralığında satış elemanına göre satış",
+    "g4.alt": "Satış elemanına göre satış raporu",
+    "g5": "Nakit, havale ve çekle tahsilat ve ödemeler",
+    "g5.alt": "Tahsilat ve ödemeler",
+    "g6": "Belge numarası formatlarını anında önizleyen parametreler ekranı",
+    "g6.alt": "Parametreler",
+    "hw.t": "Nasıl çalışıyor",
+    "hw.s": "Kuralların servislerde, sayıların veritabanında olduğu katmanlı bir MVC uygulaması.",
+    "l1": "Controller, view, ViewModel, filtreler ve oturum doğrulama",
+    "l2": "Interface arkasındaki servisler, sabitler ve rapor özetleri",
+    "l3": "DbContext, kolon tipleri ve beş migration",
+    "l4": "Her tablo için bir tane olmak üzere on bir entity sınıfı",
+    "l5": "PBKDF2 parola yardımcısı",
+    "l.note": "Bağımlılıklar tek yöne akıyor. Controller'lar DbContext'e hiç dokunmuyor; DI ile gelen servis interface'lerini çağırıyor.",
+    "d1.t": "Bakiye saklanmıyor, hesaplanıyor",
+    "d1.d": "Stok miktarı ve cari bakiye hareket tablolarından türetiliyor. Formül tek bir ifadede tanımlı ve sorguların içinde yeniden kullanılıyor; böylece toplama, bütün hareketler belleğe alınmadan SQL'de yapılıyor.",
+    "d2.t": "Belge başına tek transaction",
+    "d2.d": "Fatura, stok hareketleri ve cari kaydı tek bir SaveChanges çağrısıyla kaydediliyor; ya hepsi yazılıyor ya hiçbiri. Fatura silinirken hareketleri belge numarası ve türüyle bulunup aynı şekilde siliniyor.",
+    "d3.t": "Geçmiş kaybolamaz",
+    "d3.d": "Cari, stok, satış elemanı ve kullanıcıdan belgelere giden ilişkiler Cascade değil Restrict. Negatif stok kontrolü açıkken stoğu eksiye düşürecek bir alış faturası silinemiyor ve uygulama hangi ürünün etkileneceğini gösteriyor.",
+    "d4.t": "Tutarlar sunucuya bağlı değil",
+    "d4.d": "Tutarlar virgülle giriliyor. İstek kültürü tr-TR'ye sabitlendiği için İngilizce bir sunucuda 12,50 1250'ye dönüşemiyor; yuvarlama da ondalık basamak parametresine göre yarım yukarı yapılıyor.",
+    "se.t": "Güvenlik",
+    "se.s": "Projenin kendi kullanıcı tablosu üzerinde cookie kimlik doğrulaması; bir güvenlik incelemesinden sonra sıkılaştırıldı.",
+    "s1.t": "Parola saklama",
+    "s1.d": "16 bayt rastgele salt ve 600.000 tekrarla PBKDF2-SHA256. Özetler sabit sürede karşılaştırılıyor.",
+    "s2.t": "Giriş sınırları",
+    "s2.d": "Bir IP'den dakikada en fazla 10 giriş denemesi; üst üste beş hatalı şifre hesabı beş dakika kilitliyor. Girişler ve kilitlenmeler kullanıcı adı ve IP ile günlüğe yazılıyor.",
+    "s3.t": "Tarayıcı korumaları",
+    "s3.d": "Nonce tabanlı Content Security Policy, X-Frame-Options, nosniff ve sıkı bir referrer politikası. Her POST anti-forgery token'ı kontrol ediyor; üçüncü taraf script'ler uygulamanın kendisinden sunuluyor.",
+    "s4.t": "Canlı oturum kontrolü",
+    "s4.d": "Her istekte oturumdaki kullanıcı yeniden okunuyor; silinen, pasife alınan ya da bilgisi değişen kullanıcının oturumu kapanıyor. Yönetici kendini ve son aktif yöneticiyi kaldıramıyor.",
+    "ch.t": "Karşılaştığım sorunlar",
+    "ch.s": "README'de anlattığım on bir sorundan altısı ve her birinin nasıl çözüldüğü.",
+    "fix": "Çözüm:",
+    "c1.t": "Faturalar sessizce doğrulamadan kalıyordu",
+    "c1.p": "Nullable açık olduğu için MVC, null olamayan alanları zorunlu saydı; formdan hiç gelmeyen fatura numarası ve navigation property'ler de buna dahildi. ModelState hep geçersizdi ama ekranda hata görünmüyordu.",
+    "c1.f": "sunucunun doldurduğu alanlar doğrulamadan çıkarıldı; boş cari ya da negatif miktar gibi hatalı verinin hâlâ reddedildiği ayrıca test edildi.",
+    "c2.t": "Listeler sıfır stok gösteriyordu",
+    "c2.p": "Miktar ve bakiye hareketlerden hesaplanıyor ama sorgular hareketleri yüklemiyordu; bütün toplamlar 0 çıkıyor, düzenleme ekranı da yersiz kritik stok uyarısı veriyordu.",
+    "c2.f": "hareketler yüklenince sayılar düzeldi; sonra listeler bütün hareketleri belleğe almamak için toplamı SQL'de hesaplayacak şekilde yeniden yazıldı.",
+    "c3.t": "Aynı formül altı yerde",
+    "c3.p": "Stok ve bakiye formülleri altışar view'de elle yazılmıştı. Kritik stok kuralını değiştirmek hepsini bulmayı gerektiriyordu; biri atlanınca iki ekran farklı sayı gösteriyordu.",
+    "c3.f": "formüller interface arkasındaki servislere taşındı, view'ler hazır değerleri ViewModel'lerle alıyor; iş mantığını artık derleyici view'lerden uzak tutuyor.",
+    "c4.t": "Identity dokümana uymadı",
+    "c4.p": "ASP.NET Core Identity yedi ek tablo ve kendi kullanıcı sınıfını getiriyor; doküman ise kendi kullanıcı tablosu olan 11 tabloluk bir şema istiyordu.",
+    "c4.f": "Identity kaldırıldı; mevcut tablo üzerinde cookie authentication ve bir PBKDF2 parola yardımcısı yazıldı, örnek verideki özetler de onunla yeniden üretildi.",
+    "c5.t": "Tutarlar sunucunun diline bağlıydı",
+    "c5.p": "Model binding 12,50'yi sunucunun kültürüne göre okur. Türkçe bilgisayarda sorun yoktu ama İngilizce bir sunucu 1250 kaydederdi.",
+    "c5.f": "uygulama kültürü tr-TR'ye sabitlendi, model binding'in İngilizce hata mesajları Türkçeleriyle değiştirildi.",
+    "c6.t": "Pasife alınan kullanıcının oturumu açık kalıyordu",
+    "c6.p": "Pasife alınan kullanıcı yeniden giriş yapamıyordu ama zaten açık olan oturumu sekiz saate kadar eski yetkileriyle çalışıyordu.",
+    "c6.f": "cookie her istekte veritabanına göre doğrulanıyor; kişinin kendini ya da son aktif yöneticiyi kaldırması engellendi.",
+    "ch.more": "On bir maddenin tamamı README'de →",
+    "pl.t": "Beş haftalık plan",
+    "pl.s": "Gereksinim dokümanının belirlediği iş sırası.",
+    "w1": "1. hafta", "w2": "2. hafta", "w3": "3. hafta", "w4": "4. hafta", "w5": "5. hafta",
+    "w1.d": "Veritabanı tasarımı, proje iskeleti, giriş, kullanıcı yönetimi ve satış elemanları",
+    "w2.d": "Cari kartlar ve stok kartları",
+    "w3.d": "Stoğu ve cariyi güncelleyen satış ve alış faturaları",
+    "w4.d": "Stok hareketleri, sayım fişleri, tahsilat ve ödeme",
+    "w5.d": "Parametreler, raporlar, test ve teslim",
+    "rn.t": "Yerelde çalıştırma",
+    "rn.s": ".NET 10 SDK ve SQL Server gerekiyor. Komutları deponun kök klasöründe çalıştırın.",
+    "r1.t": "Veritabanını oluşturun",
+    "r1.d": "UTF-8 kod sayfası parametresi Türkçe karakterlerin bozulmasını önlüyor.",
+    "r2.t": "Örnek veriyi yükleyin (isteğe bağlı)",
+    "r3.t": "Uygulamayı başlatın",
+    "r3.d": "<code>http://localhost:5029</code> adresinde açılıyor.",
+    "r4.t": "SQL Server adınız farklı mı?",
+    "r4.d": "Komutlar <code>localhost\\MSSQLSERVER01</code> örneğini kullanıyor. Sizinki <code>localhost</code> ya da <code>.\\SQLEXPRESS</code> ise komutlardaki sunucu adını ve <code>appsettings.json</code> içindeki <code>DefaultConnection</code> bağlantı cümlesini değiştirin.",
+    "r5.t": "Örnek kullanıcılar",
+    "r5.d": "<code>admin</code> (yönetici) ve <code>ayse.yilmaz</code> (standart); ikisinin de şifresi <code>123456</code>. Yalnızca test için var, canlı bir sunucuya yüklenmemeli.",
+    "nd.t": "Yapılmayanlar",
+    "n1": "Dokümandaki bonus maddeler (Excel/PDF aktarma, grafik, işlem geçmişi, yedekleme) yapılmadı; raporlar tarayıcıdan yazdırılabiliyor.",
+    "n2": "Form ekranları bilinçli olarak ViewModel yerine entity kullanıyor, çünkü asp-for binding'in entity'ye bağlanması gerekiyor; liste ve rapor ekranları ViewModel kullanıyor.",
+    "n3": "Dokümanda tahsilat ve ödeme için numara formatı tanımlı olmadığından sabit <code>TAH-{yyyy}-{0000}</code> / <code>ODE-{yyyy}-{0000}</code> formatı kullanılıyor."
+  }
+  </script>
+  <script src="../../assets/js/proje.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Linux File System Monitoring Service · Yiğit Kalaycıoğlu</title>
+  <meta name="description" content="A small Python service that watches a folder on Linux, subfolders included, and logs every file change as one line of JSON. Built on watchdog and installed as a systemd service.">
+  <meta name="theme-color" content="#0b0c10">
+  <link rel="canonical" href="https://yigitkalaycioglu.github.io/projects/linux-file-monitoring/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yigitkalaycioglu.github.io/projects/linux-file-monitoring/">
+  <meta property="og:title" content="Linux File System Monitoring Service · Yiğit Kalaycıoğlu">
+  <meta property="og:description" content="Watches a folder recursively and logs every file change as one-line JSON; runs under systemd.">
+  <meta property="og:image" content="https://yigitkalaycioglu.github.io/projects/linux-file-monitoring/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <link rel="stylesheet" href="../../assets/css/proje.css">
+  <script>
+    // tema ve dil, ilk boyamadan önce uygulanır
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        var t = localStorage.getItem('yk-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        var l = localStorage.getItem('yk-lang') || ((navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en');
+        document.documentElement.setAttribute('lang', l);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#how" data-i18n="skip">Skip to content</a>
+
+  <header class="nav">
+    <div class="nav-in">
+      <a class="logo" href="../../" data-i18n-attr="aria-label:home" aria-label="Home">
+        <span class="logo-mark">YK</span>
+        <span class="logo-text">Yiğit Kalaycıoğlu</span>
+      </a>
+      <nav class="links" aria-label="Page">
+        <a href="#how" data-i18n="nav.how">How it works</a>
+        <a href="#run" data-i18n="nav.setup">Setup</a>
+      </nav>
+      <div class="tools">
+        <button class="pill" id="lang" type="button" aria-label="Türkçe / English"><span data-l="tr">TR</span><span data-l="en">EN</span></button>
+        <button class="icon" id="theme" type="button" data-i18n-attr="aria-label:theme" aria-label="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+          <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="p-hero">
+      <div class="p-hero-in">
+        <div class="reveal">
+          <a class="back" href="../../#projects"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-i18n="back">All projects</span></a>
+          <p class="kicker" data-i18n="h.k">Systems · Linux</p>
+          <h1 class="p-title" data-i18n="h.t">Linux File System Monitoring Service</h1>
+          <p class="lead" data-i18n="h.lead">A small Python service that watches a folder on Linux, subfolders included, and writes every file change, such as a file being created, modified, deleted or moved, to a log file as one line of JSON. It's installed as a systemd service, so it keeps running in the background.</p>
+          <ul class="tags"><li>Python</li><li>watchdog</li><li>systemd</li><li>JSON Lines</li><li>Linux</li></ul>
+          <div class="cta">
+            <a class="btn primary" href="https://github.com/yigitkalaycioglu/Linux-File-System-Monitoring-and-Logging-Service" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5m12 4.5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg><span data-i18n="code">Source code</span></a>
+          </div>
+        </div>
+        <figure class="term reveal">
+          <div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>ubuntu@server: ~</span></div>
+          <pre><span class="p">$</span> tail -f /home/ubuntu/bsm/logs/changes.json
+{"event_type": "created", "src_path": "/home/ubuntu/bsm/test/rapor.txt", "timestamp": "2024-12-20 14:02:10"}
+{"event_type": "modified", "src_path": "/home/ubuntu/bsm/test/rapor.txt", "timestamp": "2024-12-20 14:02:10"}
+{"event_type": "modified", "src_path": "/home/ubuntu/bsm/test/notlar.txt", "timestamp": "2024-12-20 14:03:51"}
+{"event_type": "moved", "src_path": "/home/ubuntu/bsm/test/taslak.txt", "timestamp": "2024-12-20 14:04:37"}
+{"event_type": "deleted", "src_path": "/home/ubuntu/bsm/test/eski/liste.csv", "timestamp": "2024-12-20 14:05:02"}
+<span class="p">▍</span></pre>
+          <figcaption class="dg-note term-note" data-i18n="term.note">Sample output in the format the service writes.</figcaption>
+        </figure>
+      </div>
+      <ul class="p-facts reveal">
+        <li><b data-i18n="f1.n">Recursive</b><span data-i18n="f1">watching of the folder and every subfolder</span></li>
+        <li><b>1</b><span data-i18n="f2">JSON line per file event, with type, path and time</span></li>
+        <li><b>systemd</b><span data-i18n="f3">service that restarts itself if it crashes</span></li>
+        <li><b data-i18n="f4.n">40</b><span data-i18n="f4">lines of Python, a single dependency</span></li>
+      </ul>
+    </section>
+
+    <section class="section" id="how">
+      <div class="sec-head reveal">
+        <h2 data-i18n="hw.t">How it works</h2>
+        <p data-i18n="hw.s">One script, one systemd unit.</p>
+      </div>
+      <div class="split">
+        <ol class="steps reveal">
+          <li>
+            <h3 data-i18n="s1.t">Watch</h3>
+            <p data-i18n-html="s1.d"><code>file_watcher.py</code> starts watchdog's <code>Observer</code> on the watched folder with <code>recursive=True</code>, so subfolders are covered too.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s2.t">Skip folders</h3>
+            <p data-i18n="s2.d">Every event goes through one handler. Events for directories are skipped; only file events are logged.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s3.t">Write a JSON line</h3>
+            <p data-i18n-html="s3.d">Each event is appended to the log file as one JSON object with <code>event_type</code>, <code>src_path</code> and <code>timestamp</code>, so the file can be read line by line with tools like <code>jq</code>.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s4.t">Show it in the journal</h3>
+            <p data-i18n-html="s4.d">The same entry is printed to standard output, so when it runs as a service it also shows up in <code>journalctl</code>.</p>
+          </li>
+        </ol>
+        <div class="stack reveal">
+          <div class="code">
+            <div class="code-head">file_watcher.py</div>
+            <pre><code><span class="k">class</span> ChangeHandler(FileSystemEventHandler):
+    <span class="k">def</span> on_any_event(self, event):
+        <span class="k">if</span> event.is_directory:
+            <span class="k">return</span>
+        log_entry = {
+            <span class="s">"event_type"</span>: event.event_type,
+            <span class="s">"src_path"</span>: event.src_path,
+            <span class="s">"timestamp"</span>: time.strftime(<span class="s">'%Y-%m-%d %H:%M:%S'</span>)
+        }
+        <span class="k">with</span> open(LOG_FILE, <span class="s">"a"</span>) <span class="k">as</span> log_file:
+            log_file.write(json.dumps(log_entry) + <span class="s">"\n"</span>)
+        print(<span class="s">f"Logged: {log_entry}"</span>)</code></pre>
+          </div>
+          <div class="code">
+            <div class="code-head">file_watcher.service</div>
+            <pre><code>[Unit]
+Description=File Watcher Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/ubuntu/bsm/file_watcher.py
+Restart=always
+User=yigit
+Group=yigit
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="run">
+      <div class="sec-head reveal">
+        <h2 data-i18n="rn.t">Setup</h2>
+        <p data-i18n-html="rn.s">The watched folder and the log file are the two constants at the top of <code>file_watcher.py</code>.</p>
+      </div>
+      <div class="split">
+        <ol class="steps reveal">
+          <li>
+            <h3 data-i18n="r1.t">Set the paths</h3>
+            <div class="code" data-copy><div class="code-head">Python</div><pre><code>LOG_FILE = <span class="s">"/home/ubuntu/bsm/logs/changes.json"</span>
+WATCH_DIR = <span class="s">"/home/ubuntu/bsm/test"</span></code></pre></div>
+          </li>
+          <li>
+            <h3 data-i18n="r2.t">Try it in the foreground</h3>
+            <div class="code" data-copy><div class="code-head">Shell</div><pre><code>pip install watchdog
+mkdir -p /home/ubuntu/bsm/logs /home/ubuntu/bsm/test
+python3 file_watcher.py</code></pre></div>
+          </li>
+        </ol>
+        <ol class="steps reveal" start="3" style="counter-reset: adim 2">
+          <li>
+            <h3 data-i18n="r3.t">Install it as a service</h3>
+            <p data-i18n-html="r3.d">Edit <code>User</code>, <code>Group</code> and the <code>ExecStart</code> path in <code>file_watcher.service</code> for your system; the service user needs write access to the log folder.</p>
+            <div class="code" data-copy><div class="code-head">Shell</div><pre><code>sudo cp file_watcher.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now file_watcher
+journalctl -u file_watcher -f</code></pre></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="limits">
+      <div class="sec-head reveal"><h2 data-i18n="limits">Known limitations</h2></div>
+      <ul class="limits reveal">
+        <li data-i18n="n1">The paths are hard-coded; there's no config file or command-line option.</li>
+        <li data-i18n="n2">Move events record only the source path, not the destination.</li>
+        <li data-i18n="n3">The log file isn't rotated, so it keeps growing.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="more">
+      <div class="sec-head reveal"><h2 data-i18n="more">More projects</h2></div>
+      <nav class="more reveal" aria-label="More projects" data-i18n-attr="aria-label:more">
+        <a href="../mini-on-muhasebe/"><span class="mini art-ledger"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></span><span><small data-i18n="pk.intern">Internship project</small><span data-i18n="pn.muhasebe">Mini Bookkeeping App</span></span></a>
+        <a href="../ntier-generator/"><span class="mini art-ntier"><svg viewBox="0 0 24 24"><path d="M12 3 21 7.5 12 12 3 7.5z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 16.5 9 4.5 9-4.5"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span data-i18n="pn.ntier">N-Tier Architecture Generator</span></span></a>
+        <a href="../multi-tenant-sla-platform/"><span class="mini art-sla"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg></span><span><small data-i18n="pk.fs">Full-stack</small><span data-i18n="pn.sla">Multi-Tenant SLA Platform</span></span></a>
+        <a href="../wol-catcher/"><span class="mini art-wol"><svg viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.6 6.6a7.5 7.5 0 1 0 10.8 0"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span>WolCatcher</span></span></a>
+        <a href="../instareel-blocker/"><span class="mini art-reel"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/></svg></span><span><small data-i18n="pk.mobile">Mobile</small><span>InstaReel Blocker</span></span></a>
+        <a href="../../stokplus/"><span class="mini art-stok"><img src="../../stokplus/simge.png" alt="" loading="lazy"></span><span><small data-i18n="pk.mobile">Mobile</small><span>Stok+</span></span></a>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>© 2026 Yiğit Kalaycıoğlu · <span data-i18n="foot">Built by hand and published on GitHub Pages.</span></p>
+  </footer>
+
+  <script type="application/json" id="tr">
+  {
+    "_title": "Linux Dosya Sistemi İzleme Servisi · Yiğit Kalaycıoğlu",
+    "h.k": "SİSTEM · LINUX",
+    "h.t": "Linux Dosya Sistemi İzleme Servisi",
+    "h.lead": "Linux'ta bir klasörü alt klasörleriyle birlikte izleyip içindeki her dosya değişikliğini (oluşturma, değiştirme, silme, taşıma gibi) log dosyasına tek satırlık JSON olarak yazan küçük bir Python servisi. systemd servisi olarak kurulduğu için arka planda sürekli çalışıyor.",
+    "term.note": "Servisin yazdığı biçimde örnek çıktı.",
+    "f1.n": "Özyinelemeli",
+    "f1": "izleme: klasör ve bütün alt klasörleri",
+    "f2": "dosya olayı başına bir JSON satırı: tür, yol ve zaman",
+    "f3": "servisi; çökerse kendiliğinden yeniden başlıyor",
+    "f4.n": "40",
+    "f4": "satır Python, tek bağımlılık",
+    "hw.t": "Nasıl çalışıyor",
+    "hw.s": "Bir betik, bir systemd birimi.",
+    "s1.t": "İzle",
+    "s1.d": "<code>file_watcher.py</code>, watchdog'un <code>Observer</code> sınıfını izlenen klasörde <code>recursive=True</code> ile başlatıyor; alt klasörler de kapsanıyor.",
+    "s2.t": "Klasörleri atla",
+    "s2.d": "Bütün olaylar tek bir işleyiciden geçiyor. Klasör olayları atlanıyor, yalnızca dosya olayları kaydediliyor.",
+    "s3.t": "JSON satırı yaz",
+    "s3.d": "Her olay log dosyasına <code>event_type</code>, <code>src_path</code> ve <code>timestamp</code> alanları olan tek bir JSON nesnesi olarak ekleniyor; dosya <code>jq</code> gibi araçlarla satır satır okunabiliyor.",
+    "s4.t": "Günlükte göster",
+    "s4.d": "Aynı kayıt standart çıktıya da yazılıyor; servis olarak çalışırken <code>journalctl</code> ile de görülebiliyor.",
+    "rn.t": "Kurulum",
+    "rn.s": "İzlenen klasör ve log dosyası <code>file_watcher.py</code>'nin başındaki iki sabitte tanımlı.",
+    "r1.t": "Yolları ayarlayın",
+    "r2.t": "Önce terminalde deneyin",
+    "r3.t": "Servis olarak kurun",
+    "r3.d": "<code>file_watcher.service</code> içindeki <code>User</code>, <code>Group</code> ve <code>ExecStart</code> yolunu kendi sisteminize göre düzenleyin; servisin kullanıcısının log klasörüne yazma izni olmalı.",
+    "n1": "Yollar kodun içinde sabit; yapılandırma dosyası ya da komut satırı parametresi yok.",
+    "n2": "Taşıma olaylarında yalnızca kaynak yol yazılıyor, hedef yol yazılmıyor.",
+    "n3": "Log dosyası döndürülmüyor, zamanla büyüyor."
+  }
+  </script>
+  <script src="../../assets/js/proje.js" defer></script>
+</body>
+</html>

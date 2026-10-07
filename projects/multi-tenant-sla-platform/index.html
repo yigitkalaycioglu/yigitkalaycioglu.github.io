@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Multi-Tenant SLA Platform · Yiğit Kalaycıoğlu</title>
+  <meta name="description" content="A multi-tenant ticketing system with PostgreSQL row-level security, SLA timers, risk and breach emails, and real-time updates. Express 5, TypeScript, React 19, Redis, BullMQ and Socket.io, started with one Docker Compose command.">
+  <meta name="theme-color" content="#0b0c10">
+  <link rel="canonical" href="https://yigitkalaycioglu.github.io/projects/multi-tenant-sla-platform/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yigitkalaycioglu.github.io/projects/multi-tenant-sla-platform/">
+  <meta property="og:title" content="Multi-Tenant SLA Platform · Yiğit Kalaycıoğlu">
+  <meta property="og:description" content="Tickets with SLA timers, tenant isolation enforced by PostgreSQL row-level security, and live updates over Socket.io.">
+  <meta property="og:image" content="https://yigitkalaycioglu.github.io/projects/multi-tenant-sla-platform/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <link rel="stylesheet" href="../../assets/css/proje.css">
+  <script>
+    // tema ve dil, ilk boyamadan önce uygulanır
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        var t = localStorage.getItem('yk-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        var l = localStorage.getItem('yk-lang') || ((navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en');
+        document.documentElement.setAttribute('lang', l);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#features" data-i18n="skip">Skip to content</a>
+
+  <header class="nav">
+    <div class="nav-in">
+      <a class="logo" href="../../" data-i18n-attr="aria-label:home" aria-label="Home">
+        <span class="logo-mark">YK</span>
+        <span class="logo-text">Yiğit Kalaycıoğlu</span>
+      </a>
+      <nav class="links" aria-label="Page">
+        <a href="#features" data-i18n="nav.features">Features</a>
+        <a href="#tech" data-i18n="nav.tech">Technical notes</a>
+        <a href="#run" data-i18n="nav.run">Run it</a>
+      </nav>
+      <div class="tools">
+        <button class="pill" id="lang" type="button" aria-label="Türkçe / English"><span data-l="tr">TR</span><span data-l="en">EN</span></button>
+        <button class="icon" id="theme" type="button" data-i18n-attr="aria-label:theme" aria-label="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+          <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="p-hero">
+      <div class="p-hero-in">
+        <div class="reveal">
+          <a class="back" href="../../#projects"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-i18n="back">All projects</span></a>
+          <p class="kicker" data-i18n="h.k">Full-stack · Multi-tenant</p>
+          <h1 class="p-title" data-i18n="h.t">Multi-Tenant SLA Platform</h1>
+          <p class="lead" data-i18n="h.lead">A ticketing system for tracking support and work requests. Every company (tenant) uses the same app with its own users, teams and SLA rules, and can never see another tenant's data. Each ticket has a first-response and a resolution deadline; emails go out as they get close and when they pass, and open screens update instantly.</p>
+          <ul class="tags"><li>Express 5</li><li>TypeScript</li><li>React 19</li><li>PostgreSQL</li><li>Redis</li><li>BullMQ</li><li>Socket.io</li><li>Docker</li></ul>
+          <div class="cta">
+            <a class="btn primary" href="https://github.com/yigitkalaycioglu/multi-tenant-sla-platform" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5m12 4.5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg><span data-i18n="code">Source code</span></a>
+          </div>
+          <p class="p-note" data-i18n="h.note">Runs locally with Docker; there's no hosted demo. Demo tenants and accounts are created on first start.</p>
+        </div>
+        <figure class="art-panel art-sla diagram reveal">
+          <p class="art-cap" data-i18n="dg.cap">Architecture</p>
+          <svg viewBox="0 0 520 404" role="img" aria-labelledby="dg-title">
+            <title id="dg-title" data-i18n="dg.title">The browser talks to the Express API; the API and the worker share PostgreSQL and Redis</title>
+            <g class="edges">
+              <path class="edge" d="M260 66V118"/>
+              <path class="edge" d="M215 176V202H100V228"/>
+              <path class="edge" d="M305 176V202H420V228"/>
+              <path class="edge" d="M215 346V320H100V286"/>
+              <path class="edge" d="M305 346V320H420V286"/>
+            </g>
+            <g class="node"><rect x="170" y="8" width="180" height="58" rx="13"/><text x="260" y="33" text-anchor="middle">React 19</text><text class="sub" x="260" y="51" text-anchor="middle">Vite · React Query</text></g>
+            <g class="node main"><rect x="170" y="118" width="180" height="58" rx="13"/><text x="260" y="143" text-anchor="middle">Express 5 API</text><text class="sub" x="260" y="161" text-anchor="middle">TypeScript · Socket.io</text></g>
+            <g class="node"><rect x="12" y="228" width="176" height="58" rx="13"/><text x="100" y="253" text-anchor="middle">PostgreSQL 16</text><text class="sub" x="100" y="271" text-anchor="middle">Row Level Security</text></g>
+            <g class="node"><rect x="332" y="228" width="176" height="58" rx="13"/><text x="420" y="253" text-anchor="middle">Redis 7</text><text class="sub" x="420" y="271" text-anchor="middle">pub/sub · BullMQ</text></g>
+            <g class="node"><rect x="170" y="346" width="180" height="58" rx="13"/><text x="260" y="371" text-anchor="middle">Worker</text><text class="sub" x="260" y="389" text-anchor="middle" data-i18n="dg.worker">SLA scan · emails</text></g>
+            <g class="lbls">
+              <text class="lbl" x="268" y="96">REST + WebSocket</text>
+              <text class="lbl" x="157" y="196" text-anchor="middle">app_user</text>
+              <text class="lbl" x="362" y="196" text-anchor="middle">pub/sub</text>
+              <text class="lbl" x="157" y="336" text-anchor="middle" data-i18n="dg.admin">admin role</text>
+              <text class="lbl" x="362" y="336" text-anchor="middle" data-i18n="dg.jobs">jobs + events</text>
+            </g>
+          </svg>
+          <figcaption class="dg-note" data-i18n-html="dg.note">One <code>docker compose up</code>: postgres, redis, mailpit, migrate, api, worker and web (nginx).</figcaption>
+        </figure>
+      </div>
+      <ul class="p-facts reveal">
+        <li><b>3</b><span data-i18n="f1">roles: admin, team lead and developer</span></li>
+        <li><b>68</b><span data-i18n="f2">sample tickets in two demo tenants</span></li>
+        <li><b data-i18n="f3.n">80%</b><span data-i18n="f3">of the time used triggers a risk email; 100% is a breach</span></li>
+        <li><b data-i18n="f4.n">15 min</b><span data-i18n="f4">access tokens, kept in memory only</span></li>
+      </ul>
+    </section>
+
+    <section class="section" id="features">
+      <div class="sec-head reveal">
+        <h2 data-i18n="ft.t">Features</h2>
+        <p data-i18n="ft.s">Everything a support team needs to keep tickets within their SLA.</p>
+      </div>
+      <div class="feat-grid">
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M3.5 21V8l6-4 6 4v13M15.5 21V11h5v10M2 21h20"/><path d="M7.5 11h4M7.5 15h4"/></svg></div>
+          <h3 data-i18n="a1.t">Tenants and roles</h3>
+          <p data-i18n="a1.d">Companies sign up and sign in under their own tenant, with role-based access for every action.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg></div>
+          <h3 data-i18n="a2.t">Tickets</h3>
+          <p data-i18n="a2.d">Open, assign and change priority or status; add comments and internal notes. Every change is kept in the ticket's history.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg></div>
+          <h3 data-i18n="a3.t">SLA by priority</h3>
+          <p data-i18n="a3.d">First-response and resolution targets per priority. Putting a ticket on hold stops its clock; resuming carries on from where it stopped.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg></div>
+          <h3 data-i18n="a4.t">Risk and breach emails</h3>
+          <p data-i18n="a4.d">At 80% of the allowed time a risk email goes out, at 100% a breach email. Each one is queued only once, even with several workers.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M13 2.5 5 13.5h6l-1 8 8-11h-6z"/></svg></div>
+          <h3 data-i18n="a5.t">Live updates</h3>
+          <p data-i18n="a5.d">Open screens refresh instantly over Socket.io, with separate rooms for each tenant, user and ticket.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 20v-6M11 20V5M17 20v-9M3 20h18"/></svg></div>
+          <h3 data-i18n="a6.t">Dashboard</h3>
+          <p data-i18n="a6.d">SLA compliance rate, daily opened and resolved trend and priority distribution, drawn as SVG charts, in light and dark themes.</p>
+        </article>
+      </div>
+
+      <div class="sec-head sub reveal">
+        <h2 data-i18n="ro.t">Three roles</h2>
+      </div>
+      <div class="feat-grid">
+        <article class="fcard reveal">
+          <h3 data-i18n="ro1.t">Admin</h3>
+          <p data-i18n="ro1.d">Sees and manages everything in the company: users, teams, SLA policies and ticket deletion.</p>
+        </article>
+        <article class="fcard reveal">
+          <h3 data-i18n="ro2.t">Team lead</h3>
+          <p data-i18n="ro2.d">Assigns tickets and changes priority and status for their own team.</p>
+        </article>
+        <article class="fcard reveal">
+          <h3 data-i18n="ro3.t">Developer</h3>
+          <p data-i18n="ro3.d">Sees their team's tickets, tickets assigned to them and the ones they opened; can change status only on tickets assigned to them.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="tech">
+      <div class="sec-head reveal">
+        <h2 data-i18n="tc.t">Technical notes</h2>
+        <p data-i18n="tc.s">The parts that took the most thought.</p>
+      </div>
+      <div class="split">
+        <div class="stack">
+          <div class="box reveal">
+            <h3 data-i18n="t1.t">Tenant isolation in the database</h3>
+            <p data-i18n-html="t1.d">Besides the <code>tenant_id</code> filter in queries, PostgreSQL Row Level Security is on. The API connects as a low-privilege <code>app_user</code> role with <code>NOBYPASSRLS</code>, and every request runs in a transaction that first sets the tenant. Even if a query forgets its <code>WHERE</code>, no other tenant's rows come back. The tenant id is read from the signed JWT, never from the request body.</p>
+            <div class="code" data-copy>
+              <div class="code-head">server/src/db/pool.ts</div>
+              <pre><code><span class="k">export async function</span> withTenant&lt;T&gt;(tenantId: string, fn: (db: Db) =&gt; Promise&lt;T&gt;): Promise&lt;T&gt; {
+  <span class="k">const</span> client = <span class="k">await</span> pool.connect();
+  <span class="k">try</span> {
+    <span class="k">await</span> client.query(<span class="s">'BEGIN'</span>);
+    <span class="k">await</span> client.query(<span class="s">'SELECT set_config($1, $2, true)'</span>, [<span class="s">'app.tenant_id'</span>, tenantId]);
+    <span class="k">const</span> result = <span class="k">await</span> fn(client);
+    <span class="k">await</span> client.query(<span class="s">'COMMIT'</span>);
+    <span class="k">return</span> result;
+  } <span class="k">catch</span> (err) {
+    <span class="k">await</span> client.query(<span class="s">'ROLLBACK'</span>).catch(() =&gt; undefined);
+    <span class="k">throw</span> err;
+  } <span class="k">finally</span> {
+    client.release();
+  }
+}</code></pre>
+            </div>
+            <p data-i18n="t1.d2">The worker scans every tenant for SLA, so it uses a separate admin connection that the HTTP side never touches.</p>
+          </div>
+          <div class="box reveal">
+            <h3 data-i18n="t2.t">An SLA engine you can test without a database</h3>
+            <p data-i18n-html="t2.d"><code>sla.engine.ts</code> is made of pure functions that take the current time as a parameter, so thresholds, breaches and repeated holds are unit-tested without a database. Holding a ticket adds the paused time to <code>paused_total_seconds</code> and moves the targets forward, so a stored target is always the real deadline. That keeps the scanner query simple and lets it use a partial index that leaves out closed tickets.</p>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="box reveal">
+            <h3 data-i18n="t3.t">No duplicate notifications</h3>
+            <p data-i18n-html="t3.d">The worker scans once a minute. Candidates are picked with <code>FOR UPDATE SKIP LOCKED</code>, so two workers never take the same ticket. The state change and the “notified” mark are written in a single <code>UPDATE … RETURNING</code>, and the BullMQ job gets a fixed <code>jobId</code> made from the ticket and notification type, so the same email can't enter the queue twice.</p>
+            <div class="code" data-copy>
+              <div class="code-head" data-i18n="t3.code">sla.scanner.ts · response breach query</div>
+              <pre><code><span class="k">WITH</span> candidates <span class="k">AS</span> (
+  <span class="k">SELECT</span> t.id
+    <span class="k">FROM</span> tickets t
+   <span class="k">WHERE</span> t.status <span class="k">NOT IN</span> (<span class="s">'resolved'</span>,<span class="s">'closed'</span>)
+     <span class="k">AND</span> t.paused_at <span class="k">IS NULL</span>
+     <span class="k">AND</span> t.response_due_at <span class="k">IS NOT NULL</span>
+     <span class="k">AND</span> t.response_sla_state &lt;&gt; <span class="s">'breached'</span>
+     <span class="k">AND</span> (t.response_due_at &lt;= now())
+     <span class="k">AND</span> t.first_response_at <span class="k">IS NULL</span>
+   <span class="k">ORDER BY</span> t.response_due_at
+   <span class="k">LIMIT</span> <span class="n">500</span>
+   <span class="k">FOR UPDATE SKIP LOCKED</span>
+),
+updated <span class="k">AS</span> (
+  <span class="k">UPDATE</span> tickets t
+     <span class="k">SET</span> response_sla_state = <span class="s">'breached'</span>,
+         breach_notified_at = COALESCE(t.breach_notified_at, now()),
+         updated_at = now()
+    <span class="k">FROM</span> candidates c
+   <span class="k">WHERE</span> t.id = c.id
+  <span class="k">RETURNING</span> t.id, t.tenant_id, t.reference, …
+)</code></pre>
+            </div>
+          </div>
+          <div class="box reveal">
+            <h3 data-i18n="t4.t">Live updates across API instances</h3>
+            <p data-i18n-html="t4.d">The worker has no Socket.io connection. It publishes events to a Redis channel, and every API instance listens and forwards them to its own sockets, so the API can run as several instances. Rooms are <code>tenant:{id}</code>, <code>user:{id}</code> and <code>ticket:{id}</code>.</p>
+          </div>
+          <div class="box reveal">
+            <h3 data-i18n="t5.t">Sessions that catch stolen tokens</h3>
+            <p data-i18n="t5.d">The 15-minute access token lives only in browser memory. The refresh token sits in an httpOnly cookie, is stored as a SHA-256 hash and is replaced on every use. If a revoked refresh token shows up again, it's treated as stolen and all of the user's sessions are closed. Sign-up and login have a stricter rate limit than the rest of the API.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="run">
+      <div class="sec-head reveal">
+        <h2 data-i18n="rn.t">Run it</h2>
+        <p data-i18n="rn.s">Only Docker is needed.</p>
+      </div>
+      <div class="split">
+        <div class="stack reveal">
+          <div class="code" data-copy><div class="code-head">Shell</div><pre><code>cp .env.example .env
+docker compose up --build</code></pre></div>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <tbody>
+                <tr><td data-i18n="u1">App</td><td><code>http://localhost:8080</code></td></tr>
+                <tr><td data-i18n="u2">Mailpit (outgoing email)</td><td><code>http://localhost:8025</code></td></tr>
+                <tr><td data-i18n="u3">API health check</td><td><code>http://localhost:4000/api/health</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="code-note" data-i18n-html="rn.seed">The <code>migrate</code> service sets up the schema and creates two demo tenants, <code>kuzey</code> and <code>acme</code>, with 68 tickets. Start with <code>SEED_DEMO=false</code> to skip the demo data, and use <code>docker compose down -v</code> to stop and delete everything.</p>
+        </div>
+        <div class="stack reveal">
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th data-i18n="da.h1">Tenant</th><th data-i18n="da.h2">Email</th><th data-i18n="da.h3">Role</th></tr></thead>
+              <tbody>
+                <tr><td>kuzey</td><td>admin@kuzey.io</td><td data-i18n="ro1.t">Admin</td></tr>
+                <tr><td>kuzey</td><td>mert@kuzey.io</td><td data-i18n="da.r2">Team lead (Platform)</td></tr>
+                <tr><td>kuzey</td><td>deniz@kuzey.io</td><td data-i18n="da.r3">Team lead (Mobile)</td></tr>
+                <tr><td>kuzey</td><td>burak@kuzey.io</td><td data-i18n="ro3.t">Developer</td></tr>
+                <tr><td>acme</td><td>admin@acme.com</td><td data-i18n="ro1.t">Admin</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="code-note" data-i18n-html="da.note">Every demo password is <code>Passw0rd!</code>, and the login screen also asks for the tenant name. To see the isolation, sign in to <code>kuzey</code>, note a ticket number, then search for it as <code>acme</code>.</p>
+          <div class="code" data-copy><div class="code-head" data-i18n="tests">Tests</div><pre><code>cd server
+npm test
+npm run typecheck
+cd ../web
+npm run build</code></pre></div>
+          <p class="code-note" data-i18n="tests.note">The server tests cover the SLA engine and ticket status transitions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="limits">
+      <div class="sec-head reveal"><h2 data-i18n="nd.t">Not done yet</h2></div>
+      <ul class="limits reveal">
+        <li data-i18n="n1">The SLA clock runs around the clock; business hours and holidays aren't taken into account.</li>
+        <li data-i18n="n2">Tests cover the SLA engine and status transitions; there are no integration tests for RLS and the API endpoints yet.</li>
+        <li data-i18n="n3">Tickets can't have attachments.</li>
+        <li data-i18n="n4">Email templates are in Turkish only.</li>
+        <li data-i18n-html="n5">The JWT keys in <code>.env.example</code> are for development; generate new ones (for example with <code>openssl rand -hex 48</code>) for real use.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="more">
+      <div class="sec-head reveal"><h2 data-i18n="more">More projects</h2></div>
+      <nav class="more reveal" aria-label="More projects" data-i18n-attr="aria-label:more">
+        <a href="../mini-on-muhasebe/"><span class="mini art-ledger"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></span><span><small data-i18n="pk.intern">Internship project</small><span data-i18n="pn.muhasebe">Mini Bookkeeping App</span></span></a>
+        <a href="../ntier-generator/"><span class="mini art-ntier"><svg viewBox="0 0 24 24"><path d="M12 3 21 7.5 12 12 3 7.5z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 16.5 9 4.5 9-4.5"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span data-i18n="pn.ntier">N-Tier Architecture Generator</span></span></a>
+        <a href="../wol-catcher/"><span class="mini art-wol"><svg viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.6 6.6a7.5 7.5 0 1 0 10.8 0"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span>WolCatcher</span></span></a>
+        <a href="../instareel-blocker/"><span class="mini art-reel"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/></svg></span><span><small data-i18n="pk.mobile">Mobile</small><span>InstaReel Blocker</span></span></a>
+        <a href="../linux-file-monitoring/"><span class="mini art-linux"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12.5 15H17"/></svg></span><span><small data-i18n="pk.sys">Systems</small><span data-i18n="pn.linux">Linux File Monitoring Service</span></span></a>
+        <a href="../../stokplus/"><span class="mini art-stok"><img src="../../stokplus/simge.png" alt="" loading="lazy"></span><span><small data-i18n="pk.mobile">Mobile</small><span>Stok+</span></span></a>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>© 2026 Yiğit Kalaycıoğlu · <span data-i18n="foot">Built by hand and published on GitHub Pages.</span></p>
+  </footer>
+
+  <script type="application/json" id="tr">
+  {
+    "_title": "Çok Kiracılı SLA Platformu · Yiğit Kalaycıoğlu",
+    "h.k": "Full-stack · Çok kiracılı",
+    "h.t": "Çok Kiracılı SLA Platformu",
+    "h.lead": "Destek ve iş taleplerini takip etmek için bir ticket sistemi. Her şirket (kiracı) aynı uygulamayı kendi kullanıcıları, ekipleri ve SLA kurallarıyla kullanıyor ama başka bir kiracının verisini asla göremiyor. Her biletin bir ilk yanıt ve bir çözüm süresi var; süre dolmaya yaklaşınca ve dolunca e-posta gidiyor, açık ekranlar anında güncelleniyor.",
+    "h.note": "Docker ile yerelde çalışıyor; yayında bir demo yok. Demo kiracılar ve hesaplar ilk açılışta oluşturuluyor.",
+    "dg.cap": "Mimari",
+    "dg.title": "Tarayıcı Express API ile konuşuyor; API ve worker PostgreSQL ile Redis'i paylaşıyor",
+    "dg.worker": "SLA taraması · e-posta",
+    "dg.admin": "yönetici rolü",
+    "dg.jobs": "işler + olaylar",
+    "dg.note": "Tek bir <code>docker compose up</code>: postgres, redis, mailpit, migrate, api, worker ve web (nginx).",
+    "f1": "rol: yönetici, ekip lideri ve geliştirici",
+    "f2": "örnek bilet, iki demo kiracıda",
+    "f3.n": "%80",
+    "f3": "süre dolduğunda risk e-postası; %100'de ihlal",
+    "f4.n": "15 dk",
+    "f4": "geçerli, yalnızca bellekte tutulan access token",
+    "ft.t": "Özellikler",
+    "ft.s": "Bir destek ekibinin biletleri SLA içinde tutmak için ihtiyaç duyduğu her şey.",
+    "a1.t": "Kiracılar ve roller",
+    "a1.d": "Şirketler kendi kiracıları altında kaydolup giriş yapıyor; her işlem rol bazlı yetkilendirmeden geçiyor.",
+    "a2.t": "Biletler",
+    "a2.d": "Bilet açma, atama, öncelik ve durum değiştirme; yorumlar ve dahili notlar. Her değişiklik biletin geçmişinde tutuluyor.",
+    "a3.t": "Önceliğe göre SLA",
+    "a3.d": "Her öncelik için ilk yanıt ve çözüm hedefi. Bilet beklemeye alınınca saati duruyor, devam edince kaldığı yerden sayıyor.",
+    "a4.t": "Risk ve ihlal e-postaları",
+    "a4.d": "İzin verilen sürenin %80'i dolunca risk, tamamı dolunca ihlal e-postası gidiyor. Birden fazla worker olsa da her biri kuyruğa yalnızca bir kez giriyor.",
+    "a5.t": "Canlı güncellemeler",
+    "a5.d": "Açık ekranlar Socket.io ile anında yenileniyor; her kiracı, kullanıcı ve bilet için ayrı odalar var.",
+    "a6.t": "Panel",
+    "a6.d": "SLA uyum oranı, günlük açılan ve çözülen bilet trendi ve öncelik dağılımı SVG grafiklerle; açık ve koyu tema.",
+    "ro.t": "Üç rol",
+    "ro1.t": "Yönetici",
+    "ro1.d": "Şirketteki her şeyi görüp yönetiyor: kullanıcılar, ekipler, SLA politikaları ve bilet silme.",
+    "ro2.t": "Ekip lideri",
+    "ro2.d": "Kendi ekibinin biletlerinde atama yapıyor, öncelik ve durum değiştiriyor.",
+    "ro3.t": "Geliştirici",
+    "ro3.d": "Kendi ekibinin, kendisine atanan ve kendi açtığı biletleri görüyor; durumu yalnızca kendisine atananlarda değiştirebiliyor.",
+    "tc.t": "Teknik notlar",
+    "tc.s": "En çok düşünmeyi gerektiren kısımlar.",
+    "t1.t": "Veritabanında kiracı izolasyonu",
+    "t1.d": "Sorgulardaki <code>tenant_id</code> filtresinin yanında PostgreSQL Row Level Security açık. API, <code>NOBYPASSRLS</code> olan düşük yetkili <code>app_user</code> rolüyle bağlanıyor ve her istek, başta kiracıyı ayarlayan bir transaction içinde çalışıyor. Bir sorguda <code>WHERE</code> unutulsa bile başka kiracının satırı dönmüyor. Kiracı kimliği istek gövdesinden değil, imzalı JWT'den okunuyor.",
+    "t1.d2": "Worker SLA taramasında bütün kiracıları gezdiği için ayrı bir yönetici bağlantısı kullanıyor; HTTP tarafı bu bağlantıya hiç dokunmuyor.",
+    "t2.t": "Veritabanı olmadan test edilen SLA motoru",
+    "t2.d": "<code>sla.engine.ts</code> şu anki zamanı parametre olarak alan saf fonksiyonlardan oluşuyor; eşik, ihlal ve arka arkaya beklemeye alma gibi durumlar veritabanı olmadan birim testiyle sınanıyor. Beklemeye alınan biletin süresi <code>paused_total_seconds</code> alanına ekleniyor ve hedefler o kadar ileri kayıyor; böylece saklanan hedef her zaman gerçek son tarih oluyor. Bu da tarayıcı sorgusunu basit tutuyor ve kapalı biletleri içermeyen kısmi bir indeksi kullanmasını sağlıyor.",
+    "t3.t": "Tekrarlanmayan bildirimler",
+    "t3.d": "Worker dakikada bir tarıyor. Adaylar <code>FOR UPDATE SKIP LOCKED</code> ile seçildiği için iki worker aynı bileti almıyor. Durum değişikliği ve “bildirildi” işareti tek bir <code>UPDATE … RETURNING</code> içinde yazılıyor; BullMQ işine de bilet ve bildirim türünden oluşan sabit bir <code>jobId</code> veriliyor, aynı e-posta kuyruğa ikinci kez giremiyor.",
+    "t3.code": "sla.scanner.ts · ilk yanıt ihlali sorgusu",
+    "t4.t": "Birden fazla API örneğinde canlı güncelleme",
+    "t4.d": "Worker'ın Socket.io bağlantısı yok. Olayları Redis'teki bir kanala yayınlıyor; her API örneği bu kanalı dinleyip mesajları kendi soketlerine iletiyor, bu sayede API birden fazla örnekle çalışabiliyor. Odalar <code>tenant:{id}</code>, <code>user:{id}</code> ve <code>ticket:{id}</code>.",
+    "t5.t": "Çalınan token'ı yakalayan oturumlar",
+    "t5.d": "15 dakikalık access token yalnızca tarayıcı belleğinde duruyor. Refresh token httpOnly çerezde tutuluyor, veritabanında SHA-256 özeti saklanıyor ve her kullanımda yenisiyle değiştiriliyor. İptal edilmiş bir refresh token yeniden gelirse çalınmış sayılıyor ve kullanıcının bütün oturumları kapatılıyor. Kayıt ve giriş uçlarında API'nin geri kalanından daha sıkı bir hız sınırı var.",
+    "rn.t": "Çalıştırma",
+    "rn.s": "Yalnızca Docker gerekiyor.",
+    "u1": "Uygulama",
+    "u2": "Mailpit (giden e-postalar)",
+    "u3": "API sağlık kontrolü",
+    "rn.seed": "<code>migrate</code> servisi şemayı kuruyor ve 68 biletli iki demo kiracı oluşturuyor: <code>kuzey</code> ve <code>acme</code>. Demo veri istemiyorsanız <code>SEED_DEMO=false</code> ile başlatın; durdurup her şeyi silmek için <code>docker compose down -v</code>.",
+    "da.h1": "Kiracı",
+    "da.h2": "E-posta",
+    "da.h3": "Rol",
+    "da.r2": "Ekip lideri (Platform)",
+    "da.r3": "Ekip lideri (Mobil)",
+    "da.note": "Bütün demo hesapların şifresi <code>Passw0rd!</code>; giriş ekranı kiracı adını da istiyor. İzolasyonu görmek için <code>kuzey</code> ile girip bir bilet numarası alın, sonra <code>acme</code> hesabıyla aynı numarayı aratın.",
+    "tests": "Testler",
+    "tests.note": "Sunucu testleri SLA motorunu ve bilet durum geçişlerini kapsıyor.",
+    "nd.t": "Henüz yapılmayanlar",
+    "n1": "SLA saati 7/24 işliyor; mesai saatleri ve tatil günleri hesaba katılmıyor.",
+    "n2": "Testler SLA motorunu ve durum geçişlerini kapsıyor; RLS ve API uçları için henüz entegrasyon testi yok.",
+    "n3": "Biletlere dosya eklenemiyor.",
+    "n4": "E-posta şablonları yalnızca Türkçe.",
+    "n5": "<code>.env.example</code> içindeki JWT anahtarları geliştirme için; gerçek kullanımda yenilerini üretin (örneğin <code>openssl rand -hex 48</code> ile)."
+  }
+  </script>
+  <script src="../../assets/js/proje.js" defer></script>
+</body>
+</html>

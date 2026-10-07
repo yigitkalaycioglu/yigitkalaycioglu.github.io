@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>WolCatcher · Yiğit Kalaycıoğlu</title>
+  <meta name="description" content="WolCatcher is a small Windows service that catches the Wake-on-LAN magic packet while the PC is on and shuts it down, so the same WoL button on the phone both wakes and turns off the computer.">
+  <meta name="theme-color" content="#0b0c10">
+  <link rel="canonical" href="https://yigitkalaycioglu.github.io/projects/wol-catcher/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yigitkalaycioglu.github.io/projects/wol-catcher/">
+  <meta property="og:title" content="WolCatcher · Yiğit Kalaycıoğlu">
+  <meta property="og:description" content="Turn your PC off with the same Wake-on-LAN button that turns it on. A self-installing .NET 10 Windows service.">
+  <meta property="og:image" content="https://yigitkalaycioglu.github.io/projects/wol-catcher/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <link rel="stylesheet" href="../../assets/css/proje.css">
+  <script>
+    // tema ve dil, ilk boyamadan önce uygulanır
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        var t = localStorage.getItem('yk-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        var l = localStorage.getItem('yk-lang') || ((navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en');
+        document.documentElement.setAttribute('lang', l);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#how" data-i18n="skip">Skip to content</a>
+
+  <header class="nav">
+    <div class="nav-in">
+      <a class="logo" href="../../" data-i18n-attr="aria-label:home" aria-label="Home">
+        <span class="logo-mark">YK</span>
+        <span class="logo-text">Yiğit Kalaycıoğlu</span>
+      </a>
+      <nav class="links" aria-label="Page">
+        <a href="#how" data-i18n="nav.how">How it works</a>
+        <a href="#settings" data-i18n="nav.settings">Settings</a>
+        <a href="#run" data-i18n="nav.setup">Setup</a>
+      </nav>
+      <div class="tools">
+        <button class="pill" id="lang" type="button" aria-label="Türkçe / English"><span data-l="tr">TR</span><span data-l="en">EN</span></button>
+        <button class="icon" id="theme" type="button" data-i18n-attr="aria-label:theme" aria-label="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+          <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="p-hero">
+      <div class="p-hero-in">
+        <div class="reveal">
+          <a class="back" href="../../#projects"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-i18n="back">All projects</span></a>
+          <p class="kicker" data-i18n="h.k">Tool · Windows service</p>
+          <h1 class="p-title">WolCatcher</h1>
+          <p class="lead" data-i18n="h.lead">A Wake-on-LAN app on the phone can turn a PC on but can't turn it off. WolCatcher closes that gap: it's a small Windows service that catches the magic packet while the PC is already on and shuts the PC down. The same WoL button now both wakes and turns off the computer.</p>
+          <ul class="tags"><li>C#</li><li>.NET 10</li><li>Generic Host</li><li>Windows Service</li><li>UDP</li><li>P/Invoke</li></ul>
+          <div class="cta">
+            <a class="btn primary" href="https://github.com/yigitkalaycioglu/wol-catcher/releases/latest" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M12 3.5v11M7 10l5 5 5-5M4.5 20.5h15"/></svg><span data-i18n="dl">Download</span></a>
+            <a class="btn" href="https://github.com/yigitkalaycioglu/wol-catcher" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5m12 4.5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg><span data-i18n="code">Source code</span></a>
+          </div>
+          <p class="p-note" data-i18n="h.note">It has been running as a service on my own PC since June.</p>
+        </div>
+        <figure class="art-panel art-wol reveal">
+          <p class="art-cap" data-i18n="pk.cap">Magic packet · 102 bytes</p>
+          <div class="packet" aria-hidden="true">
+            <div class="row ff"><span class="b">FF</span><span class="b">FF</span><span class="b">FF</span><span class="b">FF</span><span class="b">FF</span><span class="b">FF</span><span class="x" data-i18n="pk.sync">6 × 0xFF</span></div>
+            <div class="row"><span class="b">AA</span><span class="b">BB</span><span class="b">CC</span><span class="b">DD</span><span class="b">EE</span><span class="b">FF</span><span class="x">MAC · 1</span></div>
+            <div class="row"><span class="b">AA</span><span class="b">BB</span><span class="b">CC</span><span class="b">DD</span><span class="b">EE</span><span class="b">FF</span><span class="x">MAC · 2</span></div>
+            <div class="row dim"><span class="b">…</span><span class="b">…</span><span class="b">…</span><span class="b">…</span><span class="b">…</span><span class="b">…</span></div>
+            <div class="row"><span class="b">AA</span><span class="b">BB</span><span class="b">CC</span><span class="b">DD</span><span class="b">EE</span><span class="b">FF</span><span class="x">MAC · 16</span></div>
+          </div>
+          <div class="flow">
+            <span data-i18n="fl1">Phone: WoL button</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <span data-i18n="fl2">UDP 9 / 7</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <span data-i18n="fl3">PC already on?</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <span data-i18n="fl4">Shut down</span>
+          </div>
+          <figcaption class="dg-note" data-i18n="pk.note">Six 0xFF bytes followed by the target MAC address repeated 16 times. When the PC is off, the network card wakes it; when it's on, WolCatcher hears the same packet.</figcaption>
+        </figure>
+      </div>
+      <ul class="p-facts reveal">
+        <li><b>UDP 9 · 7</b><span data-i18n="f1">listened on, broadcast included</span></li>
+        <li><b data-i18n="f2.n">45 s</b><span data-i18n="f2">startup grace against the phone's repeat packets</span></li>
+        <li><b>3</b><span data-i18n="f3">actions: shut down, sleep or hibernate</span></li>
+        <li><b>1</b><span data-i18n="f4">exe that installs and manages itself as a service</span></li>
+      </ul>
+    </section>
+
+    <section class="section" id="how">
+      <div class="sec-head reveal">
+        <h2 data-i18n="hw.t">How it works</h2>
+        <p data-i18n="hw.s">A .NET Generic Host app that runs as a Windows service.</p>
+      </div>
+      <div class="split">
+        <ol class="steps reveal">
+          <li>
+            <h3 data-i18n="s1.t">Listen</h3>
+            <p data-i18n="s1.d">The service listens on UDP ports 9 and 7, broadcast included. Both ports can be changed in the settings.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s2.t">Find the magic packet anywhere</h3>
+            <p data-i18n="s2.d">It scans the whole payload for six 0xFF bytes followed by a MAC address repeated 16 times, so extra bytes at the start or a SecureOn password at the end don't stop the packet from being recognised.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s3.t">Check the MAC</h3>
+            <p data-i18n-html="s3.d">MAC addresses are read from the PC's network adapters automatically, or listed by hand in <code>appsettings.json</code>. Packets for other machines are ignored.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s4.t">Act</h3>
+            <p data-i18n-html="s4.d">Shut down with <code>shutdown.exe</code>, or sleep and hibernate through <code>SetSuspendState</code> in <code>powrprof.dll</code>, called with P/Invoke.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s5.t">Don't overreact</h3>
+            <p data-i18n="s5.d">After a WoL boot the phone keeps sending a few more packets, so anything that arrives in the first 45 seconds after the service starts is ignored. A separate cooldown stops repeated triggers in a short window.</p>
+          </li>
+        </ol>
+        <div class="stack reveal">
+          <div class="code" data-copy>
+            <div class="code-head">MagicPacket.cs</div>
+            <pre><code><span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt;= payload.Length - CoreLen; i++)
+{
+    <span class="k">if</span> (!AllByte(payload.Slice(i, MacLen), <span class="n">0xFF</span>))
+        <span class="k">continue</span>;
+
+    <span class="k">var</span> mac = payload.Slice(i + MacLen, MacLen);
+
+    <span class="k">bool</span> valid = <span class="k">true</span>;
+    <span class="k">for</span> (<span class="k">int</span> r = <span class="n">1</span>; r &lt; Repeat; r++)
+    {
+        <span class="k">if</span> (!mac.SequenceEqual(payload.Slice(i + MacLen + r * MacLen, MacLen)))
+        {
+            valid = <span class="k">false</span>;
+            <span class="k">break</span>;
+        }
+    }
+
+    <span class="k">if</span> (valid)
+        <span class="k">return</span> mac.ToArray();
+}</code></pre>
+          </div>
+          <div class="box">
+            <h3 data-i18n="sv.t">Manages itself</h3>
+            <p data-i18n-html="sv.d">The same exe installs the service with <code>sc.exe</code>, set to start automatically and restart after a crash. When it needs admin rights it relaunches itself through UAC. Logs go to <code>%ProgramData%\WolCatcher\wolcatcher.log</code>, which is moved to <code>.1</code> once it passes 5 MB; start, stop and error events also appear in Event Viewer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="settings">
+      <div class="sec-head reveal">
+        <h2 data-i18n="st.t">Commands and settings</h2>
+        <p data-i18n="st.s">Service commands need administrator rights.</p>
+      </div>
+      <div class="split">
+        <div class="tbl-wrap reveal">
+          <table class="tbl">
+            <thead><tr><th data-i18n="cm.h1">Command</th><th data-i18n="cm.h2">What it does</th></tr></thead>
+            <tbody>
+              <tr><td><code>install</code></td><td data-i18n="cm1">Installs and starts the service</td></tr>
+              <tr><td><code>uninstall</code></td><td data-i18n="cm2">Stops and removes the service</td></tr>
+              <tr><td><code>start</code>, <code>stop</code></td><td data-i18n="cm3">Starts or stops the service</td></tr>
+              <tr><td><code>status</code></td><td data-i18n="cm4">Shows the service status</td></tr>
+              <tr><td><code>console</code></td><td data-i18n="cm5">Runs in the console instead of as a service</td></tr>
+              <tr><td><code>help</code></td><td data-i18n="cm6">Shows usage</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="stack reveal">
+          <div class="code" data-copy>
+            <div class="code-head">appsettings.json</div>
+            <pre><code>{
+  <span class="s">"WolCatcher"</span>: {
+    <span class="s">"Ports"</span>: [ <span class="n">9</span>, <span class="n">7</span> ],
+    <span class="s">"Action"</span>: <span class="s">"Shutdown"</span>,
+    <span class="s">"StartupGraceSeconds"</span>: <span class="n">45</span>,
+    <span class="s">"TargetMacs"</span>: [],
+    <span class="s">"ActionDelaySeconds"</span>: <span class="n">0</span>,
+    <span class="s">"Force"</span>: <span class="k">true</span>,
+    <span class="s">"CooldownSeconds"</span>: <span class="n">10</span>
+  }
+}</code></pre>
+          </div>
+          <ul class="limits plain">
+            <li data-i18n-html="o1"><code>Action</code>: <code>Shutdown</code>, <code>Sleep</code> or <code>Hibernate</code>.</li>
+            <li data-i18n-html="o2"><code>TargetMacs</code>: when empty, the MACs of this PC's adapters are used. <code>AA:BB:CC:DD:EE:FF</code>, <code>aa-bb-cc-dd-ee-ff</code> and plain hex all work.</li>
+            <li data-i18n-html="o3"><code>Force</code>: closes open apps when shutting down, so unsaved work can be lost.</li>
+            <li data-i18n-html="o4">Any setting can also come from an environment variable, for example <code>WolCatcher__Action=Sleep</code>. Restart the service after changing <code>appsettings.json</code>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="run">
+      <div class="sec-head reveal">
+        <h2 data-i18n="rn.t">Setup</h2>
+        <p data-i18n="rn.s">Windows 10/11 x64. Download the release, or build it with the .NET 10 SDK.</p>
+      </div>
+      <div class="split">
+        <ol class="steps reveal">
+          <li>
+            <h3 data-i18n="r1.t">Get a single-file exe</h3>
+            <p data-i18n="r1.d">Download the zip from Releases, or publish it yourself:</p>
+            <div class="code" data-copy><div class="code-head">PowerShell</div><pre><code>dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o publish</code></pre></div>
+          </li>
+          <li>
+            <h3 data-i18n="r2.t">Install the service</h3>
+            <p data-i18n-html="r2.d">Copy <code>WolCatcher.exe</code> and <code>appsettings.json</code> to a permanent folder such as <code>C:\Tools\WolCatcher</code>. The service points at that path, so don't move the folder afterwards.</p>
+            <div class="code" data-copy><div class="code-head">PowerShell</div><pre><code>.\WolCatcher.exe install</code></pre></div>
+          </li>
+          <li>
+            <h3 data-i18n="r3.t">Set up the network</h3>
+            <p data-i18n-html="r3.d">Turn on Wake-on-LAN in the BIOS/UEFI and the network adapter settings. In the phone app, target the network's broadcast address (for example <code>192.168.1.255</code>) on port 9. You may need to allow inbound UDP 9 and 7 in Windows Firewall.</p>
+          </li>
+        </ol>
+        <div class="stack reveal">
+          <div class="box">
+            <h3 data-i18n="r4.t">Try it without shutting down</h3>
+            <p data-i18n="r4.d">Stretch the startup grace and run it in the console; every packet is logged but the PC stays on.</p>
+            <div class="code" data-copy><div class="code-head">PowerShell</div><pre><code>$env:WolCatcher__StartupGraceSeconds = "99999"
+dotnet run -- console</code></pre></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="limits">
+      <div class="sec-head reveal"><h2 data-i18n="ki.t">Known issues</h2></div>
+      <ul class="limits reveal">
+        <li data-i18n="n1">When the PC wakes from sleep through WoL, the startup grace doesn't apply, because it's only counted when the service starts. The phone's repeat packets can make it try to shut the PC down again right away.</li>
+        <li data-i18n="n2">If an action fails, the trigger lock isn't reset and new packets are ignored until the service restarts. For the same reason, Sleep and Hibernate work only once per service run.</li>
+        <li data-i18n="n3">There's no authentication: any device on the same network that sends a magic packet for this PC's MAC can shut it down.</li>
+        <li data-i18n="n4">Only Information-level logs and above are written to the file.</li>
+        <li data-i18n="n5">Windows only, with no automated tests.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="more">
+      <div class="sec-head reveal"><h2 data-i18n="more">More projects</h2></div>
+      <nav class="more reveal" aria-label="More projects" data-i18n-attr="aria-label:more">
+        <a href="../mini-on-muhasebe/"><span class="mini art-ledger"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></span><span><small data-i18n="pk.intern">Internship project</small><span data-i18n="pn.muhasebe">Mini Bookkeeping App</span></span></a>
+        <a href="../ntier-generator/"><span class="mini art-ntier"><svg viewBox="0 0 24 24"><path d="M12 3 21 7.5 12 12 3 7.5z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 16.5 9 4.5 9-4.5"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span data-i18n="pn.ntier">N-Tier Architecture Generator</span></span></a>
+        <a href="../multi-tenant-sla-platform/"><span class="mini art-sla"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg></span><span><small data-i18n="pk.fs">Full-stack</small><span data-i18n="pn.sla">Multi-Tenant SLA Platform</span></span></a>
+        <a href="../instareel-blocker/"><span class="mini art-reel"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/></svg></span><span><small data-i18n="pk.mobile">Mobile</small><span>InstaReel Blocker</span></span></a>
+        <a href="../linux-file-monitoring/"><span class="mini art-linux"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12.5 15H17"/></svg></span><span><small data-i18n="pk.sys">Systems</small><span data-i18n="pn.linux">Linux File Monitoring Service</span></span></a>
+        <a href="../../stokplus/"><span class="mini art-stok"><img src="../../stokplus/simge.png" alt="" loading="lazy"></span><span><small data-i18n="pk.mobile">Mobile</small><span>Stok+</span></span></a>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>© 2026 Yiğit Kalaycıoğlu · <span data-i18n="foot">Built by hand and published on GitHub Pages.</span></p>
+  </footer>
+
+  <script type="application/json" id="tr">
+  {
+    "h.k": "ARAÇ · WINDOWS SERVİSİ",
+    "h.lead": "Telefondaki Wake-on-LAN uygulaması bilgisayarı açabiliyor ama kapatamıyor. WolCatcher bu eksiği kapatıyor: bilgisayar zaten açıkken gelen magic packet'i yakalayıp bilgisayarı kapatan küçük bir Windows servisi. Böylece aynı WoL butonu hem açıyor hem kapatıyor.",
+    "h.note": "Haziran'dan beri kendi bilgisayarımda servis olarak çalışıyor.",
+    "nav.settings": "Ayarlar",
+    "pk.cap": "MAGIC PACKET · 102 BAYT",
+    "pk.sync": "6 × 0xFF",
+    "fl1": "Telefon: WoL butonu",
+    "fl2": "UDP 9 / 7",
+    "fl3": "Bilgisayar açık mı?",
+    "fl4": "Kapat",
+    "pk.note": "Altı bayt 0xFF ve ardından 16 kez tekrarlanan hedef MAC adresi. Bilgisayar kapalıyken ağ kartı onu uyandırıyor; açıkken aynı paketi WolCatcher duyuyor.",
+    "f1": "portları dinleniyor, broadcast dahil",
+    "f2.n": "45 sn",
+    "f2": "açılış toleransı: telefonun tekrar gönderdiği paketlere karşı",
+    "f3": "işlem: kapatma, uyku ya da hazırda bekletme",
+    "f4": "exe: kendini servis olarak kurup yönetiyor",
+    "hw.t": "Nasıl çalışıyor",
+    "hw.s": "Windows servisi olarak çalışan bir .NET Generic Host uygulaması.",
+    "s1.t": "Dinle",
+    "s1.d": "Servis UDP 9 ve 7 portlarını broadcast dahil dinliyor. İki port da ayarlardan değiştirilebiliyor.",
+    "s2.t": "Magic packet'i her yerde ara",
+    "s2.d": "Paketin tamamında altı bayt 0xFF ve ardından 16 kez tekrarlanan bir MAC adresi arıyor; başta fazladan bayt ya da sonda SecureOn şifresi olsa da paket tanınıyor.",
+    "s3.t": "MAC'i kontrol et",
+    "s3.d": "MAC adresleri bilgisayarın ağ adaptörlerinden otomatik bulunuyor ya da <code>appsettings.json</code> içinde elle veriliyor. Başka makinelere giden paketler yok sayılıyor.",
+    "s4.t": "Uygula",
+    "s4.d": "<code>shutdown.exe</code> ile kapatıyor ya da P/Invoke ile çağrılan <code>powrprof.dll</code> içindeki <code>SetSuspendState</code> üzerinden uyku veya hazırda beklemeye alıyor.",
+    "s5.t": "Aşırı tepki verme",
+    "s5.d": "Bilgisayar WoL ile açıldıktan sonra telefon birkaç paket daha gönderiyor; bu yüzden servis başladıktan sonraki ilk 45 saniyede gelen paketler yok sayılıyor. Ayrı bir bekleme süresi de kısa sürede art arda tetiklenmeyi engelliyor.",
+    "sv.t": "Kendini yönetiyor",
+    "sv.d": "Aynı exe, servisi <code>sc.exe</code> ile otomatik başlayacak ve çökerse yeniden başlatılacak şekilde kuruyor. Yönetici izni gerekirse UAC ile kendini yeniden başlatıyor. Loglar <code>%ProgramData%\\WolCatcher\\wolcatcher.log</code> dosyasına yazılıyor, dosya 5 MB'ı geçince <code>.1</code> olarak yedekleniyor; başlama, durma ve hata kayıtları Olay Görüntüleyici'de de görünüyor.",
+    "st.t": "Komutlar ve ayarlar",
+    "st.s": "Servis komutları yönetici izni istiyor.",
+    "cm.h1": "Komut",
+    "cm.h2": "Ne yapar",
+    "cm1": "Servisi kurar ve başlatır",
+    "cm2": "Servisi durdurup kaldırır",
+    "cm3": "Servisi başlatır, durdurur",
+    "cm4": "Servisin durumunu gösterir",
+    "cm5": "Servis olarak değil konsolda çalıştırır",
+    "cm6": "Kullanımı gösterir",
+    "o1": "<code>Action</code>: <code>Shutdown</code>, <code>Sleep</code> veya <code>Hibernate</code>.",
+    "o2": "<code>TargetMacs</code>: boşsa bu bilgisayardaki adaptörlerin MAC adresleri kullanılıyor. <code>AA:BB:CC:DD:EE:FF</code>, <code>aa-bb-cc-dd-ee-ff</code> ya da ayraçsız yazılabiliyor.",
+    "o3": "<code>Force</code>: kapatırken açık uygulamaları zorla kapatıyor; kaydedilmemiş işler kaybolabilir.",
+    "o4": "Her ayar ortam değişkeniyle de verilebiliyor, örneğin <code>WolCatcher__Action=Sleep</code>. <code>appsettings.json</code> değiştirildikten sonra servisi yeniden başlatmak gerekiyor.",
+    "rn.t": "Kurulum",
+    "rn.s": "Windows 10/11 x64. Sürümü indirin ya da .NET 10 SDK ile kendiniz derleyin.",
+    "r1.t": "Tek dosyalık exe alın",
+    "r1.d": "Releases sayfasından zip'i indirin ya da kendiniz yayımlayın:",
+    "r2.t": "Servisi kurun",
+    "r2.d": "<code>WolCatcher.exe</code> ve <code>appsettings.json</code> dosyalarını <code>C:\\Tools\\WolCatcher</code> gibi kalıcı bir klasöre kopyalayın. Servis bu yolu kullandığı için kurulumdan sonra klasörü taşımayın.",
+    "r3.t": "Ağı ayarlayın",
+    "r3.d": "BIOS/UEFI'de ve ağ kartı ayarlarında Wake-on-LAN'ı açın. Telefon uygulamasında hedef olarak ağın broadcast adresini (örneğin <code>192.168.1.255</code>) ve port 9'u kullanın. Windows Güvenlik Duvarı'nda UDP 9 ve 7 için gelen bağlantıya izin vermek gerekebilir.",
+    "r4.t": "Bilgisayarı kapatmadan deneyin",
+    "r4.d": "Açılış toleransını uzatıp konsolda çalıştırın; her paket günlüğe yazılıyor ama bilgisayar açık kalıyor.",
+    "ki.t": "Bilinen sorunlar",
+    "n1": "Bilgisayar WoL ile uykudan uyandırıldığında açılış toleransı işlemiyor, çünkü süre yalnızca servis başladığında sayılıyor. Telefonun tekrar gönderdiği paketler bilgisayarı hemen yeniden kapatmaya çalışabiliyor.",
+    "n2": "Bir işlem başarısız olursa tetikleme kilidi sıfırlanmıyor ve servis yeniden başlayana kadar yeni paketler yok sayılıyor. Aynı sebeple Sleep ve Hibernate servis çalıştığı sürece yalnızca bir kez çalışıyor.",
+    "n3": "Kimlik doğrulama yok: aynı ağda bu bilgisayarın MAC adresine magic packet gönderen herhangi bir cihaz onu kapatabilir.",
+    "n4": "Dosyaya yalnızca Information ve üstü seviyedeki loglar yazılıyor.",
+    "n5": "Yalnızca Windows'ta çalışıyor; otomatik test yok."
+  }
+  </script>
+  <script src="../../assets/js/proje.js" defer></script>
+</body>
+</html>

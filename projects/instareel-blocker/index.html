@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>InstaReel Blocker · Yiğit Kalaycıoğlu</title>
+  <meta name="description" content="InstaReel Blocker is a small Android app that automatically skips sponsored videos in Instagram Reels using an accessibility service. No root, no internet permission, no data collection.">
+  <meta name="theme-color" content="#0b0c10">
+  <link rel="canonical" href="https://yigitkalaycioglu.github.io/projects/instareel-blocker/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yigitkalaycioglu.github.io/projects/instareel-blocker/">
+  <meta property="og:title" content="InstaReel Blocker · Yiğit Kalaycıoğlu">
+  <meta property="og:description" content="Skips sponsored videos in Instagram Reels automatically. No root, no internet permission, no data collection.">
+  <meta property="og:image" content="https://yigitkalaycioglu.github.io/projects/instareel-blocker/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <link rel="stylesheet" href="../../assets/css/proje.css">
+  <script>
+    // tema ve dil, ilk boyamadan önce uygulanır
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        var t = localStorage.getItem('yk-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        var l = localStorage.getItem('yk-lang') || ((navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en');
+        document.documentElement.setAttribute('lang', l);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#how" data-i18n="skip">Skip to content</a>
+
+  <header class="nav">
+    <div class="nav-in">
+      <a class="logo" href="../../" data-i18n-attr="aria-label:home" aria-label="Home">
+        <span class="logo-mark">YK</span>
+        <span class="logo-text">Yiğit Kalaycıoğlu</span>
+      </a>
+      <nav class="links" aria-label="Page">
+        <a href="#how" data-i18n="nav.how">How it works</a>
+        <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
+        <a href="#run" data-i18n="nav.setup">Setup</a>
+      </nav>
+      <div class="tools">
+        <button class="pill" id="lang" type="button" aria-label="Türkçe / English"><span data-l="tr">TR</span><span data-l="en">EN</span></button>
+        <button class="icon" id="theme" type="button" data-i18n-attr="aria-label:theme" aria-label="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+          <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="p-hero">
+      <div class="p-hero-in">
+        <div class="reveal">
+          <a class="back" href="../../#projects"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-i18n="back">All projects</span></a>
+          <p class="kicker" data-i18n="h.k">Mobile · Android</p>
+          <h1 class="p-title">InstaReel Blocker</h1>
+          <p class="lead" data-i18n="h.lead">A small Android app that skips sponsored videos in Instagram Reels on its own. It works through Android's accessibility service: it reads what's on screen and, when it finds an ad label, swipes to the next video.</p>
+          <ul class="badges">
+            <li><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="b1">No root</span></li>
+            <li><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="b2">No internet permission</span></li>
+            <li><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="b3">No data collection</span></li>
+          </ul>
+          <ul class="tags"><li>Kotlin</li><li>Android 8.0+</li><li>AccessibilityService</li><li>GitHub Actions</li></ul>
+          <div class="cta">
+            <a class="btn primary" href="https://github.com/yigitkalaycioglu/instareel-blocker/releases/latest" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M12 3.5v11M7 10l5 5 5-5M4.5 20.5h15"/></svg><span data-i18n="apk">Download APK</span></a>
+            <a class="btn" href="https://github.com/yigitkalaycioglu/instareel-blocker" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5m12 4.5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg><span data-i18n="code">Source code</span></a>
+          </div>
+        </div>
+        <figure class="art-panel art-reel reveal">
+          <div class="phone-wrap" aria-hidden="true">
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="skip-hint"><b><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></b><span data-i18n="ph.skip">Ad skipped</span></div>
+                <div class="reel-side"><i></i><i></i><i></i></div>
+                <div class="reel-meta">
+                  <div class="reel-who"><i></i><span></span></div>
+                  <span class="reel-tag" data-i18n="ph.tag">Sponsored</span>
+                  <span class="reel-line"></span>
+                  <span class="reel-line short"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption class="dg-note" data-i18n="ph.note">An illustration, not a screenshot: when the visible reel carries an ad label, the service swipes up to the next one.</figcaption>
+        </figure>
+      </div>
+      <ul class="p-facts reveal">
+        <li><b>8.0+</b><span data-i18n="f1">Android version (API 26)</span></li>
+        <li><b>2</b><span data-i18n="f2">apps it can read: Instagram and Instagram Lite</span></li>
+        <li><b>6</b><span data-i18n="f3">skips in a row at most, as a safety stop</span></li>
+        <li><b>0</b><span data-i18n="f4">internet permissions, so nothing leaves the phone</span></li>
+      </ul>
+    </section>
+
+    <section class="section" id="how">
+      <div class="sec-head reveal">
+        <h2 data-i18n="hw.t">How it works</h2>
+        <p data-i18n="hw.s">The service listens for window-change and scroll events from Instagram and scans the visible part of the screen in a single pass.</p>
+      </div>
+      <div class="split">
+        <ol class="steps reveal">
+          <li>
+            <h3 data-i18n="s1.t">Is this the Reels player?</h3>
+            <p data-i18n-html="s1.d">First it checks for the full-screen Reels viewer: the viewer's view id (such as <code>clips_viewer</code>) or like/comment/share buttons stacked vertically on the right edge. In the main feed those buttons sit horizontally, so ads in the feed don't trigger it.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s2.t">Is the visible video an ad?</h3>
+            <p data-i18n="s2.d">Then it looks for the ad label. The label sometimes arrives cut off (“Spon…”), so it matches by prefix instead of whole words. Labels are defined in several languages, including Sponsorlu, Sponsored, Gesponsert, Patrocinado and Ücretli ortaklık, and ad buttons such as “Profili Ziyaret Et” and “Şimdi Al” serve as a backup signal.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s3.t">Only what's really on screen</h3>
+            <p data-i18n-html="s3.d">Instagram preloads the previous and next videos off screen. Only nodes that are <code>isVisibleToUser</code> and intersect the screen are scanned, so an ad in the next video never makes it skip the normal video you're watching.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s4.t">Swipe, then check again</h3>
+            <p data-i18n-html="s4.d">An ad triggers an upward swipe through <code>dispatchGesture</code>. Events during the swipe are ignored, and a few check scans are scheduled after it, so back-to-back ads are skipped one by one. If something goes wrong, it stops after 6 skips in a row and waits for a normal video.</p>
+          </li>
+        </ol>
+        <div class="stack reveal">
+          <div class="code">
+            <div class="code-head">res/xml/accessibility_service_config.xml</div>
+            <pre><code>&lt;<span class="k">accessibility-service</span>
+    android:accessibilityEventTypes=<span class="s">"typeWindowContentChanged|typeWindowStateChanged|typeViewScrolled"</span>
+    android:accessibilityFlags=<span class="s">"flagDefault|flagRetrieveInteractiveWindows|flagReportViewIds"</span>
+    android:canPerformGestures=<span class="s">"true"</span>
+    android:canRetrieveWindowContent=<span class="s">"true"</span>
+    android:notificationTimeout=<span class="s">"100"</span>
+    android:packageNames=<span class="s">"com.instagram.android,com.instagram.lite"</span>
+    … /&gt;</code></pre>
+          </div>
+          <div class="box" id="privacy">
+            <h3 data-i18n="pv.t">Privacy by design</h3>
+            <p data-i18n-html="pv.d">The service is bound to <code>com.instagram.android</code> and <code>com.instagram.lite</code> in its configuration, so Android won't let it read any other app's screen. The app has no internet permission, needs no root and collects nothing.</p>
+            <p data-i18n="pv.d2">The home screen shows whether the service is on and how many ads it has skipped while running; that counter lives only in memory.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="run">
+      <div class="sec-head reveal">
+        <h2 data-i18n="rn.t">Setup</h2>
+        <p data-i18n="rn.s">Install the ready-made APK, or build it yourself.</p>
+      </div>
+      <div class="split">
+        <ol class="steps reveal">
+          <li>
+            <h3 data-i18n="r1.t">Install the APK</h3>
+            <p data-i18n-html="r1.d">Download it from <a href="https://github.com/yigitkalaycioglu/instareel-blocker/releases/latest" target="_blank" rel="noopener">GitHub Releases</a> and install it; you'll need to allow installs from unknown sources.</p>
+          </li>
+          <li>
+            <h3 data-i18n="r2.t">Turn on the service</h3>
+            <p data-i18n="r2.d">Open the app, tap “Erişilebilirlik Ayarlarını Aç” (open accessibility settings), find InstaReel Blocker in the list and turn it on.</p>
+          </li>
+          <li>
+            <h3 data-i18n="r3.t">Open Reels</h3>
+            <p data-i18n="r3.d">Go to Reels in Instagram; sponsored videos are skipped from then on.</p>
+          </li>
+        </ol>
+        <div class="stack reveal">
+          <div class="box">
+            <h3 data-i18n="r4.t">If the service keeps stopping</h3>
+            <p data-i18n="r4.d">Some devices, such as Xiaomi (HyperOS) and Samsung, stop the service in the background. Lock the app in the recent apps list and set its battery optimisation to “No restrictions”.</p>
+          </div>
+          <div class="box">
+            <h3 data-i18n="r5.t">Build it yourself</h3>
+            <p data-i18n-html="r5.d">You need Android Studio, or JDK 17 with Android SDK 34. The debug APK ends up in <code>app/build/outputs/apk/debug/</code>.</p>
+            <div class="code" data-copy><div class="code-head">Shell</div><pre><code>./gradlew assembleDebug</code></pre></div>
+            <p data-i18n-html="r5.d2">Release builds read <code>keystore/signing.properties</code>, which isn't in the repo, and shrink code and resources with R8; <code>./gradlew bundleRelease</code> makes a Play Store bundle. The APKs on Releases are built by a GitHub Actions workflow.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="limits">
+      <div class="sec-head reveal"><h2 data-i18n="limits">Known limitations</h2></div>
+      <ul class="limits reveal">
+        <li data-i18n="n1">Detection depends on Instagram's interface. If Instagram changes its view ids or label texts, the app may need an update.</li>
+        <li data-i18n="n2">It only works in the Reels feed; ads in stories and the main feed are left alone.</li>
+        <li data-i18n="n3">The skipped-ads counter is kept in memory and resets when the service restarts.</li>
+      </ul>
+      <p class="sec-more reveal" data-i18n="tm">Instagram is a trademark of Meta Platforms, Inc. This project isn't affiliated with Meta or Instagram.</p>
+    </section>
+
+    <section class="section" id="more">
+      <div class="sec-head reveal"><h2 data-i18n="more">More projects</h2></div>
+      <nav class="more reveal" aria-label="More projects" data-i18n-attr="aria-label:more">
+        <a href="../mini-on-muhasebe/"><span class="mini art-ledger"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></span><span><small data-i18n="pk.intern">Internship project</small><span data-i18n="pn.muhasebe">Mini Bookkeeping App</span></span></a>
+        <a href="../ntier-generator/"><span class="mini art-ntier"><svg viewBox="0 0 24 24"><path d="M12 3 21 7.5 12 12 3 7.5z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 16.5 9 4.5 9-4.5"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span data-i18n="pn.ntier">N-Tier Architecture Generator</span></span></a>
+        <a href="../multi-tenant-sla-platform/"><span class="mini art-sla"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg></span><span><small data-i18n="pk.fs">Full-stack</small><span data-i18n="pn.sla">Multi-Tenant SLA Platform</span></span></a>
+        <a href="../wol-catcher/"><span class="mini art-wol"><svg viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.6 6.6a7.5 7.5 0 1 0 10.8 0"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span>WolCatcher</span></span></a>
+        <a href="../linux-file-monitoring/"><span class="mini art-linux"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12.5 15H17"/></svg></span><span><small data-i18n="pk.sys">Systems</small><span data-i18n="pn.linux">Linux File Monitoring Service</span></span></a>
+        <a href="../../stokplus/"><span class="mini art-stok"><img src="../../stokplus/simge.png" alt="" loading="lazy"></span><span><small data-i18n="pk.mobile">Mobile</small><span>Stok+</span></span></a>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>© 2026 Yiğit Kalaycıoğlu · <span data-i18n="foot">Built by hand and published on GitHub Pages.</span></p>
+  </footer>
+
+  <script type="application/json" id="tr">
+  {
+    "h.k": "MOBİL · ANDROID",
+    "h.lead": "Instagram Reels'teki sponsorlu videoları kendiliğinden geçen küçük bir Android uygulaması. Android'in erişilebilirlik servisi üzerinden çalışıyor: ekranda olanı okuyor, reklam etiketi bulursa bir sonraki videoya kaydırıyor.",
+    "b1": "Root gerekmez",
+    "b2": "İnternet izni yok",
+    "b3": "Veri toplamaz",
+    "ph.skip": "Reklam geçildi",
+    "ph.tag": "Sponsorlu",
+    "ph.note": "Ekran görüntüsü değil, çizim: görünen videoda reklam etiketi varsa servis bir sonrakine kaydırıyor.",
+    "f1": "Android sürümü (API 26)",
+    "f2": "uygulamayı okuyabiliyor: Instagram ve Instagram Lite",
+    "f3": "art arda en fazla atlama (güvenlik sınırı)",
+    "f4": "internet izni; hiçbir veri telefondan çıkmıyor",
+    "hw.t": "Nasıl çalışıyor",
+    "hw.s": "Servis Instagram'dan gelen pencere değişikliği ve kaydırma olaylarını dinliyor, ekranın görünen kısmını tek geçişte tarıyor.",
+    "s1.t": "Reels oynatıcısında mı?",
+    "s1.d": "Önce tam ekran Reels görüntüleyicisinde olup olmadığına bakıyor: görüntüleyicinin view id'si (<code>clips_viewer</code> gibi) ya da sağ kenarda dikey duran beğen/yorum/paylaş butonları. Ana akışta bu butonlar yatay durduğu için akıştaki reklamlar servisi tetiklemiyor.",
+    "s2.t": "Ekrandaki video reklam mı?",
+    "s2.d": "Sonra reklam etiketini arıyor. Etiket bazen kesik geliyor (“Spon…”), bu yüzden tam kelime yerine önek eşleştirmesi kullanılıyor. Sponsorlu, Sponsored, Gesponsert, Patrocinado ve Ücretli ortaklık gibi birkaç dilde etiket tanımlı; “Profili Ziyaret Et” ve “Şimdi Al” gibi reklam butonları da yedek sinyal.",
+    "s3.t": "Yalnızca gerçekten ekrandaki",
+    "s3.d": "Instagram önceki ve sonraki videoları ekran dışında önceden yüklüyor. Yalnızca <code>isVisibleToUser</code> olan ve ekranla kesişen öğeler tarandığı için sıradaki videodaki reklam, izlediğiniz normal videonun atlanmasına yol açmıyor.",
+    "s4.t": "Kaydır, sonra tekrar bak",
+    "s4.d": "Reklam bulununca <code>dispatchGesture</code> ile yukarı kaydırılıyor. Kaydırma sürerken gelen olaylar yok sayılıyor, kaydırma bitince birkaç kontrol taraması planlanıyor; arka arkaya gelen reklamlar böylece tek tek geçiliyor. Bir şeyler ters giderse üst üste 6 atlamadan sonra duruyor ve normal bir video bekliyor.",
+    "pv.t": "Baştan gizlilik odaklı",
+    "pv.d": "Servis yapılandırmasında <code>com.instagram.android</code> ve <code>com.instagram.lite</code> paketlerine bağlı; Android başka bir uygulamanın ekranını okumasına izin vermiyor. Uygulamanın internet izni yok, root gerektirmiyor ve hiçbir veri toplamıyor.",
+    "pv.d2": "Ana ekranda servisin açık olup olmadığı ve çalıştığı sürece kaç reklam atladığı görünüyor; bu sayaç yalnızca bellekte tutuluyor.",
+    "rn.t": "Kurulum",
+    "rn.s": "Hazır APK'yı kurun ya da kendiniz derleyin.",
+    "r1.t": "APK'yı kurun",
+    "r1.d": "<a href=\"https://github.com/yigitkalaycioglu/instareel-blocker/releases/latest\" target=\"_blank\" rel=\"noopener\">GitHub Releases</a> sayfasından indirip kurun; bilinmeyen kaynaklardan yüklemeye izin vermeniz gerekiyor.",
+    "r2.t": "Servisi açın",
+    "r2.d": "Uygulamayı açıp “Erişilebilirlik Ayarlarını Aç” butonuna basın, listede InstaReel Blocker'ı bulup servisi açın.",
+    "r3.t": "Reels'i açın",
+    "r3.d": "Instagram'da Reels'e girin; sponsorlu videolar artık geçiliyor.",
+    "r4.t": "Servis kapanıp duruyorsa",
+    "r4.d": "Xiaomi (HyperOS) ve Samsung gibi bazı cihazlar servisi arka planda kapatabiliyor. Uygulamayı son uygulamalar listesinde kilitleyin ve pil optimizasyonunu “Kısıtlama yok” yapın.",
+    "r5.t": "Kendiniz derleyin",
+    "r5.d": "Android Studio ya da JDK 17 ve Android SDK 34 gerekiyor. Debug APK <code>app/build/outputs/apk/debug/</code> altına çıkıyor.",
+    "r5.d2": "Release derlemesi repoda olmayan <code>keystore/signing.properties</code> dosyasını okuyor ve R8 ile kod ve kaynak küçültüyor; <code>./gradlew bundleRelease</code> Play Store paketi üretiyor. Releases'teki APK'lar bir GitHub Actions iş akışıyla derleniyor.",
+    "n1": "Tespit Instagram'ın arayüzüne bağlı. Instagram view id'lerini ya da etiket metinlerini değiştirirse güncelleme gerekebilir.",
+    "n2": "Yalnızca Reels akışında çalışıyor; hikayelerdeki ve ana akıştaki reklamlara dokunmuyor.",
+    "n3": "Atlanan reklam sayacı bellekte tutuluyor, servis yeniden başlayınca sıfırlanıyor.",
+    "tm": "Instagram, Meta Platforms, Inc.'in markasıdır. Bu proje Meta veya Instagram ile bağlantılı değildir."
+  }
+  </script>
+  <script src="../../assets/js/proje.js" defer></script>
+</body>
+</html>
