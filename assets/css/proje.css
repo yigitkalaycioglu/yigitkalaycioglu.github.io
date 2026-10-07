@@ -66,6 +66,8 @@
 .layer.side { border-style: dashed; box-shadow: none; background: transparent; margin-top: 8px; }
 .layer-arrow { justify-self: center; color: var(--muted); line-height: 0; }
 .layer-arrow svg { width: 18px; height: 18px; }
+.layer-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.sec-more + .box { margin-top: 18px; }
 
 /* numaralı adımlar */
 .steps { counter-reset: adim; list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
@@ -216,6 +218,7 @@
   .gallery { grid-template-columns: 1fr; }
   .weeks { grid-template-columns: 1fr; }
   .chal { grid-template-columns: 1fr; }
+  .layer-pair { grid-template-columns: 1fr; }
   .tbl td:first-child { white-space: normal; }
   .art-panel { padding: 20px; }
   .packet .b { width: 30px; height: 26px; font-size: 11.5px; }

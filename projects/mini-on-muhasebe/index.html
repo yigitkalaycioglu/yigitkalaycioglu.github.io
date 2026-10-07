@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Mini Bookkeeping App · Yiğit Kalaycıoğlu</title>
-  <meta name="description" content="Mini Bookkeeping App (Mini Ön Muhasebe): an ASP.NET Core MVC internship project with customer and supplier accounts, inventory, invoices, collections and payments, stock counts and reports.">
+  <meta name="description" content="Mini Bookkeeping App (Mini Ön Muhasebe): an ASP.NET Core MVC internship project built on Clean Architecture, with customer and supplier accounts, inventory, invoices, collections and payments, stock counts, reports and automated tests.">
   <meta name="theme-color" content="#0b0c10">
   <link rel="canonical" href="https://yigitkalaycioglu.github.io/projects/mini-on-muhasebe/">
   <meta property="og:type" content="website">
@@ -67,17 +67,17 @@
           <p class="kicker" data-i18n="h.k">Internship project · ESBİ</p>
           <h1 class="p-title" data-i18n="h.t">Mini Bookkeeping App</h1>
           <p class="lead" data-i18n="h.lead">A web-based bookkeeping app for small businesses: customer and supplier accounts, inventory, sales and purchase invoices, collections and payments, stock counts and reports. I built it end to end during my internship at ESBİ, following a requirements document and its five-week plan.</p>
-          <ul class="tags"><li>ASP.NET Core MVC</li><li>.NET 10</li><li>EF Core 10</li><li>SQL Server</li><li>Bootstrap 5</li></ul>
+          <ul class="tags"><li>ASP.NET Core MVC</li><li>.NET 10</li><li>Clean Architecture</li><li>EF Core 10</li><li>SQL Server</li><li>Bootstrap 5</li><li>xUnit</li><li>GitHub Actions</li></ul>
           <div class="cta">
             <a class="btn primary" href="https://github.com/yigitkalaycioglu/Mini-On-Muhasebe" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5m12 4.5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg><span data-i18n="code">Source code</span></a>
-            <a class="btn" href="https://github.com/yigitkalaycioglu/Mini-On-Muhasebe/blob/main/KULLANIM_KILAVUZU.md" target="_blank" rel="noopener">
+            <a class="btn" href="https://github.com/yigitkalaycioglu/Mini-On-Muhasebe/blob/main/docs/KULLANIM_KILAVUZU.md" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 8.3 4.5 4 4.5v14c4.3 0 6.5.5 8 2 1.5-1.5 3.7-2 8-2v-14c-4.3 0-6.5.5-8 2zM12 6.5v14"/></svg><span data-i18n="guide">User guide</span></a>
           </div>
           <p class="p-note" data-i18n="h.note">No live demo: the app needs a .NET server and SQL Server, so the screenshots below come from a local run with sample data.</p>
         </div>
         <figure class="frame reveal">
-          <div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>localhost:5029/Customer/SatisFaturasi/Create</span></div>
+          <div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>localhost:5029/SatisFaturasi/Create</span></div>
           <img src="img/fatura.webp" width="1440" height="900" fetchpriority="high" alt="New sales invoice with three line items; subtotal, VAT and total are calculated automatically" data-i18n-attr="alt:h.alt">
         </figure>
       </div>
@@ -174,21 +174,26 @@
     <section class="section" id="how">
       <div class="sec-head reveal">
         <h2 data-i18n="hw.t">How it works</h2>
-        <p data-i18n="hw.s">A layered MVC app where the rules live in services and the numbers come from the database.</p>
+        <p data-i18n="hw.s">An MVC app on Clean Architecture: the rules sit in the inner layers, while the database and the web stay at the edges.</p>
       </div>
       <div class="split">
         <div class="reveal">
           <div class="layers">
-            <div class="layer top"><b>OnMuhasebeWeb</b><span data-i18n="l1">Controllers, views, view models, filters and session checks</span></div>
+            <div class="layer-pair">
+              <div class="layer"><b>Web</b><span data-i18n="l1">Controllers, views, view models, filters and login security. Registers every service at startup.</span></div>
+              <div class="layer"><b>Infrastructure</b><span data-i18n="l2">EF Core DbContext, one configuration per table, five migrations and the PBKDF2 password hasher</span></div>
+            </div>
             <div class="layer-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
-            <div class="layer"><b>OnMuhasebe.Business</b><span data-i18n="l2">Services behind interfaces, constants and report summaries</span></div>
+            <div class="layer"><b>Application</b><span data-i18n="l3">Services, form DTOs and business-rule exceptions, plus the interfaces for the database and password hashing</span></div>
             <div class="layer-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
-            <div class="layer"><b>OnMuhasebe.DataAccess</b><span data-i18n="l3">DbContext, column types and five migrations</span></div>
-            <div class="layer-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
-            <div class="layer"><b>OnMuhasebe.Models</b><span data-i18n="l4">Eleven plain entity classes, one per table</span></div>
-            <div class="layer side"><b>OnMuhasebe.Utility</b><span data-i18n="l5">The PBKDF2 password helper</span></div>
+            <div class="layer top"><b>Domain</b><span data-i18n="l4">Eleven entities, constants and pure rules for document numbers and rounding. Depends on nothing.</span></div>
+            <div class="layer side"><b>tests/</b><span data-i18n="l5">Unit, architecture and integration tests; GitHub Actions runs them on every push</span></div>
           </div>
-          <p class="sec-more" data-i18n="l.note">Dependencies point one way. Controllers never touch the DbContext; they call service interfaces injected through DI.</p>
+          <p class="sec-more" data-i18n="l.note">Each layer is its own project, and dependencies only point inward. Application reaches the database through an interface that Infrastructure implements, controllers never see the DbContext, and architecture tests keep it that way.</p>
+          <div class="box">
+            <h3 data-i18n="d6.t">Tested on every push</h3>
+            <p data-i18n="d6.d">Unit tests cover the pure rules, password hashing, login lockout and the layer rules. Integration tests run the whole app in memory against a real SQL Server, on a fresh database each time. GitHub Actions also checks formatting and that the migrations match the model.</p>
+          </div>
         </div>
         <div class="stack">
           <div class="box reveal">
@@ -214,6 +219,10 @@
             <h3 data-i18n="d4.t">Amounts don't depend on the server</h3>
             <p data-i18n="d4.d">Amounts are typed with a decimal comma. The request culture is pinned to tr-TR, so 12,50 can't turn into 1250 on an English server, and rounding follows the decimal-places parameter, half away from zero.</p>
           </div>
+          <div class="box reveal">
+            <h3 data-i18n="d5.t">Forms only carry what they show</h3>
+            <p data-i18n="d5.d">Forms bind to DTOs instead of entities, and the record ID is read from the URL only. A field added to the form can't change another record or a server-calculated total; an integration test tries exactly that.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -232,7 +241,7 @@
         <article class="fcard reveal">
           <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg></div>
           <h3 data-i18n="s2.t">Login limits</h3>
-          <p data-i18n="s2.d">At most 10 login attempts per minute from one IP; five wrong passwords lock the account for five minutes. Logins and lockouts are logged with user name and IP.</p>
+          <p data-i18n="s2.d">By default, at most 10 login attempts per minute from one IP, and five wrong passwords lock the account for five minutes. The limits are read from appsettings.json and checked at startup; logins and lockouts are logged with user name and IP.</p>
         </article>
         <article class="fcard reveal">
           <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6z"/></svg></div>
@@ -250,13 +259,13 @@
     <section class="section" id="challenges">
       <div class="sec-head reveal">
         <h2 data-i18n="ch.t">Problems I ran into</h2>
-        <p data-i18n="ch.s">Six of the eleven issues documented in the README, and how each was solved.</p>
+        <p data-i18n="ch.s">Six of the twelve issues documented in the README, and how each was solved.</p>
       </div>
       <div class="chal">
         <article class="reveal">
           <h3 data-i18n="c1.t">Invoices silently failed validation</h3>
           <p data-i18n="c1.p">With nullable reference types on, MVC treated non-nullable properties as required, including the invoice number and navigation properties that never come from the form. ModelState was always invalid, with no visible error.</p>
-          <p class="fix"><b data-i18n="fix">Fix:</b> <span data-i18n="c1.f">server-filled fields are removed from validation, and a test confirmed that bad input such as an empty customer or a negative quantity is still rejected.</span></p>
+          <p class="fix"><b data-i18n="fix">Fix:</b> <span data-i18n="c1.f">server-filled fields were removed from validation, and a test confirmed that bad input such as an empty customer was still rejected. Moving the forms to DTOs later made this workaround unnecessary.</span></p>
         </article>
         <article class="reveal">
           <h3 data-i18n="c2.t">Lists showed zero stock</h3>
@@ -284,7 +293,7 @@
           <p class="fix"><b data-i18n="fix">Fix:</b> <span data-i18n="c6.f">the cookie is validated against the database on every request, and removing yourself or the last active admin is blocked.</span></p>
         </article>
       </div>
-      <p class="sec-more reveal"><a href="https://github.com/yigitkalaycioglu/Mini-On-Muhasebe#readme" target="_blank" rel="noopener" data-i18n="ch.more">Read all eleven in the README →</a></p>
+      <p class="sec-more reveal"><a href="https://github.com/yigitkalaycioglu/Mini-On-Muhasebe#readme" target="_blank" rel="noopener" data-i18n="ch.more">Read all twelve in the README →</a></p>
     </section>
 
     <section class="section" id="plan">
@@ -311,23 +320,28 @@
           <li>
             <h3 data-i18n="r1.t">Create the database</h3>
             <p data-i18n="r1.d">The UTF-8 code page flag keeps Turkish characters intact.</p>
-            <div class="code" data-copy><div class="code-head">Shell</div><pre><code>sqlcmd -S "localhost\MSSQLSERVER01" -E -f i:65001 -i OnMuhasebe/Database/create_database.sql</code></pre></div>
+            <div class="code" data-copy><div class="code-head">Shell</div><pre><code>sqlcmd -S "localhost\MSSQLSERVER01" -E -f i:65001 -i database/create_database.sql</code></pre></div>
           </li>
           <li>
             <h3 data-i18n="r2.t">Load the sample data (optional)</h3>
-            <div class="code" data-copy><div class="code-head">Shell</div><pre><code>sqlcmd -S "localhost\MSSQLSERVER01" -E -f i:65001 -i OnMuhasebe/Database/seed_data.sql</code></pre></div>
+            <div class="code" data-copy><div class="code-head">Shell</div><pre><code>sqlcmd -S "localhost\MSSQLSERVER01" -E -f i:65001 -i database/seed_data.sql</code></pre></div>
           </li>
           <li>
             <h3 data-i18n="r3.t">Start the app</h3>
             <p data-i18n-html="r3.d">It opens at <code>http://localhost:5029</code>.</p>
-            <div class="code" data-copy><div class="code-head">Shell</div><pre><code>cd OnMuhasebe/OnMuhasebeWeb
-dotnet run</code></pre></div>
+            <div class="code" data-copy><div class="code-head">Shell</div><pre><code>dotnet run --project src/OnMuhasebe.Web</code></pre></div>
+          </li>
+          <li>
+            <h3 data-i18n="r6.t">Run the tests (optional)</h3>
+            <p data-i18n-html="r6.d">Unit tests need nothing else. Integration tests run when <code>ONMUHASEBE_TEST_SQL</code> points at a SQL Server; each run creates its own database and drops it afterwards.</p>
+            <div class="code" data-copy><div class="code-head">PowerShell</div><pre><code>$env:ONMUHASEBE_TEST_SQL = "Server=localhost\MSSQLSERVER01;Trusted_Connection=True;TrustServerCertificate=True"
+dotnet test</code></pre></div>
           </li>
         </ol>
         <div class="stack reveal">
           <div class="box">
             <h3 data-i18n="r4.t">Different SQL Server name?</h3>
-            <p data-i18n-html="r4.d">The commands use the <code>localhost\MSSQLSERVER01</code> instance. If yours is <code>localhost</code> or <code>.\SQLEXPRESS</code>, change the server name in the commands and in <code>DefaultConnection</code> inside <code>appsettings.json</code>.</p>
+            <p data-i18n-html="r4.d">The commands use the <code>localhost\MSSQLSERVER01</code> instance. If yours is <code>localhost</code> or <code>.\SQLEXPRESS</code>, change the server name in the commands and in <code>DefaultConnection</code> inside <code>src/OnMuhasebe.Web/appsettings.json</code>.</p>
           </div>
           <div class="box">
             <h3 data-i18n="r5.t">Sample users</h3>
@@ -341,7 +355,6 @@ dotnet run</code></pre></div>
       <div class="sec-head reveal"><h2 data-i18n="nd.t">Not included</h2></div>
       <ul class="limits reveal">
         <li data-i18n="n1">The bonus items in the spec (Excel/PDF export, charts, an activity log, backups) weren't built; reports can be printed from the browser.</li>
-        <li data-i18n="n2">Form screens bind to entities instead of ViewModels on purpose, because asp-for binding needs the entity; list and report screens use ViewModels.</li>
         <li data-i18n-html="n3">The spec defines no number format for collections and payments, so they use a fixed <code>TAH-{yyyy}-{0000}</code> / <code>ODE-{yyyy}-{0000}</code> format.</li>
       </ul>
     </section>
@@ -409,13 +422,13 @@ dotnet run</code></pre></div>
     "g6": "Belge numarası formatlarını anında önizleyen parametreler ekranı",
     "g6.alt": "Parametreler",
     "hw.t": "Nasıl çalışıyor",
-    "hw.s": "Kuralların servislerde, sayıların veritabanında olduğu katmanlı bir MVC uygulaması.",
-    "l1": "Controller, view, ViewModel, filtreler ve oturum doğrulama",
-    "l2": "Interface arkasındaki servisler, sabitler ve rapor özetleri",
-    "l3": "DbContext, kolon tipleri ve beş migration",
-    "l4": "Her tablo için bir tane olmak üzere on bir entity sınıfı",
-    "l5": "PBKDF2 parola yardımcısı",
-    "l.note": "Bağımlılıklar tek yöne akıyor. Controller'lar DbContext'e hiç dokunmuyor; DI ile gelen servis interface'lerini çağırıyor.",
+    "hw.s": "Clean Architecture ile kurulmuş bir MVC uygulaması: kurallar içteki katmanlarda, veritabanı ve web dış kenarda.",
+    "l1": "Controller, view, ViewModel, filtreler ve giriş güvenliği. Bütün servisleri açılışta kaydediyor.",
+    "l2": "EF Core DbContext, her tablo için bir yapılandırma sınıfı, beş migration ve PBKDF2 parola özeti",
+    "l3": "Servisler, form DTO'ları ve iş kuralı istisnaları; veritabanı ve parola özeti için arayüzler",
+    "l4": "On bir entity, sabitler ve belge numarası ile yuvarlama için saf kurallar. Hiçbir katmana bağlı değil.",
+    "l5": "Birim, mimari ve entegrasyon testleri; GitHub Actions her push'ta çalıştırıyor",
+    "l.note": "Her katman ayrı bir proje ve bağımlılıklar yalnızca içe doğru. Application veritabanına Infrastructure'ın uyguladığı bir arayüz üzerinden ulaşıyor, controller'lar DbContext'i hiç görmüyor; mimari testleri bunu koruyor.",
     "d1.t": "Bakiye saklanmıyor, hesaplanıyor",
     "d1.d": "Stok miktarı ve cari bakiye hareket tablolarından türetiliyor. Formül tek bir ifadede tanımlı ve sorguların içinde yeniden kullanılıyor; böylece toplama, bütün hareketler belleğe alınmadan SQL'de yapılıyor.",
     "d2.t": "Belge başına tek transaction",
@@ -424,22 +437,26 @@ dotnet run</code></pre></div>
     "d3.d": "Cari, stok, satış elemanı ve kullanıcıdan belgelere giden ilişkiler Cascade değil Restrict. Negatif stok kontrolü açıkken stoğu eksiye düşürecek bir alış faturası silinemiyor ve uygulama hangi ürünün etkileneceğini gösteriyor.",
     "d4.t": "Tutarlar sunucuya bağlı değil",
     "d4.d": "Tutarlar virgülle giriliyor. İstek kültürü tr-TR'ye sabitlendiği için İngilizce bir sunucuda 12,50 1250'ye dönüşemiyor; yuvarlama da ondalık basamak parametresine göre yarım yukarı yapılıyor.",
+    "d5.t": "Formlar yalnızca gösterdiğini taşıyor",
+    "d5.d": "Formlar entity'ye değil DTO'ya bağlanıyor, kaydın numarası yalnızca adresten okunuyor. Forma eklenen bir alanla başka bir kayıt ya da sunucunun hesapladığı bir toplam değiştirilemiyor; bir entegrasyon testi tam olarak bunu deniyor.",
+    "d6.t": "Her push'ta test ediliyor",
+    "d6.d": "Birim testleri saf kuralları, parola özetini, giriş kilidini ve katman kurallarını denetliyor. Entegrasyon testleri uygulamanın tamamını bellekte, her seferinde sıfırdan kurulan gerçek bir SQL Server veritabanıyla çalıştırıyor. GitHub Actions ayrıca kod biçimini ve migration'ların modelle uyumunu kontrol ediyor.",
     "se.t": "Güvenlik",
     "se.s": "Projenin kendi kullanıcı tablosu üzerinde cookie kimlik doğrulaması; bir güvenlik incelemesinden sonra sıkılaştırıldı.",
     "s1.t": "Parola saklama",
     "s1.d": "16 bayt rastgele salt ve 600.000 tekrarla PBKDF2-SHA256. Özetler sabit sürede karşılaştırılıyor.",
     "s2.t": "Giriş sınırları",
-    "s2.d": "Bir IP'den dakikada en fazla 10 giriş denemesi; üst üste beş hatalı şifre hesabı beş dakika kilitliyor. Girişler ve kilitlenmeler kullanıcı adı ve IP ile günlüğe yazılıyor.",
+    "s2.d": "Varsayılan olarak bir IP'den dakikada en fazla 10 giriş denemesi; üst üste beş hatalı şifre hesabı beş dakika kilitliyor. Sınırlar appsettings.json'dan okunup açılışta doğrulanıyor; girişler ve kilitlenmeler kullanıcı adı ve IP ile günlüğe yazılıyor.",
     "s3.t": "Tarayıcı korumaları",
     "s3.d": "Nonce tabanlı Content Security Policy, X-Frame-Options, nosniff ve sıkı bir referrer politikası. Her POST anti-forgery token'ı kontrol ediyor; üçüncü taraf script'ler uygulamanın kendisinden sunuluyor.",
     "s4.t": "Canlı oturum kontrolü",
     "s4.d": "Her istekte oturumdaki kullanıcı yeniden okunuyor; silinen, pasife alınan ya da bilgisi değişen kullanıcının oturumu kapanıyor. Yönetici kendini ve son aktif yöneticiyi kaldıramıyor.",
     "ch.t": "Karşılaştığım sorunlar",
-    "ch.s": "README'de anlattığım on bir sorundan altısı ve her birinin nasıl çözüldüğü.",
+    "ch.s": "README'de anlattığım on iki sorundan altısı ve her birinin nasıl çözüldüğü.",
     "fix": "Çözüm:",
     "c1.t": "Faturalar sessizce doğrulamadan kalıyordu",
     "c1.p": "Nullable açık olduğu için MVC, null olamayan alanları zorunlu saydı; formdan hiç gelmeyen fatura numarası ve navigation property'ler de buna dahildi. ModelState hep geçersizdi ama ekranda hata görünmüyordu.",
-    "c1.f": "sunucunun doldurduğu alanlar doğrulamadan çıkarıldı; boş cari ya da negatif miktar gibi hatalı verinin hâlâ reddedildiği ayrıca test edildi.",
+    "c1.f": "sunucunun doldurduğu alanlar doğrulamadan çıkarıldı; boş cari gibi hatalı verinin hâlâ reddedildiği ayrıca test edildi. Formlar sonradan DTO'lara geçince bu geçici çözüme gerek kalmadı.",
     "c2.t": "Listeler sıfır stok gösteriyordu",
     "c2.p": "Miktar ve bakiye hareketlerden hesaplanıyor ama sorgular hareketleri yüklemiyordu; bütün toplamlar 0 çıkıyor, düzenleme ekranı da yersiz kritik stok uyarısı veriyordu.",
     "c2.f": "hareketler yüklenince sayılar düzeldi; sonra listeler bütün hareketleri belleğe almamak için toplamı SQL'de hesaplayacak şekilde yeniden yazıldı.",
@@ -455,7 +472,7 @@ dotnet run</code></pre></div>
     "c6.t": "Pasife alınan kullanıcının oturumu açık kalıyordu",
     "c6.p": "Pasife alınan kullanıcı yeniden giriş yapamıyordu ama zaten açık olan oturumu sekiz saate kadar eski yetkileriyle çalışıyordu.",
     "c6.f": "cookie her istekte veritabanına göre doğrulanıyor; kişinin kendini ya da son aktif yöneticiyi kaldırması engellendi.",
-    "ch.more": "On bir maddenin tamamı README'de →",
+    "ch.more": "On iki maddenin tamamı README'de →",
     "pl.t": "Beş haftalık plan",
     "pl.s": "Gereksinim dokümanının belirlediği iş sırası.",
     "w1": "1. hafta", "w2": "2. hafta", "w3": "3. hafta", "w4": "4. hafta", "w5": "5. hafta",
@@ -471,13 +488,14 @@ dotnet run</code></pre></div>
     "r2.t": "Örnek veriyi yükleyin (isteğe bağlı)",
     "r3.t": "Uygulamayı başlatın",
     "r3.d": "<code>http://localhost:5029</code> adresinde açılıyor.",
+    "r6.t": "Testleri çalıştırın (isteğe bağlı)",
+    "r6.d": "Birim testleri için başka bir şey gerekmiyor. Entegrasyon testleri <code>ONMUHASEBE_TEST_SQL</code> bir SQL Server'ı gösterdiğinde çalışıyor; her çalıştırma kendi veritabanını kurup sonunda siliyor.",
     "r4.t": "SQL Server adınız farklı mı?",
-    "r4.d": "Komutlar <code>localhost\\MSSQLSERVER01</code> örneğini kullanıyor. Sizinki <code>localhost</code> ya da <code>.\\SQLEXPRESS</code> ise komutlardaki sunucu adını ve <code>appsettings.json</code> içindeki <code>DefaultConnection</code> bağlantı cümlesini değiştirin.",
+    "r4.d": "Komutlar <code>localhost\\MSSQLSERVER01</code> örneğini kullanıyor. Sizinki <code>localhost</code> ya da <code>.\\SQLEXPRESS</code> ise komutlardaki sunucu adını ve <code>src/OnMuhasebe.Web/appsettings.json</code> içindeki <code>DefaultConnection</code> bağlantı cümlesini değiştirin.",
     "r5.t": "Örnek kullanıcılar",
     "r5.d": "<code>admin</code> (yönetici) ve <code>ayse.yilmaz</code> (standart); ikisinin de şifresi <code>123456</code>. Yalnızca test için var, canlı bir sunucuya yüklenmemeli.",
     "nd.t": "Yapılmayanlar",
     "n1": "Dokümandaki bonus maddeler (Excel/PDF aktarma, grafik, işlem geçmişi, yedekleme) yapılmadı; raporlar tarayıcıdan yazdırılabiliyor.",
-    "n2": "Form ekranları bilinçli olarak ViewModel yerine entity kullanıyor, çünkü asp-for binding'in entity'ye bağlanması gerekiyor; liste ve rapor ekranları ViewModel kullanıyor.",
     "n3": "Dokümanda tahsilat ve ödeme için numara formatı tanımlı olmadığından sabit <code>TAH-{yyyy}-{0000}</code> / <code>ODE-{yyyy}-{0000}</code> formatı kullanılıyor."
   }
   </script>
