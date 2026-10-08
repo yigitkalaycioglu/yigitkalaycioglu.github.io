@@ -17,7 +17,7 @@
     'code': 'Kaynak kod', 'dl': 'İndir', 'apk': 'APK indir', 'guide': 'Kullanım kılavuzu',
     'copy': 'Kopyala', 'copied': 'Kopyalandı', 'close': 'Kapat', 'enlarge': 'Büyüt',
     'limits': 'Bilinen sınırlar', 'more': 'Diğer projeler',
-    'pn.muhasebe': 'Mini Ön Muhasebe', 'pn.ntier': 'N-Tier Mimari Oluşturucu', 'pn.sla': 'Çok Kiracılı SLA Platformu',
+    'pn.muhasebe': 'Mini Ön Muhasebe', 'pn.cleanarch': 'Clean Architecture Oluşturucu', 'pn.sla': 'Çok Kiracılı SLA Platformu',
     'pn.linux': 'Linux Dosya İzleme Servisi',
     'pk.intern': 'Staj projesi', 'pk.tool': 'Araç', 'pk.fs': 'Full-stack', 'pk.mobile': 'Mobil', 'pk.sys': 'Sistem',
     'foot': 'Elle tasarlandı, GitHub Pages\'te yayınlanıyor.',

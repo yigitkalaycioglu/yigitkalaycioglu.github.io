@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Clean Architecture Generator · Yiğit Kalaycıoğlu</title>
+  <meta name="description" content="A Windows app that creates a security-first ASP.NET Core (.NET 10) Clean Architecture solution in one click: Domain, Application, Infrastructure and Api layers, built-in or external authentication, a sample feature and unit, architecture and integration tests.">
+  <meta name="theme-color" content="#0b0c10">
+  <link rel="canonical" href="https://yigitkalaycioglu.github.io/projects/clean-architecture-generator/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yigitkalaycioglu.github.io/projects/clean-architecture-generator/">
+  <meta property="og:title" content="Clean Architecture Generator · Yiğit Kalaycıoğlu">
+  <meta property="og:description" content="Create a security-first Clean Architecture ASP.NET Core solution in one click, preview every file, and get a .NET 10 solution that builds and passes its own tests right away.">
+  <meta property="og:image" content="https://yigitkalaycioglu.github.io/projects/clean-architecture-generator/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <link rel="stylesheet" href="../../assets/css/proje.css">
+  <script>
+    // tema ve dil, ilk boyamadan önce uygulanır
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        var t = localStorage.getItem('yk-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        var l = localStorage.getItem('yk-lang') || ((navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en');
+        document.documentElement.setAttribute('lang', l);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#features" data-i18n="skip">Skip to content</a>
+
+  <header class="nav">
+    <div class="nav-in">
+      <a class="logo" href="../../" data-i18n-attr="aria-label:home" aria-label="Home">
+        <span class="logo-mark">YK</span>
+        <span class="logo-text">Yiğit Kalaycıoğlu</span>
+      </a>
+      <nav class="links" aria-label="Page">
+        <a href="#features" data-i18n="nav.features">Features</a>
+        <a href="#options" data-i18n="nav.options">Options</a>
+        <a href="#how" data-i18n="nav.how">How it works</a>
+        <a href="#run" data-i18n="nav.setup">Setup</a>
+      </nav>
+      <div class="tools">
+        <button class="pill" id="lang" type="button" aria-label="Türkçe / English"><span data-l="tr">TR</span><span data-l="en">EN</span></button>
+        <button class="icon" id="theme" type="button" data-i18n-attr="aria-label:theme" aria-label="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+          <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="p-hero">
+      <div class="p-hero-in">
+        <div class="reveal">
+          <a class="back" href="../../#projects"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-i18n="back">All projects</span></a>
+          <p class="kicker" data-i18n="h.k">Developer tool · Windows</p>
+          <h1 class="p-title" data-i18n="h.t">Clean Architecture Generator</h1>
+          <p class="lead" data-i18n="h.lead">Starting a new ASP.NET Core API usually means rebuilding the same layers, security plumbing and test projects by hand. This Windows app does it in one click: choose a name and a few options, preview every file before it's written, and get a security-first .NET 10 solution that builds and passes its own tests right away.</p>
+          <ul class="tags"><li>C#</li><li>.NET 10</li><li>WinForms</li><li>ASP.NET Core</li><li>Clean Architecture</li><li>xUnit</li></ul>
+          <div class="cta">
+            <a class="btn primary" href="https://github.com/yigitkalaycioglu/clean-architecture-generator/releases/latest" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M12 3.5v11M7 10l5 5 5-5M4.5 20.5h15"/></svg><span data-i18n="dl">Download</span></a>
+            <a class="btn" href="https://github.com/yigitkalaycioglu/clean-architecture-generator" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5m12 4.5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg><span data-i18n="code">Source code</span></a>
+          </div>
+          <p class="p-note" data-i18n="h.note">Windows 10/11 with the .NET 10 SDK. Unzip the release and run CleanArchitectureGenerator.exe.</p>
+        </div>
+        <figure class="frame bare reveal">
+          <img src="img/arayuz.webp" width="1527" height="1014" fetchpriority="high" alt="The generator window: solution options on the left, a file tree and code preview on the right" data-i18n-attr="alt:h.alt">
+        </figure>
+      </div>
+      <ul class="p-facts reveal">
+        <li><b>4</b><span data-i18n="f1">layers, plus unit, architecture and integration test projects</span></li>
+        <li><b>2</b><span data-i18n="f2">ways to sign in: built-in Identity + JWT or an external OpenID Connect provider</span></li>
+        <li><b>48</b><span data-i18n="f3">option combinations checked by the unit tests</span></li>
+        <li><b>52</b><span data-i18n="f4">tests in the generated solution, most of them about security</span></li>
+      </ul>
+    </section>
+
+    <section class="section" id="features">
+      <div class="sec-head reveal">
+        <h2 data-i18n="ft.t">What it generates</h2>
+        <p data-i18n="ft.s">For a solution called Firma.Proje with the default options:</p>
+      </div>
+      <div class="split">
+        <div class="reveal">
+          <div class="code">
+            <div class="code-head" data-i18n="tree">Solution layout</div>
+            <pre><code data-i18n="tree.code">Firma.Proje/
+├── src/
+│   ├── Firma.Proje.Domain/          entities, rules, events
+│   │   ├── Common/                  Entity, Result, Error
+│   │   └── TodoItems/               sample entity
+│   ├── Firma.Proje.Application/     use cases
+│   │   ├── Abstractions/            ports to the outside
+│   │   ├── Behaviors/               logging, validation
+│   │   ├── Authentication/, Account/
+│   │   └── TodoItems/               command + validator + handler
+│   ├── Firma.Proje.Infrastructure/  EF Core, Identity, JWT
+│   └── Firma.Proje.Api/             minimal APIs, security
+├── tests/
+│   ├── Firma.Proje.UnitTests/
+│   ├── Firma.Proje.ArchitectureTests/
+│   └── Firma.Proje.IntegrationTests/
+├── Directory.Build.props            analyzers, NuGet Audit
+├── Directory.Packages.props         central versions
+├── nuget.config                     nuget.org only
+├── README.md, SECURITY.md
+└── Firma.Proje.sln</code></pre>
+          </div>
+          <p class="code-note" data-i18n-html="tree.note">Dependencies only point inward: <code>Api → Infrastructure → Application → Domain</code>, and the architecture tests check it on every run.</p>
+        </div>
+        <div class="feat-grid">
+          <article class="fcard reveal">
+            <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2"/></svg></div>
+            <h3 data-i18n="a1.t">Layers that stay clean</h3>
+            <p data-i18n="a1.d">A rich domain model whose state only changes through its own methods, version 7 GUIDs, domain events handled in the same save, and audit fields filled in on the server. Reflection-based tests fail if a layer references the wrong one.</p>
+          </article>
+          <article class="fcard reveal">
+            <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 7h11M4 12h16M4 17h8"/><path d="m16 14 3 3-3 3"/></svg></div>
+            <h3 data-i18n="a2.t">CQRS without MediatR</h3>
+            <p data-i18n-html="a2.d">A small, readable sender instead of a paid library. Every request goes through logging and FluentValidation; expected errors come back as <code>Result</code> values and become RFC 9457 ProblemDetails in the API.</p>
+          </article>
+          <article class="fcard reveal">
+            <div class="ico"><svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></div>
+            <h3 data-i18n="a3.t">Sign-in done properly</h3>
+            <p data-i18n-html="a3.d">E-mail confirmation, lockout after 5 failures, TOTP two-factor with recovery codes and password reset. A 10-minute JWT plus a refresh token in an <code>HttpOnly; Secure; SameSite=Strict</code> cookie that rotates on every use; replaying an old one revokes the whole session.</p>
+          </article>
+          <article class="fcard reveal">
+            <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2.5 4.5 5.5v6c0 4.6 3.2 8.3 7.5 10 4.3-1.7 7.5-5.4 7.5-10v-6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+            <h3 data-i18n="a4.t">Secure by default</h3>
+            <p data-i18n="a4.d">Every endpoint needs a signed-in user unless marked otherwise, other users' records return 404, unknown JSON fields are rejected, and there are rate limits, security headers, body/time/page limits and error responses that never leak internals. Sign-in, sign-up and password reset don't reveal whether an e-mail is registered, not even through response times.</p>
+          </article>
+          <article class="fcard reveal">
+            <div class="ico"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 8.5-8.5M16 7l2.5 2.5M14 9l2 2"/></svg></div>
+            <h3 data-i18n="a5.t">No secrets in the repo</h3>
+            <p data-i18n-html="a5.d">The random JWT signing key (and the PostgreSQL connection string) goes into <code>dotnet user-secrets</code> while the solution is generated, never into a file in the repository. Outside Development the app refuses to start if a setting is missing or weak.</p>
+          </article>
+          <article class="fcard reveal">
+            <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 8 12 3 3 8l9 5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></svg></div>
+            <h3 data-i18n="a6.t">A guarded supply chain</h3>
+            <p data-i18n="a6.d">Central Package Management with transitive pinning, lock files, NuGet Audit that stops Release builds on known vulnerabilities, package source mapping, and every .NET security analyzer turned on with warnings as errors in Release.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="options">
+      <div class="sec-head reveal">
+        <h2 data-i18n="op.t">Options</h2>
+        <p data-i18n="op.s">The right-hand preview shows every file that will be created, with its content, before anything is written to disk.</p>
+      </div>
+      <div class="tbl-wrap reveal">
+        <table class="tbl">
+          <thead><tr><th data-i18n="op.h1">Option</th><th data-i18n="op.h2">What changes</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="o1">Solution name</td><td data-i18n-html="o1.d">Root namespace, folder and project names. Invalid names get a suggestion (“Mağaza Yönetimi” → <code>MagazaYonetimi</code>), and names that would clash with generated types (<code>Firma.Result</code>) are rejected.</td></tr>
+            <tr><td data-i18n="o2">Database</td><td data-i18n-html="o2.d">SQL Server (LocalDB), PostgreSQL or SQLite: the NuGet package, the <code>UseXxx</code> call and the development connection string.</td></tr>
+            <tr><td data-i18n="o3">Solution file</td><td data-i18n-html="o3.d">The classic <code>.sln</code> or the newer <code>.slnx</code>.</td></tr>
+            <tr><td data-i18n="o4">Authentication</td><td data-i18n="o4.d">Built-in (ASP.NET Core Identity + JWT with every flow above) or an external OpenID Connect provider such as Entra ID, Auth0 or Keycloak, where the API only validates tokens and accepts asymmetric signatures only.</td></tr>
+            <tr><td data-i18n="o5">Sample feature</td><td data-i18n-html="o5.d"><code>TodoItems</code>, which walks through every layer, a domain event and the ownership check. When it's off, the skeleton comes empty.</td></tr>
+            <tr><td data-i18n="o6">Test projects</td><td data-i18n="o6.d">Unit, architecture and integration tests. The integration tests run the whole app in memory on SQLite, whichever database you picked.</td></tr>
+            <tr><td data-i18n="o7">After generating</td><td data-i18n-html="o7.d"><code>git init</code>, <code>dotnet build</code> and opening the folder; build output streams into the app's log.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="sec-head reveal">
+        <h2 data-i18n="hw.t">How it works</h2>
+        <p data-i18n="hw.s">A template engine that has nothing to do with WinForms, with the window as a thin layer on top.</p>
+      </div>
+      <div class="split">
+        <ol class="steps reveal">
+          <li>
+            <h3 data-i18n="h1.t">Templates are a real solution</h3>
+            <p data-i18n-html="h1.d">The <code>Templates</code> folder is an exact copy of the generated solution, embedded in the DLL as resources along with their folder paths. Copy it next to the exe to change templates without rebuilding.</p>
+          </li>
+          <li>
+            <h3 data-i18n="h2.t">Tokens and conditional blocks</h3>
+            <p data-i18n-html="h2.d">Tokens like <code>__Name__</code> are replaced in contents and paths. Option-dependent parts are marked with comment-style blocks for each file type — <code>//#if LocalAuth</code>, <code>&lt;!--#if Sample--&gt;</code>, <code>@*#if Sample*@</code> — with <code>#elif</code>, <code>#else</code>, <code>!</code>, <code>&amp;&amp;</code>, <code>||</code> and parentheses. An unknown symbol is treated as a typo and reported as an error.</p>
+          </li>
+          <li>
+            <h3 data-i18n="h3.t">Plan first, then write</h3>
+            <p data-i18n-html="h3.d">The whole plan is built in memory, which is what the preview shows, and only then written to disk. Files whose entire content is conditional are skipped when their option is off, and <code>dot_gitignore</code> / <code>X.csproj.template</code> become <code>.gitignore</code> / <code>X.csproj</code> so IDEs don't mistake templates for real projects.</p>
+          </li>
+          <li>
+            <h3 data-i18n="h4.t">Secrets stay outside</h3>
+            <p data-i18n-html="h4.d">The JWT signing key, the user-secrets ID and the ports are random for every solution. Secrets are written to <code>%APPDATA%\Microsoft\UserSecrets\&lt;id&gt;\secrets.json</code>, not into the solution folder; everything else is deterministic, so the same options produce the same files.</p>
+          </li>
+        </ol>
+        <div class="stack reveal">
+          <div class="code">
+            <div class="code-head">Templates/src/__Name__.Infrastructure/DependencyInjection.cs</div>
+            <pre><code><span class="k">public static</span> IServiceCollection AddInfrastructure(…)
+{
+    services.TryAddSingleton(TimeProvider.System);
+    services.AddPersistence();
+<span class="c">//#if LocalAuth</span>
+    services.AddIdentityServices(configuration, environment);
+<span class="c">//#else</span>
+    services.AddExternalAuthentication(configuration, environment);
+<span class="c">//#endif</span>
+    <span class="k">return</span> services;
+}</code></pre>
+          </div>
+          <div class="box">
+            <h3 data-i18n="t.t">Tested across every combination</h3>
+            <p data-i18n="t.d">Unit tests generate the plan for 3 databases × 2 sign-in modes × sample and tests on/off × 2 solution formats — 48 combinations — and check that no token or directive is left over, JSON and XML files are valid, the projects and solution file agree, and no secret ends up in any file.</p>
+            <p data-i18n="t.d2">Separate build tests generate five scenarios from scratch, fail on a single compiler warning and run the generated tests: sign-up and sign-in flows, lockout, refresh-token rotation and theft detection, two-factor, access to other users' records, security headers, rate limits and an algorithm-confusion attack. A generated SQLite API was also run end to end with migrations and Swagger UI.</p>
+            <div class="code" data-copy><div class="code-head">PowerShell</div><pre><code>dotnet test
+$env:CAG_BUILD_TESTS = "1"; dotnet test</code></pre></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="run">
+      <div class="sec-head reveal">
+        <h2 data-i18n="rn.t">Setup</h2>
+        <p data-i18n="rn.s">Windows 10/11 and the .NET 10 SDK, which also brings the Desktop Runtime the app needs.</p>
+      </div>
+      <div class="split">
+        <ol class="steps reveal">
+          <li>
+            <h3 data-i18n="r1.t">Download a release</h3>
+            <p data-i18n-html="r1.d">Unzip the archive from the <a href="https://github.com/yigitkalaycioglu/clean-architecture-generator/releases/latest" target="_blank" rel="noopener">Releases page</a> and run <code>CleanArchitectureGenerator.exe</code>.</p>
+          </li>
+          <li>
+            <h3 data-i18n="r2.t">Or run from source</h3>
+            <div class="code" data-copy><div class="code-head">PowerShell</div><pre><code>dotnet run --project src/CleanArchitectureGenerator.App</code></pre></div>
+          </li>
+          <li>
+            <h3 data-i18n="r3.t">Build a single-file exe</h3>
+            <p data-i18n-html="r3.d">The output is <code>publish\CleanArchitectureGenerator.exe</code>; add <code>-SelfContained</code> for machines without .NET.</p>
+            <div class="code" data-copy><div class="code-head">PowerShell</div><pre><code>.\publish.ps1</code></pre></div>
+          </li>
+        </ol>
+        <div class="stack reveal">
+          <div class="box">
+            <h3 data-i18n="r4.t">Remembers your choices</h3>
+            <p data-i18n-html="r4.d">The last used options are saved in <code>%LOCALAPPDATA%\CleanArchitectureGenerator\settings.json</code>.</p>
+          </div>
+          <div class="box">
+            <h3 data-i18n="r5.t">Code layout</h3>
+            <p data-i18n-html="r5.d"><code>CleanArchitectureGenerator.Engine</code> handles templates, solution generation and name validation; <code>CleanArchitectureGenerator.App</code> is the WinForms window; <code>CleanArchitectureGenerator.Engine.Tests</code> holds the xUnit tests.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="limits">
+      <div class="sec-head reveal"><h2 data-i18n="limits">Known limitations</h2></div>
+      <ul class="limits reveal">
+        <li data-i18n="n1">Windows only, because of WinForms. The generation engine itself is platform-independent, but there's no separate command-line tool.</li>
+        <li data-i18n-html="n2">It targets .NET 10, and package versions are fixed in the template's <code>Directory.Packages.props</code>; updating them means editing that file.</li>
+        <li data-i18n="n3">It generates an API only; the pages that open the e-mail confirmation and password reset links belong in your client app.</li>
+        <li data-i18n-html="n4">The first migration isn't generated; the solution's README gives the <code>dotnet ef migrations add</code> command.</li>
+        <li data-i18n="n5">Rate limits are kept in each server's memory, and Data Protection keys need a shared store when you run more than one instance; both are on the generated SECURITY.md checklist.</li>
+        <li data-i18n="n6">Two-factor recovery codes are stored the way Identity's default store keeps them, without encryption.</li>
+        <li data-i18n="n7">Solutions created in very deep folders can hit Windows' 260-character path limit when building; the app warns about long paths.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="more">
+      <div class="sec-head reveal"><h2 data-i18n="more">More projects</h2></div>
+      <nav class="more reveal" aria-label="More projects" data-i18n-attr="aria-label:more">
+        <a href="../mini-on-muhasebe/"><span class="mini art-ledger"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></span><span><small data-i18n="pk.intern">Internship project</small><span data-i18n="pn.muhasebe">Mini Bookkeeping App</span></span></a>
+        <a href="../multi-tenant-sla-platform/"><span class="mini art-sla"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg></span><span><small data-i18n="pk.fs">Full-stack</small><span data-i18n="pn.sla">Multi-Tenant SLA Platform</span></span></a>
+        <a href="../wol-catcher/"><span class="mini art-wol"><svg viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.6 6.6a7.5 7.5 0 1 0 10.8 0"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span>WolCatcher</span></span></a>
+        <a href="../instareel-blocker/"><span class="mini art-reel"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/></svg></span><span><small data-i18n="pk.mobile">Mobile</small><span>InstaReel Blocker</span></span></a>
+        <a href="../linux-file-monitoring/"><span class="mini art-linux"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12.5 15H17"/></svg></span><span><small data-i18n="pk.sys">Systems</small><span data-i18n="pn.linux">Linux File Monitoring Service</span></span></a>
+        <a href="../../stokplus/"><span class="mini art-stok"><img src="../../stokplus/simge.png" alt="" loading="lazy"></span><span><small data-i18n="pk.mobile">Mobile</small><span>Stok+</span></span></a>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>© 2026 Yiğit Kalaycıoğlu · <span data-i18n="foot">Built by hand and published on GitHub Pages.</span></p>
+  </footer>
+
+  <script type="application/json" id="tr">
+  {
+    "_title": "Clean Architecture Oluşturucu · Yiğit Kalaycıoğlu",
+    "h.k": "GELİŞTİRİCİ ARACI · WINDOWS",
+    "h.t": "Clean Architecture Oluşturucu",
+    "h.lead": "Yeni bir ASP.NET Core API'sine başlamak genelde aynı katmanları, güvenlik altyapısını ve test projelerini her seferinde elle kurmak demek. Bu Windows uygulaması bunu tek tıkla yapıyor: adı ve birkaç seçeneği belirleyin, her dosyayı yazılmadan önce önizleyin ve hemen derlenip kendi testlerini geçen, güvenlik öncelikli bir .NET 10 çözümü alın.",
+    "h.note": "Windows 10/11 ve .NET 10 SDK gerekiyor. Sürümü zipten çıkarıp CleanArchitectureGenerator.exe'yi çalıştırmanız yeterli.",
+    "h.alt": "Oluşturucu penceresi: solda çözüm seçenekleri, sağda dosya ağacı ve kod önizlemesi",
+    "f1": "katman; birim, mimari ve entegrasyon test projeleri ayrıca",
+    "f2": "giriş yöntemi: yerleşik Identity + JWT ya da harici OpenID Connect sağlayıcısı",
+    "f3": "seçenek kombinasyonu birim testlerinde kontrol ediliyor",
+    "f4": "test üretilen çözümde, çoğu güvenlikle ilgili",
+    "ft.t": "Ne üretiyor",
+    "ft.s": "Varsayılan seçeneklerle Firma.Proje adlı bir çözüm için:",
+    "tree": "Çözümün yapısı",
+    "tree.code": "Firma.Proje/\n├── src/\n│   ├── Firma.Proje.Domain/          varlıklar, kurallar, olaylar\n│   │   ├── Common/                  Entity, Result, Error\n│   │   └── TodoItems/               örnek varlık\n│   ├── Firma.Proje.Application/     kullanım senaryoları\n│   │   ├── Abstractions/            dış dünya arayüzleri\n│   │   ├── Behaviors/               loglama, doğrulama\n│   │   ├── Authentication/, Account/\n│   │   └── TodoItems/               komut + doğrulayıcı + işleyici\n│   ├── Firma.Proje.Infrastructure/  EF Core, Identity, JWT\n│   └── Firma.Proje.Api/             minimal API, güvenlik\n├── tests/\n│   ├── Firma.Proje.UnitTests/\n│   ├── Firma.Proje.ArchitectureTests/\n│   └── Firma.Proje.IntegrationTests/\n├── Directory.Build.props            analizörler, NuGet Audit\n├── Directory.Packages.props         merkezi sürümler\n├── nuget.config                     yalnızca nuget.org\n├── README.md, SECURITY.md\n└── Firma.Proje.sln",
+    "tree.note": "Bağımlılıklar yalnızca içe doğru akıyor: <code>Api → Infrastructure → Application → Domain</code>; mimari testleri bunu her çalıştırmada kontrol ediyor.",
+    "a1.t": "Temiz kalan katmanlar",
+    "a1.d": "Durumu yalnızca kendi metotlarıyla değişen zengin bir domain modeli, sürüm 7 GUID'ler, aynı kaydetme işleminde işlenen alan olayları ve sunucuda doldurulan denetim alanları. Bir katman yanlış katmana başvurursa yansıma tabanlı testler kırılıyor.",
+    "a2.t": "MediatR'sız CQRS",
+    "a2.d": "Ücretli bir kütüphane yerine küçük ve okunabilir bir gönderici. Her istek loglama ve FluentValidation adımlarından geçiyor; beklenen hatalar <code>Result</code> olarak dönüyor ve API'de RFC 9457 ProblemDetails yanıtına çevriliyor.",
+    "a3.t": "Doğru yapılmış oturum açma",
+    "a3.d": "E-posta doğrulama, 5 hatalı denemede kilit, kurtarma kodlu TOTP iki adımlı doğrulama ve parola sıfırlama. 10 dakikalık JWT ve <code>HttpOnly; Secure; SameSite=Strict</code> çerezde duran, her kullanımda değişen yenileme token'ı; eski bir token tekrar kullanılırsa oturumun tamamı iptal ediliyor.",
+    "a4.t": "Varsayılan olarak güvenli",
+    "a4.d": "Aksi belirtilmedikçe her uç nokta oturum istiyor, başka kullanıcıların kayıtları 404 dönüyor, beklenmeyen JSON alanları reddediliyor; hız sınırları, güvenlik başlıkları, gövde/süre/sayfa sınırları ve iç ayrıntı sızdırmayan hata yanıtları var. Giriş, kayıt ve parola sıfırlama bir e-postanın kayıtlı olup olmadığını yanıt süresiyle bile ele vermiyor.",
+    "a5.t": "Depoda gizli değer yok",
+    "a5.d": "Rastgele JWT imzalama anahtarı (ve PostgreSQL bağlantı cümlesi) çözüm oluşturulurken depodaki bir dosyaya değil <code>dotnet user-secrets</code>'a yazılıyor. Development dışında bir ayar eksik ya da zayıfsa uygulama açılmıyor.",
+    "a6.t": "Korunan tedarik zinciri",
+    "a6.d": "Transitive pinning'li Central Package Management, kilit dosyaları, bilinen açık bulunca Release derlemesini durduran NuGet Audit, paket kaynağı eşleme ve Release'te uyarıları hata sayan, tümü açık .NET güvenlik analizörleri.",
+    "op.t": "Seçenekler",
+    "op.s": "Sağdaki önizleme, oluşturulacak her dosyayı içeriğiyle birlikte diske hiçbir şey yazılmadan gösteriyor.",
+    "op.h1": "Seçenek",
+    "op.h2": "Ne değişiyor",
+    "o1": "Çözüm adı",
+    "o1.d": "Kök namespace, klasör ve proje adları. Geçersiz adlar için öneri sunuyor (“Mağaza Yönetimi” → <code>MagazaYonetimi</code>); üretilen tür adlarıyla çakışacak adları (<code>Firma.Result</code>) reddediyor.",
+    "o2": "Veritabanı",
+    "o2.d": "SQL Server (LocalDB), PostgreSQL ya da SQLite: NuGet paketi, <code>UseXxx</code> çağrısı ve geliştirme bağlantı cümlesi.",
+    "o3": "Çözüm dosyası",
+    "o3.d": "Klasik <code>.sln</code> ya da yeni <code>.slnx</code>.",
+    "o4": "Kimlik doğrulama",
+    "o4.d": "Yerleşik (yukarıdaki tüm akışlarla ASP.NET Core Identity + JWT) ya da Entra ID, Auth0, Keycloak gibi harici bir OpenID Connect sağlayıcısı; bu durumda API yalnızca token doğruluyor ve yalnızca asimetrik imzaları kabul ediyor.",
+    "o5": "Örnek özellik",
+    "o5.d": "Tüm katmanları, bir alan olayını ve sahiplik denetimini gösteren <code>TodoItems</code>. Kapalıyken iskelet boş geliyor.",
+    "o6": "Test projeleri",
+    "o6.d": "Birim, mimari ve entegrasyon testleri. Entegrasyon testleri, seçilen veritabanından bağımsız olarak uygulamanın tamamını bellekte SQLite ile çalıştırıyor.",
+    "o7": "Oluşturduktan sonra",
+    "o7.d": "<code>git init</code>, <code>dotnet build</code> ve klasörü açma; derleme çıktısı uygulamadaki günlükte akıyor.",
+    "hw.t": "Nasıl çalışıyor",
+    "hw.s": "WinForms'tan bağımsız bir şablon motoru; pencere bunun üstünde ince bir katman.",
+    "h1.t": "Şablonlar gerçek bir çözüm",
+    "h1.d": "<code>Templates</code> klasörü üretilen çözümün birebir kopyası; dosyalar klasör yollarıyla birlikte DLL'e gömülü kaynak olarak ekleniyor. Şablonları yeniden derlemeden değiştirmek için klasörü exe'nin yanına kopyalamak yeterli.",
+    "h2.t": "Token'lar ve koşullu bloklar",
+    "h2.d": "İçeriklerde ve yollarda <code>__Name__</code> gibi token'lar değiştiriliyor. Seçeneğe bağlı kısımlar dosya türüne göre yorum satırı biçimindeki bloklarla işaretli: <code>//#if LocalAuth</code>, <code>&lt;!--#if Sample--&gt;</code>, <code>@*#if Sample*@</code>. <code>#elif</code>, <code>#else</code>, <code>!</code>, <code>&amp;&amp;</code>, <code>||</code> ve parantez destekleniyor; bilinmeyen bir sembol yazım hatası sayılıp hata veriyor.",
+    "h3.t": "Önce plan, sonra yazma",
+    "h3.d": "Bütün plan önce bellekte hazırlanıyor (önizleme bu planı gösteriyor), ancak sonra diske yazılıyor. İçeriği tamamen koşullu olan dosyalar seçenek kapalıyken hiç üretilmiyor; <code>dot_gitignore</code> / <code>X.csproj.template</code> adları <code>.gitignore</code> / <code>X.csproj</code> oluyor, böylece IDE'ler şablonları gerçek proje sanmıyor.",
+    "h4.t": "Gizli değerler dışarıda",
+    "h4.d": "JWT imzalama anahtarı, user-secrets kimliği ve portlar her çözüm için rastgele. Gizli değerler çözüm klasörüne değil <code>%APPDATA%\\Microsoft\\UserSecrets\\&lt;kimlik&gt;\\secrets.json</code> dosyasına yazılıyor; geri kalan her şey belirlenimci, aynı seçenekler aynı dosyaları üretiyor.",
+    "t.t": "Bütün kombinasyonlarda test ediliyor",
+    "t.d": "Birim testleri 3 veritabanı × 2 giriş yöntemi × örnek ve testler açık/kapalı × 2 çözüm biçimi, yani 48 kombinasyon için planı üretip çıktıda değiştirilmemiş token ya da yönerge kalmadığını, JSON ve XML dosyalarının geçerli olduğunu, projelerle çözüm dosyasının tutarlı olduğunu ve hiçbir dosyaya gizli değer yazılmadığını kontrol ediyor.",
+    "t.d2": "Ayrı derleme testleri beş senaryoyu sıfırdan üretiyor, tek bir derleyici uyarısında bile başarısız sayıyor ve üretilen testleri çalıştırıyor: kayıt ve giriş akışları, hesap kilitleme, yenileme token'ı döngüsü ve çalıntı tespiti, iki adımlı doğrulama, başka kullanıcıların kayıtlarına erişim, güvenlik başlıkları, hız sınırları ve algoritma karıştırma saldırısı. SQLite ile üretilen API ayrıca migration ve Swagger UI ile uçtan uca çalıştırıldı.",
+    "rn.t": "Kurulum",
+    "rn.s": "Windows 10/11 ve .NET 10 SDK gerekiyor; uygulamanın ihtiyaç duyduğu Desktop Runtime SDK ile geliyor.",
+    "r1.t": "Bir sürüm indirin",
+    "r1.d": "<a href=\"https://github.com/yigitkalaycioglu/clean-architecture-generator/releases/latest\" target=\"_blank\" rel=\"noopener\">Releases sayfasındaki</a> zip dosyasını açıp <code>CleanArchitectureGenerator.exe</code>'yi çalıştırın.",
+    "r2.t": "Ya da kaynaktan çalıştırın",
+    "r3.t": "Tek dosyalık exe alın",
+    "r3.d": "Çıktı <code>publish\\CleanArchitectureGenerator.exe</code>; .NET kurulu olmayan bilgisayarlar için <code>-SelfContained</code> ekleyin.",
+    "r4.t": "Seçimlerinizi hatırlıyor",
+    "r4.d": "Son kullanılan seçenekler <code>%LOCALAPPDATA%\\CleanArchitectureGenerator\\settings.json</code> dosyasında tutuluyor.",
+    "r5.t": "Kodun yerleşimi",
+    "r5.d": "<code>CleanArchitectureGenerator.Engine</code> şablon işleme, çözüm üretimi ve ad doğrulamayı yapıyor; <code>CleanArchitectureGenerator.App</code> WinForms penceresi; <code>CleanArchitectureGenerator.Engine.Tests</code> xUnit testlerini içeriyor.",
+    "n1": "Yalnızca Windows'ta çalışıyor (WinForms). Üretim motoru platformdan bağımsız ama ayrı bir komut satırı aracı yok.",
+    "n2": "Hedef .NET 10; paket sürümleri şablondaki <code>Directory.Packages.props</code> dosyasında sabit, güncellemek için o dosyayı değiştirmek gerekiyor.",
+    "n3": "Yalnızca API üretiyor; e-postadaki doğrulama ve parola sıfırlama bağlantılarını açan sayfalar istemci uygulamanızda yazılmalı.",
+    "n4": "İlk migration üretilmiyor; çözümün README'sindeki <code>dotnet ef migrations add</code> komutuyla oluşturuluyor.",
+    "n5": "Hız sınırları her sunucunun belleğinde tutuluyor ve birden fazla örnek çalıştırıldığında Data Protection anahtarlarının paylaşılan bir yere alınması gerekiyor; ikisi de üretilen SECURITY.md kontrol listesinde.",
+    "n6": "İki adımlı doğrulamanın kurtarma kodları, Identity'nin varsayılan deposundaki gibi şifrelenmeden saklanıyor.",
+    "n7": "Çok derin klasörlerde oluşturulan çözümler derlenirken Windows'un 260 karakterlik yol sınırına takılabiliyor; uygulama uzun yollarda uyarı veriyor."
+  }
+  </script>
+  <script src="../../assets/js/proje.js" defer></script>
+</body>
+</html>

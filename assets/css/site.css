@@ -163,7 +163,7 @@ p { margin: 0 0 14px; }
 .art-reel { background: linear-gradient(135deg, #831843, #db2777 50%, #f59e0b); }
 .art-stok { background: linear-gradient(135deg, #14532d, #16a34a 55%, #a3e635); }
 .art-linux { background: linear-gradient(135deg, #111827, #1f2937 50%, #f59e0b); }
-.art-ntier { background: linear-gradient(135deg, #2e1065, #512bd4 55%, #a78bfa); }
+.art-cleanarch { background: linear-gradient(135deg, #2e1065, #512bd4 55%, #a78bfa); }
 
 /* deneyim */
 .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
