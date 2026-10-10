@@ -1,0 +1,57 @@
+/* Shadow Runner site — standalone (no framework, no web fonts, no trackers). */
+:root {
+  --bg: #f7f5ef; --fg: #1d1a2b; --muted: #5d5873; --card: #ffffff; --line: #e3dfd3;
+  --accent: #6b3fd1; --accent-fg: #ffffff; --glow: #ffd166; --shadow: #130f24;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0e0b1a; --fg: #f1eefb; --muted: #aaa3c7; --card: #1a1530; --line: #2c2650;
+          --accent: #b49cff; --accent-fg: #130f24; }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg);
+  font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial, sans-serif; }
+a { color: var(--accent); }
+a:focus-visible, summary:focus-visible { outline: 3px solid var(--glow); outline-offset: 2px; }
+.skip { position: absolute; left: -999px; top: 0; }
+.skip:focus { left: 8px; top: 8px; background: var(--card); padding: 8px 12px; z-index: 10; }
+.wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+header.site { border-bottom: 1px solid var(--line); }
+header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 14px; padding-bottom: 14px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; color: var(--fg); }
+.brand img { width: 40px; height: 40px; border-radius: 10px; }
+nav.lang details { position: relative; }
+nav.lang summary { cursor: pointer; list-style: none; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; }
+nav.lang summary::-webkit-details-marker { display: none; }
+nav.lang ul { position: absolute; right: 0; z-index: 5; margin: 6px 0 0; padding: 8px; list-style: none; background: var(--card);
+  border: 1px solid var(--line); border-radius: 12px; min-width: 220px; box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+[dir="rtl"] nav.lang ul { right: auto; left: 0; }
+nav.lang li a { display: block; padding: 6px 10px; border-radius: 8px; text-decoration: none; color: var(--fg); }
+nav.lang li a:hover { background: var(--line); }
+nav.lang li small { color: var(--muted); }
+.hero { padding: 48px 0 24px; text-align: center; }
+.hero h1 { font-size: clamp(32px, 7vw, 54px); line-height: 1.1; margin: 0 0 12px; }
+.hero p.lead { font-size: 20px; color: var(--muted); margin: 0 auto 24px; max-width: 34em; }
+.btn { display: inline-block; padding: 14px 24px; border-radius: 14px; background: var(--accent); color: var(--accent-fg);
+  font-weight: 700; text-decoration: none; }
+.btn.disabled { opacity: .75; }
+.shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 32px auto; max-width: 620px; }
+.shot { aspect-ratio: 9 / 19.5; border-radius: 22px; background: radial-gradient(circle at 30% 18%, #fff4cf 0, #ffcf6a 12%, #3a2b6b 45%, var(--shadow) 80%);
+  display: flex; align-items: flex-end; justify-content: center; color: #fff; font-size: 13px; padding: 10px; text-align: center;
+  border: 1px solid var(--line); }
+@media (max-width: 560px) { .shots { grid-template-columns: repeat(3, 1fr); gap: 8px; } .shot { border-radius: 14px; font-size: 11px; } }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 24px 0 40px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
+.card h2, .card h3 { margin: 0 0 6px; font-size: 18px; }
+main.doc { padding: 24px 0 40px; }
+main.doc h1 { font-size: clamp(28px, 5vw, 40px); margin-bottom: 4px; }
+main.doc h2 { margin-top: 32px; font-size: 22px; }
+main.doc .meta { color: var(--muted); }
+main.doc table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 15px; }
+main.doc th, main.doc td { border: 1px solid var(--line); padding: 8px 10px; text-align: start; vertical-align: top; }
+main.doc th { background: var(--card); }
+.note { border-inline-start: 4px solid var(--glow); background: var(--card); padding: 12px 16px; border-radius: 8px; }
+footer.site { border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+footer.site .wrap { padding-top: 18px; padding-bottom: 28px; display: flex; flex-wrap: wrap; gap: 8px 18px; }
+@media (prefers-reduced-motion: no-preference) { .btn { transition: transform .15s; } .btn:hover { transform: translateY(-1px); } }
