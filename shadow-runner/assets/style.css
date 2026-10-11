@@ -1,4 +1,4 @@
-/* Shadow Runner site — standalone (no framework, no web fonts, no trackers). */
+/* ShadowRunner site — standalone (no framework, no web fonts, no trackers). */
 :root {
   --bg: #f7f5ef; --fg: #1d1a2b; --muted: #5d5873; --card: #ffffff; --line: #e3dfd3;
   --accent: #6b3fd1; --accent-fg: #ffffff; --glow: #ffd166; --shadow: #130f24;
