@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Mini Bookkeeping App · Yiğit Kalaycıoğlu</title>
   <meta name="description" content="Mini Bookkeeping App (Mini Ön Muhasebe): an ASP.NET Core MVC internship project built on Clean Architecture, with customer and supplier accounts, inventory, invoices, collections and payments, stock counts, reports and automated tests.">
-  <meta name="theme-color" content="#0b0c10">
+  <meta name="theme-color" content="#000000">
   <link rel="canonical" href="https://yigitkalaycioglu.github.io/projects/mini-on-muhasebe/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://yigitkalaycioglu.github.io/projects/mini-on-muhasebe/">
@@ -18,9 +18,9 @@
   <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/site.css">
-  <link rel="stylesheet" href="../../assets/css/proje.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Mona+Sans:wght@400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/site.css?v=6">
+  <link rel="stylesheet" href="../../assets/css/proje.css?v=2">
   <script>
     // tema ve dil, ilk boyamadan önce uygulanır
     (function () {
@@ -36,6 +36,11 @@
 </head>
 <body>
   <a class="skip" href="#features" data-i18n="skip">Skip to content</a>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="guides" aria-hidden="true"><i></i><i></i></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="glow-cursor" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"></div>
 
   <header class="nav">
     <div class="nav-in">
@@ -44,12 +49,14 @@
         <span class="logo-text">Yiğit Kalaycıoğlu</span>
       </a>
       <nav class="links" aria-label="Page">
+        <span class="ind" aria-hidden="true"></span>
         <a href="#features" data-i18n="nav.features">Features</a>
         <a href="#screens" data-i18n="nav.screens">Screens</a>
         <a href="#how" data-i18n="nav.how">How it works</a>
         <a href="#run" data-i18n="nav.run">Run it</a>
       </nav>
       <div class="tools">
+        <a class="btn sm primary nav-cta" href="../../#contact" data-i18n="nav.cta">Get in touch</a>
         <button class="pill" id="lang" type="button" aria-label="Türkçe / English"><span data-l="tr">TR</span><span data-l="en">EN</span></button>
         <button class="icon" id="theme" type="button" data-i18n-attr="aria-label:theme" aria-label="Toggle theme">
           <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
@@ -59,13 +66,14 @@
     </div>
   </header>
 
-  <main>
+  <main id="top">
     <section class="p-hero">
+      <div class="beams" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
       <div class="p-hero-in">
         <div class="reveal">
           <a class="back" href="../../#projects"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-i18n="back">All projects</span></a>
           <p class="kicker" data-i18n="h.k">Internship project · ESBİ</p>
-          <h1 class="p-title" data-i18n="h.t">Mini Bookkeeping App</h1>
+          <h1 class="p-title" data-i18n="h.t" data-split>Mini Bookkeeping App</h1>
           <p class="lead" data-i18n="h.lead">A web-based bookkeeping app for small businesses: customer and supplier accounts, inventory, sales and purchase invoices, collections and payments, stock counts and reports. I built it end to end during my internship at ESBİ, following a requirements document and its five-week plan.</p>
           <ul class="tags"><li>ASP.NET Core MVC</li><li>.NET 10</li><li>Clean Architecture</li><li>EF Core 10</li><li>SQL Server</li><li>Bootstrap 5</li><li>xUnit</li><li>GitHub Actions</li></ul>
           <div class="cta">
@@ -91,7 +99,7 @@
 
     <section class="section" id="features">
       <div class="sec-head reveal">
-        <h2 data-i18n="ft.t">What it does</h2>
+        <h2 data-i18n="ft.t" data-split>What it does</h2>
         <p data-i18n="ft.s">Every module in the requirements document, each one checked against the database.</p>
       </div>
       <div class="feat-grid">
@@ -140,7 +148,7 @@
 
     <section class="section" id="screens">
       <div class="sec-head reveal">
-        <h2 data-i18n="sc.t">Screens</h2>
+        <h2 data-i18n="sc.t" data-split>Screens</h2>
         <p data-i18n="sc.s">Captured from the running app with sample data. The interface is in Turkish; click to enlarge.</p>
       </div>
       <div class="gallery">
@@ -173,7 +181,7 @@
 
     <section class="section" id="how">
       <div class="sec-head reveal">
-        <h2 data-i18n="hw.t">How it works</h2>
+        <h2 data-i18n="hw.t" data-split>How it works</h2>
         <p data-i18n="hw.s">An MVC app on Clean Architecture: the rules sit in the inner layers, while the database and the web stay at the edges.</p>
       </div>
       <div class="split">
@@ -229,7 +237,7 @@
 
     <section class="section" id="security">
       <div class="sec-head reveal">
-        <h2 data-i18n="se.t">Security</h2>
+        <h2 data-i18n="se.t" data-split>Security</h2>
         <p data-i18n="se.s">Custom cookie authentication on the project's own user table, hardened after a security review.</p>
       </div>
       <div class="feat-grid">
@@ -258,7 +266,7 @@
 
     <section class="section" id="challenges">
       <div class="sec-head reveal">
-        <h2 data-i18n="ch.t">Problems I ran into</h2>
+        <h2 data-i18n="ch.t" data-split>Problems I ran into</h2>
         <p data-i18n="ch.s">Six of the twelve issues documented in the README, and how each was solved.</p>
       </div>
       <div class="chal">
@@ -298,7 +306,7 @@
 
     <section class="section" id="plan">
       <div class="sec-head reveal">
-        <h2 data-i18n="pl.t">Five-week plan</h2>
+        <h2 data-i18n="pl.t" data-split>Five-week plan</h2>
         <p data-i18n="pl.s">The order of work set by the requirements document.</p>
       </div>
       <ol class="weeks reveal">
@@ -312,7 +320,7 @@
 
     <section class="section" id="run">
       <div class="sec-head reveal">
-        <h2 data-i18n="rn.t">Run it locally</h2>
+        <h2 data-i18n="rn.t" data-split>Run it locally</h2>
         <p data-i18n="rn.s">You need the .NET 10 SDK and SQL Server. Run these from the repository root.</p>
       </div>
       <div class="split">
@@ -352,7 +360,7 @@ dotnet test</code></pre></div>
     </section>
 
     <section class="section" id="limits">
-      <div class="sec-head reveal"><h2 data-i18n="nd.t">Not included</h2></div>
+      <div class="sec-head reveal"><h2 data-i18n="nd.t" data-split>Not included</h2></div>
       <ul class="limits reveal">
         <li data-i18n="n1">The bonus items in the spec (Excel/PDF export, charts, an activity log, backups) weren't built; reports can be printed from the browser.</li>
         <li data-i18n-html="n3">The spec defines no number format for collections and payments, so they use a fixed <code>TAH-{yyyy}-{0000}</code> / <code>ODE-{yyyy}-{0000}</code> format.</li>
@@ -360,7 +368,7 @@ dotnet test</code></pre></div>
     </section>
 
     <section class="section" id="more">
-      <div class="sec-head reveal"><h2 data-i18n="more">More projects</h2></div>
+      <div class="sec-head reveal"><h2 data-i18n="more" data-split>More projects</h2></div>
       <nav class="more reveal" aria-label="More projects" data-i18n-attr="aria-label:more">
         <a href="../clean-architecture-generator/"><span class="mini art-cleanarch"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span data-i18n="pn.cleanarch">Clean Architecture Generator</span></span></a>
         <a href="../multi-tenant-sla-platform/"><span class="mini art-sla"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg></span><span><small data-i18n="pk.fs">Full-stack</small><span data-i18n="pn.sla">Multi-Tenant SLA Platform</span></span></a>
@@ -373,7 +381,29 @@ dotnet test</code></pre></div>
   </main>
 
   <footer class="foot">
-    <p>© 2026 Yiğit Kalaycıoğlu · <span data-i18n="foot">Built by hand and published on GitHub Pages.</span></p>
+    <div class="foot-top">
+      <div class="fcol fbrand">
+        <a class="logo" href="../../"><span class="logo-mark">YK</span><span class="logo-text">Yiğit Kalaycıoğlu</span></a>
+        <p data-i18n="foot.blurb">Full-stack developer building web apps, tools and machine learning studies, from Sakarya, Türkiye.</p>
+      </div>
+      <div class="fcol">
+        <h4 data-i18n="foot.nav">Navigate</h4>
+        <a href="../../" data-i18n="home">Home</a>
+        <a href="../../#projects" data-i18n="back">All projects</a>
+        <a href="../../#process" data-i18n="foot.process">Process</a>
+        <a href="../../#contact" data-i18n="foot.contact">Contact</a>
+      </div>
+      <div class="fcol">
+        <h4 data-i18n="foot.find">Elsewhere</h4>
+        <a href="https://github.com/yigitkalaycioglu" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/yi%C4%9Fit-kalayc%C4%B1o%C4%9Flu-85bb60373/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="wordmark reveal" aria-hidden="true">Kalaycıoğlu</div>
+    <div class="foot-bot">
+      <p>© 2026 Yiğit Kalaycıoğlu · <span data-i18n="foot">Built by hand and published on GitHub Pages.</span></p>
+      <a class="to-top" href="#top"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span data-i18n="top">Back to top</span></a>
+    </div>
   </footer>
 
   <script type="application/json" id="tr">
@@ -499,6 +529,7 @@ dotnet test</code></pre></div>
     "n3": "Dokümanda tahsilat ve ödeme için numara formatı tanımlı olmadığından sabit <code>TAH-{yyyy}-{0000}</code> / <code>ODE-{yyyy}-{0000}</code> formatı kullanılıyor."
   }
   </script>
-  <script src="../../assets/js/proje.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
+  <script src="../../assets/js/proje.js?v=2" defer></script>
 </body>
 </html>
