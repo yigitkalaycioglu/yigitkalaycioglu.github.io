@@ -5,6 +5,7 @@
   const store = {
     get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
     set: (k, v) => { try { localStorage.setItem(k, v); } catch { /* gizli sekme vb. */ } },
+    ss: (k, v) => { try { sessionStorage.setItem(k, v); } catch { /* yok say */ } },
   };
 
   // ------------------------------------------------------------ çeviriler (HTML'deki metin İngilizce)
@@ -58,6 +59,27 @@
     'ct.title': 'İletişim', 'ct.sub': 'İş fırsatları, projeler ya da sadece merhaba demek için en hızlı yol e-posta.', 'ct.copy': 'Adresi kopyala',
     'foot': 'Elle tasarlandı, GitHub Pages\'te yayınlanıyor.',
     'hero.now': 'geliştiriyorum', 'scroll': 'Kaydır', 'mani.tag': 'Hakkımda', 'top': 'Başa dön',
+    'nav.process': 'Süreç', 'nav.cta': 'İletişime geç',
+    'pr.title': 'Nasıl geliştiriyorum', 'pr.sub': 'Gereksinim dokümanından canlı demoya: izlediğim beş adım.',
+    'pr.s1.t': 'Gereksinimler', 'pr.s1.k': 'Gereksinim dokümanı', 'pr.s1.k2': 'Kullanım senaryoları',
+    'pr.s1.d': 'Her proje yazılı bir gereksinim dokümanıyla başlar: kim kullanacak, neye ihtiyacı var ve hangi kurallar asla bozulmamalı. Stajdaki ön muhasebe uygulamasını tam olarak böyle bir dokümandan, dört haftada uçtan uca geliştirdim.',
+    'pr.s2.t': 'Veri modeli',
+    'pr.s2.d': 'Ekranlardan önce şema gelir. Önce ilişkisel modeli tasarlarım (ön muhasebe uygulamasında 11 tablo) ve EF Core Code First migration\'larıyla sürümlerim. Bakiyeler hareket kayıtlarından hesaplanır; böylece her rakamın kaynağı izlenebilir.',
+    'pr.s3.t': 'Mimari ve API',
+    'pr.s3.d': 'Clean Architecture ve SOLID ilkelerine göre sınırları net Domain, Application, Infrastructure ve API katmanları. Birlikte olması gereken birlikte kaydedilir: fatura, stok hareketleri ve cari kaydı tek bir transaction\'da yazılır.',
+    'pr.s4.t': 'Arayüz',
+    'pr.s4.d': 'React ya da ASP.NET MVC ile hızlı, duyarlı arayüzler; işe yaradığı yerde three.js ile 3D sahneler. Örneğin bir bilgisayarı satın almadan önce parça parça birleştirip görmek gibi.',
+    'pr.s5.t': 'Yayına alma', 'pr.s5.k': 'Testler',
+    'pr.s5.d': 'Testler, temiz bir derleme ve açıp deneyebileceğiniz bir sonuç. Projelerimin çoğu GitHub Pages\'te doğrudan tarayıcıda çalışan canlı demolar; diğerleri indirilebilir sürümler olarak yayınlanıyor.',
+    'pr.m1.a': 'Cari hesaplar', 'pr.m1.b': 'Stok ve sayım', 'pr.m1.c': 'Faturalar', 'pr.m1.d': 'Tahsilat ve ödemeler', 'pr.m1.e': 'Raporlar',
+    'pr.m4.save': 'Kaydet', 'pr.m4.saved': 'Kaydedildi', 'pr.m5.live': 'Yayında',
+    'nu.title': 'Rakamlarla', 'nu.sub': 'Yukarıdaki projelerden birkaç rakam.',
+    'nu.a': 'günlük güncellenen fiyatlı ürün', 'nu.a2': 'Bilgisayar Toplama',
+    'nu.b': 'kalp hastalığı teşhisinde doğruluk', 'nu.c': 'doz ajanı için eğitim epizodu',
+    'nu.d': 'tablolu ilişkisel şema', 'nu.d2': 'Mini Ön Muhasebe',
+    'nu.e': 'haftada gereksinimden çalışan uygulamaya', 'nu.f': 'uyarıyla derlenen oluşturulmuş çözüm',
+    'foot.blurb': 'Web uygulamaları, araçlar ve makine öğrenmesi çalışmaları geliştiren full-stack geliştirici. Sakarya, Türkiye.',
+    'foot.nav': 'Gezinti', 'foot.work': 'Öne çıkanlar', 'foot.find': 'Bağlantılar', 'foot.mail': 'E-posta',
     '_copied': 'E-posta adresi kopyalandı', '_title': 'Yiğit Kalaycıoğlu · Full-Stack Geliştirici',
   };
   const EN_EXTRA = { '_copied': 'Email address copied', '_title': document.title };
@@ -77,6 +99,7 @@
   let revealTick = () => {};
   const langHooks = [];
   const onLang = (fn) => { langHooks.push(fn); fn(root.lang); };
+  const esc = (x) => x.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
   // İngilizce asıllarını sakla ki dil geri değiştirilebilsin
   const textEls = $$('[data-i18n]');
@@ -115,7 +138,7 @@
 
   // ------------------------------------------------------------ tema
   const effectiveDark = () => root.dataset.theme === 'dark' || (root.dataset.theme === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
-  const syncThemeColor = () => { const m = $('meta[name="theme-color"]'); if (m) m.content = effectiveDark() ? '#05060a' : '#f4f4f1'; };
+  const syncThemeColor = () => { const m = $('meta[name="theme-color"]'); if (m) m.content = effectiveDark() ? '#000000' : '#fbfbfd'; };
   syncThemeColor();
   $('#theme').addEventListener('click', () => {
     const next = effectiveDark() ? 'light' : 'dark';
@@ -131,6 +154,7 @@
   const address = `${mail.dataset.u}@${mail.dataset.d}`;
   mail.href = `mailto:${address}`;
   $('#mail-text').textContent = address;
+  $$('.mail-link').forEach((a) => { a.href = `mailto:${address}`; });
   const toast = $('#toast');
   let toastTimer;
   $('#copy').addEventListener('click', async () => {
@@ -153,34 +177,65 @@
     h1.classList.add('split');
   }
 
-  // ------------------------------------------------------------ hero: yazılıp silinen satır
-  const typer = $('#typer');
-  let typeToken = 0;
-  onLang((lang) => {
-    if (!typer) return;
-    const words = TYPE[lang] || TYPE.en;
-    const my = ++typeToken;
-    if (reduce) { typer.textContent = words[0]; return; }
-    let w = 0, n = 0, del = false;
-    typer.textContent = '';
-    const step = () => {
-      if (my !== typeToken) return;
-      const word = words[w];
-      if (!del) {
-        typer.textContent = word.slice(0, ++n);
-        if (n === word.length) { del = true; setTimeout(step, 1900); } else setTimeout(step, 45 + Math.random() * 55);
-        return;
-      }
-      typer.textContent = word.slice(0, --n);
-      if (n === 0) { del = false; w = (w + 1) % words.length; setTimeout(step, 320); } else setTimeout(step, 24);
+  // ------------------------------------------------------------ açılış ekranı (oturumda bir kez)
+  const introCbs = [];
+  const whenIntro = (fn) => { if (root.classList.contains('loading')) introCbs.push(fn); else fn(); };
+  const loader = $('#loader');
+  if (loader && root.classList.contains('loading')) {
+    const num = $('#ld-num');
+    const t0 = performance.now(), DUR = 1300;
+    const tick = (now) => {
+      const p = clamp((now - t0) / DUR);
+      const e = 1 - Math.pow(1 - p, 3);
+      loader.style.setProperty('--lp', e.toFixed(3));
+      num.textContent = String(Math.round(e * 100)).padStart(3, '0');
+      if (p < 1) { requestAnimationFrame(tick); return; }
+      setTimeout(() => {
+        loader.classList.add('out');
+        root.classList.remove('loading');
+        store.ss('yk-intro', '1');
+        introCbs.splice(0).forEach((fn) => fn());
+        setTimeout(() => loader.remove(), 1200);
+      }, 180);
     };
-    setTimeout(step, 1100);
+    requestAnimationFrame(tick);
+  } else if (loader) loader.remove();
+
+  // ------------------------------------------------------------ başlıklar: kelime kelime bulanıklıktan netleşir
+  onLang(() => {
+    $$('[data-split]').forEach((el) => {
+      const words = el.textContent.trim().split(/\s+/);
+      el.style.setProperty('--wn', words.length);
+      el.innerHTML = words.map((w, i) => `<span class="sw" style="--wi:${i}">${esc(w)}</span>`).join(' ');
+    });
   });
+
+  // ------------------------------------------------------------ hero: projeleri sırayla gösteren tarayıcı penceresi
+  const shots = $$('.b-screens img');
+  const bars = $$('.b-prog i');
+  const urlEl = $('#b-url');
+  let shot = 0, shotTimer;
+  const SHOT_MS = 4500;
+  const showShot = (i) => {
+    shot = i;
+    shots.forEach((im, k) => im.classList.toggle('on', k === i));
+    bars.forEach((b, k) => {
+      b.classList.toggle('done', k < i);
+      b.classList.remove('run');
+    });
+    if (bars[i]) { void bars[i].offsetWidth; bars[i].style.setProperty('--dur', SHOT_MS + 'ms'); bars[i].classList.add('run'); }
+    if (urlEl) {
+      urlEl.classList.add('swap');
+      setTimeout(() => { urlEl.textContent = shots[i].dataset.url; urlEl.classList.remove('swap'); }, 300);
+    }
+    clearTimeout(shotTimer);
+    shotTimer = setTimeout(() => showShot((shot + 1) % shots.length), SHOT_MS);
+  };
+  if (shots.length > 1 && !reduce) whenIntro(() => showShot(0));
 
   // ------------------------------------------------------------ manifesto: kaydırdıkça yanan kelimeler
   const mani = $('#mani');
   let maniWords = [];
-  const esc = (x) => x.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   onLang((lang) => {
     if (!mani) return;
     const html = [];
@@ -221,12 +276,12 @@
     const fo = new IntersectionObserver(([e]) => {
       if (!e.isIntersecting) return;
       fo.disconnect();
-      setTimeout(() => {
+      whenIntro(() => setTimeout(() => {
         $$('b', facts).forEach((b) => {
           if (b.dataset.count) countUp(b, +b.dataset.count);
           else if (b.hasAttribute('data-scramble')) scramble(b, b.textContent, 1400);
         });
-      }, 500);
+      }, 500));
     });
     fo.observe(facts);
   }
@@ -257,7 +312,7 @@
     fx.width = nw * dpr; fx.height = nh * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     if (nw !== W || !pts.length) {
-      const n = Math.round(clamp((nw * nh) / 15000, 26, 105));
+      const n = Math.round(clamp((nw * nh) / 19000, 22, 80));
       pts = Array.from({ length: n }, () => ({
         x: Math.random() * nw, y: Math.random() * nh, z: 0.35 + Math.random() * 0.65,
         vx: (Math.random() - 0.5) * 0.22, vy: (Math.random() - 0.5) * 0.22, b: Math.random() < 0.4,
@@ -339,7 +394,7 @@
       if (lastEl && lastEl.matches('.grid .card')) untilt(lastEl);
       lastEl = null;
     });
-    $$('.hero .cta .btn, .contact .cta .btn').forEach((b) => {
+    $$('.hero .cta .btn, .contact .cta .btn, .nav-cta').forEach((b) => {
       b.addEventListener('pointermove', (e) => {
         const r = b.getBoundingClientRect();
         b.style.transform = `translate(${((e.clientX - r.left - r.width / 2) * 0.22).toFixed(1)}px, ${((e.clientY - r.top - r.height / 2) * 0.35).toFixed(1)}px)`;
@@ -380,8 +435,35 @@
   const feats = $$('.feat');
   const stackMq = matchMedia('(min-width: 961px) and (min-height: 720px)');
 
+  // süreç: hangi adım okunuyorsa sağdaki sekme o; öncekiler üstte kapanıp sıralanır
+  const steps = $$('.step');
+  const panels = $$('.panel');
+  const stage = $('.stage');
+  const narrowMq = matchMedia('(max-width: 960px)');
+  let activeStep = -2;
+  function processFx(vh) {
+    if (!steps.length || !stage) return;
+    const narrow = narrowMq.matches;
+    let a = -1;
+    steps.forEach((st, i) => {
+      const r = st.getBoundingClientRect();
+      if ((narrow ? r.top : r.top + r.height / 2) < vh * (narrow ? 0.72 : 0.66)) a = i;
+    });
+    if (a === activeStep) return;
+    activeStep = a;
+    const cur = Math.max(a, 0);
+    stage.classList.toggle('play', a >= 0);
+    steps.forEach((st, i) => st.classList.toggle('on', i === cur));
+    panels.forEach((pn, i) => {
+      pn.classList.toggle('done', i < cur);
+      pn.classList.toggle('active', i === cur);
+      pn.style.setProperty('--k', cur - i);
+    });
+  }
+
   function scrollFx() {
     const vh = innerHeight;
+    processFx(vh);
     const max = root.scrollHeight - vh;
     if (bar) bar.style.transform = `scaleX(${max > 0 ? (sy / max).toFixed(4) : 0})`;
     nav.classList.toggle('scrolled', sy > 8);
@@ -416,7 +498,13 @@
   }
 
   let rx = 0, ry = 0, gx = innerWidth / 2, gy = innerHeight / 3, running = true;
-  function frame() {
+  let lenis = null;
+  if (!reduce && window.Lenis) {
+    lenis = new window.Lenis({ lerp: 0.1, anchors: { offset: -72 }, autoRaf: false });
+    if (root.classList.contains('loading')) { lenis.stop(); whenIntro(() => lenis.start()); }
+  }
+  function frame(t) {
+    if (lenis) lenis.raf(t);
     sy = scrollY;
     vel += (sy - lastSy - vel) * 0.18;
     lastSy = sy;
@@ -492,6 +580,7 @@
       li.style.setProperty('--d', 200 + i * 120 + 'ms');
     });
     fx($$('.contact-card'), ['rise']);
+    fx($$('.stats > .stat'), ['flip']);
     // dağınık gelen kartlar: her biri rastgele açı ve konumdan yerine oturur
     $$('[data-fx="scatter"]').forEach((el, i) => {
       const side = i % 2 ? 1 : -1;
@@ -511,7 +600,15 @@
     lag: (parseFloat(el.style.getPropertyValue('--d')) || 0) / 1000,
     ease: /drop|scatter/.test(el.dataset.fx || '') ? backOut : easeOut,
     nums: $$('.sec-num', el),
+    cnt: $$('[data-num]', el),
   }));
+  const fmtNum = (b, k) => {
+    const dec = +(b.dataset.dec || 0);
+    let out = (+b.dataset.num * k).toLocaleString(root.lang === 'tr' ? 'tr-TR' : 'en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    if (b.hasAttribute('data-plus')) out += '+';
+    if (b.hasAttribute('data-pct')) out = root.lang === 'tr' ? '%' + out : out + '%';
+    return out;
+  };
   const featured = $('.featured');
   const absTop = (el) => { let y = 0; for (let n = el; n; n = n.offsetParent) y += n.offsetTop; return y; };
   function measureReveals() {
@@ -526,7 +623,8 @@
     revealDirty = true;
   }
   revealTick = () => {
-    if (!revealDirty) return;
+    // açılış ekranı kalkana kadar bekle (hero onunla birlikte gelsin)
+    if (!revealDirty || root.classList.contains('loading')) return;
     const vh = innerHeight;
     const atEnd = sy >= root.scrollHeight - vh - 2;
     let moving = false;
@@ -543,6 +641,7 @@
         r.set = p;
         r.el.style.setProperty('--p', p.toFixed(4));
         r.el.classList.toggle('in', p >= 1);
+        r.cnt.forEach((b) => { b.textContent = fmtNum(b, easeOut(clamp(p / 0.7))); });
       }
       if (p > 0.15 && !r.shown) {
         r.shown = true;
@@ -553,9 +652,11 @@
   };
   if (reduce) {
     revs.forEach((r) => { r.el.style.setProperty('--p', '1'); r.el.classList.add('in'); });
+    onLang(() => revs.forEach((r) => r.cnt.forEach((b) => { b.textContent = fmtNum(b, 1); })));
     revealTick = () => {};
   } else {
     measureReveals();
+    onLang(() => { revs.forEach((r) => { r.set = -1; }); revealDirty = true; });
     new ResizeObserver(measureReveals).observe(document.body);
     addEventListener('resize', measureReveals);
   }

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Yiğit Kalaycıoğlu · Full-Stack Developer</title>
   <meta name="description" content="Yiğit Kalaycıoğlu — Information Systems Engineer and full-stack developer (React, Node.js, ASP.NET Core). Projects with live demos: 3D PC builder, warehouse order placement, second-hand marketplace, machine learning and reinforcement learning studies.">
-  <meta name="theme-color" content="#05060a">
+  <meta name="theme-color" content="#000000">
   <link rel="canonical" href="https://yigitkalaycioglu.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://yigitkalaycioglu.github.io/">
@@ -18,8 +18,8 @@
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=4">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Mona+Sans:wght@400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css?v=6">
   <script>
     // tema ve dil, ilk boyamadan önce uygulanır
     (function () {
@@ -29,6 +29,11 @@
         if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
         var l = localStorage.getItem('yk-lang') || ((navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en');
         document.documentElement.setAttribute('lang', l);
+        // açılış ekranı: oturumda bir kez, hareket azaltma açıksa hiç
+        if (!sessionStorage.getItem('yk-intro') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.documentElement.classList.add('loading');
+          setTimeout(function () { document.documentElement.classList.remove('loading'); }, 4500);
+        }
       } catch (e) {}
     })();
   </script>
@@ -47,8 +52,16 @@
 </head>
 <body>
   <a class="skip" href="#projects" data-i18n="skip">Skip to projects</a>
-  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="ld-in">
+      <span class="ld-mark">YK</span>
+      <span class="ld-name">Yiğit Kalaycıoğlu</span>
+      <span class="ld-bar"><i></i></span>
+      <span class="ld-num" id="ld-num">000</span>
+    </div>
+  </div>
   <div class="bg-grid" aria-hidden="true"></div>
+  <div class="guides" aria-hidden="true"><i></i><i></i></div>
   <canvas id="fx" aria-hidden="true"></canvas>
   <div class="glow-cursor" aria-hidden="true"></div>
   <div class="progress" aria-hidden="true"></div>
@@ -62,11 +75,13 @@
       <nav class="links" aria-label="Main">
         <span class="ind" aria-hidden="true"></span>
         <a href="#projects" data-i18n="nav.projects">Projects</a>
+        <a href="#process" data-i18n="nav.process">Process</a>
         <a href="#experience" data-i18n="nav.experience">Experience</a>
         <a href="#skills" data-i18n="nav.skills">Skills</a>
         <a href="#contact" data-i18n="nav.contact">Contact</a>
       </nav>
       <div class="tools">
+        <a class="btn sm primary nav-cta" href="#contact" data-i18n="nav.cta">Get in touch</a>
         <button class="pill" id="lang" type="button" aria-label="Türkçe / English"><span data-l="tr">TR</span><span data-l="en">EN</span></button>
         <button class="icon" id="theme" type="button" data-i18n-attr="aria-label:theme" aria-label="Toggle theme">
           <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
@@ -79,18 +94,18 @@
   <main id="top">
     <!-- HERO -->
     <section class="hero">
+      <div class="beams" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
       <div class="hero-in">
         <div class="hero-text reveal">
           <p class="eyebrow"><span class="dot"></span><span lang="en">React · Node.js · ASP.NET Core · AI</span></p>
           <h1>Yiğit Kalaycıoğlu</h1>
           <p class="role" data-i18n="hero.role">Information Systems Engineer · Full-Stack Developer</p>
-          <p class="term"><span class="pr">&gt;</span><span data-i18n="hero.now">building</span><b id="typer">full-stack web apps</b><span class="caret" aria-hidden="true"></span></p>
           <p class="lead" data-i18n="hero.lead">I build end-to-end web applications with React, Node.js and ASP.NET Core, and I enjoy debugging and problem-solving in complex systems. Two corporate internships taught me Clean Architecture and SOLID in practice; lately I've been building projects that bring the web together with 3D and AI.</p>
-          <div class="cta">
-            <a class="btn primary" href="#projects" data-i18n="hero.cta">See my projects</a>
-            <a class="btn" href="https://github.com/yigitkalaycioglu" target="_blank" rel="noopener">
+          <div class="cta group">
+            <a class="btn primary arrow" href="#projects" data-i18n="hero.cta">See my projects</a>
+            <a class="btn ghost" href="https://github.com/yigitkalaycioglu" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5m12 4.5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a>
-            <a class="btn" href="https://www.linkedin.com/in/yi%C4%9Fit-kalayc%C4%B1o%C4%9Flu-85bb60373/" target="_blank" rel="noopener">
+            <a class="btn ghost" href="https://www.linkedin.com/in/yi%C4%9Fit-kalayc%C4%B1o%C4%9Flu-85bb60373/" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 10.5v6M7.5 7.5v.01M11.5 16.5v-3.4c0-1.6 1-2.6 2.3-2.6s2.2.9 2.2 2.6v3.4M11.5 10.5v6"/></svg>LinkedIn</a>
           </div>
           <ul class="facts">
@@ -101,11 +116,25 @@
           </ul>
         </div>
         <div class="hero-art reveal" aria-hidden="true">
-          <div class="orbit o1"><i></i></div>
-          <div class="orbit o2"><i></i></div>
-          <div class="shot s1"><img src="assets/img/pc-toplama.webp" alt="" width="1200" height="750" fetchpriority="high"></div>
-          <div class="shot s2"><img src="assets/img/alpasa.webp" alt="" width="1200" height="750"></div>
-          <div class="shot s3"><img src="assets/img/siparis.webp" alt="" width="1200" height="750"></div>
+          <div class="browser">
+            <div class="b-bar">
+              <span class="b-dots"><i></i><i></i><i></i></span>
+              <span class="b-url"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><b id="b-url">yigitkalaycioglu.github.io/bilgisayar-toplama</b></span>
+            </div>
+            <div class="b-screens">
+              <img class="on" src="assets/img/pc-toplama.webp" alt="" width="1200" height="750" fetchpriority="high" data-url="yigitkalaycioglu.github.io/bilgisayar-toplama">
+              <img src="assets/img/siparis.webp" alt="" width="1200" height="750" data-url="yigitkalaycioglu.github.io/siparis-yerlestirme-optimizasyonu">
+              <img src="assets/img/alpasa.webp" alt="" width="1200" height="750" data-url="yigitkalaycioglu.github.io/AlPaSa-Second-Hand-Trading-and-Social-Interaction-Platform">
+            </div>
+            <div class="b-prog"><i></i><i></i><i></i></div>
+          </div>
+          <div class="float f-term">
+            <div class="ft-h"><span class="b-dots"><i></i><i></i><i></i></span><span>zsh</span></div>
+            <p class="tl" style="--n:22;--t:0"><span class="pr">$</span> git push origin main</p>
+            <p class="tl ok" style="--n:20;--t:1">✓ build · 0 warnings</p>
+            <p class="tl ok" style="--n:19;--t:2">✓ live on github.io</p>
+          </div>
+          <div class="float f-chip"><span class="dot"></span><span lang="en">Sakarya, TR · UTC+3</span></div>
         </div>
       </div>
       <a class="scroll-cue" href="#about" aria-hidden="true" tabindex="-1"><span class="mouse"></span><span data-i18n="scroll">Scroll</span></a>
@@ -114,8 +143,8 @@
     <!-- ŞERİT -->
     <div class="mq-wrap" aria-hidden="true">
       <div class="marquee">
-        <div class="mq-row"><div class="mq-track"><span>React</span><em>✦</em><span class="f">Node.js</span><em>✦</em><span>ASP.NET Core</span><em>✦</em><span class="f">TypeScript</span><em>✦</em><span>three.js</span><em>✦</em><span class="f">PostgreSQL</span><em>✦</em><span>Docker</span><em>✦</em><span class="f">PyTorch</span><em>✦</em></div></div>
-        <div class="mq-row"><div class="mq-track"><span class="f">Clean Architecture</span><em>✦</em><span>SOLID</span><em>✦</em><span class="f">Machine Learning</span><em>✦</em><span>Real-time</span><em>✦</em><span class="f">3D</span><em>✦</em><span>Android</span><em>✦</em><span class="f">.NET 10</span><em>✦</em><span>Python</span><em>✦</em></div></div>
+        <div class="mq-row"><div class="mq-track"><span>React</span><span>Node.js</span><span>ASP.NET Core</span><span>TypeScript</span><span>three.js</span><span>PostgreSQL</span><span>Docker</span><span>PyTorch</span><span>Redis</span><span>Kotlin</span></div></div>
+        <div class="mq-row chips"><div class="mq-track"><span><i style="--c:#9a8cff"></i>Clean Architecture</span><span><i style="--c:#3ad6ee"></i>SOLID</span><span><i style="--c:#ff5fd2"></i>Machine Learning</span><span><i style="--c:#34d399"></i>Real-time</span><span><i style="--c:#f59e0b"></i>3D · WebGL</span><span><i style="--c:#60a5fa"></i>Android</span><span><i style="--c:#a78bfa"></i>.NET 10</span><span><i style="--c:#f472b6"></i>Python</span><span><i style="--c:#22d3ee"></i>EF Core</span></div></div>
       </div>
     </div>
 
@@ -129,7 +158,7 @@
     <section class="section" id="projects">
       <div class="sec-head reveal">
         <span class="sec-num" aria-hidden="true">01</span>
-        <h2 data-i18n="proj.title">Projects</h2>
+        <h2 data-i18n="proj.title" data-split>Projects</h2>
         <p data-i18n="proj.sub">Live demos run right in the browser; every project's source code is on GitHub.</p>
       </div>
 
@@ -291,9 +320,141 @@
       </div>
     </section>
 
+    <!-- SÜREÇ -->
+    <section class="section" id="process">
+      <div class="sec-head reveal">
+        <span class="sec-num" aria-hidden="true">02</span>
+        <h2 data-i18n="pr.title" data-split>How I build</h2>
+        <p data-i18n="pr.sub">From a requirements document to a live demo: the five steps I follow.</p>
+      </div>
+      <div class="process">
+        <div class="steps">
+          <div class="step" data-step="0">
+            <span class="sn">01</span>
+            <h3 data-i18n="pr.s1.t">Requirements</h3>
+            <p data-i18n="pr.s1.d">Every project starts with a written requirements document: who uses it, what they need and which rules must never break. My internship bookkeeping app was built end to end from exactly such a document, in four weeks.</p>
+            <ul class="tags"><li data-i18n="pr.s1.k">Requirements doc</li><li data-i18n="pr.s1.k2">Use cases</li></ul>
+          </div>
+          <div class="step" data-step="1">
+            <span class="sn">02</span>
+            <h3 data-i18n="pr.s2.t">Data model</h3>
+            <p data-i18n="pr.s2.d">Screens come after the schema. I design the relational model first (11 tables in the bookkeeping app) and version it with EF Core Code First migrations. Balances are calculated from movement records, so every number can be traced.</p>
+            <ul class="tags"><li>SQL Server</li><li>PostgreSQL</li><li>EF Core</li></ul>
+          </div>
+          <div class="step" data-step="2">
+            <span class="sn">03</span>
+            <h3 data-i18n="pr.s3.t">Architecture &amp; API</h3>
+            <p data-i18n="pr.s3.d">Domain, Application, Infrastructure and API layers with clear boundaries, following Clean Architecture and SOLID. What belongs together is saved together: an invoice, its stock movements and its account entry go in one transaction.</p>
+            <ul class="tags"><li>ASP.NET Core</li><li>Express</li><li>Clean Architecture</li></ul>
+          </div>
+          <div class="step" data-step="3">
+            <span class="sn">04</span>
+            <h3 data-i18n="pr.s4.t">Interface</h3>
+            <p data-i18n="pr.s4.d">Fast, responsive interfaces in React or ASP.NET MVC, and 3D scenes with three.js where they help people decide, like assembling a PC build piece by piece before buying it.</p>
+            <ul class="tags"><li>React</li><li>TypeScript</li><li>three.js</li></ul>
+          </div>
+          <div class="step" data-step="4">
+            <span class="sn">05</span>
+            <h3 data-i18n="pr.s5.t">Ship</h3>
+            <p data-i18n="pr.s5.d">Tests, a clean build and something you can open. Most of my projects run as live demos right in the browser on GitHub Pages; the rest ship as downloadable releases.</p>
+            <ul class="tags"><li data-i18n="pr.s5.k">Tests</li><li>GitHub Pages</li><li>Releases</li></ul>
+          </div>
+        </div>
+
+        <div class="stage" aria-hidden="true">
+          <div class="panel" data-panel="0">
+            <div class="tab"><span class="tn">01</span><span data-i18n="pr.s1.t">Requirements</span><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
+            <div class="pbody"><div class="pin">
+              <div class="mock m-req">
+                <div class="mh"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg><b>requirements.md</b><span class="badge">v1.0</span></div>
+                <ul class="checks">
+                  <li style="--j:0"><i><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span data-i18n="pr.m1.a">Customer &amp; supplier accounts</span></li>
+                  <li style="--j:1"><i><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span data-i18n="pr.m1.b">Inventory &amp; stock counts</span></li>
+                  <li style="--j:2"><i><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span data-i18n="pr.m1.c">Invoices</span></li>
+                  <li style="--j:3"><i><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span data-i18n="pr.m1.d">Collections &amp; payments</span></li>
+                  <li style="--j:4"><i><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span data-i18n="pr.m1.e">Reports</span></li>
+                </ul>
+                <div class="meter"><span></span></div>
+              </div>
+            </div></div>
+          </div>
+          <div class="panel" data-panel="1">
+            <div class="tab"><span class="tn">02</span><span data-i18n="pr.s2.t">Data model</span><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
+            <div class="pbody"><div class="pin">
+              <div class="mock m-db">
+                <svg class="links-svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M38 17 C 50 17, 50 43, 62 43"/><path d="M81 60 C 81 69, 60 69, 46 69"/></svg>
+                <div class="tbl t1"><b>Accounts</b><span><em>PK</em> Id</span><span>Name</span><span>Type</span></div>
+                <div class="tbl t2"><b>Invoices</b><span><em>PK</em> Id</span><span><em>FK</em> AccountId</span><span>Total</span></div>
+                <div class="tbl t3"><b>StockMovements</b><span><em>PK</em> Id</span><span><em>FK</em> InvoiceId</span><span>Quantity</span></div>
+                <p class="cmd"><span class="pr">$</span> dotnet ef migrations add Init <span class="okt">✓ Done</span></p>
+              </div>
+            </div></div>
+          </div>
+          <div class="panel" data-panel="2">
+            <div class="tab"><span class="tn">03</span><span data-i18n="pr.s3.t">Architecture &amp; API</span><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
+            <div class="pbody"><div class="pin">
+              <div class="mock m-api">
+                <div class="req"><span class="verb">POST</span><span>/api/invoices</span><span class="status">201 Created</span></div>
+                <pre class="json"><span style="--j:0">{</span><span style="--j:1">  <i>"invoiceId"</i>: <u>1042</u>,</span><span style="--j:2">  <i>"stockMovements"</i>: <u>3</u>,</span><span style="--j:3">  <i>"accountEntry"</i>: <s>"posted"</s></span><span style="--j:4">}</span></pre>
+                <div class="layers"><span>Api</span><span>Application</span><span>Domain</span><span>Infrastructure</span></div>
+                <p class="tx"><span>BEGIN TRAN</span><b>→</b><span class="commit">COMMIT ✓</span></p>
+              </div>
+            </div></div>
+          </div>
+          <div class="panel" data-panel="3">
+            <div class="tab"><span class="tn">04</span><span data-i18n="pr.s4.t">Interface</span><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
+            <div class="pbody"><div class="pin">
+              <div class="mock m-ui">
+                <div class="app">
+                  <div class="side"><i></i><i></i><i></i><i></i></div>
+                  <div class="main">
+                    <span class="ttl"></span>
+                    <span class="fld"><em style="--w:72%"></em></span>
+                    <span class="fld"><em style="--w:48%"></em></span>
+                    <span class="save" data-i18n="pr.m4.save">Save</span>
+                  </div>
+                </div>
+                <div class="toast2"><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="pr.m4.saved">Saved</span></div>
+                <svg class="cursor" viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.5L10 19z"/></svg>
+              </div>
+            </div></div>
+          </div>
+          <div class="panel" data-panel="4">
+            <div class="tab"><span class="tn">05</span><span data-i18n="pr.s5.t">Ship</span><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
+            <div class="pbody"><div class="pin">
+              <div class="mock m-ship">
+                <p class="lg" style="--j:0"><b>✓</b> build <span>0 warnings</span></p>
+                <p class="lg" style="--j:1"><b>✓</b> tests <span>passed</span></p>
+                <p class="lg" style="--j:2"><b>↑</b> deploy <span>GitHub Pages</span></p>
+                <div class="bar"><span></span></div>
+                <div class="live"><span class="dot"></span><b data-i18n="pr.m5.live">Live</b><span>yigitkalaycioglu.github.io</span></div>
+              </div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RAKAMLAR -->
+    <section class="section" id="numbers">
+      <div class="sec-head reveal">
+        <span class="sec-num" aria-hidden="true">03</span>
+        <h2 data-i18n="nu.title" data-split>By the numbers</h2>
+        <p data-i18n="nu.sub">A few figures from the projects above.</p>
+      </div>
+      <div class="stats">
+        <div class="stat reveal"><b data-num="6700" data-plus>6,700+</b><p data-i18n="nu.a">products with daily refreshed prices</p><small data-i18n="nu.a2">PC Builder</small></div>
+        <div class="stat reveal"><b data-num="93.4" data-dec="1" data-pct>93.4%</b><p data-i18n="nu.b">accuracy in heart disease diagnosis</p><small lang="en">KNN · Cleveland</small></div>
+        <div class="stat reveal"><b data-num="10000">10,000</b><p data-i18n="nu.c">training episodes for the dosing agent</p><small lang="en">REINFORCE</small></div>
+        <div class="stat reveal"><b data-num="11">11</b><p data-i18n="nu.d">tables in a relational schema</p><small data-i18n="nu.d2">Mini Bookkeeping</small></div>
+        <div class="stat reveal"><b data-num="4">4</b><p data-i18n="nu.e">weeks from requirements to a working app</p><small lang="en">ESBİ</small></div>
+        <div class="stat reveal"><b data-num="0">0</b><p data-i18n="nu.f">warnings in the generated solution</p><small lang="en">Clean Architecture Generator</small></div>
+      </div>
+    </section>
+
     <!-- EXPERIENCE -->
     <section class="section" id="experience">
-      <div class="sec-head reveal"><span class="sec-num" aria-hidden="true">02</span><h2 data-i18n="exp.title">Experience</h2></div>
+      <div class="sec-head reveal"><span class="sec-num" aria-hidden="true">04</span><h2 data-i18n="exp.title" data-split>Experience</h2></div>
       <ol class="timeline">
         <li class="reveal">
           <div class="when" data-i18n="e1.when">Sep 2026 – Oct 2026</div>
@@ -322,7 +483,7 @@
 
     <!-- SKILLS -->
     <section class="section" id="skills">
-      <div class="sec-head reveal"><span class="sec-num" aria-hidden="true">03</span><h2 data-i18n="sk.title">Skills</h2></div>
+      <div class="sec-head reveal"><span class="sec-num" aria-hidden="true">05</span><h2 data-i18n="sk.title" data-split>Skills</h2></div>
       <div class="skills">
         <div class="skill reveal"><h3 data-i18n="sk.web">Languages & Web</h3><ul class="tags"><li>JavaScript</li><li>TypeScript</li><li>React</li><li>Node.js</li><li>HTML5</li><li>CSS3</li><li>Tailwind CSS</li><li>Bootstrap</li><li>jQuery</li></ul></div>
         <div class="skill reveal"><h3>Backend</h3><ul class="tags"><li>C#</li><li>ASP.NET Core (MVC, Identity)</li><li>Entity Framework Core</li><li>Express</li></ul></div>
@@ -336,8 +497,8 @@
     <section class="section" id="education">
       <div class="two">
         <div class="reveal">
-          <span class="sec-num" aria-hidden="true">04</span>
-          <h2 data-i18n="ed.title">Education</h2>
+          <span class="sec-num" aria-hidden="true">06</span>
+          <h2 data-i18n="ed.title" data-split>Education</h2>
           <div class="edu">
             <h3 data-i18n="ed.school">Sakarya University</h3>
             <p data-i18n="ed.dept">Information Systems Engineering</p>
@@ -345,8 +506,8 @@
           </div>
         </div>
         <div class="reveal">
-          <span class="sec-num" aria-hidden="true">05</span>
-          <h2 data-i18n="ce.title">Certifications</h2>
+          <span class="sec-num" aria-hidden="true">07</span>
+          <h2 data-i18n="ce.title" data-split>Certifications</h2>
           <ul class="certs">
             <li><b data-i18n="c1">Full-Stack Web Development (HTML, CSS, JS, Node, React, PostgreSQL)</b><span>Udemy · Angela Yu</span></li>
             <li><b data-i18n="c2">Odoo Student Diploma</b><span>Odoo S.A.</span></li>
@@ -360,11 +521,11 @@
     <!-- CONTACT -->
     <section class="section contact" id="contact">
       <div class="contact-card reveal">
-        <span class="sec-num" aria-hidden="true">06</span>
-        <h2 data-i18n="ct.title">Let's talk</h2>
+        <span class="sec-num" aria-hidden="true">08</span>
+        <h2 data-i18n="ct.title" data-split>Let's talk</h2>
         <p data-i18n="ct.sub">For job opportunities, projects or just to say hello, email is the quickest way to reach me.</p>
         <div class="cta">
-          <a class="btn primary" id="mail" href="#contact" data-u="yigit.klycoglu" data-d="gmail.com">
+          <a class="btn primary arrow" id="mail" href="#contact" data-u="yigit.klycoglu" data-d="gmail.com">
             <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg><span id="mail-text">yigit.klycoglu (at) gmail.com</span></a>
           <button class="btn" id="copy" type="button" data-i18n="ct.copy">Copy address</button>
           <a class="btn" href="https://www.linkedin.com/in/yi%C4%9Fit-kalayc%C4%B1o%C4%9Flu-85bb60373/" target="_blank" rel="noopener">LinkedIn</a>
@@ -375,11 +536,42 @@
   </main>
 
   <footer class="foot">
-    <p>© 2026 Yiğit Kalaycıoğlu · <span data-i18n="foot">Built by hand and published on GitHub Pages.</span></p>
-    <a class="to-top" href="#top"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span data-i18n="top">Back to top</span></a>
+    <div class="foot-top">
+      <div class="fcol fbrand">
+        <a class="logo" href="#top"><span class="logo-mark">YK</span><span class="logo-text">Yiğit Kalaycıoğlu</span></a>
+        <p data-i18n="foot.blurb">Full-stack developer building web apps, tools and machine learning studies, from Sakarya, Türkiye.</p>
+      </div>
+      <div class="fcol">
+        <h4 data-i18n="foot.nav">Navigate</h4>
+        <a href="#projects" data-i18n="nav.projects">Projects</a>
+        <a href="#process" data-i18n="nav.process">Process</a>
+        <a href="#experience" data-i18n="nav.experience">Experience</a>
+        <a href="#skills" data-i18n="nav.skills">Skills</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="fcol">
+        <h4 data-i18n="foot.work">Featured work</h4>
+        <a href="https://yigitkalaycioglu.github.io/bilgisayar-toplama/" target="_blank" rel="noopener" data-i18n="p1.t">PC Builder with a 3D preview</a>
+        <a href="https://yigitkalaycioglu.github.io/siparis-yerlestirme-optimizasyonu/" target="_blank" rel="noopener" data-i18n="p2.t">Warehouse Order Placement</a>
+        <a href="https://yigitkalaycioglu.github.io/AlPaSa-Second-Hand-Trading-and-Social-Interaction-Platform/" target="_blank" rel="noopener">AlPaSa</a>
+        <a href="projects/clean-architecture-generator/" data-i18n="p12.t">Clean Architecture Generator</a>
+      </div>
+      <div class="fcol">
+        <h4 data-i18n="foot.find">Elsewhere</h4>
+        <a href="https://github.com/yigitkalaycioglu" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/yi%C4%9Fit-kalayc%C4%B1o%C4%9Flu-85bb60373/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="mail-link" href="#contact" data-i18n="foot.mail">Email</a>
+      </div>
+    </div>
+    <div class="wordmark reveal" aria-hidden="true">Kalaycıoğlu</div>
+    <div class="foot-bot">
+      <p>© 2026 Yiğit Kalaycıoğlu · <span data-i18n="foot">Built by hand and published on GitHub Pages.</span></p>
+      <a class="to-top" href="#top"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span data-i18n="top">Back to top</span></a>
+    </div>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="assets/js/site.js?v=4" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
+  <script src="assets/js/site.js?v=5" defer></script>
 </body>
 </html>
