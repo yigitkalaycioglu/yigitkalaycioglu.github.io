@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Yiğit Kalaycıoğlu · Full-Stack Developer</title>
   <meta name="description" content="Yiğit Kalaycıoğlu — Information Systems Engineer and full-stack developer (React, Node.js, ASP.NET Core). Projects with live demos: 3D PC builder, warehouse order placement, second-hand marketplace, machine learning and reinforcement learning studies.">
-  <meta name="theme-color" content="#0b0c10">
+  <meta name="theme-color" content="#05060a">
   <link rel="canonical" href="https://yigitkalaycioglu.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://yigitkalaycioglu.github.io/">
@@ -18,8 +18,8 @@
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css?v=2">
   <script>
     // tema ve dil, ilk boyamadan önce uygulanır
     (function () {
@@ -47,6 +47,11 @@
 </head>
 <body>
   <a class="skip" href="#projects" data-i18n="skip">Skip to projects</a>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="glow-cursor" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"></div>
 
   <header class="nav">
     <div class="nav-in">
@@ -55,6 +60,7 @@
         <span class="logo-text">Yiğit Kalaycıoğlu</span>
       </a>
       <nav class="links" aria-label="Main">
+        <span class="ind" aria-hidden="true"></span>
         <a href="#projects" data-i18n="nav.projects">Projects</a>
         <a href="#experience" data-i18n="nav.experience">Experience</a>
         <a href="#skills" data-i18n="nav.skills">Skills</a>
@@ -75,9 +81,10 @@
     <section class="hero">
       <div class="hero-in">
         <div class="hero-text reveal">
-          <p class="eyebrow"><span class="dot"></span><span>React · Node.js · ASP.NET Core · AI</span></p>
+          <p class="eyebrow"><span class="dot"></span><span lang="en">React · Node.js · ASP.NET Core · AI</span></p>
           <h1>Yiğit Kalaycıoğlu</h1>
           <p class="role" data-i18n="hero.role">Information Systems Engineer · Full-Stack Developer</p>
+          <p class="term"><span class="pr">&gt;</span><span data-i18n="hero.now">building</span><b id="typer">full-stack web apps</b><span class="caret" aria-hidden="true"></span></p>
           <p class="lead" data-i18n="hero.lead">I build end-to-end web applications with React, Node.js and ASP.NET Core, and I enjoy debugging and problem-solving in complex systems. Two corporate internships taught me Clean Architecture and SOLID in practice; lately I've been building projects that bring the web together with 3D and AI.</p>
           <div class="cta">
             <a class="btn primary" href="#projects" data-i18n="hero.cta">See my projects</a>
@@ -87,23 +94,41 @@
               <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 10.5v6M7.5 7.5v.01M11.5 16.5v-3.4c0-1.6 1-2.6 2.3-2.6s2.2.9 2.2 2.6v3.4M11.5 10.5v6"/></svg>LinkedIn</a>
           </div>
           <ul class="facts">
-            <li><b>5</b><span data-i18n="hero.f1">live demos</span></li>
-            <li><b>12</b><span data-i18n="hero.f2">projects</span></li>
-            <li><b>2</b><span data-i18n="hero.f3">internships</span></li>
-            <li><b>Sakarya</b><span data-i18n="hero.f4">Türkiye</span></li>
+            <li><b data-count="5">5</b><span data-i18n="hero.f1">live demos</span></li>
+            <li><b data-count="12">12</b><span data-i18n="hero.f2">projects</span></li>
+            <li><b data-count="2">2</b><span data-i18n="hero.f3">internships</span></li>
+            <li><b data-scramble>Sakarya</b><span data-i18n="hero.f4">Türkiye</span></li>
           </ul>
         </div>
         <div class="hero-art reveal" aria-hidden="true">
+          <div class="orbit o1"><i></i></div>
+          <div class="orbit o2"><i></i></div>
           <div class="shot s1"><img src="assets/img/pc-toplama.webp" alt="" width="1200" height="750" fetchpriority="high"></div>
           <div class="shot s2"><img src="assets/img/alpasa.webp" alt="" width="1200" height="750"></div>
           <div class="shot s3"><img src="assets/img/siparis.webp" alt="" width="1200" height="750"></div>
         </div>
       </div>
+      <a class="scroll-cue" href="#about" aria-hidden="true" tabindex="-1"><span class="mouse"></span><span data-i18n="scroll">Scroll</span></a>
+    </section>
+
+    <!-- ŞERİT -->
+    <div class="mq-wrap" aria-hidden="true">
+      <div class="marquee">
+        <div class="mq-row"><div class="mq-track"><span>React</span><em>✦</em><span class="f">Node.js</span><em>✦</em><span>ASP.NET Core</span><em>✦</em><span class="f">TypeScript</span><em>✦</em><span>three.js</span><em>✦</em><span class="f">PostgreSQL</span><em>✦</em><span>Docker</span><em>✦</em><span class="f">PyTorch</span><em>✦</em></div></div>
+        <div class="mq-row"><div class="mq-track"><span class="f">Clean Architecture</span><em>✦</em><span>SOLID</span><em>✦</em><span class="f">Machine Learning</span><em>✦</em><span>Real-time</span><em>✦</em><span class="f">3D</span><em>✦</em><span>Android</span><em>✦</em><span class="f">.NET 10</span><em>✦</em><span>Python</span><em>✦</em></div></div>
+      </div>
+    </div>
+
+    <!-- MANİFESTO -->
+    <section class="manifesto" id="about" aria-labelledby="mani-tag">
+      <p class="mani-tag" id="mani-tag" data-i18n="mani.tag">About</p>
+      <p class="mani-text" id="mani">From database schemas to 3D scenes and AI models — I build software end to end, with clean architecture and an eye for detail.</p>
     </section>
 
     <!-- PROJECTS -->
     <section class="section" id="projects">
       <div class="sec-head reveal">
+        <span class="sec-num" aria-hidden="true">01</span>
         <h2 data-i18n="proj.title">Projects</h2>
         <p data-i18n="proj.sub">Live demos run right in the browser; every project's source code is on GitHub.</p>
       </div>
@@ -112,6 +137,7 @@
         <article class="feat reveal">
           <a class="feat-img" href="https://yigitkalaycioglu.github.io/bilgisayar-toplama/" target="_blank" rel="noopener"><img src="assets/img/pc-toplama.webp" alt="3D PC builder screenshot" data-i18n-attr="alt:p1.alt" loading="lazy" width="1200" height="750"></a>
           <div class="feat-body">
+            <p class="feat-no" aria-hidden="true">01</p>
             <p class="kicker" data-i18n="p1.k">Web · 3D · Data</p>
             <h3 data-i18n="p1.t">PC Builder with a 3D preview</h3>
             <p data-i18n="p1.d">A PC configurator that only offers compatible parts — socket, memory type, form factor, GPU length, cooler clearance and PSU wattage are checked both ways — and assembles the chosen build in an interactive 3D scene. About 6,700 products, with prices refreshed daily from epey.com.</p>
@@ -126,6 +152,7 @@
         <article class="feat reveal">
           <a class="feat-img" href="https://yigitkalaycioglu.github.io/siparis-yerlestirme-optimizasyonu/" target="_blank" rel="noopener"><img src="assets/img/siparis.webp" alt="3D warehouse view" data-i18n-attr="alt:p2.alt" loading="lazy" width="1200" height="750"></a>
           <div class="feat-body">
+            <p class="feat-no" aria-hidden="true">02</p>
             <p class="kicker" data-i18n="p2.k">Decision support · Optimization</p>
             <h3 data-i18n="p2.t">Warehouse Order Placement</h3>
             <p data-i18n="p2.d">Suggests the best shelf for incoming orders in a corrugated-board warehouse. Shelves are managed as centimetre-based free-space matrices instead of simple counts, with manual overrides and a 3D warehouse view. The Streamlit app runs entirely in the browser via Pyodide — no install, no server.</p>
@@ -140,6 +167,7 @@
         <article class="feat reveal">
           <a class="feat-img" href="https://yigitkalaycioglu.github.io/AlPaSa-Second-Hand-Trading-and-Social-Interaction-Platform/" target="_blank" rel="noopener"><img src="assets/img/alpasa.webp" alt="AlPaSa home page" data-i18n-attr="alt:p3.alt" loading="lazy" width="1200" height="750"></a>
           <div class="feat-body">
+            <p class="feat-no" aria-hidden="true">03</p>
             <p class="kicker" data-i18n="p3.k">Web app · Marketplace</p>
             <h3>AlPaSa</h3>
             <p data-i18n="p3.d">A second-hand marketplace: listings with search and filters, favourites, follow and seller messaging, plus a role-based admin panel for categories, users and activity logs. A single-page app that keeps all data in the browser; demo accounts are on the login screen.</p>
@@ -178,7 +206,7 @@
         </article>
 
         <article class="card reveal">
-          <div class="card-art art-ledger" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg><span>ASP.NET Core</span></div>
+          <div class="card-art art-ledger" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg><span lang="en">ASP.NET Core</span></div>
           <p class="kicker" data-i18n="p6.k">Internship project · ESBİ</p>
           <h3 data-i18n="p6.t">Mini Bookkeeping App</h3>
           <p data-i18n="p6.d">Customer and supplier accounts, inventory, invoices, collections and payments, stock counts and reports, built end to end from a requirements document. An invoice, its stock movements and its account entry are saved in one transaction, and balances are calculated from movement records in SQL. Cookie authentication with PBKDF2 and two roles.</p>
@@ -190,7 +218,7 @@
         </article>
 
         <article class="card reveal">
-          <div class="card-art art-cleanarch" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2"/></svg><span>Clean Arch</span></div>
+          <div class="card-art art-cleanarch" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2"/></svg><span lang="en">Clean Arch</span></div>
           <p class="kicker" data-i18n="tool">Tool</p>
           <h3 data-i18n="p12.t">Clean Architecture Generator</h3>
           <p data-i18n="p12.d">A Windows app that creates a security-first ASP.NET Core Clean Architecture solution in one click: Domain, Application, Infrastructure and Api layers, built-in Identity + JWT or external OpenID Connect sign-in, a sample feature and unit, architecture and integration tests. Every file can be previewed first; the output builds with zero warnings and passes its own tests.</p>
@@ -203,7 +231,7 @@
         </article>
 
         <article class="card reveal">
-          <div class="card-art art-sla" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg><span>Multi-tenant</span></div>
+          <div class="card-art art-sla" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg><span lang="en">Multi-tenant</span></div>
           <p class="kicker" data-i18n="fs">Full-stack</p>
           <h3 data-i18n="p7.t">Multi-Tenant SLA Platform</h3>
           <p data-i18n="p7.d">A ticketing system where each company has its own users, teams and SLA rules but cannot see other tenants' data (PostgreSQL row-level security). First-response and resolution timers, email alerts and real-time updates; everything starts with one Docker Compose command.</p>
@@ -215,7 +243,7 @@
         </article>
 
         <article class="card reveal">
-          <div class="card-art art-wol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.6 6.6a7.5 7.5 0 1 0 10.8 0"/></svg><span>Windows Service</span></div>
+          <div class="card-art art-wol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.6 6.6a7.5 7.5 0 1 0 10.8 0"/></svg><span lang="en">Windows Service</span></div>
           <p class="kicker" data-i18n="tool">Tool</p>
           <h3>WolCatcher</h3>
           <p data-i18n="p8.d">A Windows service that catches the Wake-on-LAN magic packet while the PC is on and shuts it down, so the same WoL button on the phone both wakes and turns off the computer. Installs and manages itself as a service.</p>
@@ -228,7 +256,7 @@
         </article>
 
         <article class="card reveal">
-          <div class="card-art art-reel" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/></svg><span>Android</span></div>
+          <div class="card-art art-reel" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/></svg><span lang="en">Android</span></div>
           <p class="kicker" data-i18n="mobile">Mobile</p>
           <h3>InstaReel Blocker</h3>
           <p data-i18n="p9.d">An Android app that automatically skips sponsored videos in Instagram Reels using an accessibility service. No root, no internet permission, no data collection.</p>
@@ -241,7 +269,7 @@
         </article>
 
         <article class="card reveal">
-          <div class="card-art art-stok" aria-hidden="true"><img src="stokplus/simge.png" alt="" loading="lazy"><span>Stok+</span></div>
+          <div class="card-art art-stok" aria-hidden="true"><img src="stokplus/simge.png" alt="" loading="lazy"><span lang="en">Stok+</span></div>
           <p class="kicker" data-i18n="mobile">Mobile</p>
           <h3>Stok+</h3>
           <p data-i18n="p10.d">Shelf-by-shelf stock counting with barcodes: scan the product, say the shelf, share the list as Excel. Counting happens on the phone and the data stays there.</p>
@@ -250,7 +278,7 @@
         </article>
 
         <article class="card reveal">
-          <div class="card-art art-linux" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12.5 15H17"/></svg><span>systemd</span></div>
+          <div class="card-art art-linux" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12.5 15H17"/></svg><span lang="en">systemd</span></div>
           <p class="kicker" data-i18n="sys">Systems</p>
           <h3 data-i18n="p11.t">Linux File System Monitoring Service</h3>
           <p data-i18n="p11.d">A background daemon that watches a folder recursively and logs every create, modify, delete and move event as one-line JSON; installed as a systemd service.</p>
@@ -265,7 +293,7 @@
 
     <!-- EXPERIENCE -->
     <section class="section" id="experience">
-      <div class="sec-head reveal"><h2 data-i18n="exp.title">Experience</h2></div>
+      <div class="sec-head reveal"><span class="sec-num" aria-hidden="true">02</span><h2 data-i18n="exp.title">Experience</h2></div>
       <ol class="timeline">
         <li class="reveal">
           <div class="when" data-i18n="e1.when">Sep 2026 – Oct 2026</div>
@@ -294,7 +322,7 @@
 
     <!-- SKILLS -->
     <section class="section" id="skills">
-      <div class="sec-head reveal"><h2 data-i18n="sk.title">Skills</h2></div>
+      <div class="sec-head reveal"><span class="sec-num" aria-hidden="true">03</span><h2 data-i18n="sk.title">Skills</h2></div>
       <div class="skills">
         <div class="skill reveal"><h3 data-i18n="sk.web">Languages & Web</h3><ul class="tags"><li>JavaScript</li><li>TypeScript</li><li>React</li><li>Node.js</li><li>HTML5</li><li>CSS3</li><li>Tailwind CSS</li><li>Bootstrap</li><li>jQuery</li></ul></div>
         <div class="skill reveal"><h3>Backend</h3><ul class="tags"><li>C#</li><li>ASP.NET Core (MVC, Identity)</li><li>Entity Framework Core</li><li>Express</li></ul></div>
@@ -308,6 +336,7 @@
     <section class="section" id="education">
       <div class="two">
         <div class="reveal">
+          <span class="sec-num" aria-hidden="true">04</span>
           <h2 data-i18n="ed.title">Education</h2>
           <div class="edu">
             <h3 data-i18n="ed.school">Sakarya University</h3>
@@ -316,6 +345,7 @@
           </div>
         </div>
         <div class="reveal">
+          <span class="sec-num" aria-hidden="true">05</span>
           <h2 data-i18n="ce.title">Certifications</h2>
           <ul class="certs">
             <li><b data-i18n="c1">Full-Stack Web Development (HTML, CSS, JS, Node, React, PostgreSQL)</b><span>Udemy · Angela Yu</span></li>
@@ -330,6 +360,7 @@
     <!-- CONTACT -->
     <section class="section contact" id="contact">
       <div class="contact-card reveal">
+        <span class="sec-num" aria-hidden="true">06</span>
         <h2 data-i18n="ct.title">Let's talk</h2>
         <p data-i18n="ct.sub">For job opportunities, projects or just to say hello, email is the quickest way to reach me.</p>
         <div class="cta">
@@ -345,9 +376,10 @@
 
   <footer class="foot">
     <p>© 2026 Yiğit Kalaycıoğlu · <span data-i18n="foot">Built by hand and published on GitHub Pages.</span></p>
+    <a class="to-top" href="#top"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span data-i18n="top">Back to top</span></a>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/site.js?v=2" defer></script>
 </body>
 </html>
