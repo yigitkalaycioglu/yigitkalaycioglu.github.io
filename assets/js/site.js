@@ -465,12 +465,50 @@
     const sib = [...el.parentElement.children].filter((c) => c.classList.contains('reveal'));
     if (sib.length > 1) el.style.setProperty('--d', (sib.indexOf(el) % 3) * 110 + 'ms');
   });
+
+  // her öğe farklı bir yerden gelir: soldan/sağdan dönerek, yukarıdan düşerek, derinden, iris açılarak...
+  if (!reduce) {
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    const fx = (els, list) => els.forEach((el, i) => { el.dataset.fx = list[i % list.length]; });
+    fx(feats, ['left', 'right']);
+    const grid = $('.grid');
+    const cols = grid ? getComputedStyle(grid).gridTemplateColumns.split(' ').length : 1;
+    fx($$('.grid > .card'), cols >= 3
+      ? ['left', 'iris', 'right', 'flip', 'zoom', 'flip', 'scatter', 'drop', 'scatter']
+      : cols === 2 ? ['left', 'right', 'iris', 'flip', 'zoom', 'drop', 'scatter', 'scatter', 'iris']
+        : ['left', 'right', 'iris', 'flip', 'zoom', 'scatter']);
+    $$('.grid > .card[data-fx="iris"]').forEach((el, i) => {
+      el.style.setProperty('--ox', i % 2 ? '100%' : '0%');
+      el.style.setProperty('--oy', i % 2 ? '100%' : '0%');
+    });
+    fx(tlItems, ['right']);
+    fx($$('.skills > .skill'), ['scatter']);
+    fx($$('.two > .reveal'), ['left', 'fade']);
+    $$('.certs > li').forEach((li, i) => {
+      li.classList.add('reveal');
+      li.dataset.fx = 'right';
+      li.style.setProperty('--d', 200 + i * 120 + 'ms');
+    });
+    fx($$('.contact-card'), ['rise']);
+    // dağınık gelen kartlar: her biri rastgele açı ve konumdan yerine oturur
+    $$('[data-fx="scatter"]').forEach((el, i) => {
+      const side = i % 2 ? 1 : -1;
+      el.style.setProperty('--sx', (side * rnd(60, 180)).toFixed(0) + 'px');
+      el.style.setProperty('--sy', rnd(80, 200).toFixed(0) + 'px');
+      el.style.setProperty('--r', (side * rnd(8, 18)).toFixed(1) + 'deg');
+    });
+    $$('.skills > .skill').forEach((el, i) => el.style.setProperty('--d', i * 90 + 'ms'));
+  }
+
   const reveal = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (!e.isIntersecting) return;
-      e.target.classList.add('in');
-      reveal.unobserve(e.target);
-      $$('.sec-num', e.target).forEach((n) => scramble(n, n.textContent, 700, '0123456789'));
+      const el = e.target;
+      el.classList.add('in');
+      reveal.unobserve(el);
+      $$('.sec-num', el).forEach((n) => scramble(n, n.textContent, 700, '0123456789'));
+      // giriş bitince normal geçişlere dön (hover ve yapışkan kart ölçeği gecikmesiz çalışsın)
+      if (el.dataset.fx) setTimeout(() => { delete el.dataset.fx; }, 1700 + (parseFloat(el.style.getPropertyValue('--d')) || 0));
     });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
   $$('.reveal').forEach((el) => reveal.observe(el));
