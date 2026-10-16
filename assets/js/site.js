@@ -73,7 +73,8 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-  let sy = scrollY, lastSy = sy, vel = 0, dirty = true;
+  let sy = scrollY, lastSy = sy, vel = 0, dirty = true, revealDirty = true;
+  let revealTick = () => {};
   const langHooks = [];
   const onLang = (fn) => { langHooks.push(fn); fn(root.lang); };
 
@@ -420,6 +421,7 @@
     vel += (sy - lastSy - vel) * 0.18;
     lastSy = sy;
     if (dirty) { scrollFx(); dirty = false; }
+    revealTick();
 
     if (!reduce) {
       drawFx(true);
@@ -446,7 +448,7 @@
     if (running) requestAnimationFrame(frame);
   }
 
-  addEventListener('scroll', () => { dirty = true; }, { passive: true });
+  addEventListener('scroll', () => { dirty = true; revealDirty = true; }, { passive: true });
   addEventListener('resize', () => { resizeFx(); measureRows(); moveInd(); dirty = true; if (reduce) drawFx(false); });
   document.addEventListener('visibilitychange', () => {
     const was = running;
@@ -500,16 +502,61 @@
     $$('.skills > .skill').forEach((el, i) => el.style.setProperty('--d', i * 90 + 'ms'));
   }
 
-  const reveal = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (!e.isIntersecting) return;
-      const el = e.target;
-      el.classList.add('in');
-      reveal.unobserve(el);
-      $$('.sec-num', el).forEach((n) => scramble(n, n.textContent, 700, '0123456789'));
-      // giriş bitince normal geçişlere dön (hover ve yapışkan kart ölçeği gecikmesiz çalışsın)
-      if (el.dataset.fx) setTimeout(() => { delete el.dataset.fx; }, 1700 + (parseFloat(el.style.getPropertyValue('--d')) || 0));
+  // ilerleme (--p) kaydırma konumundan hesaplanır: aşağı inerken oynar, yukarı çıkarken geri sarar.
+  // Konumlar dönüşümsüz yerleşimden (offsetTop) ölçülür, yoksa kendi hareketi ölçümü bozardı.
+  const easeOut = (x) => 1 - Math.pow(1 - x, 3);
+  const backOut = (x) => 1 + 2.4 * Math.pow(x - 1, 3) + 1.4 * Math.pow(x - 1, 2);
+  const revs = $$('.reveal').map((el) => ({
+    el, top: 0, h: 0, cur: 0, set: -1, shown: false,
+    lag: (parseFloat(el.style.getPropertyValue('--d')) || 0) / 1000,
+    ease: /drop|scatter/.test(el.dataset.fx || '') ? backOut : easeOut,
+    nums: $$('.sec-num', el),
+  }));
+  const featured = $('.featured');
+  const absTop = (el) => { let y = 0; for (let n = el; n; n = n.offsetParent) y += n.offsetTop; return y; };
+  function measureReveals() {
+    // yapışkan kartların offsetTop'u yapıştığı yeri verir; akıştaki yerlerini sırayla topla
+    const gap = featured ? parseFloat(getComputedStyle(featured).rowGap) || 0 : 0;
+    let ft = featured ? absTop(featured) : 0;
+    revs.forEach((r) => {
+      if (r.el.classList.contains('feat')) { r.top = ft; ft += r.el.offsetHeight + gap; }
+      else r.top = absTop(r.el);
+      r.h = r.el.offsetHeight;
     });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
-  $$('.reveal').forEach((el) => reveal.observe(el));
+    revealDirty = true;
+  }
+  revealTick = () => {
+    if (!revealDirty) return;
+    const vh = innerHeight;
+    const atEnd = sy >= root.scrollHeight - vh - 2;
+    let moving = false;
+    for (const r of revs) {
+      const top = r.top - sy;
+      // üst kenarı ekranın %96'sına girince başlar, %54'üne gelince tamamlanır
+      let target = clamp((vh * 0.96 - top) / (vh * 0.42) - r.lag);
+      if (atEnd && top < vh) target = 1;
+      const far = top > vh * 1.6 || top + r.h < -vh * 0.6;
+      r.cur = far ? target : r.cur + (target - r.cur) * 0.12;
+      if (Math.abs(target - r.cur) < 0.002) r.cur = target; else moving = true;
+      const p = r.cur >= 1 ? 1 : r.cur <= 0 ? 0 : r.ease(r.cur);
+      if (Math.abs(p - r.set) > 0.0008) {
+        r.set = p;
+        r.el.style.setProperty('--p', p.toFixed(4));
+        r.el.classList.toggle('in', p >= 1);
+      }
+      if (p > 0.15 && !r.shown) {
+        r.shown = true;
+        r.nums.forEach((n) => scramble(n, n.dataset.n || (n.dataset.n = n.textContent), 700, '0123456789'));
+      } else if (p < 0.02) r.shown = false;
+    }
+    revealDirty = moving;
+  };
+  if (reduce) {
+    revs.forEach((r) => { r.el.style.setProperty('--p', '1'); r.el.classList.add('in'); });
+    revealTick = () => {};
+  } else {
+    measureReveals();
+    new ResizeObserver(measureReveals).observe(document.body);
+    addEventListener('resize', measureReveals);
+  }
 })();
