@@ -583,7 +583,6 @@
       li.style.setProperty('--d', 200 + i * 120 + 'ms');
     });
     fx($$('.contact-card'), ['rise']);
-    fx($$('.stats > .stat'), ['flip']);
     // dağınık gelen kartlar: her biri rastgele açı ve konumdan yerine oturur
     $$('[data-fx="scatter"]').forEach((el, i) => {
       const side = i % 2 ? 1 : -1;
