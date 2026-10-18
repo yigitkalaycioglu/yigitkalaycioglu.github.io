@@ -450,6 +450,7 @@
       if ((narrow ? r.top : r.top + r.height / 2) < vh * (narrow ? 0.72 : 0.66)) a = i;
     });
     if (a === activeStep) return;
+    const back = a < activeStep && activeStep > -2;
     activeStep = a;
     const cur = Math.max(a, 0);
     stage.classList.toggle('play', a >= 0);
@@ -458,6 +459,8 @@
       pn.classList.toggle('done', i < cur);
       pn.classList.toggle('active', i === cur);
       pn.style.setProperty('--k', cur - i);
+      // geri dönülen panel tamamlanmış hâliyle açılır; sahnesi baştan ileri oynamaz
+      pn.classList.toggle('settled', back && i === cur);
     });
   }
 

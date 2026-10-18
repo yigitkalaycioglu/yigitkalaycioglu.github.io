@@ -397,6 +397,9 @@ p { margin: 0 0 14px; }
 .pin { position: relative; height: 350px; border: 1px solid var(--line-2); border-top: 0; background: var(--surface); }
 .mock { position: absolute; inset: 22px; font-size: 14px; }
 
+/* geri dönülen panel: sahne oynatılmadan tamamlanmış görünür */
+.panel.settled .mock *, .panel.settled .mock *::before, .panel.settled .mock *::after { animation: none !important; }
+
 /* 1 — gereksinimler */
 .mock .mh { display: flex; align-items: center; gap: 10px; padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid var(--line); font: 500 13px var(--font-m); color: var(--text); }
 .mock .mh svg { width: 16px; height: 16px; color: var(--muted); }
