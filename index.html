@@ -332,25 +332,25 @@
           <div class="step" data-step="0">
             <span class="sn">01</span>
             <h3 data-i18n="pr.s1.t">Requirements</h3>
-            <p data-i18n="pr.s1.d">Every project starts with a written requirements document: who uses it, what they need and which rules must never break. My internship bookkeeping app was built end to end from exactly such a document, in four weeks.</p>
+            <p data-i18n="pr.s1.d">Every project starts with a clear requirements document: who uses it, what they need and which rules must never break. I write down the scope before the first line of code, whether it's a web app, a tool or a model.</p>
             <ul class="tags"><li data-i18n="pr.s1.k">Requirements doc</li><li data-i18n="pr.s1.k2">Use cases</li></ul>
           </div>
           <div class="step" data-step="1">
             <span class="sn">02</span>
             <h3 data-i18n="pr.s2.t">Data model</h3>
-            <p data-i18n="pr.s2.d">Screens come after the schema. I design the relational model first (11 tables in the bookkeeping app) and version it with EF Core Code First migrations. Balances are calculated from movement records, so every number can be traced.</p>
+            <p data-i18n="pr.s2.d">Screens come after the data. I design the relational model first and version it with migrations (EF Core Code First, SQL scripts), so every number in the app can be traced back to a record.</p>
             <ul class="tags"><li>SQL Server</li><li>PostgreSQL</li><li>EF Core</li></ul>
           </div>
           <div class="step" data-step="2">
             <span class="sn">03</span>
             <h3 data-i18n="pr.s3.t">Architecture &amp; API</h3>
-            <p data-i18n="pr.s3.d">Domain, Application, Infrastructure and API layers with clear boundaries, following Clean Architecture and SOLID. What belongs together is saved together: an invoice, its stock movements and its account entry go in one transaction.</p>
+            <p data-i18n="pr.s3.d">Clear boundaries between Domain, Application, Infrastructure and API layers, following Clean Architecture and SOLID. Related changes are saved together in one transaction, and each rule lives in exactly one place.</p>
             <ul class="tags"><li>ASP.NET Core</li><li>Express</li><li>Clean Architecture</li></ul>
           </div>
           <div class="step" data-step="3">
             <span class="sn">04</span>
             <h3 data-i18n="pr.s4.t">Interface</h3>
-            <p data-i18n="pr.s4.d">Fast, responsive interfaces in React or ASP.NET MVC, and 3D scenes with three.js where they help people decide, like assembling a PC build piece by piece before buying it.</p>
+            <p data-i18n="pr.s4.d">Fast, responsive interfaces in React or ASP.NET MVC, and 3D scenes with three.js where they genuinely help people understand or decide.</p>
             <ul class="tags"><li>React</li><li>TypeScript</li><li>three.js</li></ul>
           </div>
           <div class="step" data-step="4">
@@ -368,11 +368,11 @@
               <div class="mock m-req">
                 <div class="mh"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg><b>requirements.md</b><span class="badge">v1.0</span></div>
                 <ul class="checks">
-                  <li style="--j:0"><i><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span data-i18n="pr.m1.a">Customer &amp; supplier accounts</span></li>
-                  <li style="--j:1"><i><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span data-i18n="pr.m1.b">Inventory &amp; stock counts</span></li>
-                  <li style="--j:2"><i><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span data-i18n="pr.m1.c">Invoices</span></li>
-                  <li style="--j:3"><i><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span data-i18n="pr.m1.d">Collections &amp; payments</span></li>
-                  <li style="--j:4"><i><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span data-i18n="pr.m1.e">Reports</span></li>
+                  <li style="--j:0"><i><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span data-i18n="pr.m1.a">Users &amp; roles</span></li>
+                  <li style="--j:1"><i><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span data-i18n="pr.m1.b">Core features</span></li>
+                  <li style="--j:2"><i><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span data-i18n="pr.m1.c">Business rules</span></li>
+                  <li style="--j:3"><i><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span data-i18n="pr.m1.d">Data &amp; reports</span></li>
+                  <li style="--j:4"><i><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span data-i18n="pr.m1.e">Testing &amp; delivery</span></li>
                 </ul>
                 <div class="meter"><span></span></div>
               </div>
@@ -383,9 +383,9 @@
             <div class="pbody"><div class="pin">
               <div class="mock m-db">
                 <svg class="links-svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M38 17 C 50 17, 50 43, 62 43"/><path d="M81 60 C 81 69, 60 69, 46 69"/></svg>
-                <div class="tbl t1"><b>Accounts</b><span><em>PK</em> Id</span><span>Name</span><span>Type</span></div>
-                <div class="tbl t2"><b>Invoices</b><span><em>PK</em> Id</span><span><em>FK</em> AccountId</span><span>Total</span></div>
-                <div class="tbl t3"><b>StockMovements</b><span><em>PK</em> Id</span><span><em>FK</em> InvoiceId</span><span>Quantity</span></div>
+                <div class="tbl t1"><b>Users</b><span><em>PK</em> Id</span><span>Name</span><span>Role</span></div>
+                <div class="tbl t2"><b>Orders</b><span><em>PK</em> Id</span><span><em>FK</em> UserId</span><span>Total</span></div>
+                <div class="tbl t3"><b>OrderItems</b><span><em>PK</em> Id</span><span><em>FK</em> OrderId</span><span>Quantity</span></div>
                 <p class="cmd"><span class="pr">$</span> dotnet ef migrations add Init <span class="okt">✓ Done</span></p>
               </div>
             </div></div>
@@ -394,8 +394,8 @@
             <div class="tab"><span class="tn">03</span><span data-i18n="pr.s3.t">Architecture &amp; API</span><svg class="ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
             <div class="pbody"><div class="pin">
               <div class="mock m-api">
-                <div class="req"><span class="verb">POST</span><span>/api/invoices</span><span class="status">201 Created</span></div>
-                <pre class="json"><span style="--j:0">{</span><span style="--j:1">  <i>"invoiceId"</i>: <u>1042</u>,</span><span style="--j:2">  <i>"stockMovements"</i>: <u>3</u>,</span><span style="--j:3">  <i>"accountEntry"</i>: <s>"posted"</s></span><span style="--j:4">}</span></pre>
+                <div class="req"><span class="verb">POST</span><span>/api/orders</span><span class="status">201 Created</span></div>
+                <pre class="json"><span style="--j:0">{</span><span style="--j:1">  <i>"orderId"</i>: <u>1042</u>,</span><span style="--j:2">  <i>"items"</i>: <u>3</u>,</span><span style="--j:3">  <i>"status"</i>: <s>"confirmed"</s></span><span style="--j:4">}</span></pre>
                 <div class="layers"><span>Api</span><span>Application</span><span>Domain</span><span>Infrastructure</span></div>
                 <p class="tx"><span>BEGIN TRAN</span><b>→</b><span class="commit">COMMIT ✓</span></p>
               </div>
@@ -572,6 +572,6 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
-  <script src="assets/js/site.js?v=6" defer></script>
+  <script src="assets/js/site.js?v=7" defer></script>
 </body>
 </html>
