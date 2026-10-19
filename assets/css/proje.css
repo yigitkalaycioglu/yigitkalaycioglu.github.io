@@ -226,6 +226,28 @@
 .skip-hint svg { width: 26px; height: 26px; stroke-width: 2.2; }
 @keyframes yukari { 0%, 100% { transform: translateY(6px); } 50% { transform: translateY(-8px); } }
 
+/* Stok+ tarama ekranı çizimi */
+.phone-screen.stok-screen { background: radial-gradient(120% 70% at 50% 28%, #1f3b2f, #07110d 72%); }
+.stok-view { position: absolute; left: 50%; top: 17%; width: 150px; height: 112px; margin-left: -75px; }
+.stok-view .cor { position: absolute; width: 22px; height: 22px; border: 3px solid #fff; border-radius: 3px; }
+.stok-view .cor:nth-child(1) { left: 0; top: 0; border-right: 0; border-bottom: 0; }
+.stok-view .cor:nth-child(2) { right: 0; top: 0; border-left: 0; border-bottom: 0; }
+.stok-view .cor:nth-child(3) { right: 0; bottom: 0; border-left: 0; border-top: 0; }
+.stok-view .cor:nth-child(4) { left: 0; bottom: 0; border-right: 0; border-top: 0; }
+.stok-bars { position: absolute; inset: 22px 28px; background: repeating-linear-gradient(90deg, #fff 0 3px, transparent 3px 5px, #fff 5px 6px, transparent 6px 9px, #fff 9px 13px, transparent 13px 15px, #fff 15px 16px, transparent 16px 19px); }
+.stok-scan { position: absolute; left: 12px; right: 12px; top: 50%; height: 3px; margin-top: -1.5px; border-radius: 2px; background: #fde68a; box-shadow: 0 0 12px rgba(253, 230, 138, .9); animation: tara 2.4s ease-in-out infinite; }
+@keyframes tara { 0%, 100% { transform: translateY(-30px); } 50% { transform: translateY(30px); } }
+.stok-hit { position: absolute; left: 50%; top: calc(17% + 126px); transform: translateX(-50%); padding: 4px 10px; border-radius: 999px; background: rgba(52, 211, 153, .18); border: 1px solid rgba(52, 211, 153, .7); color: #d1fae5; font: 600 11px var(--font-m); white-space: nowrap; }
+.stok-sheet { position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 14px 16px; border-radius: 18px 18px 0 0; background: #f4f6f5; color: #16201f; display: grid; gap: 10px; }
+.stok-sheet::before { content: ""; justify-self: center; width: 34px; height: 4px; border-radius: 2px; background: #c4cdcb; }
+.stok-code { font: 700 13px var(--font-m); letter-spacing: .02em; }
+.stok-row { display: flex; align-items: center; gap: 6px; }
+.stok-chip { padding: 4px 9px; border-radius: 8px; background: #1d4ed8; color: #fff; font: 700 12px var(--font); }
+.stok-qty { padding: 4px 8px; border-radius: 8px; background: #ffedc7; color: #3b2500; font: 700 12px var(--font); }
+.stok-mic { margin-left: auto; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: #0f766e; color: #fff; }
+.stok-mic svg { width: 15px; height: 15px; }
+.stok-save { height: 32px; border-radius: 10px; display: grid; place-items: center; background: #0f766e; color: #fff; font: 600 12.5px var(--font); }
+
 /* diğer projeler */
 .more { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; perspective: 1600px; }
 .more a { --tx: 0deg; --ty: 0deg; --lift: 0px; display: flex; align-items: center; gap: 14px; padding: 14px 16px 14px 14px; border-radius: var(--r-sm); border: 1px solid var(--line); background: var(--surface); color: var(--text); font-size: 15px; font-weight: 550; line-height: 1.35; transform: perspective(800px) translateY(var(--lift)) rotateX(var(--tx)) rotateY(var(--ty)); transition: transform .4s var(--ease), border-color .3s, box-shadow .3s; }
@@ -272,5 +294,5 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .shot-card img, .more a, .fcard, .p-facts li { transition: none; }
-  .skip-hint b, .lightbox[open] { animation: none; }
+  .skip-hint b, .stok-scan, .lightbox[open] { animation: none; }
 }

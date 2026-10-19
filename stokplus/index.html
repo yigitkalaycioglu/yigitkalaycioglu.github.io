@@ -1,80 +1,446 @@
-<!DOCTYPE html>
-<html lang="tr">
+<!doctype html>
+<html lang="en" data-theme="auto">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stok+ — Barkodla raf sayımı</title>
-<meta name="description" content="Stok+, depo ve mağaza rafındaki ürünleri barkod okutarak sayan, listeleri Excel'e aktaran Android uygulaması.">
-<link rel="icon" href="./simge.png">
-<link rel="stylesheet" href="./ortak.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Stok+ · Yiğit Kalaycıoğlu</title>
+  <meta name="description" content="Stok+ is an Android app for counting stock shelf by shelf: scan the product, pick or say the shelf, share the count as Excel. Lists stay on the phone, no account needed.">
+  <meta name="theme-color" content="#000000">
+  <link rel="canonical" href="https://yigitkalaycioglu.github.io/stokplus/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yigitkalaycioglu.github.io/stokplus/">
+  <meta property="og:title" content="Stok+ · Yiğit Kalaycıoğlu">
+  <meta property="og:description" content="Shelf-by-shelf stock counting with barcodes. Scan, pick or say the shelf, share as Excel. Lists stay on the phone.">
+  <meta property="og:image" content="https://yigitkalaycioglu.github.io/stokplus/simge.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="simge.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Mona+Sans:wght@400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css?v=6">
+  <link rel="stylesheet" href="../assets/css/proje.css?v=3">
+  <script>
+    // tema ve dil, ilk boyamadan önce uygulanır
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        var t = localStorage.getItem('yk-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        var l = localStorage.getItem('yk-lang') || ((navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en');
+        document.documentElement.setAttribute('lang', l);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
+  <a class="skip" href="#features" data-i18n="skip">Skip to content</a>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="guides" aria-hidden="true"><i></i><i></i></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="glow-cursor" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"></div>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="logo">
-      <img src="./simge.png" alt="Stok+ simgesi">
-      <b>Stok+</b>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="logo" href="../" data-i18n-attr="aria-label:home" aria-label="Home">
+        <span class="logo-mark">YK</span>
+        <span class="logo-text">Yiğit Kalaycıoğlu</span>
+      </a>
+      <nav class="links" aria-label="Page">
+        <span class="ind" aria-hidden="true"></span>
+        <a href="#features" data-i18n="nav.features">Features</a>
+        <a href="#how" data-i18n="nav.how">How it works</a>
+        <a href="#plans" data-i18n="nav.plans">Pricing</a>
+        <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
+      </nav>
+      <div class="tools">
+        <a class="btn sm primary nav-cta" href="../#contact" data-i18n="nav.cta">Get in touch</a>
+        <button class="pill" id="lang" type="button" aria-label="Türkçe / English"><span data-l="tr">TR</span><span data-l="en">EN</span></button>
+        <button class="icon" id="theme" type="button" data-i18n-attr="aria-label:theme" aria-label="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+          <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+        </button>
+      </div>
     </div>
-    <h1>Raf raf stok sayımı, barkodla</h1>
-    <p>Ürünü okut, rafı söyle, listeyi Excel olarak paylaş. Sayım telefonla yapılır, veriler telefonda kalır.</p>
-  </div>
-</header>
+  </header>
 
-<div class="wrap">
+  <main id="top">
+    <section class="p-hero">
+      <div class="beams" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="p-hero-in">
+        <div class="reveal">
+          <a class="back" href="../#projects"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-i18n="back">All projects</span></a>
+          <p class="kicker" data-i18n="h.k">Mobile · Android</p>
+          <h1 class="p-title" data-split>Stok+</h1>
+          <p class="lead" data-i18n="h.lead">An Android app for counting stock shelf by shelf. Scan the product with the camera, pick or say the shelf, and share the finished count as an Excel file. Lists are kept on the phone: no account, no server.</p>
+          <ul class="badges">
+            <li><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="b1">Barcode reading works offline</span></li>
+            <li><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="b2">No account needed</span></li>
+            <li><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="b3">Lists stay on the phone</span></li>
+          </ul>
+          <ul class="tags"><li>Kotlin</li><li>Jetpack Compose</li><li>CameraX</li><li>ML Kit</li><li>SQLite</li><li>Android 8.0+</li></ul>
+          <div class="cta">
+            <a class="btn primary" href="privacy.html" data-i18n-attr="href:pp.href">
+              <svg viewBox="0 0 24 24"><path d="M12 2.5 4.5 5.5v6c0 4.6 3.2 8.3 7.5 10 4.3-1.7 7.5-5.4 7.5-10v-6z"/><path d="m9 12 2 2 4-4"/></svg><span data-i18n="pp">Privacy policy</span></a>
+            <a class="btn" href="mailto:yigit1903ask@gmail.com">
+              <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><span data-i18n="support">Support</span></a>
+          </div>
+          <p class="p-note" data-i18n="h.note">Being prepared for Google Play. Until it's published there's no public download link.</p>
+        </div>
+        <figure class="art-panel art-stok reveal">
+          <div class="phone-wrap" aria-hidden="true">
+            <div class="phone">
+              <div class="phone-screen stok-screen">
+                <div class="stok-view"><i class="cor"></i><i class="cor"></i><i class="cor"></i><i class="cor"></i><span class="stok-bars"></span><span class="stok-scan"></span></div>
+                <span class="stok-hit">31Y1-15706</span>
+                <div class="stok-sheet">
+                  <span class="stok-code">31Y1-15706</span>
+                  <div class="stok-row">
+                    <span class="stok-chip">A-2-5</span>
+                    <span class="stok-qty">×3</span>
+                    <span class="stok-mic"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></span>
+                  </div>
+                  <span class="stok-save">Kaydet</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption class="dg-note" data-i18n="ph.note">An illustration, not a screenshot: the barcode nearest the centre of the frame is read, then the shelf and quantity are picked or said and the record is saved.</figcaption>
+        </figure>
+      </div>
+      <ul class="p-facts reveal">
+        <li><b>8.0+</b><span data-i18n="f1">Android version (API 26)</span></li>
+        <li><b>6</b><span data-i18n="f2">levels a shelf address can have, as in A-2-5</span></li>
+        <li><b>5</b><span data-i18n="f3">minutes of unlimited exports after one rewarded ad</span></li>
+        <li><b>0</b><span data-i18n="f4">accounts or servers; lists live in the phone's own database</span></li>
+      </ul>
+    </section>
 
-  <h2>Ne işe yarar</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Barkodu okut</h3>
-      <p>Kamerayı ürüne tut; ekranın ortasına en yakın barkod seçilir. Barkod yıpranmışsa etiketteki seri numarası
-         yazıdan okunur ya da çektiğin fotoğraftan barkod seçilir.</p>
+    <section class="section" id="features">
+      <div class="sec-head reveal">
+        <h2 data-i18n="ft.t" data-split>Features</h2>
+        <p data-i18n="ft.s">Everything a count needs, from reading a worn label to handing the finished list to someone else.</p>
+      </div>
+      <div class="feat-grid">
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 8V5h3M17 5h3v3M20 16v3h-3M7 19H4v-3"/><path d="M8 9v6M11 9v6M14 9v6M16.5 9v6"/></svg></div>
+          <h3 data-i18n="c1.t">Reads the barcode you aim at</h3>
+          <p data-i18n="c1.d">When several barcodes are in view, the one closest to the centre of the frame wins, so a crowded shelf doesn't give you the neighbouring product. Each read is confirmed with a beep and a vibration.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="11" height="11" rx="2"/><path d="M9 20h9a2 2 0 0 0 2-2V9"/><path d="m7.5 7.5 4 4M11.5 7.5l-4 4"/></svg></div>
+          <h3 data-i18n="c11.t">No double counts</h3>
+          <p data-i18n="c11.d">A barcode that was just saved isn't read again while the camera is still on it; it can be counted again only after the product has left the frame.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h9M4 18h6"/><circle cx="17.5" cy="15.5" r="3"/><path d="m19.7 17.7 1.8 1.8"/></svg></div>
+          <h3 data-i18n="c2.t">Falls back to the label text</h3>
+          <p data-i18n="c2.d">If a worn or torn barcode won't read, the part number is read from the printed text on the label instead.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-8 8"/></svg></div>
+          <h3 data-i18n="c3.t">Barcodes from a photo</h3>
+          <p data-i18n="c3.d">Pick a photo from the gallery, see every barcode found in it and tap the right one. Handy for high shelves and labels you can't get close to.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="17" rx="1.5"/><path d="M4 9.2h16M4 14.8h16M12 3.5v17"/></svg></div>
+          <h3 data-i18n="c4.t">Your own shelf layout</h3>
+          <p data-i18n="c4.d">Define racks with up to six levels (rack, level, slot…) and a colour each. Addresses such as A-2-5 are picked from the layout, and a rack's colour follows it through the lists.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></div>
+          <h3 data-i18n="c5.t">Say the shelf</h3>
+          <p data-i18n="c5.d">“A üç”, “be zemin”, “H iki beş, on iki adet”: the shelf and the quantity are understood from speech and matched against your layout. With auto-listen on, the microphone opens by itself after each scan.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 7h10M4 12h10M4 17h6"/><path d="M18 9v8M14 13h8"/></svg></div>
+          <h3 data-i18n="c6.t">Quantities, not just lines</h3>
+          <p data-i18n="c6.d">Enter a quantity with +/−, the keyboard or your voice. Scanning the same product into the same shelf again adds to its quantity instead of opening a duplicate line.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="m3.5 7.5 8.5 4.5 8.5-4.5M12 12v9"/></svg></div>
+          <h3 data-i18n="c7.t">Batch scanning</h3>
+          <p data-i18n="c7.d">For a shelf full of items: set the location and quantity once, and every scan after that is saved there without opening the shelf panel.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3.5 2.8 19.5h18.4z"/><path d="M12 10v4.5M12 17.2v.01"/></svg></div>
+          <h3 data-i18n="c12.t">Spots split stock</h3>
+          <p data-i18n="c12.d">During batch scanning, if the same product is already on another shelf in the list, the app says so, which catches misplaced items while you count.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.4-4.4"/></svg></div>
+          <h3 data-i18n="c8.t">Where is this part?</h3>
+          <p data-i18n="c8.d">Search every list at once by a barcode or a fragment of a part number, and see which list and which shelf it turned up in.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="m9 11 5 6M14 11l-5 6"/></svg></div>
+          <h3 data-i18n="c9.t">Excel in and out</h3>
+          <p data-i18n="c9.d">Share a count as an .xlsx file over WhatsApp or e-mail, or save it to the phone. The shelf layout travels the same way: open the file on another phone and its racks are imported.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M10 6h10M10 12h10M10 18h10"/><path d="m3.5 6 1.3 1.3L7.2 5M3.5 12l1.3 1.3L7.2 11"/></svg></div>
+          <h3 data-i18n="c10.t">Tidy lists</h3>
+          <p data-i18n="c10.d">Long-press to select records and delete them together, with undo. Drag a record by its handle to move it; the exported file keeps the same order.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="sec-head reveal">
+        <h2 data-i18n="hw.t" data-split>How a count goes</h2>
+        <p data-i18n="hw.s">From an empty list to a file on someone else's desk in four steps.</p>
+      </div>
+      <div class="split">
+        <ol class="steps reveal">
+          <li>
+            <h3 data-i18n="s1.t">Start a list</h3>
+            <p data-i18n="s1.d">A new list is named after the date and time; rename it whenever you like.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s2.t">Scan</h3>
+            <p data-i18n="s2.d">Point the camera at the product. A beep and a vibration mean the barcode was read.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s3.t">Pick the shelf</h3>
+            <p data-i18n="s3.d">Tap or say the shelf and the quantity, and the record is saved. The shelf you used last is already selected for the next product.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s4.t">Export</h3>
+            <p data-i18n="s4.d">Share the list as Excel or save it to the phone. Each level of the shelf address gets its own column, next to barcode, quantity and date, with a total row at the end.</p>
+          </li>
+        </ol>
+        <div class="stack reveal">
+          <div class="box">
+            <h3 data-i18n="vx.t">Saying a shelf</h3>
+            <p data-i18n="vx.d">The app listens in Turkish and matches what it hears against the racks you defined, so only addresses that exist are accepted.</p>
+          </div>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th data-i18n="vx.h1">You say</th><th data-i18n="vx.h2">Saved as</th></tr></thead>
+              <tbody>
+                <tr><td>“A üç”</td><td><code>A-3</code></td></tr>
+                <tr><td>“be zemin”</td><td><code>B-Z</code></td></tr>
+                <tr><td>“ge yüz yirmi”</td><td><code>G-120</code></td></tr>
+                <tr><td>“H iki beş”</td><td><code>H-2-5</code></td></tr>
+                <tr><td>“A üç, on iki adet”</td><td><code>A-3</code> <span data-i18n="vx.q">and a quantity of 12</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="plans">
+      <div class="sec-head reveal">
+        <h2 data-i18n="pl.t" data-split>Ads and subscription</h2>
+        <p data-i18n="pl.s">Counting, saving and searching are free. Only exporting a saved list asks for something in return.</p>
+      </div>
+      <div class="split">
+        <div class="stack reveal">
+          <div class="box">
+            <h3 data-i18n="ad.t">A rewarded ad, only on export</h3>
+            <p data-i18n="ad.d">Before an export you're offered a short rewarded ad. One ad opens exports for five minutes, so sharing a list and then saving it to the phone costs a single ad.</p>
+            <p data-i18n="ad.d2">If no ad can be loaded, the export goes ahead anyway; you're never locked out of your own data. No ads appear while you count.</p>
+          </div>
+          <div class="box">
+            <h3 data-i18n="sb.t">Subscription</h3>
+            <p data-i18n="sb.d">A subscription removes the ads. It's billed through Google Play, renews automatically and can be cancelled at any time under Play Store › Subscriptions; it stays active until the end of the paid period.</p>
+          </div>
+        </div>
+        <div class="tbl-wrap reveal">
+          <table class="tbl">
+            <thead><tr><th data-i18n="pt.h1">Plan</th><th data-i18n="pt.h2">Price</th><th data-i18n="pt.h3">What you get</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="pt.f">Free</td><td data-i18n="pt.fp">0&nbsp;TL</td><td data-i18n="pt.fd">Counting, saving and search; one rewarded ad unlocks five minutes of exports</td></tr>
+              <tr><td data-i18n="pt.m">Monthly</td><td data-i18n="pt.mp">99.99&nbsp;TL</td><td data-i18n="pt.md">No ads, unlimited exports</td></tr>
+              <tr><td data-i18n="pt.y">Yearly</td><td data-i18n="pt.yp">999.99&nbsp;TL</td><td data-i18n="pt.yd">Same as monthly; works out at 83.33 TL a month, about 17% less</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="privacy">
+      <div class="sec-head reveal">
+        <h2 data-i18n="pv.t" data-split>Privacy</h2>
+        <p data-i18n="pv.s">The developer runs no server, so there's nowhere for your lists to go.</p>
+      </div>
+      <div class="split">
+        <div class="tbl-wrap reveal">
+          <table class="tbl">
+            <thead><tr><th data-i18n="pm.h1">Permission</th><th data-i18n="pm.h2">What it's for</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="pm.cam">Camera</td><td data-i18n="pm.camd">Reading barcodes and label text. Frames are processed on the phone by ML Kit and never stored or sent.</td></tr>
+              <tr><td data-i18n="pm.mic">Microphone</td><td data-i18n="pm.micd">Only while you dictate a shelf or a quantity. The audio goes to the phone's speech recognition service (Google on most phones); no recordings are kept.</td></tr>
+              <tr><td data-i18n="pm.net">Internet</td><td data-i18n="pm.netd">Loading rewarded ads and checking the subscription with Google Play.</td></tr>
+              <tr><td data-i18n="pm.vib">Vibration</td><td data-i18n="pm.vibd">Confirming a scan.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="stack reveal">
+          <div class="box">
+            <h3 data-i18n="pv.bt">What leaves the phone</h3>
+            <p data-i18n="pv.bd">When an ad is shown, Google AdMob may process the advertising ID and device information; in the EEA, the UK and Switzerland a consent form comes first. Payments happen entirely inside Google Play and never reach the app. There are no analytics or crash-reporting libraries.</p>
+            <p data-i18n-html="pv.links">Full text: <a href="privacy.html">Privacy policy</a> · <a href="gizlilik.html">Gizlilik politikası (Türkçe)</a></p>
+          </div>
+          <div class="box">
+            <h3 data-i18n="sp.t">Support</h3>
+            <p data-i18n-html="sp.d">Questions, bug reports and requests: <a href="mailto:yigit1903ask@gmail.com">yigit1903ask@gmail.com</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="limits">
+      <div class="sec-head reveal"><h2 data-i18n="limits" data-split>Known limitations</h2></div>
+      <ul class="limits reveal">
+        <li data-i18n="n1">Speech recognition uses the phone's own service. Without an internet connection, Google's offline Turkish voice pack has to be installed.</li>
+        <li data-i18n="n2">Reading part numbers from label text is tuned for common part-number formats and may not work on every label.</li>
+        <li data-i18n="n3">The app doesn't sync lists between phones or keep a cloud copy of them; a count is moved by exporting it.</li>
+        <li data-i18n="n4">The interface and voice input are in Turkish only.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="more">
+      <div class="sec-head reveal"><h2 data-i18n="more" data-split>More projects</h2></div>
+      <nav class="more reveal" aria-label="More projects" data-i18n-attr="aria-label:more">
+        <a href="../projects/mini-on-muhasebe/"><span class="mini art-ledger"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></span><span><small data-i18n="pk.intern">Internship project</small><span data-i18n="pn.muhasebe">Mini Bookkeeping App</span></span></a>
+        <a href="../projects/clean-architecture-generator/"><span class="mini art-cleanarch"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span data-i18n="pn.cleanarch">Clean Architecture Generator</span></span></a>
+        <a href="../projects/multi-tenant-sla-platform/"><span class="mini art-sla"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg></span><span><small data-i18n="pk.fs">Full-stack</small><span data-i18n="pn.sla">Multi-Tenant SLA Platform</span></span></a>
+        <a href="../projects/wol-catcher/"><span class="mini art-wol"><svg viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.6 6.6a7.5 7.5 0 1 0 10.8 0"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span>WolCatcher</span></span></a>
+        <a href="../projects/instareel-blocker/"><span class="mini art-reel"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/></svg></span><span><small data-i18n="pk.mobile">Mobile</small><span>InstaReel Blocker</span></span></a>
+        <a href="../projects/linux-file-monitoring/"><span class="mini art-linux"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12.5 15H17"/></svg></span><span><small data-i18n="pk.sys">Systems</small><span data-i18n="pn.linux">Linux File Monitoring Service</span></span></a>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-top">
+      <div class="fcol fbrand">
+        <a class="logo" href="../"><span class="logo-mark">YK</span><span class="logo-text">Yiğit Kalaycıoğlu</span></a>
+        <p data-i18n="foot.blurb">Full-stack developer building web apps, tools and machine learning studies, from Sakarya, Türkiye.</p>
+      </div>
+      <div class="fcol">
+        <h4 data-i18n="foot.nav">Navigate</h4>
+        <a href="../" data-i18n="home">Home</a>
+        <a href="../#projects" data-i18n="back">All projects</a>
+        <a href="../#process" data-i18n="foot.process">Process</a>
+        <a href="../#contact" data-i18n="foot.contact">Contact</a>
+      </div>
+      <div class="fcol">
+        <h4 data-i18n="foot.find">Elsewhere</h4>
+        <a href="https://github.com/yigitkalaycioglu" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/yi%C4%9Fit-kalayc%C4%B1o%C4%9Flu-85bb60373/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
     </div>
-    <div class="card">
-      <h3>Rafı ve adedi yaz</h3>
-      <p>Raf, koridor ve kat bilgisini (örn. A-2-5) elle ya da sesle gir. Adet girişiyle aynı üründen kaç tane
-         olduğunu tek seferde kaydet.</p>
+    <div class="wordmark reveal" aria-hidden="true">Kalaycıoğlu</div>
+    <div class="foot-bot">
+      <p>© 2026 Yiğit Kalaycıoğlu · <span data-i18n="foot">Built by hand and published on GitHub Pages.</span></p>
+      <a class="to-top" href="#top"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span data-i18n="top">Back to top</span></a>
     </div>
-    <div class="card">
-      <h3>Excel'e aktar</h3>
-      <p>Sayım listesini .xlsx olarak telefona kaydet ya da WhatsApp, e-posta gibi uygulamalarla paylaş.</p>
-    </div>
-    <div class="card">
-      <h3>“Bu parça nerede?”</h3>
-      <p>Eski sayımların içinde barkod ya da parça adıyla ara; ürünün hangi listede, hangi rafta olduğunu gör.</p>
-    </div>
-  </div>
-
-  <h2>Reklamlar ve abonelik</h2>
-  <div class="card">
-    <p>Stok+ ücretsiz indirilir. Sayım yapmak, kaydetmek ve aramak her zaman ücretsizdir; uygulama kendi
-       verilerinizi sizden saklamaz.</p>
-    <p>Kaydedilen bir listeyi dışa aktarırken (Excel paylaşımı) kısa bir <b>ödüllü reklam</b> izlemeniz istenir.
-       Bir reklam 5 dakika boyunca sınırsız dışa aktarma açar; aynı listeyi hem paylaşıp hem cihaza kaydetmek tek reklamla biter. Reklam yüklenemezse dışa aktarma yine de açılır —
-       kendi verinize erişiminiz hiçbir durumda engellenmez.</p>
-    <p>Reklam görmek istemiyorsanız uygulama içinden abone olabilirsiniz: <b>aylık 99,99 ₺</b> veya
-       <b>yıllık 999,99 ₺</b>. Abonelik Google Play üzerinden yönetilir, istediğiniz zaman Play Store &rsaquo;
-       Abonelikler bölümünden iptal edilir.</p>
-  </div>
-
-  <h2>Gizlilik</h2>
-  <div class="card">
-    <p>Sayım listeleriniz telefonun kendi hafızasında tutulur; bize ait bir sunucu yoktur, hesap açmanız gerekmez.
-       Ayrıntılar için: <a href="./gizlilik.html">Gizlilik Politikası</a> ·
-       <a href="./privacy.html">Privacy Policy (English)</a></p>
-  </div>
-
-  <h2>Destek</h2>
-  <div class="card">
-    <p>Soru, hata bildirimi ve istekler için: <a href="mailto:yeepylabs@gmail.com">yeepylabs@gmail.com</a></p>
-  </div>
-
-  <footer>
-    <a href="./gizlilik.html">Gizlilik</a>
-    <a href="./privacy.html">Privacy</a>
-    <a href="mailto:yeepylabs@gmail.com">İletişim</a>
   </footer>
-</div>
 
+  <script type="application/json" id="tr">
+  {
+    "nav.plans": "Fiyatlar",
+    "h.k": "MOBİL · ANDROID",
+    "h.lead": "Depoda ve mağazada raf raf stok saymak için bir Android uygulaması. Ürünü kamerayla okutuyorsunuz, rafı seçiyor ya da söylüyorsunuz, biten sayımı Excel dosyası olarak paylaşıyorsunuz. Listeler telefonda tutuluyor: hesap yok, sunucu yok.",
+    "b1": "Barkod okuma internetsiz çalışır",
+    "b2": "Hesap gerekmez",
+    "b3": "Listeler telefonda kalır",
+    "pp": "Gizlilik politikası",
+    "pp.href": "gizlilik.html",
+    "support": "Destek",
+    "h.note": "Google Play için hazırlanıyor. Yayınlanana kadar herkese açık bir indirme bağlantısı yok.",
+    "ph.note": "Ekran görüntüsü değil, çizim: çerçevenin ortasına en yakın barkod okunuyor, sonra raf ve adet seçilip ya da söylenip kayıt yazılıyor.",
+    "f1": "Android sürümü (API 26)",
+    "f2": "katmana kadar raf adresi, A-2-5 gibi",
+    "f3": "dakika sınırsız dışa aktarma, tek bir ödüllü reklamla",
+    "f4": "hesap ya da sunucu; listeler telefonun kendi veritabanında",
+    "ft.t": "Özellikler",
+    "ft.s": "Yıpranmış etiketi okumaktan biten listeyi başkasına teslim etmeye kadar, bir sayımın ihtiyaç duyduğu her şey.",
+    "c1.t": "Hedeflediğiniz barkodu okur",
+    "c1.d": "Görüntüde birden çok barkod varsa çerçevenin ortasına en yakın olanı seçiliyor; kalabalık rafta yandaki ürün okunmuyor. Her okuma bip sesi ve titreşimle onaylanıyor.",
+    "c11.t": "Çift sayım yok",
+    "c11.d": "Az önce kaydedilen barkod, kamera hâlâ ona bakarken yeniden okunmuyor; ürün kadrajdan çıktıktan sonra tekrar sayılabiliyor.",
+    "c2.t": "Etiket yazısına geçer",
+    "c2.d": "Yıpranmış ya da yırtık barkod okunmazsa parça numarası etiketteki basılı yazıdan okunuyor.",
+    "c3.t": "Fotoğraftan barkod",
+    "c3.d": "Galeriden bir fotoğraf seçiyorsunuz, içinde bulunan bütün barkodlar işaretleniyor, doğru olana dokunuyorsunuz. Yüksek raflar ve yaklaşılamayan etiketler için kullanışlı.",
+    "c4.t": "Kendi raf düzeniniz",
+    "c4.d": "Rafları altı katmana kadar (raf, kat, göz…) ve her birine bir renk vererek tanımlıyorsunuz. A-2-5 gibi adresler bu düzenden seçiliyor, rafın rengi listelerde de onu takip ediyor.",
+    "c5.t": "Rafı söyleyin",
+    "c5.d": "“A üç”, “be zemin”, “H iki beş, on iki adet”: raf ve adet konuşmadan anlaşılıp raf düzeninizle eşleştiriliyor. Otomatik dinleme açıksa her okutmadan sonra mikrofon kendiliğinden açılıyor.",
+    "c6.t": "Satır değil, adet",
+    "c6.d": "Adedi +/− düğmeleri, klavye ya da sesle girin. Aynı ürünü aynı rafa yeniden okutunca yeni satır açılmıyor, adedi artıyor.",
+    "c7.t": "Toplu okutma",
+    "c7.d": "Dolu bir raf için: konumu ve adedi bir kez seçiyorsunuz, sonraki her okutma raf paneli açılmadan oraya kaydediliyor.",
+    "c12.t": "Dağılmış stoğu yakalar",
+    "c12.d": "Toplu okutmada aynı ürün listede başka bir rafta da varsa uygulama bunu söylüyor; yanlış yere konmuş ürünler sayım sırasında ortaya çıkıyor.",
+    "c8.t": "Bu parça nerede?",
+    "c8.d": "Barkodla ya da parça numarasının bir kısmıyla bütün listelerde birden arayın; ürünün hangi listede, hangi rafta göründüğünü görün.",
+    "c9.t": "Excel'e ve Excel'den",
+    "c9.d": "Sayımı .xlsx dosyası olarak WhatsApp ya da e-postayla paylaşın veya telefona kaydedin. Raf düzeni de aynı yolla taşınıyor: dosyayı başka telefonda açınca raflar içe aktarılıyor.",
+    "c10.t": "Düzenli listeler",
+    "c10.d": "Basılı tutup kayıtları seçin ve birlikte silin; geri alma da var. Kaydı kulpundan sürükleyip yerini değiştirin; dışa aktarılan dosya aynı sırayı izliyor.",
+    "hw.t": "Bir sayım nasıl ilerliyor",
+    "hw.s": "Boş bir listeden başkasının masasındaki dosyaya dört adımda.",
+    "s1.t": "Liste açın",
+    "s1.d": "Yeni liste tarih ve saatle adlandırılıyor; adını istediğiniz zaman değiştirebilirsiniz.",
+    "s2.t": "Okutun",
+    "s2.d": "Kamerayı ürüne tutun. Bip sesi ve titreşim barkodun okunduğunu gösterir.",
+    "s3.t": "Rafı seçin",
+    "s3.d": "Rafı ve adedi dokunarak ya da söyleyerek girin, kayıt yazılsın. Son kullandığınız raf bir sonraki ürün için hazır seçili gelir.",
+    "s4.t": "Dışa aktarın",
+    "s4.d": "Listeyi Excel olarak paylaşın ya da telefona kaydedin. Raf adresinin her katmanı barkod, adet ve tarihin yanında kendi sütununa yazılıyor, en altta toplam satırı var.",
+    "vx.t": "Rafı söylemek",
+    "vx.d": "Uygulama Türkçe dinliyor ve duyduğunu tanımladığınız raflarla eşleştiriyor; yalnızca gerçekten var olan adresler kabul ediliyor.",
+    "vx.h1": "Söylediğiniz",
+    "vx.h2": "Kaydedilen",
+    "vx.q": "ve 12 adet",
+    "pl.t": "Reklam ve abonelik",
+    "pl.s": "Saymak, kaydetmek ve aramak ücretsiz. Yalnızca kaydedilmiş bir listeyi dışa aktarmak karşılığında bir şey istiyor.",
+    "ad.t": "Ödüllü reklam, yalnızca dışa aktarırken",
+    "ad.d": "Dışa aktarmadan önce kısa bir ödüllü reklam izlemeniz öneriliyor. Bir reklam dışa aktarmayı beş dakika açık tutuyor; listeyi paylaşıp ardından telefona kaydetmek tek reklama mal oluyor.",
+    "ad.d2": "Reklam yüklenemezse dışa aktarma yine de yapılıyor; kendi verinize erişiminiz hiçbir zaman kilitlenmiyor. Sayım sırasında reklam çıkmıyor.",
+    "sb.t": "Abonelik",
+    "sb.d": "Abonelik reklamları kaldırıyor. Google Play üzerinden faturalandırılıyor, kendiliğinden yenileniyor ve Play Store › Abonelikler bölümünden istediğiniz zaman iptal edilebiliyor; ödenen dönemin sonuna kadar geçerli kalıyor.",
+    "pt.h1": "Plan",
+    "pt.h2": "Fiyat",
+    "pt.h3": "Neler var",
+    "pt.f": "Ücretsiz",
+    "pt.fp": "0 ₺",
+    "pt.fd": "Sayım, kayıt ve arama; tek bir ödüllü reklam beş dakika dışa aktarma açar",
+    "pt.m": "Aylık",
+    "pt.mp": "99,99 ₺",
+    "pt.md": "Reklamsız, sınırsız dışa aktarma",
+    "pt.y": "Yıllık",
+    "pt.yp": "999,99 ₺",
+    "pt.yd": "Aylıkla aynı; ayda 83,33 ₺'ye geliyor, yaklaşık %17 daha ucuz",
+    "pv.t": "Gizlilik",
+    "pv.s": "Geliştiriciye ait bir sunucu yok; listelerinizin gidebileceği bir yer de yok.",
+    "pm.h1": "İzin",
+    "pm.h2": "Ne için",
+    "pm.cam": "Kamera",
+    "pm.camd": "Barkodları ve etiket yazısını okumak. Görüntü telefonda ML Kit ile işleniyor; kaydedilmiyor, gönderilmiyor.",
+    "pm.mic": "Mikrofon",
+    "pm.micd": "Yalnızca rafı ya da adedi söylerken. Ses telefonun ses tanıma hizmetine (çoğu telefonda Google) gidiyor; kayıt tutulmuyor.",
+    "pm.net": "İnternet",
+    "pm.netd": "Ödüllü reklamları yüklemek ve aboneliği Google Play'den kontrol etmek.",
+    "pm.vib": "Titreşim",
+    "pm.vibd": "Okutmayı onaylamak.",
+    "pv.bt": "Telefondan ne çıkıyor",
+    "pv.bd": "Reklam gösterildiğinde Google AdMob reklam kimliğini ve cihaz bilgilerini işleyebiliyor; Avrupa Ekonomik Alanı, Birleşik Krallık ve İsviçre'de önce onay formu çıkıyor. Ödemeler tamamen Google Play içinde gerçekleşiyor ve uygulamaya hiç ulaşmıyor. Analiz ya da çökme raporlama kütüphanesi yok.",
+    "pv.links": "Metnin tamamı: <a href=\"gizlilik.html\">Gizlilik politikası</a> · <a href=\"privacy.html\">Privacy policy (English)</a>",
+    "sp.t": "Destek",
+    "sp.d": "Soru, hata bildirimi ve istekler için: <a href=\"mailto:yigit1903ask@gmail.com\">yigit1903ask@gmail.com</a>",
+    "n1": "Ses tanıma telefonun kendi hizmetini kullanıyor. İnternet yoksa Google'ın çevrimdışı Türkçe ses paketinin kurulu olması gerekiyor.",
+    "n2": "Etiket yazısından parça numarası okuma yaygın parça numarası biçimlerine göre ayarlı; her etikette çalışmayabilir.",
+    "n3": "Uygulama listeleri telefonlar arasında eşitlemiyor ve buluta kopyalamıyor; bir sayım dışa aktarılarak taşınıyor.",
+    "n4": "Arayüz ve sesli giriş yalnızca Türkçe."
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
+  <script src="../assets/js/proje.js?v=2" defer></script>
 </body>
 </html>
