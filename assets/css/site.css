@@ -364,6 +364,7 @@ p { margin: 0 0 14px; }
 .art-wol { background-image: linear-gradient(135deg, #0f172a, #334155 45%, #0ea5c4); }
 .art-reel { background-image: linear-gradient(135deg, #500724, #be185d 50%, #f59e0b); }
 .art-stok { background-image: linear-gradient(135deg, #052e16, #15803d 50%, #a3e635); }
+.art-standby { background-image: linear-gradient(135deg, #1a0f00, #7c3f00 50%, #ff9f0a); }
 .art-linux { background-image: linear-gradient(135deg, #0a0a0a, #1f2937 45%, #f59e0b); }
 .art-cleanarch { background-image: linear-gradient(135deg, #1e0b4b, #512bd4 55%, #c4b5fd); }
 

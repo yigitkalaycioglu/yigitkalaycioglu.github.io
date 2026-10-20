@@ -41,6 +41,7 @@
     'p10.d': 'Barkodla raf raf stok sayımı: ürünü okut, rafı söyle, listeyi Excel olarak paylaş. Sayım telefonda yapılır, veriler telefonda kalır.',
     'barcode': 'Barkod',
     'sys': 'Sistem', 'p11.t': 'Linux Dosya Sistemi İzleme Servisi',
+    'p12.d': 'Telefon şarja konunca açılan başucu saati ve paneli: saat, widget\'lar, müzik, bildirimler ve navigasyon haritası, istenen yere yerleştirilebilir; AMOLED için tasarlandı.',
     'p11.d': 'Bir klasörü alt klasörleriyle izleyip her oluşturma, değiştirme, silme ve taşıma olayını tek satırlık JSON olarak kaydeden arka plan servisi; systemd ile kurulur.',
     'p12.t': 'Clean Architecture Oluşturucu',
     'p12.d': 'Güvenlik öncelikli bir ASP.NET Core Clean Architecture çözümünü tek tıkla oluşturan Windows uygulaması: Domain, Application, Infrastructure ve Api katmanları, yerleşik Identity + JWT ya da harici OpenID Connect ile giriş, örnek bir özellik ve birim, mimari ve entegrasyon testleri. Her dosya önce önizlenebiliyor; çıktı uyarısız derleniyor ve kendi testlerini geçiyor.',
