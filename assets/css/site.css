@@ -139,7 +139,11 @@ html[lang="tr"] [data-l="en"], html[lang="en"] [data-l="tr"] { opacity: .4; }
 .links .ind.on { opacity: 1; }
 .tools { display: flex; gap: 6px; align-items: center; }
 .pill, .icon { height: 36px; border-radius: 8px; border: 1px solid var(--line); background: transparent; color: var(--text); cursor: pointer; font: 600 12.5px var(--font); transition: border-color .2s, background .2s; }
-.pill { display: flex; gap: 6px; align-items: center; padding: 0 11px; }
+.pill { position: relative; isolation: isolate; display: flex; gap: 6px; align-items: center; padding: 0 11px; }
+/* etkin dilin altında kayan seçim pulu */
+.pill span { position: relative; z-index: 1; transition: opacity .4s; }
+.pill::before { content: ""; position: absolute; top: 5px; bottom: 5px; left: 5px; width: calc(50% - 5px); border-radius: 5px; background: var(--surface-3); border: 1px solid var(--line-2); transition: translate .55s var(--ease); }
+html[lang="en"] .pill::before { translate: 100% 0; }
 .icon { width: 36px; display: grid; place-items: center; }
 .pill:hover, .icon:hover { border-color: var(--line-2); background: var(--surface-3); }
 .icon .moon { display: none; }

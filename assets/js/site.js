@@ -131,9 +131,39 @@
     langHooks.forEach((fn) => fn(lang));
   }
   applyLang(root.lang === 'tr' ? 'tr' : 'en');
+
+  // ------------------------------------------------------------ dil geçişi
+  // Görünen yazılar bulanıklaşıp yukarı süzülerek kaybolur, yeni dil aşağıdan netleşerek gelir;
+  // dalga ekranın üstünden altına ilerler. Ekran dışındakiler anında değişir.
+  let langBusy = false;
+  function switchLang(next, els) {
+    if (reduce || !Element.prototype.animate) { applyLang(next); return; }
+    langBusy = true;
+    const vh = innerHeight;
+    const seen = els.filter((el) => {
+      const r = el.getBoundingClientRect();
+      return r.width > 0 && r.bottom > 0 && r.top < vh;
+    }).map((el) => ({ el, d: clamp(el.getBoundingClientRect().top / vh) * 180 }));
+    const outs = seen.map(({ el, d }) => el.animate(
+      [{ opacity: 0, filter: 'blur(8px)', translate: '0 -0.35em' }],
+      { duration: 260, delay: d, easing: 'cubic-bezier(.55, 0, .75, .2)', fill: 'forwards' }));
+    Promise.all(outs.map((a) => a.finished.catch(() => {}))).then(() => {
+      applyLang(next);
+      seen.forEach(({ el, d }, i) => {
+        outs[i].cancel();
+        // bölünmüş başlıklar ve manifesto kelime kelime gelir
+        const parts = el.matches('[data-split]') ? $$('.sw', el) : el.id === 'mani' ? $$('.mw', el) : [el];
+        parts.forEach((part, j) => part.animate(
+          [{ opacity: 0, filter: 'blur(10px)', translate: '0 0.45em', offset: 0 }],
+          { duration: 720, delay: d * 0.6 + Math.min(j, 14) * 38, easing: 'cubic-bezier(.16, 1, .3, 1)', fill: 'backwards' }));
+      });
+      setTimeout(() => { langBusy = false; }, 450);
+    });
+  }
   $('#lang').addEventListener('click', () => {
+    if (langBusy) return;   // geçiş bitmeden gelen tıklamalar yok sayılır
     const next = root.lang === 'tr' ? 'en' : 'tr';
-    applyLang(next);
+    switchLang(next, [...textEls, $('#mani')].filter(Boolean));
     store.set('yk-lang', next);
   });
 
