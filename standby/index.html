@@ -1,97 +1,547 @@
-<!DOCTYPE html>
-<html lang="tr">
+<!doctype html>
+<html lang="en" data-theme="auto">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>StandBy — Şarjdayken zarif bir saat ekranı</title>
-<meta name="description" content="StandBy, telefonunuzu kablosuz şarja koyduğunuzda açılan, AMOLED için tasarlanmış saat, widget, müzik, bildirim ve harita ekranıdır.">
-<link rel="icon" href="./simge.png">
-<link rel="stylesheet" href="./ortak.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>StandBy+ · Yiğit Kalaycıoğlu</title>
+  <meta name="description" content="StandBy+ turns an Android phone on a wireless charger into a bedside clock and dashboard: clocks, widgets, music, notifications and a navigation map, laid out freely and designed for AMOLED screens.">
+  <meta name="theme-color" content="#000000">
+  <link rel="canonical" href="https://yigitkalaycioglu.github.io/standby/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yigitkalaycioglu.github.io/standby/">
+  <meta property="og:title" content="StandBy+ · Yiğit Kalaycıoğlu">
+  <meta property="og:description" content="A bedside clock and dashboard that opens when the phone goes on the charger. Free-form layout, Liquid Glass theme, navigation map, AMOLED-first.">
+  <meta property="og:image" content="https://yigitkalaycioglu.github.io/standby/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="simge.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Mona+Sans:wght@400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css?v=6">
+  <link rel="stylesheet" href="../assets/css/proje.css?v=3">
+  <link rel="stylesheet" href="standby.css?v=1">
+  <script>
+    // tema ve dil, ilk boyamadan önce uygulanır
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        var t = localStorage.getItem('yk-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        var l = localStorage.getItem('yk-lang') || ((navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en');
+        document.documentElement.setAttribute('lang', l);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
+  <a class="skip" href="#features" data-i18n="skip">Skip to content</a>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="guides" aria-hidden="true"><i></i><i></i></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="glow-cursor" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"></div>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="logo">
-      <img src="./simge.png" alt="StandBy simgesi">
-      <b>StandBy</b>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="logo" href="../" data-i18n-attr="aria-label:home" aria-label="Home">
+        <span class="logo-mark">YK</span>
+        <span class="logo-text">Yiğit Kalaycıoğlu</span>
+      </a>
+      <nav class="links" aria-label="Page">
+        <span class="ind" aria-hidden="true"></span>
+        <a href="#features" data-i18n="nav.features">Features</a>
+        <a href="#screens" data-i18n="nav.screens">Screens</a>
+        <a href="#how" data-i18n="nav.how">How it works</a>
+        <a href="#plans" data-i18n="nav.plans">Pricing</a>
+        <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
+      </nav>
+      <div class="tools">
+        <a class="btn sm primary nav-cta" href="../#contact" data-i18n="nav.cta">Get in touch</a>
+        <button class="pill" id="lang" type="button" aria-label="Türkçe / English"><span data-l="tr">TR</span><span data-l="en">EN</span></button>
+        <button class="icon" id="theme" type="button" data-i18n-attr="aria-label:theme" aria-label="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+          <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+        </button>
+      </div>
     </div>
-    <h1>Şarja koyun, ekran güzelleşsin</h1>
-    <p>Telefonunuzu kablosuz şarj cihazına koyduğunuz anda saat, takvim, müzik ve bildirimler zarif, karanlık bir
-       ekranda belirir. AMOLED ekranlar için tasarlandı; yatayda da dikeyde de çalışır.</p>
-  </div>
-</header>
+  </header>
 
-<div class="wrap">
+  <main id="top">
+    <section class="p-hero">
+      <div class="beams" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="p-hero-in">
+        <div class="reveal">
+          <a class="back" href="../#projects"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-i18n="back">All projects</span></a>
+          <p class="kicker" data-i18n="h.k">Mobile · Android</p>
+          <h1 class="p-title" data-split>StandBy+</h1>
+          <p class="lead" data-i18n="h.lead">Put the phone on a wireless charger and it becomes a bedside clock and dashboard: the time, widgets, music, notifications and a navigation map on a dark screen built for AMOLED. Every item can be placed anywhere, and at night the screen turns red and dims itself.</p>
+          <ul class="badges">
+            <li><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="b1">Opens by itself on the charger</span></li>
+            <li><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="b2">No account, no tracking</span></li>
+            <li><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="b3">No ads on the clock screen</span></li>
+          </ul>
+          <ul class="tags"><li>Kotlin</li><li>Jetpack Compose</li><li>AGSL</li><li>MapLibre</li><li>OpenStreetMap</li><li>Play Billing</li><li>Android 8.1+</li></ul>
+          <div class="cta">
+            <a class="btn primary" href="privacy.html" data-i18n-attr="href:pp.href">
+              <svg viewBox="0 0 24 24"><path d="M12 2.5 4.5 5.5v6c0 4.6 3.2 8.3 7.5 10 4.3-1.7 7.5-5.4 7.5-10v-6z"/><path d="m9 12 2 2 4-4"/></svg><span data-i18n="pp">Privacy policy</span></a>
+            <a class="btn" href="mailto:yeepylabs@gmail.com">
+              <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><span data-i18n="support">Support</span></a>
+          </div>
+          <p class="p-note" data-i18n="h.note">In internal testing on Google Play. Until it's published there's no public download link.</p>
+        </div>
+        <figure class="sb-device reveal">
+          <div class="sb-phone">
+            <img src="img/cam-panel.webp" width="1440" height="648" fetchpriority="high" alt="StandBy+'s Panel page with the Liquid Glass theme: quick toggles, clock, music, battery, date and notifications on glass cards" data-i18n-attr="alt:h.alt">
+          </div>
+          <figcaption data-i18n="h.cap">Panel page with the Liquid Glass theme</figcaption>
+        </figure>
+      </div>
+      <ul class="p-facts reveal">
+        <li><b>12×6</b><span data-i18n="f1">grid on each page; every item can go anywhere</span></li>
+        <li><b>15</b><span data-i18n="f2">widgets, stacked and swiped like on a home screen</span></li>
+        <li><b>13</b><span data-i18n="f3">interface languages</span></li>
+        <li><b>144&nbsp;Hz</b><span data-i18n="f4">high refresh rates supported</span></li>
+      </ul>
+    </section>
 
-  <h2>Neler var</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Kendiliğinden açılır</h3>
-      <p>Kablosuz (isterseniz kablolu) şarja geçişi algılar ve kilit ekranında bile açılır. Şarjdan alınca kapanır.</p>
+    <section class="section" id="features">
+      <div class="sec-head reveal">
+        <h2 data-i18n="ft.t" data-split>Features</h2>
+        <p data-i18n="ft.s">Everything a phone on a nightstand or a desk can show, without waking anyone up.</p>
+      </div>
+      <div class="feat-grid">
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="15" height="10" rx="2"/><path d="M21 10.5v3M7.5 12h6"/></svg></div>
+          <h3 data-i18n="c1.t">Opens on the charger</h3>
+          <p data-i18n="c1.d">It notices the phone going onto a wireless charger (or any charger, if you like) and opens on its own, even over the lock screen. Take the phone off and it closes; a short slip off the pad doesn't count.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M10 10v10"/></svg></div>
+          <h3 data-i18n="c2.t">Free-form layout</h3>
+          <p data-i18n="c2.d">Wi-Fi, Bluetooth and mobile data buttons, brightness, clock, music, battery, date, notifications, the map button and widget stacks all sit on a 12×6 grid. Drag them anywhere, resize them from a corner, or move them to another page.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z"/></svg></div>
+          <h3 data-i18n="c3.t">Full-screen editor</h3>
+          <p data-i18n="c3.d">The layout is edited on a full-screen preview. Tap an empty cell to add something there, drop an item on a page tab to move it, and undo any removal. Two extra pages can be designed from scratch.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></div>
+          <h3 data-i18n="c4.t">Five clock styles</h3>
+          <p data-i18n="c4.d">Digital, analog, floating digits, stacked and a solar clock. Digits roll like on a phone's lock screen, and you swipe up and down between styles.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="7" rx="2"/><rect x="4" y="14" width="16" height="7" rx="2"/></svg></div>
+          <h3 data-i18n="c5.t">Widgets and smart stacks</h3>
+          <p data-i18n="c5.d">Calendar, world clock, next alarm, countdown, moon phase, daylight, a live charging gauge, a note and more. Stack them and swipe through, or let the stack turn by itself.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg></div>
+          <h3 data-i18n="c6.t">Music and notifications</h3>
+          <p data-i18n="c6.d">Controls for whatever is playing, with the album art. Notifications appear in their own panel and can be swiped away or cleared together; apps you don't want to see can be filtered out.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="m9 4-5.5 2v14L9 18l6 2 5.5-2V4L15 6z"/><path d="M9 4v14M15 6v14"/></svg></div>
+          <h3 data-i18n="c7.t">Map and navigation</h3>
+          <p data-i18n="c7.d">A dark map, route drawing, a manoeuvre card and spoken directions. Search finds places by name, a filter removes GPS jumps, and you're rerouted as soon as you leave the road. No API key or account.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg></div>
+          <h3 data-i18n="c8.t">Night mode</h3>
+          <p data-i18n="c8.d">When the room goes dark, or on a schedule, the whole screen fades to red and the brightness drops to the minimum, so the clock never lights up the room.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3.5c3.5 4 6 7.3 6 10.3a6 6 0 0 1-12 0c0-3 2.5-6.3 6-10.3z"/></svg></div>
+          <h3 data-i18n="c9.t">Liquid Glass theme</h3>
+          <p data-i18n="c9.d">Cards, buttons and the clock digits turn into glass that bends and blurs the light behind it, over slow, flowing wallpapers. The wallpapers are mostly true black, and there's a pure black one too.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 21a9 9 0 1 1 9-9c0 2-1.5 3-3 3h-2a2 2 0 0 0-1.5 3.3A2 2 0 0 1 12 21z"/></svg></div>
+          <h3 data-i18n="c10.t">Made yours</h3>
+          <p data-i18n="c10.d">Fourteen ready-made themes, seven typefaces with adjustable weight, clock and accent colours, card styles, date formats, an Aura glow and a gradient for the digits.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="13" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+          <h3 data-i18n="c11.t">Kind to AMOLED</h3>
+          <p data-i18n="c11.d">Black backgrounds keep pixels off, the content shifts a few pixels every minute against burn-in, and the screen can dim itself after a while without a touch.</p>
+        </article>
+        <article class="fcard reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 12.5a7 7 0 0 1 14 0"/><path d="M8.5 12.5a3.5 3.5 0 0 1 7 0"/><circle cx="12" cy="12.5" r="1"/><path d="M12 13.5v6"/></svg></div>
+          <h3 data-i18n="c12.t">Quick toggles that toggle</h3>
+          <p data-i18n="c12.d">Wi-Fi, Bluetooth and mobile data switch directly when Shizuku is installed; otherwise the system's own quick panel opens. Photos can also be shown as a slideshow with the time.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="screens">
+      <div class="sec-head reveal">
+        <h2 data-i18n="sc.t" data-split>Screens</h2>
+        <p data-i18n="sc.s">Rendered from the app's own code with sample data. Click to enlarge.</p>
+      </div>
+      <div class="gallery sb-gallery">
+        <figure class="shot-card reveal">
+          <a href="img/panel.webp" data-lightbox data-i18n-attr="aria-label:enlarge" aria-label="Enlarge"><img src="img/panel.webp" width="1440" height="648" loading="lazy" alt="Panel page with the default black cards" data-i18n-attr="alt:g1.alt"></a>
+          <figcaption data-i18n="g1">Panel with the default black cards: toggles, clock, music, battery, date and notifications</figcaption>
+        </figure>
+        <figure class="shot-card reveal">
+          <a href="img/duzenleyici.webp" data-lightbox data-i18n-attr="aria-label:enlarge" aria-label="Enlarge"><img src="img/duzenleyici.webp" width="1440" height="648" loading="lazy" alt="Full-screen layout editor" data-i18n-attr="alt:g2.alt"></a>
+          <figcaption data-i18n="g2">Full-screen editor: drag to move, resize from the corner, drop on a tab to change page</figcaption>
+        </figure>
+        <figure class="shot-card reveal">
+          <a href="img/cam-saat.webp" data-lightbox data-i18n-attr="aria-label:enlarge" aria-label="Enlarge"><img src="img/cam-saat.webp" width="1440" height="648" loading="lazy" alt="Clock page with glass digits" data-i18n-attr="alt:g3.alt"></a>
+          <figcaption data-i18n="g3">Clock page with glass digits over a flowing wallpaper</figcaption>
+        </figure>
+        <figure class="shot-card reveal">
+          <a href="img/widgetlar.webp" data-lightbox data-i18n-attr="aria-label:enlarge" aria-label="Enlarge"><img src="img/widgetlar.webp" width="1440" height="648" loading="lazy" alt="Widget stacks on glass cards" data-i18n-attr="alt:g4.alt"></a>
+          <figcaption data-i18n="g4">Widget stacks: an analog clock and a calendar, each one swipeable</figcaption>
+        </figure>
+        <figure class="shot-card reveal">
+          <a href="img/saf-siyah.webp" data-lightbox data-i18n-attr="aria-label:enlarge" aria-label="Enlarge"><img src="img/saf-siyah.webp" width="1440" height="648" loading="lazy" alt="Liquid Glass on a pure black background" data-i18n-attr="alt:g5.alt"></a>
+          <figcaption data-i18n="g5">Liquid Glass on pure black: only the glass edges light up</figcaption>
+        </figure>
+        <figure class="shot-card reveal">
+          <a href="img/gece.webp" data-lightbox data-i18n-attr="aria-label:enlarge" aria-label="Enlarge"><img src="img/gece.webp" width="1440" height="648" loading="lazy" alt="Night mode in red" data-i18n-attr="alt:g6.alt"></a>
+          <figcaption data-i18n="g6">Night mode: everything in dim red, the wallpaper faded to black</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="sec-head reveal">
+        <h2 data-i18n="hw.t" data-split>How it works</h2>
+        <p data-i18n="hw.s">A Jetpack Compose app that stays out of the way until the phone is charging.</p>
+      </div>
+      <div class="split">
+        <ol class="steps reveal">
+          <li>
+            <h3 data-i18n="s1.t">It watches for the charger</h3>
+            <p data-i18n="s1.d">Android doesn't tell apps in the background when charging starts, so a small foreground service listens for it and shows a quiet notification while it does.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s2.t">It opens over the lock screen</h3>
+            <p data-i18n="s2.d">When charging starts, the clock screen is launched full screen, even with the screen off and the phone locked. Settings opened from there also show over the lock screen.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s3.t">It draws only what changed</h3>
+            <p data-i18n="s3.d">The time ticks once a second, but only the parts that show it are redrawn. Idle animations stop, and system queries run off the UI thread.</p>
+          </li>
+          <li>
+            <h3 data-i18n="s4.t">It gets out of the way</h3>
+            <p data-i18n="s4.d">Lift the phone and the screen closes. A long press opens a small menu for settings or closing by hand.</p>
+          </li>
+        </ol>
+        <div class="stack">
+          <div class="box reveal">
+            <h3 data-i18n="d1.t">Glass that bends light</h3>
+            <p data-i18n="d1.d">The wallpaper is recorded into a graphics layer, and each glass card samples the part behind it. An AGSL shader bends the image near the rounded edges like a thick lens, splits red and blue slightly, and brightens the rim. Android 12 gets the blur without the bending; older versions get translucent glass.</p>
+            <div class="code" data-copy>
+              <div class="code-head">AGSL</div>
+              <pre><code>float t    = clamp(-d / bevel, 0.0, 1.0);
+float k    = 1.0 - t;
+float bend = 1.0 - sqrt(1.0 - k * k);
+half4 c    = content.eval(coord + n * strength * bend);</code></pre>
+            </div>
+          </div>
+          <div class="box reveal">
+            <h3 data-i18n="d2.t">A filter for GPS jumps</h3>
+            <p data-i18n="d2.d">Location comes from GPS, the network and the fused provider at once. Coarse network fixes are dropped while a good GPS fix is recent, impossible jumps are rejected, and the rest goes through a Kalman filter tuned by speed: steady at a red light, no lag on the motorway.</p>
+          </div>
+          <div class="box reveal">
+            <h3 data-i18n="d3.t">Rerouting on the spot</h3>
+            <p data-i18n="d3.d">Leaving the route is detected at about 30 metres, sooner when your heading turns away from it. The new route is requested in your direction of travel, so it doesn't ask for a U-turn.</p>
+          </div>
+          <div class="box reveal">
+            <h3 data-i18n="d4.t">Search that knows names</h3>
+            <p data-i18n="d4.d">Results come from Photon, Nominatim and the phone's own address lookup, merged and sorted: places named after what you typed first, nearby ones before distant ones, each with its kind, such as Restaurant or Pharmacy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="glass">
+      <div class="sec-head reveal">
+        <h2 data-i18n="gl.t" data-split>Liquid Glass wallpapers</h2>
+        <p data-i18n="gl.s">Designed for AMOLED: the base is true black, colour lives only in soft corner glows and thin streaks of light that the glass bends at its edges.</p>
+      </div>
+      <div class="split">
+        <figure class="sb-device reveal">
+          <div class="sb-phone"><img src="img/saat-dikey.webp" width="1440" height="648" loading="lazy" alt="Stacked clock with glass digits over the Aurora wallpaper" data-i18n-attr="alt:gl.alt"></div>
+        </figure>
+        <div class="stack reveal">
+          <div class="box">
+            <h3 data-i18n="gl.wt">Seven wallpapers</h3>
+            <ul class="sb-swatches">
+              <li><i style="background:#000"></i><span data-i18n="w0">Pure black</span></li>
+              <li><i style="background:linear-gradient(135deg,#5b3cff,#ff4d9d)"></i><span data-i18n="w1">Dusk</span></li>
+              <li><i style="background:linear-gradient(135deg,#0a84ff,#12c6be)"></i><span data-i18n="w2">Ocean</span></li>
+              <li><i style="background:linear-gradient(135deg,#ff6a3d,#ff2e7a)"></i><span data-i18n="w3">Sunset</span></li>
+              <li><i style="background:linear-gradient(135deg,#2bd66a,#7b5cff)"></i><span data-i18n="w4">Aurora</span></li>
+              <li><i style="background:linear-gradient(135deg,#4c4c58,#9a9aa6)"></i><span data-i18n="w5">Graphite</span></li>
+              <li><i style="background:linear-gradient(135deg,#ff9f0a,#f5e6c8)"></i><span data-i18n="w6">Theme colours</span></li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3 data-i18n="gl.ft">Clear or frosted</h3>
+            <p data-i18n="gl.fd">Clear glass shows the wallpaper sharply and bends it at the edges; frosted glass is darker and blurrier, so text stays easy to read on any wallpaper. In night mode the wallpaper fades out and the screen goes back to black.</p>
+          </div>
+          <div class="box">
+            <h3 data-i18n="gl.pt">Light on the battery</h3>
+            <p data-i18n="gl.pd">The wallpaper moves about twelve times a second, less than a pixel each time. The glass is redrawn only when the wallpaper or the card moves, not when the clock ticks or the battery bar shimmers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="plans">
+      <div class="sec-head reveal">
+        <h2 data-i18n="pl.t" data-split>Free and Premium</h2>
+        <p data-i18n="pl.s">The clock, the layout, widgets and night mode are free. Premium adds the extras, and most of them can be tried for a day first.</p>
+      </div>
+      <div class="split">
+        <div class="stack reveal">
+          <div class="box">
+            <h3 data-i18n="ad.t">Try one thing for 24 hours</h3>
+            <p data-i18n="ad.d">A Premium theme, typeface, clock style, widget or the map can be unlocked for 24 hours by watching a short rewarded ad you start yourself. Each item needs its own ad, and it locks again when the day is over.</p>
+            <p data-i18n="ad.d2">Ads never appear on the clock screen by themselves, and never over the lock screen; the phone has to be unlocked before one is shown.</p>
+          </div>
+          <div class="box">
+            <h3 data-i18n="sb.t">Subscription</h3>
+            <p data-i18n="sb.d">StandBy+ Premium is a monthly subscription billed through Google Play. It renews automatically and can be cancelled at any time under Play Store › Payments &amp; subscriptions; it stays active until the end of the paid period.</p>
+          </div>
+        </div>
+        <div class="tbl-wrap reveal">
+          <table class="tbl">
+            <thead><tr><th data-i18n="pt.h1">Feature</th><th data-i18n="pt.h2">Free</th><th>Premium</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="pt.r1">Clock, layout, editor, night mode</td><td>✓</td><td>✓</td></tr>
+              <tr><td data-i18n="pt.r2">Themes, typefaces, clock styles, widgets</td><td data-i18n="pt.r2f">Some; others for 24 h with an ad</td><td data-i18n="pt.all">All</td></tr>
+              <tr><td data-i18n="pt.r3">Map and navigation</td><td data-i18n="pt.r3f">24 h with an ad</td><td>✓</td></tr>
+              <tr><td>Liquid Glass</td><td>—</td><td>✓</td></tr>
+              <tr><td data-i18n="pt.r5">Aura, digit gradient, custom colours</td><td>—</td><td>✓</td></tr>
+              <tr><td data-i18n="pt.r6">Smart stacks, notification filter</td><td>—</td><td>✓</td></tr>
+              <tr><td data-i18n="pt.r7">Ads in Settings</td><td data-i18n="pt.r7f">A small banner</td><td data-i18n="pt.none">None</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="privacy">
+      <div class="sec-head reveal">
+        <h2 data-i18n="pv.t" data-split>Privacy</h2>
+        <p data-i18n="pv.s">No account, no analytics, and no server of the developer's own. Notifications and photos never leave the phone.</p>
+      </div>
+      <div class="split">
+        <div class="tbl-wrap reveal">
+          <table class="tbl">
+            <thead><tr><th data-i18n="pm.h1">Permission</th><th data-i18n="pm.h2">What it's for</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="pm.n">Notifications</td><td data-i18n="pm.nd">The quiet notification of the service that notices the charger.</td></tr>
+              <tr><td data-i18n="pm.o">Show over other apps</td><td data-i18n="pm.od">Together with full-screen notifications: opening the clock by itself when charging starts, even over the lock screen.</td></tr>
+              <tr><td data-i18n="pm.a">Notification access</td><td data-i18n="pm.ad">Optional. Showing notifications and the music that's playing on the Panel. The content is read only to be displayed and stays on the phone.</td></tr>
+              <tr><td data-i18n="pm.l">Location</td><td data-i18n="pm.ld">Optional, and only while the map is open. It isn't collected in the background.</td></tr>
+              <tr><td data-i18n="pm.p">Photos</td><td data-i18n="pm.pd">Picked with the system photo picker for the slideshow; no storage permission is needed.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="stack reveal">
+          <div class="box">
+            <h3 data-i18n="pv.bt">What leaves the phone</h3>
+            <p data-i18n="pv.bd">Map tiles come from OpenFreeMap, routes from the OpenStreetMap community's routing server, and searches go to Photon, Nominatim and the phone's address lookup. With ads, Google AdMob may process the advertising ID; in the EEA, the UK and Switzerland a consent form comes first. Payments stay inside Google Play.</p>
+            <p data-i18n-html="pv.links">Full text: <a href="privacy.html">Privacy policy</a> · <a href="gizlilik.html">Gizlilik politikası (Türkçe)</a></p>
+          </div>
+          <div class="box">
+            <h3 data-i18n="sp.t">Support</h3>
+            <p data-i18n-html="sp.d">Questions, bug reports and requests: <a href="mailto:yeepylabs@gmail.com">yeepylabs@gmail.com</a></p>
+            <p data-i18n="sp.d2">Doesn't open on the charger? Make sure every item under Settings › Setup is green. On Xiaomi, Oppo, Vivo and Huawei phones, also allow auto-start, opening windows from the background and showing on the lock screen in the app's system settings.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="limits">
+      <div class="sec-head reveal"><h2 data-i18n="limits" data-split>Known limitations</h2></div>
+      <ul class="limits reveal">
+        <li data-i18n="n1">The full glass effect needs Android 13; Android 12 gets blur without bending, and older versions translucent glass.</li>
+        <li data-i18n="n2">The map, routing and place search need an internet connection.</li>
+        <li data-i18n="n3">Some phone makers stop background apps aggressively; on those phones StandBy+ may need extra permissions to open by itself.</li>
+        <li data-i18n="n4">Spoken directions use the phone's text-to-speech engine, so the voice depends on what's installed.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="more">
+      <div class="sec-head reveal"><h2 data-i18n="more" data-split>More projects</h2></div>
+      <nav class="more reveal" aria-label="More projects" data-i18n-attr="aria-label:more">
+        <a href="../stokplus/"><span class="mini art-stok"><img src="../stokplus/simge.png" alt="" loading="lazy"></span><span><small data-i18n="pk.mobile">Mobile</small><span>Stok+</span></span></a>
+        <a href="../projects/mini-on-muhasebe/"><span class="mini art-ledger"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></span><span><small data-i18n="pk.intern">Internship project</small><span data-i18n="pn.muhasebe">Mini Bookkeeping App</span></span></a>
+        <a href="../projects/clean-architecture-generator/"><span class="mini art-cleanarch"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span data-i18n="pn.cleanarch">Clean Architecture Generator</span></span></a>
+        <a href="../projects/multi-tenant-sla-platform/"><span class="mini art-sla"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg></span><span><small data-i18n="pk.fs">Full-stack</small><span data-i18n="pn.sla">Multi-Tenant SLA Platform</span></span></a>
+        <a href="../projects/instareel-blocker/"><span class="mini art-reel"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/></svg></span><span><small data-i18n="pk.mobile">Mobile</small><span>InstaReel Blocker</span></span></a>
+        <a href="../projects/wol-catcher/"><span class="mini art-wol"><svg viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.6 6.6a7.5 7.5 0 1 0 10.8 0"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span>WolCatcher</span></span></a>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-top">
+      <div class="fcol fbrand">
+        <a class="logo" href="../"><span class="logo-mark">YK</span><span class="logo-text">Yiğit Kalaycıoğlu</span></a>
+        <p data-i18n="foot.blurb">Full-stack developer building web apps, tools and machine learning studies, from Sakarya, Türkiye.</p>
+      </div>
+      <div class="fcol">
+        <h4 data-i18n="foot.nav">Navigate</h4>
+        <a href="../" data-i18n="home">Home</a>
+        <a href="../#projects" data-i18n="back">All projects</a>
+        <a href="../#process" data-i18n="foot.process">Process</a>
+        <a href="../#contact" data-i18n="foot.contact">Contact</a>
+      </div>
+      <div class="fcol">
+        <h4 data-i18n="foot.find">Elsewhere</h4>
+        <a href="https://github.com/yigitkalaycioglu" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/yi%C4%9Fit-kalayc%C4%B1o%C4%9Flu-85bb60373/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
     </div>
-    <div class="card">
-      <h3>Panel</h3>
-      <p>Hızlı ayarlar, müzik kontrolleri, pil, dijital tarih ve kaydırarak silinebilen bildirimler tek ekranda.</p>
+    <div class="wordmark reveal" aria-hidden="true">Kalaycıoğlu</div>
+    <div class="foot-bot">
+      <p>© 2026 Yiğit Kalaycıoğlu · <span data-i18n="foot">Built by hand and published on GitHub Pages.</span></p>
+      <a class="to-top" href="#top"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span data-i18n="top">Back to top</span></a>
     </div>
-    <div class="card">
-      <h3>Saatler ve widget'lar</h3>
-      <p>Dijital, analog, Float, dikey ve güneş saatleri; takvim, dünya saati, alarm ve pil widget'larıyla akıllı yığınlar.</p>
-    </div>
-    <div class="card">
-      <h3>Harita ve navigasyon</h3>
-      <p>Android Auto görünümlü karanlık harita, rota çizimi, manevra kartı ve Türkçe sesli yönlendirme — API anahtarı gerekmez.</p>
-    </div>
-    <div class="card">
-      <h3>Gece modu</h3>
-      <p>Oda karardığında ekran kırmızı tona geçer, parlaklık en aza iner; uykunuzu bölmez.</p>
-    </div>
-    <div class="card">
-      <h3>Tamamen sizin</h3>
-      <p>Hazır temalar, 7 yazı tipi, renkler, kalınlık, tarih biçimi, kart düzeni, bildirim filtresi ve daha fazlası.</p>
-    </div>
-  </div>
-
-  <h2>Neden bu izinler?</h2>
-  <div class="card">
-    <ul>
-      <li><b>Bildirimler ve ön plan hizmeti:</b> şarja konulduğunuzu algılamak için.</li>
-      <li><b>Üstte gösterme / tam ekran:</b> StandBy'ın şarjda, kilit ekranında bile kendiliğinden açılması için.</li>
-      <li><b>Bildirim erişimi (isteğe bağlı):</b> Panel'de bildirimleri ve müziği göstermek için; içerik telefonda kalır.</li>
-      <li><b>Konum (isteğe bağlı):</b> yalnızca harita açıkken.</li>
-    </ul>
-  </div>
-
-  <h2>Ücretsiz ve Premium</h2>
-  <div class="card">
-    <p>StandBy ücretsizdir; reklamlar Ayarlar ekranında ve yalnızca sizin istediğiniz ödüllü reklamlarla gösterilir — saat
-       ekranında kendiliğinden reklam çıkmaz. Premium temaları, yazı tiplerini, saat stillerini, widget'ları ve haritayı
-       tek tek kısa bir reklam izleyerek 24 saat deneyebilirsiniz.</p>
-    <p><b>StandBy Premium</b> (aylık abonelik): harita ve navigasyon, Aura, saat gradyanı, sınırsız renk, tüm temalar ve
-       yazı tipleri, gelişmiş düzen — ve reklamsız deneyim. Abonelik Google Play üzerinden yönetilir ve istediğiniz zaman
-       iptal edilir.</p>
-  </div>
-
-  <h2>Gizlilik</h2>
-  <div class="card">
-    <p>Hesap yok, takip yok. Bildirimleriniz ve fotoğraflarınız telefonda kalır. Ayrıntılar:
-       <a href="./gizlilik.html">Gizlilik Politikası</a> · <a href="./privacy.html">Privacy Policy (English)</a></p>
-  </div>
-
-  <h2>Destek</h2>
-  <div class="card">
-    <p>Soru, hata bildirimi ve istekler için: <a href="mailto:yeepylabs@gmail.com">yeepylabs@gmail.com</a></p>
-    <p><b>StandBy şarjda açılmıyor mu?</b> Uygulamadaki <i>Ayarlar &rsaquo; Kurulum</i> bölümünde tüm izinlerin yeşil
-       olduğundan emin olun. Xiaomi, Oppo, Vivo, Huawei gibi telefonlarda ayrıca uygulama bilgisinden
-       “Otomatik başlat”, “Arka planda pencere aç” ve “Kilit ekranında göster” izinlerini açın.</p>
-  </div>
-
-  <footer>
-    <a href="./gizlilik.html">Gizlilik</a>
-    <a href="./privacy.html">Privacy</a>
-    <a href="mailto:yeepylabs@gmail.com">İletişim</a>
   </footer>
-</div>
 
+  <script type="application/json" id="tr">
+  {
+    "_title": "StandBy+ · Yiğit Kalaycıoğlu",
+    "nav.plans": "Fiyatlandırma",
+    "nav.screens": "Ekranlar",
+    "pp": "Gizlilik politikası",
+    "pp.href": "gizlilik.html",
+    "support": "Destek",
+    "h.k": "Mobil · Android",
+    "h.lead": "Telefonu kablosuz şarja koyun, başucu saatine ve paneline dönüşsün: saat, widget'lar, müzik, bildirimler ve navigasyon haritası, AMOLED için tasarlanmış karanlık bir ekranda. Her öğe istediğiniz yere konabiliyor; gece ekran kırmızıya dönüp kendini kısıyor.",
+    "b1": "Şarja konunca kendiliğinden açılır",
+    "b2": "Hesap yok, takip yok",
+    "b3": "Saat ekranında reklam yok",
+    "h.note": "Google Play'de iç test aşamasında. Yayınlanana kadar herkese açık bir indirme bağlantısı yok.",
+    "h.alt": "Liquid Glass temasıyla StandBy+'ın Panel sayfası: cam kartlar üzerinde hızlı ayarlar, saat, müzik, pil, tarih ve bildirimler",
+    "h.cap": "Liquid Glass temasıyla Panel sayfası",
+    "f1": "ızgara her sayfada; her öğe istenen yere konabiliyor",
+    "f2": "widget; ana ekrandaki gibi yığılıp kaydırılıyor",
+    "f3": "arayüz dili",
+    "f4": "yüksek yenileme hızı desteği",
+    "ft.t": "Özellikler",
+    "ft.s": "Komodindeki ya da masadaki bir telefonun gösterebileceği her şey, kimseyi uyandırmadan.",
+    "c1.t": "Şarjda açılır",
+    "c1.d": "Telefonun kablosuz şarja (isterseniz her şarja) konduğunu fark edip kendiliğinden açılır, kilit ekranının üstünde bile. Telefonu kaldırınca kapanır; şarj pedinden kısa bir kayma sayılmaz.",
+    "c2.t": "Serbest yerleşim",
+    "c2.d": "Wi-Fi, Bluetooth ve mobil veri düğmeleri, parlaklık, saat, müzik, pil, tarih, bildirimler, harita düğmesi ve widget yığınları 12×6'lık bir ızgarada duruyor. İstediğiniz yere sürükleyin, köşesinden boyutlandırın ya da başka bir sayfaya taşıyın.",
+    "c3.t": "Tam ekran düzenleyici",
+    "c3.d": "Yerleşim tam ekran bir önizlemede düzenleniyor. Boş bir hücreye dokunup oraya öğe ekleyin, öğeyi sayfa sekmesine bırakıp taşıyın, her kaldırmayı geri alın. İki ek sayfa sıfırdan tasarlanabiliyor.",
+    "c4.t": "Beş saat stili",
+    "c4.d": "Dijital, analog, süzülen rakamlar, alt alta ve güneş saati. Rakamlar telefonların kilit ekranındaki gibi yuvarlanıyor; stiller arasında yukarı aşağı kaydırarak geçiliyor.",
+    "c5.t": "Widget'lar ve akıllı yığınlar",
+    "c5.d": "Takvim, dünya saati, sonraki alarm, geri sayım, ay evresi, gün ışığı, canlı şarj göstergesi, not ve daha fazlası. Yığın yapıp kaydırarak gezin ya da yığını kendiliğinden döndürün.",
+    "c6.t": "Müzik ve bildirimler",
+    "c6.d": "Çalan şarkının kontrolleri, albüm kapağıyla. Bildirimler kendi panelinde görünüyor; kaydırarak ya da topluca silinebiliyor, görmek istemediğiniz uygulamalar süzülebiliyor.",
+    "c7.t": "Harita ve navigasyon",
+    "c7.d": "Karanlık harita, rota çizimi, manevra kartı ve sesli yönlendirme. Arama yerleri adıyla buluyor, bir süzgeç GPS sıçramalarını ayıklıyor, yoldan çıkar çıkmaz yeni rota hesaplanıyor. API anahtarı ya da hesap gerekmiyor.",
+    "c8.t": "Gece modu",
+    "c8.d": "Oda karardığında ya da belirlediğiniz saatlerde bütün ekran kırmızıya döner ve parlaklık en aza iner; saat odayı hiç aydınlatmaz.",
+    "c9.t": "Liquid Glass teması",
+    "c9.d": "Kartlar, düğmeler ve saat rakamları, arkasındaki ışığı büken ve bulanıklaştıran cama dönüşüyor; altında yavaşça akan duvar kâğıtları var. Duvar kâğıtlarının çoğu saf siyah, tamamen siyah bir seçenek de var.",
+    "c10.t": "Tamamen sizin",
+    "c10.d": "On dört hazır tema, kalınlığı ayarlanabilen yedi yazı tipi, saat ve vurgu renkleri, kart görünümleri, tarih biçimleri, Aura ışığı ve rakamlar için renk geçişi.",
+    "c11.t": "AMOLED dostu",
+    "c11.d": "Siyah zemin pikselleri kapalı tutuyor, içerik ekran yanmasına karşı her dakika birkaç piksel kayıyor ve dokunulmadığında ekran bir süre sonra kendini kısabiliyor.",
+    "c12.t": "Gerçekten açıp kapatan düğmeler",
+    "c12.d": "Shizuku kuruluysa Wi-Fi, Bluetooth ve mobil veri doğrudan açılıp kapanıyor; değilse sistemin kendi hızlı ayar paneli açılıyor. Fotoğraflarınız da saatle birlikte slayt gösterisi olarak gösterilebiliyor.",
+    "sc.t": "Ekranlar",
+    "sc.s": "Uygulamanın kendi koduyla, örnek verilerle çizildi. Büyütmek için görsele tıklayın.",
+    "g1": "Varsayılan siyah kartlarla Panel: düğmeler, saat, müzik, pil, tarih ve bildirimler",
+    "g1.alt": "Varsayılan siyah kartlarla Panel sayfası",
+    "g2": "Tam ekran düzenleyici: sürükleyerek taşıyın, köşesinden boyutlandırın, sekmeye bırakıp sayfa değiştirin",
+    "g2.alt": "Tam ekran yerleşim düzenleyicisi",
+    "g3": "Akan duvar kâğıdı üzerinde cam rakamlarla saat sayfası",
+    "g3.alt": "Cam rakamlı saat sayfası",
+    "g4": "Widget yığınları: analog saat ve takvim, her biri kaydırılabilir",
+    "g4.alt": "Cam kartlar üzerinde widget yığınları",
+    "g5": "Saf siyah zeminde Liquid Glass: yalnızca camın kenarları parlıyor",
+    "g5.alt": "Saf siyah zeminde Liquid Glass",
+    "g6": "Gece modu: her şey loş kırmızı, duvar kâğıdı siyaha sönmüş",
+    "g6.alt": "Kırmızı gece modu",
+    "hw.t": "Nasıl çalışıyor",
+    "hw.s": "Telefon şarj olana kadar hiç ortada görünmeyen bir Jetpack Compose uygulaması.",
+    "s1.t": "Şarjı izler",
+    "s1.d": "Android, şarjın başladığını arka plandaki uygulamalara bildirmiyor; bu yüzden küçük bir ön plan hizmeti bunu dinliyor ve bu sırada sessiz bir bildirim gösteriyor.",
+    "s2.t": "Kilit ekranının üstünde açılır",
+    "s2.d": "Şarj başlayınca saat ekranı tam ekran açılıyor; ekran kapalı ve telefon kilitliyken bile. Oradan açılan ayarlar da kilit ekranının üstünde görünüyor.",
+    "s3.t": "Yalnızca değişeni çizer",
+    "s3.d": "Saat saniyede bir ilerliyor ama yalnızca onu gösteren parçalar yeniden çiziliyor. Boştaki animasyonlar duruyor, sistem sorguları arayüz iş parçacığının dışında yapılıyor.",
+    "s4.t": "Sonra çekilir",
+    "s4.d": "Telefonu kaldırınca ekran kapanıyor. Uzun basınca ayarlar ya da elle kapatmak için küçük bir menü açılıyor.",
+    "d1.t": "Işığı büken cam",
+    "d1.d": "Duvar kâğıdı bir grafik katmanına kaydediliyor; her cam kart arkasına düşen parçayı örnekliyor. Bir AGSL gölgelendiricisi görüntüyü yuvarlak kenarlara yakın yerde kalın bir mercek gibi büküyor, kırmızıyı ve maviyi hafifçe ayırıyor ve kenarı aydınlatıyor. Android 12'de bükülme olmadan bulanıklık, daha eski sürümlerde yarı saydam cam kullanılıyor.",
+    "d2.t": "GPS sıçramalarına süzgeç",
+    "d2.d": "Konum GPS'ten, ağdan ve birleşik sağlayıcıdan aynı anda geliyor. Yakın zamanda iyi bir GPS konumu varken kaba ağ konumları atılıyor, imkânsız sıçramalar reddediliyor; kalanlar hıza göre ayarlanan bir Kalman süzgecinden geçiyor: kırmızı ışıkta sabit, otoyolda gecikmesiz.",
+    "d3.t": "Anında yeni rota",
+    "d3.d": "Rotadan çıkış yaklaşık 30 metrede, yönünüz rotadan ayrıldığında daha da erken algılanıyor. Yeni rota gittiğiniz yönde isteniyor; böylece U dönüşü önermiyor.",
+    "d4.t": "Adları bilen arama",
+    "d4.d": "Sonuçlar Photon'dan, Nominatim'den ve telefonun adres servisinden gelip birleştiriliyor ve sıralanıyor: önce yazdığınızla aynı adı taşıyan yerler, uzaktakilerden önce yakındakiler; her biri Restoran ya da Eczane gibi türüyle.",
+    "gl.t": "Liquid Glass duvar kâğıtları",
+    "gl.s": "AMOLED için tasarlandı: zemin saf siyah; renk yalnızca köşelerdeki yumuşak ışıklarda ve camın kenarlarında büktüğü ince ışık çizgilerinde.",
+    "gl.alt": "Kutup ışığı duvar kâğıdı üzerinde cam rakamlarla alt alta saat",
+    "gl.wt": "Yedi duvar kâğıdı",
+    "w0": "Saf siyah", "w1": "Alacakaranlık", "w2": "Okyanus", "w3": "Gün batımı", "w4": "Kutup ışığı", "w5": "Grafit", "w6": "Tema renkleri",
+    "gl.ft": "Şeffaf ya da buzlu",
+    "gl.fd": "Şeffaf cam duvar kâğıdını net gösterip kenarlarında büküyor; buzlu cam daha koyu ve bulanık, böylece yazılar her duvar kâğıdında okunaklı kalıyor. Gece modunda duvar kâğıdı söner, ekran yeniden siyaha döner.",
+    "gl.pt": "Pili yormaz",
+    "gl.pd": "Duvar kâğıdı saniyede yaklaşık on iki kez, her seferinde bir pikselden az kayıyor. Cam yalnızca duvar kâğıdı ya da kart hareket ettiğinde yeniden çiziliyor; saat ilerlediğinde ya da pil çubuğu parladığında değil.",
+    "pl.t": "Ücretsiz ve Premium",
+    "pl.s": "Saat, yerleşim, widget'lar ve gece modu ücretsiz. Premium ekstraları getiriyor; çoğu önce bir gün denenebiliyor.",
+    "ad.t": "Bir şeyi 24 saat deneyin",
+    "ad.d": "Premium bir tema, yazı tipi, saat stili, widget ya da harita, sizin başlattığınız kısa bir ödüllü reklamla 24 saatliğine açılabiliyor. Her öğe için ayrı reklam gerekiyor; gün bitince yeniden kilitleniyor.",
+    "ad.d2": "Saat ekranında kendiliğinden hiç reklam çıkmıyor, kilit ekranının üstünde de hiçbir zaman; reklamdan önce telefonun kilidinin açılması gerekiyor.",
+    "sb.t": "Abonelik",
+    "sb.d": "StandBy+ Premium, Google Play üzerinden ödenen aylık bir abonelik. Kendiliğinden yenileniyor ve Play Store › Ödemeler ve abonelikler bölümünden istediğiniz zaman iptal edilebiliyor; ödenen dönemin sonuna kadar etkin kalıyor.",
+    "pt.h1": "Özellik", "pt.h2": "Ücretsiz",
+    "pt.r1": "Saat, yerleşim, düzenleyici, gece modu",
+    "pt.r2": "Temalar, yazı tipleri, saat stilleri, widget'lar",
+    "pt.r2f": "Bir kısmı; diğerleri reklamla 24 saat",
+    "pt.all": "Hepsi",
+    "pt.r3": "Harita ve navigasyon",
+    "pt.r3f": "Reklamla 24 saat",
+    "pt.r5": "Aura, rakam gradyanı, özel renkler",
+    "pt.r6": "Akıllı yığınlar, bildirim filtresi",
+    "pt.r7": "Ayarlar'daki reklam",
+    "pt.r7f": "Küçük bir banner",
+    "pt.none": "Yok",
+    "pv.t": "Gizlilik",
+    "pv.s": "Hesap yok, analiz yok, geliştiricinin kendi sunucusu yok. Bildirimler ve fotoğraflar telefondan hiç çıkmıyor.",
+    "pm.h1": "İzin", "pm.h2": "Ne için",
+    "pm.n": "Bildirimler",
+    "pm.nd": "Şarjı fark eden hizmetin sessiz bildirimi.",
+    "pm.o": "Üstte gösterme",
+    "pm.od": "Tam ekran bildirimle birlikte: şarj başlayınca saatin kendiliğinden, kilit ekranının üstünde bile açılması.",
+    "pm.a": "Bildirim erişimi",
+    "pm.ad": "İsteğe bağlı. Panel'de bildirimleri ve çalan müziği göstermek. İçerik yalnızca göstermek için okunuyor ve telefonda kalıyor.",
+    "pm.l": "Konum",
+    "pm.ld": "İsteğe bağlı; yalnızca harita açıkken. Arka planda toplanmıyor.",
+    "pm.p": "Fotoğraflar",
+    "pm.pd": "Slayt gösterisi için sistemin fotoğraf seçicisiyle seçiliyor; depolama izni gerekmiyor.",
+    "pv.bt": "Telefondan neler çıkıyor",
+    "pv.bd": "Harita karoları OpenFreeMap'ten, rotalar OpenStreetMap topluluğunun rota sunucusundan geliyor; aramalar Photon'a, Nominatim'e ve telefonun adres servisine gidiyor. Reklamlarla birlikte Google AdMob reklam kimliğini işleyebiliyor; AEA, Birleşik Krallık ve İsviçre'de önce bir onay formu gösteriliyor. Ödemeler tamamen Google Play içinde kalıyor.",
+    "pv.links": "Tam metin: <a href=\"gizlilik.html\">Gizlilik politikası</a> · <a href=\"privacy.html\">Privacy policy (English)</a>",
+    "sp.t": "Destek",
+    "sp.d": "Soru, hata bildirimi ve istekler için: <a href=\"mailto:yeepylabs@gmail.com\">yeepylabs@gmail.com</a>",
+    "sp.d2": "Şarjda açılmıyor mu? Ayarlar › Kurulum bölümündeki her şeyin yeşil olduğundan emin olun. Xiaomi, Oppo, Vivo ve Huawei telefonlarda ayrıca uygulamanın sistem ayarlarından otomatik başlatmaya, arka planda pencere açmaya ve kilit ekranında göstermeye izin verin.",
+    "n1": "Camın tam etkisi Android 13 gerektiriyor; Android 12'de bükülme olmadan bulanıklık, daha eski sürümlerde yarı saydam cam var.",
+    "n2": "Harita, rota ve yer araması internet bağlantısı gerektiriyor.",
+    "n3": "Bazı telefon üreticileri arka plandaki uygulamaları sert biçimde durduruyor; bu telefonlarda StandBy+'ın kendiliğinden açılması için ek izinler gerekebiliyor.",
+    "n4": "Sesli yönlendirme telefonun metin okuma motorunu kullanıyor; ses, yüklü olana göre değişiyor."
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
+  <script src="../assets/js/proje.js?v=2" defer></script>
 </body>
 </html>

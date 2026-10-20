@@ -1,0 +1,22 @@
+/* StandBy sayfasına özel: ortak proje.css'in üzerine yalnızca bu sayfada uygulanır */
+
+/* Yatay duran telefon (StandBy şarjda yatay kullanılır) */
+.sb-device { margin: 0; }
+.sb-phone { position: relative; padding: 10px; border-radius: 30px; background: #0b0b10; box-shadow: 0 40px 80px rgba(0, 0, 0, .5), inset 0 0 0 2px #2a2a33; }
+.sb-phone::before { content: ""; position: absolute; left: 22px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: #1d1d26; box-shadow: inset 0 0 0 2px #2a2a33; z-index: 2; }
+.sb-phone img { display: block; width: 100%; height: auto; border-radius: 21px; background: #000; }
+.sb-device figcaption { margin-top: 14px; color: var(--text-2); font-size: 13.5px; text-align: center; }
+
+/* Ekran görüntüleri 20:9 (ortak galeri 16:10 kırpıyordu) */
+.sb-gallery { grid-template-columns: repeat(2, 1fr); }
+.sb-gallery .shot-card a { aspect-ratio: 20 / 9; background: #000; }
+.sb-gallery .shot-card img { object-position: center; }
+
+/* Duvar kâğıdı renk örnekleri */
+.sb-swatches { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 14px 0 0; }
+.sb-swatches li { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px 5px 6px; border-radius: 999px; background: var(--surface-3); border: 1px solid var(--line-2); font-size: 13px; color: var(--text); }
+.sb-swatches i { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .25); flex: none; }
+
+@media (max-width: 900px) {
+  .sb-gallery { grid-template-columns: 1fr; }
+}
