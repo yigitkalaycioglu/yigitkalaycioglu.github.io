@@ -1,12 +1,8 @@
 /* ShadowRunner site — standalone (no framework, no web fonts, no trackers). */
 :root {
-  --bg: #f7f5ef; --fg: #1d1a2b; --muted: #5d5873; --card: #ffffff; --line: #e3dfd3;
-  --accent: #6b3fd1; --accent-fg: #ffffff; --glow: #ffd166; --shadow: #130f24;
-  color-scheme: light dark;
-}
-@media (prefers-color-scheme: dark) {
-  :root { --bg: #0e0b1a; --fg: #f1eefb; --muted: #aaa3c7; --card: #1a1530; --line: #2c2650;
-          --accent: #b49cff; --accent-fg: #130f24; }
+  --bg: #000000; --fg: #eef3ff; --muted: #9fb0cf; --card: #070b14; --line: #16233d;
+  --accent: #5b95ff; --accent-fg: #00112b; --glow: #8fb8ff; --shadow: #000d24;
+  color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -38,7 +34,7 @@ nav.lang li small { color: var(--muted); }
 .btn.disabled { opacity: .75; }
 .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 32px auto; max-width: 620px; }
 img.shot { width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; display: block; padding: 0; }
-.shot { aspect-ratio: 9 / 19.5; border-radius: 22px; background: radial-gradient(circle at 30% 18%, #fff4cf 0, #ffcf6a 12%, #3a2b6b 45%, var(--shadow) 80%);
+.shot { aspect-ratio: 9 / 19.5; border-radius: 22px; background: radial-gradient(circle at 30% 18%, #e6f0ff 0, #5b95ff 12%, #0b2a63 45%, var(--shadow) 80%);
   display: flex; align-items: flex-end; justify-content: center; color: #fff; font-size: 13px; padding: 10px; text-align: center;
   border: 1px solid var(--line); }
 @media (max-width: 560px) { .shots { grid-template-columns: repeat(3, 1fr); gap: 8px; } .shot { border-radius: 14px; font-size: 11px; } }
