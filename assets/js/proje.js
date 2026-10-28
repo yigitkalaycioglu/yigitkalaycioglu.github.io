@@ -188,12 +188,17 @@
   // ------------------------------------------------------------ karışık harf efekti
   const scramble = (el, final, dur = 900, set = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&') => {
     if (reduce) { el.textContent = final; return; }
+    // karışık harfler daha geniş: genişlik son metne kilitlenir, yoksa satır kayıp çevresini titretir
+    el.textContent = final;
+    const lock = getComputedStyle(el).display !== 'inline';
+    if (lock) { el.style.width = el.offsetWidth + 'px'; el.style.overflowX = 'clip'; }
     const t0 = performance.now();
     const tick = (now) => {
       const p = clamp((now - t0) / dur);
       const keep = Math.floor(p * final.length);
       el.textContent = final.slice(0, keep) + [...final.slice(keep)].map((c) => (c === ' ' ? ' ' : set[(Math.random() * set.length) | 0])).join('');
-      if (p < 1) requestAnimationFrame(tick); else el.textContent = final;
+      if (p < 1) requestAnimationFrame(tick);
+      else { el.textContent = final; if (lock) el.style.width = el.style.overflowX = ''; }
     };
     requestAnimationFrame(tick);
   };
