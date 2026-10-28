@@ -212,9 +212,9 @@ h1 { font: 450 clamp(48px, 7vw, 96px)/.94 var(--font); letter-spacing: -.05em; m
 .hero h1.split .w:first-child { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: 1.12em; letter-spacing: -.01em; padding-right: .14em; filter: drop-shadow(0 0 28px rgba(42, 91, 255, .55)); }
 .hero h1.split .w:first-child .ch { background: linear-gradient(180deg, #e8efff 5%, #8fb0ff 55%, #4f80ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero h1.split .w:not(:first-child) { font-weight: 250; letter-spacing: -.045em; }
-.hero h1.split .w:not(:first-child) .ch { background: linear-gradient(180deg, #f2f6ff 0%, #a9c1ff 50%, #5a88ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .06em; }
-.hero h1.split .w { display: inline-block; overflow: hidden; padding: .04em .03em .18em; margin: -.04em 0 -.18em; vertical-align: top; }
-.hero h1.split .ch { display: inline-block; transform: translateY(110%); filter: blur(6px); animation: chIn 1.2s var(--ease) both; animation-delay: calc(var(--i) * 40ms + 150ms); }
+.hero h1.split .w:not(:first-child) .ch { background: linear-gradient(180deg, #f2f6ff 0%, #a9c1ff 50%, #5a88ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero h1.split .w { display: inline-block; overflow: hidden; padding: .06em .03em .34em; margin: -.06em 0 -.34em; vertical-align: top; }
+.hero h1.split .ch { display: inline-block; padding-bottom: .3em; margin-bottom: -.3em; transform: translateY(110%); filter: blur(6px); animation: chIn 1.2s var(--ease) both; animation-delay: calc(var(--i) * 40ms + 150ms); }
 .loading .hero h1.split .ch { animation-play-state: paused; }
 @keyframes chIn { to { transform: none; filter: none; } }
 .role { margin: 0 0 20px; font: 550 clamp(18px, 2vw, 22px)/1.35 var(--font); letter-spacing: -.02em; background: var(--grad-text); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 9s linear infinite; }
@@ -294,7 +294,7 @@ h1 { font: 450 clamp(48px, 7vw, 96px)/.94 var(--font); letter-spacing: -.05em; m
 .sec-num::after { content: ""; width: 80px; height: 1px; background: linear-gradient(90deg, var(--line-2), transparent); transform-origin: 0 50%; }
 .js .reveal .sec-num::after { transform: scaleX(var(--p, 0)); }
 h2 { font: 300 clamp(38px, 5.4vw, 68px)/1.04 var(--font); letter-spacing: -.04em; margin: 0 0 10px; }
-[data-split] .sw:last-child { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: 1.02em; letter-spacing: -.01em; background: linear-gradient(180deg, #e8efff 0%, #84a8ff 60%, #3f74ff 100%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .04em; }
+[data-split] .sw:last-child { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: 1.02em; letter-spacing: -.01em; background: linear-gradient(180deg, #e8efff 0%, #84a8ff 60%, #3f74ff 100%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .06em .3em 0; margin-bottom: -.3em; }
 .sw {
   display: inline-block;
   --wp: clamp(0, calc((var(--p, 1) * (var(--wn, 3) + 2) - var(--wi, 0)) / 2), 1);
