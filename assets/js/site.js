@@ -445,6 +445,9 @@
     ind.style.width = a.offsetWidth + 'px';
     ind.style.transform = `translateX(${a.offsetLeft}px)`;
     ind.classList.add('on');
+    // mobilde bağlantılar yana kayar: etkin olanı görünür tut
+    const box = ind.parentElement;
+    if (box.scrollWidth > box.clientWidth) box.scrollTo({ left: a.offsetLeft - (box.clientWidth - a.offsetWidth) / 2, behavior: 'smooth' });
   };
   const sections = links.map((a) => $(a.getAttribute('href'))).filter(Boolean);
   const spy = new IntersectionObserver((entries) => {
