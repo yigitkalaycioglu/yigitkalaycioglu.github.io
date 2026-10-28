@@ -19,7 +19,7 @@
 </header>
 
 <div class="wrap">
-  <p class="meta">Last updated: October 20, 2026 (the app is now called StandBy+) &nbsp;·&nbsp; <a href="./gizlilik.html">Türkçe</a></p>
+  <p class="meta">Last updated: October 28, 2026 (weather added) &nbsp;·&nbsp; <a href="./gizlilik.html">Türkçe</a></p>
 
   <div class="card">
     <span class="tag">In short</span>
@@ -70,7 +70,8 @@
             fallback <a href="https://project-osrm.org">router.project-osrm.org</a>). You can set your own routing server
             in Settings.</td></tr>
     <tr><th>Destination search</th>
-        <td>Your search text, together with your approximate location to rank nearby results first, goes to your
+        <td>Your search text, together with your approximate location to rank nearby results first (if location is
+            off, the last location stored on your phone or the city you chose), goes to your
             phone's address lookup service (Google on most phones) and to the OpenStreetMap-based
             <a href="https://photon.komoot.io">Photon</a> (komoot) and
             <a href="https://nominatim.openstreetmap.org">Nominatim</a> (OpenStreetMap Foundation) services. The app keeps
@@ -81,6 +82,9 @@
   </table>
   <p>These services have their own privacy terms. StandBy+ keeps no copy of this data and never sends it to the
      developer. If you never open the map, the app does not contact these services.</p>
+  <p><b>Weather:</b> If you add the weather widget, the coordinates of the city you choose (not your device location)
+     are sent to the Norwegian Meteorological Institute's <a href="https://api.met.no">api.met.no</a> service to get the
+     forecast. Like any web request, the server can see your IP address. Weather data from MET Norway (CC BY 4.0).</p>
 
   <h2>4. Ads (Google AdMob)</h2>
   <p>A banner ad is shown on the Settings home page. You can also choose to watch a short <b>rewarded ad</b> to unlock a
