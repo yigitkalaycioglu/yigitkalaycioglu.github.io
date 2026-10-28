@@ -219,7 +219,7 @@ html[lang="en"] .pill::before { translate: 100% 0; }
 h1 { font: 450 clamp(48px, 7vw, 96px)/.94 var(--font); letter-spacing: -.05em; margin: 0 0 20px; }
 /* ad: ilk kelime yüksek kontrastlı italik serif, soyadı ince sans; ikisi de dikey kobalt gradyan */
 .hero h1.split .w:first-child { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: 1.12em; letter-spacing: -.01em; padding-right: .14em; filter: drop-shadow(0 0 28px var(--hl-glow)); }
-.hero h1.split .w:first-child .ch { background: var(--hl-a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero h1.split .w:first-child .ch { background: var(--hl-a); -webkit-background-clip: text; background-clip: text; color: transparent; padding-inline: .12em; margin-inline: -.12em; }
 .hero h1.split .w:not(:first-child) { font-weight: 250; letter-spacing: -.045em; }
 .hero h1.split .w:not(:first-child) .ch { background: var(--hl-b); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero h1.split .w { display: inline-block; overflow: hidden; padding: .06em .03em .34em; margin: -.06em 0 -.34em; vertical-align: top; }
@@ -303,7 +303,7 @@ h1 { font: 450 clamp(48px, 7vw, 96px)/.94 var(--font); letter-spacing: -.05em; m
 .sec-num::after { content: ""; width: 80px; height: 1px; background: linear-gradient(90deg, var(--line-2), transparent); transform-origin: 0 50%; }
 .js .reveal .sec-num::after { transform: scaleX(var(--p, 0)); }
 h2 { font: 300 clamp(38px, 5.4vw, 68px)/1.04 var(--font); letter-spacing: -.04em; margin: 0 0 10px; }
-[data-split] .sw:last-child { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: 1.02em; letter-spacing: -.01em; background: var(--hl-a); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .06em .3em 0; margin-bottom: -.3em; }
+[data-split] .sw:last-child { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: 1.02em; letter-spacing: -.01em; background: var(--hl-a); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .06em .3em .1em; margin: 0 0 -.3em -.1em; }
 .sw {
   display: inline-block;
   --wp: clamp(0, calc((var(--p, 1) * (var(--wn, 3) + 2) - var(--wi, 0)) / 2), 1);
