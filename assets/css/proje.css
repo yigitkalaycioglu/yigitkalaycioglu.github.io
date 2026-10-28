@@ -113,7 +113,7 @@
 .steps .code { margin: 14px 0 0; }
 
 /* kod blokları */
-.code { position: relative; margin: 0 0 14px; border-radius: var(--r-sm); overflow: hidden; background: #0b0b0e; border: 1px solid rgba(255, 255, 255, .09); color: #e4e6ee; }
+.code { position: relative; margin: 0 0 14px; border-radius: var(--r-sm); overflow: hidden; background: #030a1c; border: 1px solid rgba(255, 255, 255, .09); color: #e4e6ee; }
 :root[data-theme="light"] .code { border-color: transparent; box-shadow: var(--shadow); }
 .code-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 38px; overflow-wrap: anywhere; padding: 4px 6px 4px 14px; border-bottom: 1px solid rgba(255, 255, 255, .08); background: rgba(255, 255, 255, .025); color: #8a8f9c; font: 500 11.5px var(--font-m); letter-spacing: .04em; }
 .code pre { margin: 0; padding: 15px 16px; overflow-x: auto; font: 12.5px/1.7 var(--font-m); tab-size: 2; }
@@ -128,9 +128,9 @@
 .code-note { margin: -4px 0 14px; color: var(--muted); font-size: 13.5px; }
 
 /* terminal penceresi */
-.term { margin: 0; border-radius: var(--r); overflow: hidden; background: #0b0b0e; border: 1px solid rgba(255, 255, 255, .1); box-shadow: var(--shadow-lg); color: #e4e6ee; }
-.term .frame-bar { background: #131317; border-bottom-color: rgba(255, 255, 255, .08); }
-.term .frame-bar span { background: #0b0b0e; border-color: rgba(255, 255, 255, .08); color: #8a8f9c; }
+.term { margin: 0; border-radius: var(--r); overflow: hidden; background: #030a1c; border: 1px solid rgba(255, 255, 255, .1); box-shadow: var(--shadow-lg); color: #e4e6ee; }
+.term .frame-bar { background: #07122b; border-bottom-color: rgba(255, 255, 255, .08); }
+.term .frame-bar span { background: #030a1c; border-color: rgba(255, 255, 255, .08); color: #8a8f9c; }
 .term pre { margin: 0; padding: 18px 20px 20px; overflow-x: auto; font: 12.5px/1.8 var(--font-m); }
 .term .p { color: #8fb8ff; }
 .term .d { color: #6e7384; }

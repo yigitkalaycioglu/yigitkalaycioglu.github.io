@@ -1,6 +1,6 @@
 :root{
-  --brand:#0047AB; --brand-dark:#00265E; --accent:#5B95FF; --accent-soft:rgba(91,149,255,.16);
-  --ink:#F2F2F7; --muted:#8E9BB5; --line:#16233d; --card:#070b14; --bg:#000000;
+  --brand:#0047AB; --brand-dark:#00265E; --accent:#4A7DFF; --accent-soft:rgba(91,149,255,.16);
+  --ink:#F2F2F7; --muted:#8E9BB5; --line:#12214a; --card:#030a1c; --bg:#000510;
 }
 *{box-sizing:border-box}
 body{
@@ -9,7 +9,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 .wrap{max-width:760px;margin:0 auto;padding:0 22px 72px}
-header.hero{background:radial-gradient(120% 90% at 85% 0%,rgba(0,71,171,.55),transparent 62%),#000;border-bottom:1px solid var(--line);color:#fff}
+header.hero{background:radial-gradient(120% 90% at 85% 0%,rgba(30,80,255,.6),transparent 62%),#000510;border-bottom:1px solid var(--line);color:#fff}
 header.hero .wrap{padding-top:56px;padding-bottom:56px}
 .logo{display:flex;align-items:center;gap:16px;margin-bottom:26px}
 .logo img{width:64px;height:64px;border-radius:15px;display:block}

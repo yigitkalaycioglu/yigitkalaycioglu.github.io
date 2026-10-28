@@ -120,7 +120,7 @@
 
   // ------------------------------------------------------------ tema
   const effectiveDark = () => root.dataset.theme === 'dark' || (root.dataset.theme === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
-  const syncThemeColor = () => { const m = $('meta[name="theme-color"]'); if (m) m.content = effectiveDark() ? '#000000' : '#fbfbfd'; };
+  const syncThemeColor = () => { const m = $('meta[name="theme-color"]'); if (m) m.content = effectiveDark() ? '#000510' : '#fbfbfd'; };
   syncThemeColor();
   $('#theme').addEventListener('click', () => {
     const next = effectiveDark() ? 'light' : 'dark';

@@ -1,7 +1,7 @@
 /* ShadowRunner site — standalone (no framework, no web fonts, no trackers). */
 :root {
-  --bg: #000000; --fg: #eef3ff; --muted: #9fb0cf; --card: #070b14; --line: #16233d;
-  --accent: #5b95ff; --accent-fg: #00112b; --glow: #8fb8ff; --shadow: #000d24;
+  --bg: #000510; --fg: #eef3ff; --muted: #9fb0cf; --card: #030a1c; --line: #12214a;
+  --accent: #4a7dff; --accent-fg: #ffffff; --glow: #8fb8ff; --shadow: #000d24;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
