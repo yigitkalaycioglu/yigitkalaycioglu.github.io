@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>InstaReel Blocker · Yiğit Kalaycıoğlu</title>
   <meta name="description" content="InstaReel Blocker is a small Android app that automatically skips sponsored videos in Instagram Reels using an accessibility service. No root, no internet permission, no data collection.">
-  <meta name="theme-color" content="#000510">
+  <meta name="theme-color" content="#1d3bd8">
   <link rel="canonical" href="https://yigitkalaycioglu.github.io/projects/instareel-blocker/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://yigitkalaycioglu.github.io/projects/instareel-blocker/">
@@ -16,11 +16,10 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400..700&family=JetBrains+Mono:wght@400;500;600&family=Mona+Sans:wght@200..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/site.css?v=17">
-  <link rel="stylesheet" href="../../assets/css/proje.css?v=6">
+  <link rel="preload" href="../../assets/fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/site.css?v=20">
+  <link rel="stylesheet" href="../../assets/css/proje.css?v=9">
   <script>
     // tema ve dil, ilk boyamadan önce uygulanır
     (function () {
@@ -36,13 +35,8 @@
 </head>
 <body>
   <a class="skip" href="#how" data-i18n="skip">Skip to content</a>
-  <div class="bg-grid" aria-hidden="true"></div>
-  <div class="guides" aria-hidden="true"><i></i><i></i></div>
-  <canvas id="fx" aria-hidden="true"></canvas>
-  <div class="glow-cursor" aria-hidden="true"></div>
-  <div class="progress" aria-hidden="true"></div>
 
-  <header class="nav">
+  <header class="nav" data-tone="wall">
     <div class="nav-in">
       <a class="logo" href="../../" data-i18n-attr="aria-label:home" aria-label="Home">
         <span class="logo-mark">YK</span>
@@ -66,8 +60,7 @@
   </header>
 
   <main id="top">
-    <section class="p-hero">
-      <div class="beams" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <section class="p-hero wall">
       <div class="p-hero-in">
         <div class="reveal">
           <a class="back" href="../../#projects"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-i18n="back">All projects</span></a>
@@ -206,13 +199,13 @@
     <section class="section" id="more">
       <div class="sec-head reveal"><h2 data-i18n="more" data-split>More projects</h2></div>
       <nav class="more reveal" aria-label="More projects" data-i18n-attr="aria-label:more">
-        <a href="../mini-on-muhasebe/"><span class="mini art-ledger"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></span><span><small data-i18n="pk.intern">Internship project</small><span data-i18n="pn.muhasebe">Mini Bookkeeping App</span></span></a>
-        <a href="../clean-architecture-generator/"><span class="mini art-cleanarch"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span data-i18n="pn.cleanarch">Clean Architecture Generator</span></span></a>
-        <a href="../multi-tenant-sla-platform/"><span class="mini art-sla"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg></span><span><small data-i18n="pk.fs">Full-stack</small><span data-i18n="pn.sla">Multi-Tenant SLA Platform</span></span></a>
-        <a href="../wol-catcher/"><span class="mini art-wol"><svg viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.6 6.6a7.5 7.5 0 1 0 10.8 0"/></svg></span><span><small data-i18n="pk.tool">Tool</small><span>WolCatcher</span></span></a>
-        <a href="../linux-file-monitoring/"><span class="mini art-linux"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12.5 15H17"/></svg></span><span><small data-i18n="pk.sys">Systems</small><span data-i18n="pn.linux">Linux File Monitoring Service</span></span></a>
-        <a href="../../stokplus/"><span class="mini art-stok"><img src="../../stokplus/simge.png" alt="" loading="lazy"></span><span><small data-i18n="pk.mobile">Mobile</small><span>Stok+</span></span></a>
-        <a href="../../standby/"><span class="mini art-standby"><img src="../../standby/simge.png" alt="" loading="lazy"></span><span><small data-i18n="pk.mobile">Mobile</small><span>StandBy+</span></span></a>
+        <a href="../mini-on-muhasebe/"><span class="mini art-ledger"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></span><span><span data-i18n="pn.muhasebe">Mini Bookkeeping App</span><small data-i18n="pk.intern">Internship project</small></span></a>
+        <a href="../clean-architecture-generator/"><span class="mini art-cleanarch"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2"/></svg></span><span><span data-i18n="pn.cleanarch">Clean Architecture Generator</span><small data-i18n="pk.tool">Tool</small></span></a>
+        <a href="../multi-tenant-sla-platform/"><span class="mini art-sla"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg></span><span><span data-i18n="pn.sla">Multi-Tenant SLA Platform</span><small data-i18n="pk.fs">Full-stack</small></span></a>
+        <a href="../wol-catcher/"><span class="mini art-wol"><svg viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.6 6.6a7.5 7.5 0 1 0 10.8 0"/></svg></span><span><span>WolCatcher</span><small data-i18n="pk.tool">Tool</small></span></a>
+        <a href="../linux-file-monitoring/"><span class="mini art-linux"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12.5 15H17"/></svg></span><span><span data-i18n="pn.linux">Linux File Monitoring Service</span><small data-i18n="pk.sys">Systems</small></span></a>
+        <a href="../../stokplus/"><span class="mini art-stok"><img src="../../stokplus/simge.png" alt="" loading="lazy"></span><span><span>Stok+</span><small data-i18n="pk.mobile">Mobile</small></span></a>
+        <a href="../../standby/"><span class="mini art-standby"><img src="../../standby/simge.png" alt="" loading="lazy"></span><span><span>StandBy+</span><small data-i18n="pk.mobile">Mobile</small></span></a>
       </nav>
     </section>
   </main>
@@ -236,7 +229,6 @@
         <a href="https://www.linkedin.com/in/yi%C4%9Fit-kalayc%C4%B1o%C4%9Flu-85bb60373/" target="_blank" rel="noopener">LinkedIn ↗</a>
       </div>
     </div>
-    <div class="wordmark reveal" aria-hidden="true">Kalaycıoğlu</div>
     <div class="foot-bot">
       <p>© 2026 Yiğit Kalaycıoğlu · <span data-i18n="foot">Built by hand and published on GitHub Pages.</span></p>
       <a class="to-top" href="#top"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span data-i18n="top">Back to top</span></a>
@@ -290,6 +282,6 @@
   }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
-  <script src="../../assets/js/proje.js?v=6" defer></script>
+  <script src="../../assets/js/proje.js?v=9" defer></script>
 </body>
 </html>

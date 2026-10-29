@@ -1,0 +1,5 @@
+# impeccable: ekran görüntüleri, karar taslakları ve yerel durum depoya girmez
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/build/
+.impeccable/config.local.json

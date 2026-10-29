@@ -1,0 +1,4 @@
+# Tasarım geliştirme dosyaları: depoda kalır, sitede yayınlanmaz
+exclude:
+  - PRODUCT.md
+  - DESIGN.md
