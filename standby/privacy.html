@@ -19,7 +19,7 @@
 </header>
 
 <div class="wrap">
-  <p class="meta">Last updated: October 30, 2026 (Android Auto screen added, map is free) &nbsp;·&nbsp; <a href="./gizlilik.html">Türkçe</a></p>
+  <p class="meta">Last updated: October 30, 2026 (message replies, phone and voice commands added to the Android Auto screen) &nbsp;·&nbsp; <a href="./gizlilik.html">Türkçe</a></p>
 
   <div class="card">
     <span class="tag">In short</span>
@@ -50,13 +50,30 @@
     <tr><th>Location</th>
         <td>Only while the map or the Android Auto screen is open: to show your position, follow you while driving and track route progress. No
             background location, no location history.</td></tr>
+    <tr><th>Messages (Android Auto screen)</th>
+        <td>The content of message notifications (e.g. WhatsApp, Telegram) is used <b>on your phone</b> only to show it on the
+            Android Auto screen and to read it aloud when you ask. Your reply is handed to the app the message came from through
+            the <i>Reply</i> action in that app's notification, and that app sends it. StandBy+ does not store messages or send
+            them anywhere.</td></tr>
+    <tr><th>Contacts and calls (Android Auto screen)</th>
+        <td>Only if you grant the <i>Contacts</i> permission, your contacts' names, numbers and photos are read on your phone to
+            list them on the Android Auto screen and to match them when you say "call …"; they are never sent anywhere. The
+            <i>Phone</i> permission is used to start calls directly. Answer/decline on an incoming call uses your phone app's own
+            notification. Calls made from, or seen on, this screen (name, number, time) are stored on your phone only for the
+            "Recent calls" list; the phone's call history is not read. Contacts are not shown on the lock screen.</td></tr>
+    <tr><th>Microphone and voice commands</th>
+        <td>The microphone listens only when you press the microphone button on the Android Auto screen. Your speech is turned
+            into text by your phone's speech recognition service (Google on most phones), which has its own privacy terms.
+            StandBy+ does not record or store audio. The recognised command (call, directions, message, music) is carried out
+            inside the app.</td></tr>
     <tr><th>Charging and connectivity</th>
         <td>Battery level, charger type, and whether Wi-Fi, Bluetooth and mobile data are on are read only to display them
             and to start StandBy+ automatically.</td></tr>
     <tr><th>Settings and recent destinations</th>
         <td>Stored on your phone. You can clear recent destinations in <i>Settings &rsaquo; Privacy</i>.</td></tr>
   </table>
-  <p>The app does not collect contacts, call logs, messages, file lists or personal identifiers and contains no analytics
+  <p>The app does not collect your contacts, messages or calls or send them anywhere, and does not read the phone's call log,
+     file lists or personal identifiers. It contains no analytics
      or crash-reporting libraries. The advertising ID is used by Google AdMob only for the ads described in section 4.</p>
 
   <h2>3. Data sent over the internet (map only)</h2>
@@ -70,15 +87,15 @@
             fallback <a href="https://project-osrm.org">router.project-osrm.org</a>). You can set your own routing server
             in Settings.</td></tr>
     <tr><th>Destination search</th>
-        <td>Your search text, together with your approximate location to rank nearby results first (if location is
+        <td>Your search text (or the place you name in a voice command), together with your approximate location to rank nearby results first (if location is
             off, the last location stored on your phone or the city you chose), goes to your
             phone's address lookup service (Google on most phones) and to the OpenStreetMap-based
             <a href="https://photon.komoot.io">Photon</a> (komoot) and
             <a href="https://nominatim.openstreetmap.org">Nominatim</a> (OpenStreetMap Foundation) services. The app keeps
             no search history; only the destinations you choose are stored on your phone as recents.</td></tr>
     <tr><th>Voice guidance</th>
-        <td>Turn announcements are spoken by your phone's text-to-speech engine. If your engine is cloud-based
-            (e.g. Google), the announcement text may be sent to it.</td></tr>
+        <td>Turn announcements, assistant answers and messages you ask to hear are spoken by your phone's text-to-speech
+            engine. If your engine is cloud-based (e.g. Google), the spoken text may be sent to it.</td></tr>
   </table>
   <p>These services have their own privacy terms. StandBy+ keeps no copy of this data and never sends it to the
      developer. If you never open the map, the app does not contact these services.</p>
@@ -112,6 +129,9 @@
     <tr><th>Run at startup</th><td>Keeps charging monitoring active after a restart.</td></tr>
     <tr><th>Notification access (optional)</th><td>Shows notifications and music controls on the Dashboard.</td></tr>
     <tr><th>Location (optional)</th><td>Map, navigation and the Android Auto screen, only while they are open.</td></tr>
+    <tr><th>Microphone (optional)</th><td>Voice commands and spoken message replies on the Android Auto screen, only when you press the microphone button.</td></tr>
+    <tr><th>Contacts (optional)</th><td>Listing contacts and calling them by voice on the Android Auto screen.</td></tr>
+    <tr><th>Phone (optional)</th><td>Starting calls directly from the Android Auto screen. Without it, the phone app opens with the number filled in.</td></tr>
     <tr><th>Internet</th><td>Map tiles, routing and destination search.</td></tr>
     <tr><th>Shizuku (optional)</th><td>If installed, toggles Wi-Fi / mobile data / Bluetooth directly from the Dashboard.</td></tr>
     <tr><th>Advertising ID</th><td>For Google AdMob ads (see section 4).</td></tr>

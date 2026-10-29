@@ -19,7 +19,7 @@
 </header>
 
 <div class="wrap">
-  <p class="meta">Son güncelleme: 30 Ekim 2026 (Android Auto ekranı eklendi, harita ücretsiz) &nbsp;·&nbsp; <a href="./privacy.html">English version</a></p>
+  <p class="meta">Son güncelleme: 30 Ekim 2026 (Android Auto ekranına mesaj yanıtlama, telefon ve sesli komut eklendi) &nbsp;·&nbsp; <a href="./privacy.html">English version</a></p>
 
   <div class="card">
     <span class="tag">Kısaca</span>
@@ -50,6 +50,23 @@
     <tr><th>Konum</th>
         <td>Yalnızca harita ya da Android Auto ekranı açıkken; konumunuzu haritada göstermek, kamerayı sürüşe göre takip ettirmek ve rota
             ilerlemesini hesaplamak için kullanılır. Arka planda konum toplanmaz, konum geçmişi tutulmaz.</td></tr>
+    <tr><th>Mesajlar (Android Auto ekranı)</th>
+        <td>Mesaj bildirimlerinin (ör. WhatsApp, Telegram) içeriği yalnızca Android Auto ekranında göstermek ve siz
+            istediğinizde sesli okumak için <b>telefonun içinde</b> kullanılır. Yanıtınız, mesajın geldiği uygulamaya o
+            uygulamanın bildirimindeki <i>Yanıtla</i> eylemiyle iletilir ve o uygulama tarafından gönderilir. StandBy+
+            mesajları saklamaz ve hiçbir yere göndermez.</td></tr>
+    <tr><th>Rehber ve aramalar (Android Auto ekranı)</th>
+        <td>Yalnızca <i>Kişiler</i> iznini verirseniz, kişilerinizin adı, numarası ve fotoğrafı Android Auto ekranında
+            listelemek ve sesle "…'yi ara" dediğinizde eşleştirmek için telefonun içinde okunur; hiçbir yere gönderilmez.
+            <i>Telefon</i> izni aramayı doğrudan başlatmak için kullanılır. Gelen aramada cevapla/reddet düğmeleri telefon
+            uygulamanızın kendi bildiriminden çalışır. Bu ekrandan yaptığınız ve orada görülen aramalar (ad, numara, saat)
+            "Son aramalar" listesi için yalnızca telefonda saklanır; telefonun arama geçmişi okunmaz. Kişiler kilit
+            ekranında gösterilmez.</td></tr>
+    <tr><th>Mikrofon ve sesli komut</th>
+        <td>Mikrofon yalnızca Android Auto ekranında mikrofon düğmesine bastığınızda dinlenir. Söyledikleriniz
+            telefonunuzun konuşma tanıma hizmeti (çoğu telefonda Google) tarafından metne çevrilir; bu hizmetin kendi
+            gizlilik koşulları geçerlidir. StandBy+ sesi kaydetmez ve saklamaz. Anlaşılan komut (arama, yol tarifi,
+            mesaj, müzik) uygulamanın içinde yapılır.</td></tr>
     <tr><th>Şarj ve bağlantı durumu</th>
         <td>Pil seviyesi, şarj türü (kablosuz/kablolu), Wi-Fi, Bluetooth ve mobil veri açık/kapalı durumu yalnızca
             ekranda göstermek ve StandBy+'ı otomatik başlatmak için okunur.</td></tr>
@@ -57,7 +74,8 @@
         <td>Tercihleriniz ve aradığınız son hedefler telefonda saklanır. <i>Ayarlar &rsaquo; Gizlilik</i> bölümünden
             son hedefleri temizleyebilirsiniz.</td></tr>
   </table>
-  <p>Uygulama rehber, arama kaydı, mesaj, dosya listesi ya da kişisel kimlik bilgisi toplamaz; analiz (analytics) ve
+  <p>Uygulama rehberinizi, mesajlarınızı ya da aramalarınızı toplamaz ve hiçbir yere göndermez; telefonun arama geçmişini,
+     dosya listesini ya da kişisel kimlik bilgilerini okumaz; analiz (analytics) ve
      çökme raporlama kütüphanesi içermez. Reklam kimliği yalnızca aşağıdaki 4. bölümde anlatılan reklamlar için Google
      AdMob tarafından kullanılır.</p>
 
@@ -72,15 +90,15 @@
             <a href="https://project-osrm.org">router.project-osrm.org</a>) gönderilir. Ayarlardan kendi rota
             sunucunuzu tanımlayabilirsiniz.</td></tr>
     <tr><th>Hedef arama</th>
-        <td>Aradığınız metin ve yakındaki sonuçları öne çıkarmak için yaklaşık konumunuz (konum kapalıysa telefonda
+        <td>Aradığınız (ya da sesli komutla söylediğiniz) yer adı ve yakındaki sonuçları öne çıkarmak için yaklaşık konumunuz (konum kapalıysa telefonda
             saklanan son konumunuz ya da seçtiğiniz şehir); telefonunuzun adres arama
             hizmetine (çoğu telefonda Google) ve OpenStreetMap tabanlı <a href="https://photon.komoot.io">Photon</a>
             (komoot) ile <a href="https://nominatim.openstreetmap.org">Nominatim</a> (OpenStreetMap Vakfı)
             hizmetlerine gönderilir. Arama kaydı uygulamada tutulmaz; yalnızca seçtiğiniz son hedefler telefonda
             saklanır.</td></tr>
     <tr><th>Sesli yönlendirme</th>
-        <td>Dönüş anonsları telefonunuzun metin okuma motoruyla seslendirilir. Motorunuz bulut tabanlıysa
-            (ör. Google) anons metni o hizmete iletilebilir.</td></tr>
+        <td>Dönüş anonsları, asistanın yanıtları ve sesli okunmasını istediğiniz mesajlar telefonunuzun metin okuma
+            motoruyla seslendirilir. Motorunuz bulut tabanlıysa (ör. Google) okunan metin o hizmete iletilebilir.</td></tr>
   </table>
   <p>Bu hizmetler kendi gizlilik koşullarına tabidir. StandBy+ bu verilerin bir kopyasını saklamaz ve geliştiriciye
      iletmez. Haritayı hiç açmazsanız uygulama bu hizmetlere bağlanmaz.</p>
@@ -118,6 +136,9 @@
     <tr><th>Açılışta başlatma</th><td>Telefon yeniden başladığında şarj izlemenin devam etmesi için.</td></tr>
     <tr><th>Bildirim erişimi (isteğe bağlı)</th><td>Panel'de bildirimleri ve müzik kontrollerini göstermek için.</td></tr>
     <tr><th>Konum (isteğe bağlı)</th><td>Harita, navigasyon ve Android Auto ekranı için, yalnızca bunlar açıkken.</td></tr>
+    <tr><th>Mikrofon (isteğe bağlı)</th><td>Android Auto ekranında sesli komut ve sesle mesaj yanıtı için, yalnızca mikrofon düğmesine bastığınızda.</td></tr>
+    <tr><th>Kişiler (isteğe bağlı)</th><td>Android Auto ekranında kişileri listelemek ve sesle aramak için.</td></tr>
+    <tr><th>Telefon (isteğe bağlı)</th><td>Android Auto ekranından aramayı doğrudan başlatmak için. Verilmezse telefon uygulaması numara yazılı açılır.</td></tr>
     <tr><th>İnternet</th><td>Harita karoları, rota ve hedef arama için.</td></tr>
     <tr><th>Shizuku (isteğe bağlı)</th><td>Kurarsanız, Wi-Fi / mobil veri / Bluetooth'u Panel'den doğrudan açıp kapatmak için.</td></tr>
     <tr><th>Reklam kimliği</th><td>Google AdMob reklamları için (bkz. 4. bölüm).</td></tr>
