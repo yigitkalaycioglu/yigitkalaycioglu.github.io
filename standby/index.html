@@ -19,8 +19,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400..700&family=JetBrains+Mono:wght@400;500;600&family=Mona+Sans:wght@200..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/site.css?v=17">
-  <link rel="stylesheet" href="../assets/css/proje.css?v=6">
+  <link rel="stylesheet" href="../assets/css/site.css?v=21">
+  <link rel="stylesheet" href="../assets/css/proje.css?v=10">
   <link rel="stylesheet" href="standby.css?v=1">
   <script>
     // tema ve dil, ilk boyamadan önce uygulanır
@@ -303,7 +303,7 @@ half4 c    = content.eval(coord + n * strength * bend);</code></pre>
         <div class="stack reveal">
           <div class="box">
             <h3 data-i18n="ad.t">Try one thing for 24 hours</h3>
-            <p data-i18n="ad.d">A Premium theme, typeface, clock style, widget or the map can be unlocked for 24 hours by watching a short rewarded ad you start yourself. Each item needs its own ad, and it locks again when the day is over.</p>
+            <p data-i18n="ad.d">A Premium theme, typeface, clock style, widget or the Android Auto screen can be unlocked for 24 hours by watching a short rewarded ad you start yourself. Each item needs its own ad, and it locks again when the day is over.</p>
             <p data-i18n="ad.d2">Ads never appear on the clock screen by themselves, and never over the lock screen; the phone has to be unlocked before one is shown.</p>
           </div>
           <div class="box">
@@ -317,7 +317,8 @@ half4 c    = content.eval(coord + n * strength * bend);</code></pre>
             <tbody>
               <tr><td data-i18n="pt.r1">Clock, layout, editor, night mode</td><td>✓</td><td>✓</td></tr>
               <tr><td data-i18n="pt.r2">Themes, typefaces, clock styles, widgets</td><td data-i18n="pt.r2f">Some; others for 24 h with an ad</td><td data-i18n="pt.all">All</td></tr>
-              <tr><td data-i18n="pt.r3">Map and navigation</td><td data-i18n="pt.r3f">24 h with an ad</td><td>✓</td></tr>
+              <tr><td data-i18n="pt.r3">Map and navigation</td><td>✓</td><td>✓</td></tr>
+              <tr><td data-i18n="pt.r8">Android Auto screen</td><td data-i18n="pt.r3f">24 h with an ad</td><td>✓</td></tr>
               <tr><td>Liquid Glass</td><td>—</td><td>✓</td></tr>
               <tr><td data-i18n="pt.r5">Aura, digit gradient, custom colours</td><td>—</td><td>✓</td></tr>
               <tr><td data-i18n="pt.r6">Smart stacks, notification filter</td><td>—</td><td>✓</td></tr>
@@ -341,7 +342,10 @@ half4 c    = content.eval(coord + n * strength * bend);</code></pre>
               <tr><td data-i18n="pm.n">Notifications</td><td data-i18n="pm.nd">The quiet notification of the service that notices the charger.</td></tr>
               <tr><td data-i18n="pm.o">Show over other apps</td><td data-i18n="pm.od">Together with full-screen notifications: opening the clock by itself when charging starts, even over the lock screen.</td></tr>
               <tr><td data-i18n="pm.a">Notification access</td><td data-i18n="pm.ad">Optional. Showing notifications and the music that's playing on the Panel. The content is read only to be displayed and stays on the phone.</td></tr>
-              <tr><td data-i18n="pm.l">Location</td><td data-i18n="pm.ld">Optional, and only while the map is open. It isn't collected in the background.</td></tr>
+              <tr><td data-i18n="pm.l">Location</td><td data-i18n="pm.ld">Optional, and only while the map or the Android Auto screen is open. It isn't collected in the background.</td></tr>
+              <tr><td data-i18n="pm.m">Microphone</td><td data-i18n="pm.md">Optional. Voice commands and spoken message replies on the Android Auto screen, only when you press the microphone button. No audio is recorded.</td></tr>
+              <tr><td data-i18n="pm.c">Contacts</td><td data-i18n="pm.cd">Optional. Listing contacts and calling them by voice on the Android Auto screen. They never leave the phone.</td></tr>
+              <tr><td data-i18n="pm.t">Phone</td><td data-i18n="pm.td">Optional. Starting calls straight from the Android Auto screen; without it, the phone app opens with the number filled in.</td></tr>
               <tr><td data-i18n="pm.p">Photos</td><td data-i18n="pm.pd">Picked with the system photo picker for the slideshow; no storage permission is needed.</td></tr>
             </tbody>
           </table>
@@ -349,7 +353,7 @@ half4 c    = content.eval(coord + n * strength * bend);</code></pre>
         <div class="stack reveal">
           <div class="box">
             <h3 data-i18n="pv.bt">What leaves the phone</h3>
-            <p data-i18n="pv.bd">Map tiles come from OpenFreeMap, routes from the OpenStreetMap community's routing server, and searches go to Photon, Nominatim and the phone's address lookup. With ads, Google AdMob may process the advertising ID; in the EEA, the UK and Switzerland a consent form comes first. Payments stay inside Google Play.</p>
+            <p data-i18n="pv.bd">Map tiles come from OpenFreeMap, routes from the OpenStreetMap community's routing server, and searches go to Photon, Nominatim and the phone's address lookup. The weather widget sends only the chosen city's coordinates to MET Norway (api.met.no), and voice commands are turned into text by the phone's own speech recognition service. With ads, Google AdMob may process the advertising ID; in the EEA, the UK and Switzerland a consent form comes first. Payments stay inside Google Play.</p>
             <p data-i18n-html="pv.links">Full text: <a href="privacy.html">Privacy policy</a> · <a href="gizlilik.html">Gizlilik politikası (Türkçe)</a></p>
           </div>
           <div class="box">
@@ -391,14 +395,14 @@ half4 c    = content.eval(coord + n * strength * bend);</code></pre>
         <p data-i18n="foot.blurb">Full-stack developer building web apps, tools and machine learning studies, from Sakarya, Türkiye.</p>
       </div>
       <div class="fcol">
-        <h4 data-i18n="foot.nav">Navigate</h4>
+        <h3 data-i18n="foot.nav">Navigate</h3>
         <a href="../" data-i18n="home">Home</a>
         <a href="../#projects" data-i18n="back">All projects</a>
         <a href="../#process" data-i18n="foot.process">Process</a>
         <a href="../#contact" data-i18n="foot.contact">Contact</a>
       </div>
       <div class="fcol">
-        <h4 data-i18n="foot.find">Elsewhere</h4>
+        <h3 data-i18n="foot.find">Elsewhere</h3>
         <a href="https://github.com/yigitkalaycioglu" target="_blank" rel="noopener">GitHub ↗</a>
         <a href="https://www.linkedin.com/in/yi%C4%9Fit-kalayc%C4%B1o%C4%9Flu-85bb60373/" target="_blank" rel="noopener">LinkedIn ↗</a>
       </div>
@@ -500,7 +504,7 @@ half4 c    = content.eval(coord + n * strength * bend);</code></pre>
     "pl.t": "Ücretsiz ve Premium",
     "pl.s": "Saat, yerleşim, widget'lar ve gece modu ücretsiz. Premium ekstraları getiriyor; çoğu önce bir gün denenebiliyor.",
     "ad.t": "Bir şeyi 24 saat deneyin",
-    "ad.d": "Premium bir tema, yazı tipi, saat stili, widget ya da harita, sizin başlattığınız kısa bir ödüllü reklamla 24 saatliğine açılabiliyor. Her öğe için ayrı reklam gerekiyor; gün bitince yeniden kilitleniyor.",
+    "ad.d": "Premium bir tema, yazı tipi, saat stili, widget ya da Android Auto ekranı, sizin başlattığınız kısa bir ödüllü reklamla 24 saatliğine açılabiliyor. Her öğe için ayrı reklam gerekiyor; gün bitince yeniden kilitleniyor.",
     "ad.d2": "Saat ekranında kendiliğinden hiç reklam çıkmıyor, kilit ekranının üstünde de hiçbir zaman; reklamdan önce telefonun kilidinin açılması gerekiyor.",
     "sb.t": "Abonelik",
     "sb.d": "StandBy+ Premium, Google Play üzerinden ödenen aylık bir abonelik. Kendiliğinden yenileniyor ve Play Store › Ödemeler ve abonelikler bölümünden istediğiniz zaman iptal edilebiliyor; ödenen dönemin sonuna kadar etkin kalıyor.",
@@ -511,6 +515,7 @@ half4 c    = content.eval(coord + n * strength * bend);</code></pre>
     "pt.all": "Hepsi",
     "pt.r3": "Harita ve navigasyon",
     "pt.r3f": "Reklamla 24 saat",
+    "pt.r8": "Android Auto ekranı",
     "pt.r5": "Aura, rakam gradyanı, özel renkler",
     "pt.r6": "Akıllı yığınlar, bildirim filtresi",
     "pt.r7": "Ayarlar'daki reklam",
@@ -526,11 +531,17 @@ half4 c    = content.eval(coord + n * strength * bend);</code></pre>
     "pm.a": "Bildirim erişimi",
     "pm.ad": "İsteğe bağlı. Panel'de bildirimleri ve çalan müziği göstermek. İçerik yalnızca göstermek için okunuyor ve telefonda kalıyor.",
     "pm.l": "Konum",
-    "pm.ld": "İsteğe bağlı; yalnızca harita açıkken. Arka planda toplanmıyor.",
+    "pm.ld": "İsteğe bağlı; yalnızca harita ya da Android Auto ekranı açıkken. Arka planda toplanmıyor.",
+    "pm.m": "Mikrofon",
+    "pm.md": "İsteğe bağlı. Android Auto ekranında sesli komut ve sesle mesaj yanıtı; yalnızca mikrofon düğmesine bastığınızda. Ses kaydedilmiyor.",
+    "pm.c": "Kişiler",
+    "pm.cd": "İsteğe bağlı. Android Auto ekranında kişileri listelemek ve sesle aramak. Telefondan hiç çıkmıyor.",
+    "pm.t": "Telefon",
+    "pm.td": "İsteğe bağlı. Android Auto ekranından aramayı doğrudan başlatmak; verilmezse telefon uygulaması numara yazılı açılıyor.",
     "pm.p": "Fotoğraflar",
     "pm.pd": "Slayt gösterisi için sistemin fotoğraf seçicisiyle seçiliyor; depolama izni gerekmiyor.",
     "pv.bt": "Telefondan neler çıkıyor",
-    "pv.bd": "Harita karoları OpenFreeMap'ten, rotalar OpenStreetMap topluluğunun rota sunucusundan geliyor; aramalar Photon'a, Nominatim'e ve telefonun adres servisine gidiyor. Reklamlarla birlikte Google AdMob reklam kimliğini işleyebiliyor; AEA, Birleşik Krallık ve İsviçre'de önce bir onay formu gösteriliyor. Ödemeler tamamen Google Play içinde kalıyor.",
+    "pv.bd": "Harita karoları OpenFreeMap'ten, rotalar OpenStreetMap topluluğunun rota sunucusundan geliyor; aramalar Photon'a, Nominatim'e ve telefonun adres servisine gidiyor. Hava durumu widget'ı yalnızca seçilen şehrin koordinatlarını MET Norway'in api.met.no hizmetine gönderiyor; sesli komutları yazıya telefonun kendi konuşma tanıma servisi çeviriyor. Reklamlarla birlikte Google AdMob reklam kimliğini işleyebiliyor; AEA, Birleşik Krallık ve İsviçre'de önce bir onay formu gösteriliyor. Ödemeler tamamen Google Play içinde kalıyor.",
     "pv.links": "Tam metin: <a href=\"gizlilik.html\">Gizlilik politikası</a> · <a href=\"privacy.html\">Privacy policy (English)</a>",
     "sp.t": "Destek",
     "sp.d": "Soru, hata bildirimi ve istekler için: <a href=\"mailto:yeepylabs@gmail.com\">yeepylabs@gmail.com</a>",
@@ -542,6 +553,6 @@ half4 c    = content.eval(coord + n * strength * bend);</code></pre>
   }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
-  <script src="../assets/js/proje.js?v=6" defer></script>
+  <script src="../assets/js/proje.js?v=10" defer></script>
 </body>
 </html>

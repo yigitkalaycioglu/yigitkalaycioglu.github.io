@@ -590,7 +590,7 @@ p { margin: 0 0 14px; }
 .foot { max-width: 1200px; margin: 130px auto 0; padding: 64px 22px 30px; border-top: 1px solid var(--line); }
 .foot-top { display: grid; grid-template-columns: 1.5fr 1fr 1.3fr 1fr; gap: 40px; }
 .fcol { display: flex; flex-direction: column; gap: 11px; }
-.fcol h4 { margin: 0 0 8px; padding-bottom: 14px; border-bottom: 1px solid var(--line); font: 500 11.5px var(--font); color: var(--text); letter-spacing: .16em; text-transform: uppercase; }
+.fcol h3 { margin: 0 0 8px; padding-bottom: 14px; border-bottom: 1px solid var(--line); font: 500 11.5px var(--font); color: var(--text); letter-spacing: .16em; text-transform: uppercase; }
 .fcol a { color: var(--text-2); font-size: 15px; width: fit-content; transition: color .25s; }
 .fcol a:hover { color: var(--text); text-decoration: none; }
 .fbrand p { color: var(--text-2); max-width: 320px; margin: 14px 0 0; font-size: 15px; }
@@ -616,6 +616,8 @@ p { margin: 0 0 14px; }
   filter: blur(calc(var(--fx-b, 6px) * max(0, var(--q))));
 }
 .js .reveal.in { filter: none; }
+/* belirmenin başında yarı saydamken altında kalan düğmelerin tıklamasını yutmasın */
+.js .reveal.ghost { pointer-events: none; }
 .featured, .grid, .timeline, .skills, .two, .certs, .contact { perspective: 1600px; }
 .js .reveal[data-fx] { --fx-b: 2px; }
 .js .reveal[data-fx="left"] { --fx-x: -160px; --fx-y: 0px; --fx-ax: y; --fx-r: 32deg; }

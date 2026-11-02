@@ -428,6 +428,7 @@
         r.set = p;
         r.el.style.setProperty('--p', p.toFixed(4));
         r.el.classList.toggle('in', p >= 1);
+        r.el.classList.toggle('ghost', p < 0.5);
         r.facts.forEach((b) => {
           if (b.dataset.num == null) return;
           b.textContent = Math.round(+b.dataset.num * easeOut(clamp(p / 0.7)));

@@ -682,6 +682,7 @@
         r.set = p;
         r.el.style.setProperty('--p', p.toFixed(4));
         r.el.classList.toggle('in', p >= 1);
+        r.el.classList.toggle('ghost', p < 0.5);
         r.cnt.forEach((b) => { b.textContent = fmtNum(b, easeOut(clamp(p / 0.7))); });
       }
       if (p > 0.15 && !r.shown) {
