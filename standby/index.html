@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400..700&family=JetBrains+Mono:wght@400;500;600&family=Mona+Sans:wght@200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/site.css?v=21">
   <link rel="stylesheet" href="../assets/css/proje.css?v=10">
-  <link rel="stylesheet" href="standby.css?v=1">
+  <link rel="stylesheet" href="standby.css?v=2">
   <script>
     // tema ve dil, ilk boyamadan önce uygulanır
     (function () {
@@ -171,6 +171,18 @@
           <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 12.5a7 7 0 0 1 14 0"/><path d="M8.5 12.5a3.5 3.5 0 0 1 7 0"/><circle cx="12" cy="12.5" r="1"/><path d="M12 13.5v6"/></svg></div>
           <h3 data-i18n="c12.t">Quick toggles that toggle</h3>
           <p data-i18n="c12.d">Wi-Fi, Bluetooth and mobile data switch directly when Shizuku is installed; otherwise the system's own quick panel opens. Photos can also be shown as a slideshow with the time.</p>
+        </article>
+        <article class="fcard sb-auto reveal" data-fx="rise">
+          <div>
+            <div class="ico"><svg viewBox="0 0 24 24"><path d="m5 11 1.6-4.2a2 2 0 0 1 1.9-1.3h7a2 2 0 0 1 1.9 1.3L19 11"/><rect x="3" y="11" width="18" height="6" rx="2"/><path d="M6.5 17v2M17.5 17v2M7 14h1.5M15.5 14H17"/></svg></div>
+            <h3 data-i18n="c13.t">Android Auto screen</h3>
+            <p data-i18n="c13.d">In the car, StandBy+ runs on the Android Auto display with directions, music, messages and calls. It's part of Premium and can also be unlocked for 24 hours with an ad.</p>
+          </div>
+          <ul class="sb-auto-list">
+            <li><b data-i18n="c13.m">Messages</b><span data-i18n="c13.md">Messages from WhatsApp, Telegram and other apps are read aloud when you ask and answered by voice; the reply is sent by the app the message came from.</span></li>
+            <li><b data-i18n="c13.c">Calls</b><span data-i18n="c13.cd">Call contacts from the list or by name; recent calls are kept in a list on the phone.</span></li>
+            <li><b data-i18n="c13.v">Voice commands</b><span data-i18n="c13.vd">Press the microphone button and say it: a call, directions, a message or music.</span></li>
+          </ul>
         </article>
       </div>
     </section>
@@ -460,6 +472,14 @@ half4 c    = content.eval(coord + n * strength * bend);</code></pre>
     "c11.d": "Siyah zemin pikselleri kapalı tutuyor, içerik ekran yanmasına karşı her dakika birkaç piksel kayıyor ve dokunulmadığında ekran bir süre sonra kendini kısabiliyor.",
     "c12.t": "Gerçekten açıp kapatan düğmeler",
     "c12.d": "Shizuku kuruluysa Wi-Fi, Bluetooth ve mobil veri doğrudan açılıp kapanıyor; değilse sistemin kendi hızlı ayar paneli açılıyor. Fotoğraflarınız da saatle birlikte slayt gösterisi olarak gösterilebiliyor.",
+    "c13.t": "Android Auto ekranı",
+    "c13.d": "Arabada StandBy+, yol tarifi, müzik, mesajlar ve aramalarla Android Auto ekranında çalışıyor. Premium'a dahil; reklamla 24 saatliğine de açılabiliyor.",
+    "c13.m": "Mesajlar",
+    "c13.md": "WhatsApp, Telegram ve diğer uygulamalardan gelen mesajlar istediğinizde sesli okunuyor ve sesle yanıtlanıyor; yanıtı mesajın geldiği uygulama gönderiyor.",
+    "c13.c": "Aramalar",
+    "c13.cd": "Kişileri listeden ya da adıyla arayın; son aramalar telefonda bir listede duruyor.",
+    "c13.v": "Sesli komut",
+    "c13.vd": "Mikrofon düğmesine basıp söyleyin: arama, yol tarifi, mesaj ya da müzik.",
     "sc.t": "Ekranlar",
     "sc.s": "Uygulamanın kendi koduyla, örnek verilerle çizildi. Büyütmek için görsele tıklayın.",
     "g1": "Varsayılan siyah kartlarla Panel: düğmeler, saat, müzik, pil, tarih ve bildirimler",
