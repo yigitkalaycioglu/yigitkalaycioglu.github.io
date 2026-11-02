@@ -527,11 +527,13 @@
     // öne çıkan kartlar: üstüne binen kart kadar küçülüp kararır
     const stackOn = stackMq.matches && !reduce;
     const tops = feats.map((f) => f.getBoundingClientRect().top);
+    // yapışma yeri CSS'ten okunur: menü iki satıra geçince deste de aşağı iner
+    const stick0 = stackOn && feats.length ? parseFloat(getComputedStyle(feats[0]).top) : 0;
     feats.forEach((f, i) => {
       let s = 0;
       if (stackOn) {
         for (let j = i + 1; j < feats.length; j++) {
-          const stick = 92 + j * 20;
+          const stick = stick0 + j * 20;
           s += clamp((vh - tops[j]) / (vh - stick));
         }
       }
