@@ -262,14 +262,14 @@ h1 { font: 450 clamp(48px, 7vw, 96px)/.94 var(--font); letter-spacing: -.05em; m
 .b-prog i.run::after { animation: prog var(--dur, 4.5s) linear forwards; }
 @keyframes prog { to { transform: scaleX(1); } }
 .float { position: absolute; z-index: 2; border: 1px solid var(--line-2); background: color-mix(in srgb, var(--surface) 82%, transparent); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-radius: 12px; box-shadow: var(--shadow-lg); }
-.f-term { left: -7%; bottom: 0; width: 272px; padding: 0 0 12px; font: 500 12.5px/1.4 var(--font-m); color: var(--text); transform: translate3d(calc(var(--hp) * -50px), calc(var(--hp) * 30px), 70px) rotateY(calc(-9deg + var(--ry) * 1.5)) rotateX(calc(4deg + var(--rx) * 1.5)); animation: bob 7s ease-in-out infinite; }
+.f-term { left: -7%; bottom: 0; width: 272px; padding: 0 0 12px; font: 500 12.5px/1.4 var(--font-m); color: var(--text); transform: translate3d(calc(var(--hp) * -50px * var(--drift, 1)), calc(var(--hp) * 30px), 70px) rotateY(calc(-9deg + var(--ry) * 1.5)) rotateX(calc(4deg + var(--rx) * 1.5)); animation: bob 7s ease-in-out infinite; }
 .ft-h { display: flex; align-items: center; justify-content: space-between; padding: 9px 12px; margin-bottom: 4px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 11px; }
 .ft-h .b-dots i { width: 8px; height: 8px; }
 .tl { margin: 8px 14px 0; height: 1.4em; width: 0; overflow: hidden; white-space: nowrap; animation: type 8s steps(var(--n)) infinite; animation-delay: calc(var(--t) * 1s + .4s); }
 .tl .pr { color: var(--accent); }
 .tl.ok { color: var(--ok); }
 @keyframes type { 0% { width: 0; } 16%, 86% { width: calc(var(--n) * 1ch + 1ch); } 100% { width: 0; } }
-.f-chip { right: -3%; top: 0; display: flex; align-items: center; gap: 9px; padding: 8px 14px; border-radius: 999px; font: 500 12px var(--font-m); color: var(--text-2); transform: translate3d(calc(var(--hp) * 40px), calc(var(--hp) * -40px), 90px) rotateY(calc(-9deg + var(--ry) * 1.8)) rotateX(calc(4deg + var(--rx) * 1.8)); animation: bob 6s ease-in-out -2s infinite; }
+.f-chip { right: -3%; top: 0; display: flex; align-items: center; gap: 9px; padding: 8px 14px; border-radius: 999px; font: 500 12px var(--font-m); color: var(--text-2); transform: translate3d(calc(var(--hp) * 40px * var(--drift, 1)), calc(var(--hp) * -40px), 90px) rotateY(calc(-9deg + var(--ry) * 1.8)) rotateX(calc(4deg + var(--rx) * 1.8)); animation: bob 6s ease-in-out -2s infinite; }
 @keyframes bob { 50% { translate: 0 -10px; } }
 .scroll-cue { position: absolute; left: 50%; bottom: 26px; translate: -50% 0; display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--muted); font: 500 10.5px var(--font-m); letter-spacing: .2em; text-transform: uppercase; opacity: calc(1 - var(--hp) * 4); }
 .scroll-cue:hover { text-decoration: none; color: var(--text); }
@@ -678,8 +678,8 @@ p { margin: 0 0 14px; }
 @media (max-width: 720px) {
   /* telefonda ikinci satır daha sıkı, logo yalnızca simge */
   .links { padding: 0 14px; }
-  .links a { padding: 8px 9px; font-size: 10.5px; letter-spacing: .1em; }
-  .links .ind::after { left: 8px; right: 8px; }
+  .links a { padding: 8px 7px; font-size: 10.5px; letter-spacing: .06em; }
+  .links .ind::after { left: 7px; right: 7px; }
   .logo-text { display: none; }
   .section { padding-top: 100px; }
   .manifesto { padding-top: 70px; }
@@ -695,8 +695,12 @@ p { margin: 0 0 14px; }
   .facts b { font-size: 26px; }
   .cta.group { display: flex; }
   .cta.group .btn { flex: 1 1 auto; }
-  .f-term { width: 210px; font-size: 11px; }
-  .f-chip { font-size: 11px; padding: 6px 11px; }
+  .f-term { left: 0; width: 210px; font-size: 11px; --drift: 0; }
+  .f-chip { font-size: 11px; padding: 6px 11px; --drift: 0; }
+  /* yandan gelen içerik dar ekranın kenarından taşmasın: yatay yol ve dönüş kısalır */
+  .js .reveal[data-fx="left"] { --fx-x: -40px; --fx-r: 16deg; }
+  .js .reveal[data-fx="right"] { --fx-x: 40px; --fx-r: -16deg; }
+  .js .reveal[data-fx="scatter"] { --fx-x: calc(var(--sx, 0px) * .25); --fx-r: calc(var(--r, 10deg) * .5); }
   .mock .checks li { padding: 6px 10px; font-size: 13px; }
   .mock .tbl { font-size: 10.5px; }
   .mock .tbl span { padding: 3px 8px; }
@@ -705,6 +709,8 @@ p { margin: 0 0 14px; }
 }
 @media (max-width: 420px) {
   .nav-cta { display: none; }
+  .links a { padding: 8px 6px; letter-spacing: .04em; }
+  .links .ind::after { left: 6px; right: 6px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
