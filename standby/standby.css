@@ -17,7 +17,7 @@
 .sb-swatches li { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px 5px 6px; border-radius: 999px; background: var(--surface-3); border: 1px solid var(--line-2); font-size: 13px; color: var(--text); }
 .sb-swatches i { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .25); flex: none; }
 
-/* Android Auto: ızgaranın bütün satırını kaplayan kart; geniş olduğu için yatay eğim azaltıldı */
+/* Sürüş ekranı: ızgaranın bütün satırını kaplayan kart; geniş olduğu için yatay eğim azaltıldı */
 .sb-auto { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 20px 56px; align-items: center; transform: perspective(1000px) translateY(var(--lift)) rotateX(var(--tx)) rotateY(calc(var(--ty) * .3)); }
 .sb-auto-list { list-style: none; display: grid; gap: 16px; padding: 0; margin: 0; }
 .sb-auto-list li { display: grid; gap: 3px; padding-left: 16px; border-left: 1px solid var(--line-2); }
