@@ -482,12 +482,24 @@
   let activeStep = -2;
   function processFx(vh) {
     if (!steps.length || !stage) return;
-    const narrow = narrowMq.matches;
     let a = -1;
-    steps.forEach((st, i) => {
-      const r = st.getBoundingClientRect();
-      if ((narrow ? r.top : r.top + r.height / 2) < vh * (narrow ? 0.72 : 0.66)) a = i;
-    });
+    if (narrowMq.matches) {
+      // dar ekranda panel üstte yapışık: panelin altında metni en çok görünen adım etkin olur
+      const sb = stage.getBoundingClientRect().bottom;
+      let best = 0;
+      steps.forEach((st, i) => {
+        const r = st.getBoundingClientRect();
+        const v = Math.min(r.bottom, vh) - Math.max(r.top, sb);
+        if (v > best) { best = v; a = i; }
+      });
+      // bölüm geride kaldıysa son adım açık kalır
+      if (best <= 0 && steps[0].getBoundingClientRect().top < sb) a = steps.length - 1;
+    } else {
+      steps.forEach((st, i) => {
+        const r = st.getBoundingClientRect();
+        if (r.top + r.height / 2 < vh * 0.66) a = i;
+      });
+    }
     if (a === activeStep) return;
     const back = a < activeStep && activeStep > -2;
     activeStep = a;

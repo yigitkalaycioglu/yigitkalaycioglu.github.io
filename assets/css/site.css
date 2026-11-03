@@ -665,15 +665,25 @@ p { margin: 0 0 14px; }
   .feat-img { border-right: 0; border-bottom: 1px solid var(--line); aspect-ratio: 16 / 10; }
   .two { grid-template-columns: 1fr; }
   .process { grid-template-columns: 1fr; gap: 0; }
-  .stage { order: -1; top: 84px; z-index: 3; padding-top: 10px; background: linear-gradient(var(--bg) 85%, transparent); }
+  /* metin panelin altına girerken kesik satır kalmasın: panelin hemen altında kısa bir solma */
+  .stage { order: -1; top: 84px; z-index: 3; padding: 10px 0 26px; background: linear-gradient(var(--bg) calc(100% - 26px), transparent); }
   .js .panel.done { display: none; }
   .js .panel.active { margin: 0; }
   .pin { height: 300px; }
   .mock { inset: 16px; }
   .process .steps { padding: 10px 0 10vh; }
-  .step { min-height: 62vh; justify-content: flex-start; padding-top: 30px; }
+  /* adımlar metinleri kadar yer kaplar: panelin altında boş bölge kalmaz */
+  .step { min-height: 0; justify-content: flex-start; padding: 26px 0 34px; }
   .foot-top { grid-template-columns: 1fr 1fr; }
   .fbrand { grid-column: 1 / -1; }
+}
+/* kısa telefon ekranında panel küçülür ki altında okunacak yer kalsın */
+@media (max-width: 960px) and (max-height: 760px) {
+  .stage .panel { zoom: .8; }
+}
+/* yatay tutulan telefonda yapışkan panel ekranın tamamını kaplamasın */
+@media (max-width: 960px) and (max-height: 500px) {
+  .stage { position: static; }
 }
 @media (max-width: 720px) {
   /* telefonda ikinci satır daha sıkı, logo yalnızca simge */
