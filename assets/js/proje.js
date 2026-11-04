@@ -167,6 +167,7 @@
     const img = document.createElement('img');   // adresi ilk tıklamada verilir
     const cap = $('p', dlg);
     const closeBtn = $('.lb-close', dlg);
+    closeBtn.setAttribute('aria-label', t('close'));
     shotLinks.forEach((a) => {
       a.addEventListener('click', (e) => {
         e.preventDefault();

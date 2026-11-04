@@ -35,3 +35,6 @@ th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vert
 th{color:var(--muted);font-weight:600;white-space:nowrap}
 footer{border-top:1px solid var(--line);margin-top:52px;padding-top:24px;font-size:14px;color:var(--muted)}
 footer a{margin-right:18px}
+/* görünüm aynı, parmakla basılacak alan büyük */
+.back,footer a{position:relative}
+.back::after,footer a::after{content:"";position:absolute;inset:-10px -6px}

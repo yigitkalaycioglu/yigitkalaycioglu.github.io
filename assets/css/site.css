@@ -591,14 +591,14 @@ p { margin: 0 0 14px; }
 .foot-top { display: grid; grid-template-columns: 1.5fr 1fr 1.3fr 1fr; gap: 40px; }
 .fcol { display: flex; flex-direction: column; gap: 11px; }
 .fcol h3 { margin: 0 0 8px; padding-bottom: 14px; border-bottom: 1px solid var(--line); font: 500 11.5px var(--font); color: var(--text); letter-spacing: .16em; text-transform: uppercase; }
-.fcol a { color: var(--text-2); font-size: 15px; width: fit-content; transition: color .25s; }
+.fcol a { color: var(--text-2); font-size: 15px; width: fit-content; padding-block: 4px; margin-block: -4px; transition: color .25s; }
 .fcol a:hover { color: var(--text); text-decoration: none; }
 .fbrand p { color: var(--text-2); max-width: 320px; margin: 14px 0 0; font-size: 15px; }
 .wordmark { margin: 50px 0 0; padding: .12em 0 .08em; text-align: center; white-space: nowrap; overflow: hidden; user-select: none; font: 700 clamp(52px, 15vw, 196px)/1.05 var(--font); letter-spacing: -.07em; background: linear-gradient(180deg, var(--text) 0%, color-mix(in srgb, var(--text) 25%, transparent) 70%, transparent 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .js .wordmark.reveal { --fx-y: 90px; --fx-b: 12px; }
 .foot-bot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 .foot-bot p { margin: 0; }
-.to-top { display: inline-flex; align-items: center; gap: 8px; color: var(--text-2); font: 500 12px var(--font-m); letter-spacing: .1em; text-transform: uppercase; }
+.to-top { display: inline-flex; align-items: center; gap: 8px; padding-block: 8px; margin-block: -8px; color: var(--text-2); font: 500 12px var(--font-m); letter-spacing: .1em; text-transform: uppercase; }
 .to-top:hover { color: var(--text); text-decoration: none; }
 .to-top svg { transition: transform .3s var(--ease); }
 .to-top:hover svg { transform: translateY(-3px); }
@@ -649,6 +649,14 @@ p { margin: 0 0 14px; }
   .feat { top: 126px; }
   .feat:nth-child(2) { top: 146px; }
   .feat:nth-child(3) { top: 166px; }
+}
+/* dar dizüstünde hero rakamları tek satıra sığmıyor: telefondaki gibi 2x2 */
+@media (min-width: 961px) and (max-width: 1160px) {
+  .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 0; }
+  .facts li { padding: 0 16px; }
+  .facts li:nth-child(odd) { padding-left: 0; border-left: 0; }
+  /* düğme grubu da tek satırda kalsın */
+  .cta.group .btn { padding: 0 13px; }
 }
 @media (max-width: 1100px) {
   .process { gap: 40px; }
