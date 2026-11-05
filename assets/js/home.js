@@ -101,12 +101,7 @@
         const src = $('img', p);
         const img = document.createElement('img');
         img.src = src.getAttribute('src'); img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
-        const title = document.createElement('p');
-        title.className = 'slot-t';
-        const h = $('.proj-title', p);
-        title.textContent = h.textContent;
-        if (h.dataset.i18n) title.dataset.i18n = h.dataset.i18n;
-        slot.append(img, title);
+        slot.append(img);
         reel.append(slot);
       });
       col.append(reel);
