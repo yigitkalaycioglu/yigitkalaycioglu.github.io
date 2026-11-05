@@ -48,6 +48,7 @@
     'about.title': 'Hakkımda',
     'about.text': '<b>Ben Yiğit Kalaycıoğlu.</b> <mark>Sakarya Üniversitesi Bilişim Sistemleri Mühendisliği</mark> öğrencisiyim ve <mark>Haziran 2026</mark>\'da mezun oluyorum. İki yazılım stajı yaptım: 2025 yazında <mark>Tırsan Treyler\'in .NET ekibinde</mark> kurum içi uygulamaların Clean Architecture\'a göre modül modül yeniden yapılandırılmasına katkı verdim; 2026 sonbaharında <mark>ESBİ</mark>\'de bir gereksinim dokümanından <mark>dört haftada</mark> ön muhasebe uygulaması geliştirdim. İş dışında kullanmak istediğim şeyleri yapıyorum: yalnızca birbirine uyan parçaları sunan bir <mark>3D bilgisayar toplama</mark> sitesi, AGSL ile yazılmış cam temalı bir Android başucu saati, bilgisayarı uyandıran tuşla kapatan bir Windows servisi. Ekranlardan önce veri modelini yazar, her kuralı tek bir yerde tutar ve tarayıcıda açılabilen işler yayınlarım. <a class="about-cta" href="#contact">Aklınızda bir pozisyon ya da proje varsa bana yazın.</a>',
     'pr.title': 'Nasıl geliştiriyorum',
+    'pr.1k': 'Gereksinim', 'pr.2k': 'Veri', 'pr.3k': 'Sınırlar', 'pr.4k': 'Arayüz', 'pr.5k': 'Kanıt',
     'pr.1': '<b>Önce bir gereksinim dokümanı.</b> İlk satır koddan önce kimin kullanacağını, neye ihtiyacı olduğunu ve hangi kuralların asla bozulmaması gerektiğini yazarım. Ön muhasebe uygulamasının dokümanı neyin kapsam dışı olduğunu da söyler.',
     'pr.1c': 'Ön muhasebe uygulamasının proje dokümanından (docs/PROJE_DOKUMANI.md).',
     'pr.2': '<b>Sonra veri.</b> Ekranlar modelden sonra gelir. İlişkisel şemayı tasarlar, migration\'larla sürümler ve rakamları saklamak yerine kayıtlardan hesaplarım: bakiye hiçbir yerde tutulmaz, cari hareketlerinden toplanır.',
@@ -384,6 +385,75 @@
     });
   }
 
+  // ------------------------------------------------------------ diğer projeler: tanıtım görseli imleci izleyen kartta açılır
+  const plist = $('.poster-list');
+  const prow = plist ? $$('.poster', plist) : [];
+  const pk = { x: 0, y: 0, tx: 0, ty: 0, r: 0, cx: 0, row: null, on: false, fresh: true };
+  let peek = null;
+  if (plist && fine) {
+    peek = document.createElement('div');
+    peek.className = 'peek';
+    peek.setAttribute('aria-hidden', 'true');
+    const reel = document.createElement('div');
+    reel.className = 'peek-reel';
+    const num = document.createElement('span');
+    num.className = 'peek-n';
+    peek.append(reel, num);
+    document.body.append(peek);
+    // görseller bölüme yaklaşınca yüklenir
+    const fill = () => prow.forEach((row, k) => {
+      const im = document.createElement('img');
+      im.src = $('.pv img', row).getAttribute('src');
+      im.alt = '';
+      im.decoding = 'async';
+      im.style.setProperty('--k', k);
+      reel.append(im);
+    });
+    if ('IntersectionObserver' in window) {
+      const po = new IntersectionObserver(([e]) => { if (e.isIntersecting) { fill(); po.disconnect(); } }, { rootMargin: '100% 0px' });
+      po.observe(plist);
+    } else fill();
+
+    const pick = (k) => {
+      pk.row = prow[k];
+      reel.style.transform = `translate3d(0, ${-k * 100}%, 0)`;
+      num.textContent = `${String(k + 1).padStart(2, '0')} / ${String(prow.length).padStart(2, '0')}`;
+      prow.forEach((row, i) => row.classList.toggle('cur', i === k));
+    };
+    prow.forEach((row, k) => row.addEventListener('pointerenter', (e) => {
+      pick(k); pk.cx = e.clientX;
+      if (!pk.on) { pk.on = true; peek.classList.add('on'); plist.classList.add('peeking'); }
+    }));
+    plist.addEventListener('pointerleave', () => {
+      pk.on = false; pk.fresh = true;
+      peek.classList.remove('on'); plist.classList.remove('peeking');
+      prow.forEach((row) => row.classList.remove('cur'));
+    });
+    plist.addEventListener('pointermove', (e) => { pk.cx = e.clientX; });
+  }
+  function peekTick() {
+    if (!peek) return;
+    if (pk.on) {
+      // kart üzerine gelinen satırın hemen üstünde durur ki başlık görünür kalsın; yer yoksa altına geçer.
+      // her karede ölçülür: tekerlekle kaydırırken de satıra yapışık kalır
+      const w = peek.offsetWidth, h = peek.offsetHeight, gap = 14;
+      const r = pk.row.getBoundingClientRect();
+      pk.tx = clamp(pk.cx - w / 2, 12, innerWidth - w - 12);
+      pk.ty = r.top - h - gap < 72 ? r.bottom + gap : r.top - h - gap;
+      if (pk.fresh) { pk.x = pk.tx; pk.y = pk.ty; pk.r = 0; pk.fresh = false; }
+    }
+    const k = reduce ? 1 : 0.14;
+    const dx = pk.tx - pk.x;
+    pk.x += dx * k;
+    pk.y += (pk.ty - pk.y) * k;
+    // hızla yana eğilir, durunca düzelir
+    pk.r += (clamp(dx * 0.05, -7, 7) - pk.r) * 0.12;
+    peek.style.transform = `translate3d(${pk.x.toFixed(1)}px, ${pk.y.toFixed(1)}px, 0) rotate(${reduce ? 0 : pk.r.toFixed(2)}deg)`;
+  }
+
+  // ------------------------------------------------------------ süreç: okunan adım öne çıkar, ray kaydırmayla dolar
+  const steps = $$('.stage-step');
+
   // ------------------------------------------------------------ menü rengi: altındaki bölümün tonuna göre
   const nav = $('#nav');
   const toned = $$('[data-tone]');
@@ -424,6 +494,7 @@
   function frame(now) {
     if (lenis) lenis.raf(now);
     lensTick(now);
+    peekTick();
     const y = scrollY, vh = innerHeight;
     if (y !== lastY || dirty) {
       lastY = y; dirty = false;
@@ -468,6 +539,15 @@
           lit = n;
         }
       }
+
+      // süreç: ekranın ortasındaki adım; ray o hizaya kadar dolu
+      steps.forEach((st) => {
+        const r = st.getBoundingClientRect();
+        const gap = st === steps[steps.length - 1] ? 0 : parseFloat(getComputedStyle(st).getPropertyValue('--sg')) || 0;
+        const mid = vh * 0.5;
+        st.style.setProperty('--sp', (reduce ? 1 : clamp((mid - r.top) / (r.height + gap))).toFixed(3));
+        st.classList.toggle('cur', r.top < mid && r.bottom + gap > mid);
+      });
 
       // altbilgi: kelime yerine otururken büyür
       if (foot && !reduce) {
