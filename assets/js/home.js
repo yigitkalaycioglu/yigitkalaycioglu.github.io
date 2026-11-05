@@ -84,30 +84,20 @@
   const seam = $('.seam');
   const projs = $$('.proj', seam);
   const live = !!seam && !reduce && projs.length > 1;
-  const reels = [];
+  const shots = [];
   if (live) {
+    // her projenin resmi tek parça: sahnede sırayla belirip kaybolur, bölünmez
     const stage = $('.seam-stage', seam);
-    for (const side of ['l', 'r']) {
-      const col = document.createElement('div');
-      col.className = `seam-col ${side}`;
-      col.setAttribute('aria-hidden', 'true');
-      const reel = document.createElement('div');
-      reel.className = 'seam-reel';
-      const order = side === 'l' ? projs : [...projs].reverse();
-      order.forEach((p, k) => {
-        const slot = document.createElement('div');
-        slot.className = 'slot';
-        slot.style.setProperty('--k', k);
-        const src = $('img', p);
-        const img = document.createElement('img');
-        img.src = src.getAttribute('src'); img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
-        slot.append(img);
-        reel.append(slot);
-      });
-      col.append(reel);
-      stage.prepend(col);
-      reels.push(reel);
-    }
+    const bg = document.createElement('div');
+    bg.className = 'seam-bg';
+    bg.setAttribute('aria-hidden', 'true');
+    projs.forEach((p) => {
+      const img = document.createElement('img');
+      img.src = $('img', p).getAttribute('src'); img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
+      bg.append(img);
+      shots.push(img);
+    });
+    stage.prepend(bg);
     seam.style.setProperty('--n', projs.length);
     seam.classList.add('live', 'scene', 'is-live');
   }
@@ -439,13 +429,12 @@
         const raw = clamp((y - top) / span) * (projs.length - 1);
         const p = step(raw);
         const n = projs.length;
-        reels[0].style.transform = `translate3d(0, ${(-p * vh).toFixed(1)}px, 0)`;
-        reels[1].style.transform = `translate3d(0, ${((p - (n - 1)) * vh).toFixed(1)}px, 0)`;
-        // yalnızca sahnede görünebilecek kareler çizilir
-        reels.forEach((reel, side) => [...reel.children].forEach((slot, k) => {
-          const idx = side === 0 ? k : n - 1 - k;
-          slot.style.visibility = Math.abs(p - idx) < 1 ? 'visible' : 'hidden';
-        }));
+        shots.forEach((img, k) => {
+          const d = p - k, o = clamp(1 - Math.abs(d) * 1.6);
+          img.style.opacity = (o * 0.3).toFixed(3);
+          img.style.transform = `scale(${(1.08 - 0.08 * o).toFixed(4)}) translate3d(0, ${(-d * 6).toFixed(2)}%, 0)`;
+          img.style.visibility = o > 0 ? 'visible' : 'hidden';
+        });
         projs.forEach((el, k) => {
           const o = clamp(1 - Math.abs(p - k) * 2.6);
           el.style.setProperty('--o', o.toFixed(3));
