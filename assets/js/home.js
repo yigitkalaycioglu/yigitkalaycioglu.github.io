@@ -18,7 +18,6 @@
     'lang.label': 'Switch to English', 'theme': 'Temayı değiştir', 'menu': 'Menü', 'close': 'Kapat',
     'hero.alt': 'Bilgisayar toplama projesinden ayrık 3D render: kasa, anakart, sıvı soğutucu, ekran kartı ve güç kaynağı',
     'lens.label': 'Render\'ın arkasındaki uyumluluk kodunu gösteren cam mercek. İmleçle, parmakla ya da ok tuşlarıyla gezdirin.',
-    'hero.cap': '3D bilgisayar toplama, ayrık görünüm. Camın altında: her parçanın uyduğunu denetleyen kod.',
     'hero.lead': 'Sakarya\'da full-stack geliştiriciyim. Web uygulamaları, 3D araçlar, makine öğrenmesi çalışmaları ve Android uygulamaları geliştiriyorum; gereksinimden yayına kadar.',
     'hero.cta': 'E-posta gönder',
     'work.title': 'Seçili işler',
