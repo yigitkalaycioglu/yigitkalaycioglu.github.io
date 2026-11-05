@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 · Yiğit Kalaycıoğlu</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#000510">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+  <style>
+    :root { color-scheme: dark light; --bg: #000510; --text: #eef3ff; --muted: #a4b4d6; --line: rgba(110, 150, 255, .22); --accent: #2f6bff; }
+    @media (prefers-color-scheme: light) { :root { --bg: #fbfbfd; --text: #1d1d1f; --muted: #515154; --line: rgba(0, 0, 0, .14); --accent: #0047ab; } }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; padding: 24px; background: var(--bg); color: var(--text); font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+    main { max-width: 460px; text-align: center; }
+    .code { margin: 0; font: 700 clamp(88px, 28vw, 150px)/1 ui-monospace, "JetBrains Mono", Consolas, monospace; letter-spacing: -.04em; background: linear-gradient(120deg, #0047ab, #2f6bff 55%, #8fb8ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    h1 { margin: 8px 0 10px; font-size: 24px; letter-spacing: -.02em; }
+    p { margin: 0 0 28px; color: var(--muted); }
+    a.btn { display: inline-flex; align-items: center; height: 46px; padding: 0 22px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 600; text-decoration: none; }
+    a.btn:hover { filter: brightness(1.1); }
+    a.btn:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="code" aria-hidden="true">404</p>
+    <h1 id="t">This page doesn't exist</h1>
+    <p id="d">The link may be broken or the page may have moved.</p>
+    <a class="btn" id="b" href="/">Back to home</a>
+  </main>
+  <script>
+    var tr = false;
+    try { tr = localStorage.getItem('yk-lang') ? localStorage.getItem('yk-lang') === 'tr' : /^tr/i.test(navigator.language); } catch (e) { tr = /^tr/i.test(navigator.language); }
+    if (tr) {
+      document.documentElement.lang = 'tr';
+      document.getElementById('t').textContent = 'Bu sayfa bulunamadı';
+      document.getElementById('d').textContent = 'Bağlantı hatalı olabilir ya da sayfa taşınmış olabilir.';
+      document.getElementById('b').textContent = 'Ana sayfaya dön';
+    }
+  </script>
+</body>
+</html>
