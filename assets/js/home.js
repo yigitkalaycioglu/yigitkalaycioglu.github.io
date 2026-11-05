@@ -354,8 +354,19 @@
     };
     walk(about);
     words = $$('.w', about);
+    // vurgulu ifadeler: okuma ilk kelimesine gelince kalem çekilir. Her çizgi elle çekilmiş gibi biraz farklı:
+    // açı ve yükseklik oynar, süre ifadenin uzunluğuna göre
+    marks = $$('mark, .about-cta', about).map((el, i) => {
+      const first = words.indexOf($('.w', el));
+      const len = el.textContent.length;
+      el.style.setProperty('--d', `${Math.round(clamp(len * 26, 380, 1200))}ms`);
+      el.style.setProperty('--ang', `${100 + ((i * 37) % 7)}deg`);
+      el.style.setProperty('--by', `${64 + ((i * 53) % 13)}%`);
+      return { el, first };
+    });
     lit = -1;
   }
+  let marks = [];
   let lit = -1;
   wrapWords();
   langHooks.push(() => { wrapWords(); dirty = true; });
@@ -535,6 +546,7 @@
         const n = Math.round(ap * words.length);
         if (n !== lit) {
           words.forEach((w, i) => w.classList.toggle('lit', i < n));
+          marks.forEach((m) => m.el.classList.toggle('drawn', m.first > -1 && m.first < n));
           lit = n;
         }
       }

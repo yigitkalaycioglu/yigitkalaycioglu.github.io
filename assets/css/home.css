@@ -133,9 +133,22 @@ html[lang="tr"] .lang span:first-child, html[lang="en"] .lang span:last-child { 
 .about { padding: calc(var(--gap) * .5) var(--m) var(--gap); }
 .about-text { margin: 0; columns: 2; column-gap: 32px; font-size: var(--s-lead); line-height: 1.18; color: var(--soft); }
 .about-text b { font-weight: 600; color: var(--ink); }
-.about-text mark { padding: 0 .1em; background: var(--hl); color: var(--ink); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-.about-cta { padding: 0 .1em; background: var(--accent); color: var(--accent-ink); text-decoration: none; -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: background-color .25s; }
+/* gazetenin üstünden geçen keçeli kalem: uçlarda mürekkep birikir, ortada incelir, satır satır çekilir.
+   slice: tek bir şerit gibi boyanır, böylece satır sonuna gelen kalem bir alt satırdan devam eder */
+.about-text mark { --mk: var(--accent); padding: 0 .14em; margin: 0 -.08em; color: var(--ink); background-color: transparent;
+  background-image:
+    linear-gradient(var(--ang, 102deg), transparent .8%, color-mix(in srgb, var(--mk) 58%, transparent) 2%, color-mix(in srgb, var(--mk) 40%, transparent) 7%, color-mix(in srgb, var(--mk) 34%, transparent) 88%, color-mix(in srgb, var(--mk) 55%, transparent) 97%, transparent 99.2%),
+    linear-gradient(transparent 58%, color-mix(in srgb, var(--mk) 12%, transparent) 58% 66%, transparent 66%);
+  background-repeat: no-repeat; background-position: 0 var(--by, 70%); background-size: 100% .8em;
+  -webkit-box-decoration-break: slice; box-decoration-break: slice; }
+.about-cta { padding: 0 .1em; background: var(--accent); color: var(--accent-ink); text-decoration: none; -webkit-box-decoration-break: slice; box-decoration-break: slice; transition: background-color .25s; }
 .about-cta:hover { background: var(--ink); color: var(--ground); }
+/* JS varken kalem okuma oraya gelince çekilir; geri kaydırınca hızla silinir */
+.js .about-text mark { background-size: 0% .8em; transition: background-size .25s ease-in; }
+.js .about-text mark.drawn { background-size: 100% .8em; transition: background-size var(--d, .7s) cubic-bezier(.5, .05, .3, 1); }
+.js .about-text .about-cta { background: linear-gradient(var(--ang, 102deg), transparent .5%, var(--accent) 1.5% 98.5%, transparent 99.5%) 0 0 / 0% 100% no-repeat; color: var(--ink); transition: background-size .25s ease-in, color .2s; }
+.js .about-text .about-cta.drawn { background-size: 100% 100%; color: var(--accent-ink); transition: background-size var(--d, .7s) cubic-bezier(.5, .05, .3, 1), color .3s calc(var(--d, .7s) * .45); }
+.js .about-text .about-cta.drawn:hover { background: var(--ink); color: var(--ground); }
 .js .about-text .w { opacity: .3; transition: opacity .35s; }
 .js .about-text .w.lit { opacity: 1; }
 
@@ -286,6 +299,7 @@ html.swap [data-i18n], html.swap [data-i18n-html] { opacity: 0; transition: opac
   .js.ready [data-r] { opacity: 1; transform: none; transition: none; }
   .js.ready .hero .hn-in, .js.ready .hero [data-load], .js.ready .hero-pic img { animation: none; opacity: 1; transform: none; }
   .js .about-text .w { opacity: 1; }
+  .js .about-text mark, .js .about-text .about-cta { transition: none !important; }
   .poster:hover .pt { transform: none; }
   .peek, .peek-reel, .peek-reel img, .pt, .pf { transition: none; }
 }
