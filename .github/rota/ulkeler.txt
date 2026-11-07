@@ -1,0 +1,8 @@
+# StandBy+ rota paketleri: her satır "<ISO ülke kodu> <Geofabrik yolu>" (download.geofabrik.de adresindeki yol).
+# Ülke eklemek/çıkarmak için yalnızca bu dosyayı değiştirin; bir sonraki çalıştırmada uygulamaya yansır.
+# Sınır: paket (zip) 2 GiB'ı geçemez (GitHub Releases). Almanya, Fransa gibi büyük ülkeler sığmaz.
+TR europe/turkey
+AZ asia/azerbaijan
+GR europe/greece
+NL europe/netherlands
+GB europe/united-kingdom

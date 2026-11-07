@@ -1,0 +1,74 @@
+# StandBy+ çevrimdışı rota paketleri: her ay OSM verisinden yeniden üretilir, GitHub Releases'a yüklenir,
+# standby/config.json'daki "routingPacks" listesi güncellenir (uygulama listeyi oradan okur).
+# Ücretsizdir: herkese açık depoda Actions ücretsiz, Releases'ta boyut/trafik sınırı yok (dosya başına 2 GiB).
+# Ülke listesi: .github/rota/ulkeler.txt. Elle çalıştırmak için: Actions › Rota paketleri › Run workflow.
+name: Rota paketleri
+
+on:
+  schedule:
+    - cron: "0 4 3 * *" # her ayın 3'ü 04:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: rota
+
+jobs:
+  hazirla:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.t.outputs.tag }}
+      ulkeler: ${{ steps.t.outputs.ulkeler }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { sparse-checkout: .github }
+      - id: t
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          tag="rota-$(date -u +%Y-%m-%d)"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "ulkeler=$(grep -v '^#' .github/rota/ulkeler.txt | grep . | jq -R -s -c 'split("\n") | map(select(length > 0) | split(" ") | {id: .[0], yol: .[1]})')" >> "$GITHUB_OUTPUT"
+          gh release view "$tag" > /dev/null 2>&1 || gh release create "$tag" --latest=false \
+            --title "StandBy+ rota verisi ($(date -u +%Y-%m-%d))" \
+            --notes "StandBy+ uygulamasının çevrimdışı rota paketleri (GraphHopper 5.3 grafı). Veri © OpenStreetMap katkıda bulunanlar, ODbL 1.0 lisansıyla: https://www.openstreetmap.org/copyright"
+
+  paket:
+    needs: hazirla
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        ulke: ${{ fromJson(needs.hazirla.outputs.ulkeler) }}
+    name: paket ${{ matrix.ulke.id }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { sparse-checkout: .github }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: "21" }
+      - uses: gradle/actions/setup-gradle@v4
+        with: { gradle-version: "8.11" }
+      - env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          curl -fsSL -o "$RUNNER_TEMP/in.osm.pbf" "https://download.geofabrik.de/${{ matrix.ulke.yol }}-latest.osm.pbf"
+          gradle -q -p .github/rota run --args="$RUNNER_TEMP/in.osm.pbf $RUNNER_TEMP/graf $RUNNER_TEMP/${{ matrix.ulke.id }}.zip"
+          gh release upload "${{ needs.hazirla.outputs.tag }}" "$RUNNER_TEMP/${{ matrix.ulke.id }}.zip" --clobber
+
+  yayinla:
+    needs: [hazirla, paket]
+    if: always() && needs.hazirla.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env: { GH_TOKEN: "${{ github.token }}" }
+        run: python3 .github/rota/yayinla.py "${{ needs.hazirla.outputs.tag }}"
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add standby/config.json
+          git diff --cached --quiet && exit 0
+          git commit -m "StandBy+: rota paketleri ${{ needs.hazirla.outputs.tag }}"
+          git pull --rebase
+          git push

@@ -1,4 +1,12 @@
 {
   "routing": "https://routing.openstreetmap.de/routed-car",
-  "geocoding": "https://photon.komoot.io"
+  "geocoding": "https://photon.komoot.io",
+  "routingPacks": [
+    {
+      "id": "TR",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-06/TR.zip",
+      "bytes": 353365150,
+      "version": "2026-11-06"
+    }
+  ]
 }
