@@ -4,9 +4,33 @@
   "routingPacks": [
     {
       "id": "TR",
-      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-06/TR.zip",
-      "bytes": 353365150,
-      "version": "2026-11-06"
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-07/TR.zip",
+      "bytes": 353380663,
+      "version": "2026-11-07"
+    },
+    {
+      "id": "AZ",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-07/AZ.zip",
+      "bytes": 37608972,
+      "version": "2026-11-07"
+    },
+    {
+      "id": "GR",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-07/GR.zip",
+      "bytes": 172867687,
+      "version": "2026-11-07"
+    },
+    {
+      "id": "NL",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-07/NL.zip",
+      "bytes": 101877578,
+      "version": "2026-11-07"
+    },
+    {
+      "id": "GB",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-07/GB.zip",
+      "bytes": 419949958,
+      "version": "2026-11-07"
     }
   ]
 }
