@@ -1,8 +1,139 @@
-# StandBy+ rota paketleri: her satır "<ISO ülke kodu> <Geofabrik yolu>" (download.geofabrik.de adresindeki yol).
+# StandBy+ rota paketleri: her satır "<KOD> <Geofabrik yolu> [bölge adı]" (download.geofabrik.de adresindeki yol).
+# KOD ülke kodudur (TR); büyük ülkeler bölgelere bölünür: "DE-bayern europe/germany/bayern Bayern" (uygulamada açılır liste).
 # Ülke eklemek/çıkarmak için yalnızca bu dosyayı değiştirin; bir sonraki çalıştırmada uygulamaya yansır.
-# Sınır: paket (zip) 2 GiB'ı geçemez (GitHub Releases). Almanya, Fransa gibi büyük ülkeler sığmaz.
+# Sınır: paket (zip) 2 GiB'ı geçemez (GitHub Releases). Almanya, Fransa, Rusya, Kanada, ABD bu yüzden bölgeli.
 TR europe/turkey
-AZ asia/azerbaijan
-GR europe/greece
-NL europe/netherlands
 GB europe/united-kingdom
+IT europe/italy
+ES europe/spain
+PL europe/poland
+NL europe/netherlands
+GR europe/greece
+AZ asia/azerbaijan
+BR south-america/brazil
+MX north-america/mexico
+IN asia/india
+ID asia/indonesia
+JP asia/japan
+KR asia/south-korea
+AU australia-oceania/australia
+EG africa/egypt
+DE-baden-wuerttemberg europe/germany/baden-wuerttemberg Baden-Württemberg
+DE-bayern europe/germany/bayern Bayern
+DE-berlin europe/germany/berlin Berlin
+DE-brandenburg europe/germany/brandenburg Brandenburg (mit Berlin)
+DE-bremen europe/germany/bremen Bremen
+DE-hamburg europe/germany/hamburg Hamburg
+DE-hessen europe/germany/hessen Hessen
+DE-mecklenburg-vorpommern europe/germany/mecklenburg-vorpommern Mecklenburg-Vorpommern
+DE-niedersachsen europe/germany/niedersachsen Niedersachsen (mit Bremen)
+DE-nordrhein-westfalen europe/germany/nordrhein-westfalen Nordrhein-Westfalen
+DE-rheinland-pfalz europe/germany/rheinland-pfalz Rheinland-Pfalz
+DE-saarland europe/germany/saarland Saarland
+DE-sachsen europe/germany/sachsen Sachsen
+DE-sachsen-anhalt europe/germany/sachsen-anhalt Sachsen-Anhalt
+DE-schleswig-holstein europe/germany/schleswig-holstein Schleswig-Holstein
+DE-thueringen europe/germany/thueringen Thüringen
+FR-alsace europe/france/alsace Alsace
+FR-aquitaine europe/france/aquitaine Aquitaine
+FR-auvergne europe/france/auvergne Auvergne
+FR-basse-normandie europe/france/basse-normandie Basse-Normandie
+FR-bourgogne europe/france/bourgogne Bourgogne
+FR-bretagne europe/france/bretagne Bretagne
+FR-centre europe/france/centre Centre
+FR-champagne-ardenne europe/france/champagne-ardenne Champagne Ardenne
+FR-corse europe/france/corse Corse
+FR-franche-comte europe/france/franche-comte Franche Comte
+FR-guadeloupe europe/france/guadeloupe Guadeloupe
+FR-guyane europe/france/guyane Guyane
+FR-haute-normandie europe/france/haute-normandie Haute-Normandie
+FR-ile-de-france europe/france/ile-de-france Ile-de-France
+FR-languedoc-roussillon europe/france/languedoc-roussillon Languedoc-Roussillon
+FR-limousin europe/france/limousin Limousin
+FR-lorraine europe/france/lorraine Lorraine
+FR-martinique europe/france/martinique Martinique
+FR-mayotte europe/france/mayotte Mayotte
+FR-midi-pyrenees europe/france/midi-pyrenees Midi-Pyrenees
+FR-nord-pas-de-calais europe/france/nord-pas-de-calais Nord-Pas-de-Calais
+FR-pays-de-la-loire europe/france/pays-de-la-loire Pays de la Loire
+FR-picardie europe/france/picardie Picardie
+FR-poitou-charentes europe/france/poitou-charentes Poitou-Charentes
+FR-provence-alpes-cote-d-azur europe/france/provence-alpes-cote-d-azur Provence Alpes-Cote-d'Azur
+FR-reunion europe/france/reunion Reunion
+FR-rhone-alpes europe/france/rhone-alpes Rhone-Alpes
+RU-central-fed-district russia/central-fed-district Central Federal District
+RU-crimean-fed-district russia/crimean-fed-district Crimean Federal District
+RU-far-eastern-fed-district russia/far-eastern-fed-district Far Eastern Federal District
+RU-kaliningrad russia/kaliningrad Kaliningrad
+RU-north-caucasus-fed-district russia/north-caucasus-fed-district North Caucasus Federal District
+RU-northwestern-fed-district russia/northwestern-fed-district Northwestern Federal District
+RU-siberian-fed-district russia/siberian-fed-district Siberian Federal District
+RU-south-fed-district russia/south-fed-district South Federal District
+RU-ural-fed-district russia/ural-fed-district Ural Federal District
+RU-volga-fed-district russia/volga-fed-district Volga Federal District
+CA-alberta north-america/canada/alberta Alberta
+CA-british-columbia north-america/canada/british-columbia British Columbia
+CA-manitoba north-america/canada/manitoba Manitoba
+CA-new-brunswick north-america/canada/new-brunswick New Brunswick
+CA-newfoundland-and-labrador north-america/canada/newfoundland-and-labrador Newfoundland and Labrador
+CA-northwest-territories north-america/canada/northwest-territories Northwest Territories
+CA-nova-scotia north-america/canada/nova-scotia Nova Scotia
+CA-nunavut north-america/canada/nunavut Nunavut
+CA-ontario north-america/canada/ontario Ontario
+CA-prince-edward-island north-america/canada/prince-edward-island Prince Edward Island
+CA-quebec north-america/canada/quebec Quebec
+CA-saskatchewan north-america/canada/saskatchewan Saskatchewan
+CA-yukon north-america/canada/yukon Yukon
+US-alabama north-america/us/alabama Alabama
+US-alaska north-america/us/alaska Alaska
+US-arizona north-america/us/arizona Arizona
+US-arkansas north-america/us/arkansas Arkansas
+US-california north-america/us/california California
+US-colorado north-america/us/colorado Colorado
+US-connecticut north-america/us/connecticut Connecticut
+US-delaware north-america/us/delaware Delaware
+US-district-of-columbia north-america/us/district-of-columbia District of Columbia
+US-florida north-america/us/florida Florida
+US-georgia north-america/us/georgia Georgia
+US-hawaii north-america/us/hawaii Hawaii
+US-idaho north-america/us/idaho Idaho
+US-illinois north-america/us/illinois Illinois
+US-indiana north-america/us/indiana Indiana
+US-iowa north-america/us/iowa Iowa
+US-kansas north-america/us/kansas Kansas
+US-kentucky north-america/us/kentucky Kentucky
+US-louisiana north-america/us/louisiana Louisiana
+US-maine north-america/us/maine Maine
+US-maryland north-america/us/maryland Maryland
+US-massachusetts north-america/us/massachusetts Massachusetts
+US-michigan north-america/us/michigan Michigan
+US-minnesota north-america/us/minnesota Minnesota
+US-mississippi north-america/us/mississippi Mississippi
+US-missouri north-america/us/missouri Missouri
+US-montana north-america/us/montana Montana
+US-nebraska north-america/us/nebraska Nebraska
+US-nevada north-america/us/nevada Nevada
+US-new-hampshire north-america/us/new-hampshire New Hampshire
+US-new-jersey north-america/us/new-jersey New Jersey
+US-new-mexico north-america/us/new-mexico New Mexico
+US-new-york north-america/us/new-york New York
+US-north-carolina north-america/us/north-carolina North Carolina
+US-north-dakota north-america/us/north-dakota North Dakota
+US-ohio north-america/us/ohio Ohio
+US-oklahoma north-america/us/oklahoma Oklahoma
+US-oregon north-america/us/oregon Oregon
+US-pennsylvania north-america/us/pennsylvania Pennsylvania
+US-puerto-rico north-america/us/puerto-rico Puerto Rico
+US-rhode-island north-america/us/rhode-island Rhode Island
+US-south-carolina north-america/us/south-carolina South Carolina
+US-south-dakota north-america/us/south-dakota South Dakota
+US-tennessee north-america/us/tennessee Tennessee
+US-texas north-america/us/texas Texas
+US-us-virgin-islands north-america/us/us-virgin-islands US Virgin Islands
+US-utah north-america/us/utah Utah
+US-vermont north-america/us/vermont Vermont
+US-virginia north-america/us/virginia Virginia
+US-washington north-america/us/washington Washington
+US-west-virginia north-america/us/west-virginia West Virginia
+US-wisconsin north-america/us/wisconsin Wisconsin
+US-wyoming north-america/us/wyoming Wyoming

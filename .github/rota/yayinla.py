@@ -20,8 +20,10 @@ def tag_of(url):
     return url.split("/releases/download/")[1].split("/")[0]
 
 
-ids = [l.split()[0] for l in open(os.path.join(HERE, "ulkeler.txt"), encoding="utf-8")
-       if l.strip() and not l.startswith("#")]
+lines = [l.split(maxsplit=2) for l in open(os.path.join(HERE, "ulkeler.txt"), encoding="utf-8")
+         if l.strip() and not l.startswith("#")]
+ids = [l[0] for l in lines]
+regions = {l[0]: l[2].strip() for l in lines if len(l) > 2}  # bölgeli ülkelerde uygulamada gösterilen ad
 assets = {a["name"][:-4]: a["size"] for a in json.loads(gh("release", "view", TAG, "--json", "assets"))["assets"]
           if a["name"].endswith(".zip")}
 
@@ -31,7 +33,7 @@ packs = []
 for i in ids:
     if i in assets:
         packs.append({"id": i, "url": f"https://github.com/{REPO}/releases/download/{TAG}/{i}.zip",
-                      "bytes": assets[i], "version": TAG.removeprefix("rota-")})
+                      "bytes": assets[i], "version": TAG.removeprefix("rota-")} | ({"region": regions[i]} if i in regions else {}))
     elif i in old:
         print(f"{i}: bu ay üretilemedi, önceki paket kalıyor", file=sys.stderr)
         packs.append(old[i])

@@ -28,7 +28,7 @@ jobs:
         run: |
           tag="rota-$(date -u +%Y-%m-%d)"
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
-          echo "ulkeler=$(grep -v '^#' .github/rota/ulkeler.txt | grep . | jq -R -s -c 'split("\n") | map(select(length > 0) | split(" ") | {id: .[0], yol: .[1]})')" >> "$GITHUB_OUTPUT"
+          echo "ulkeler=$(grep -v '^#' .github/rota/ulkeler.txt | grep . | jq -R -s -c 'split("\n") | map(select(length > 0) | split(" ") | {id: .[0], yol: .[1], ad: (.[2:] | join(" "))})')" >> "$GITHUB_OUTPUT"
           gh release view "$tag" > /dev/null 2>&1 || gh release create "$tag" --latest=false \
             --title "StandBy+ rota verisi ($(date -u +%Y-%m-%d))" \
             --notes "StandBy+ uygulamasının çevrimdışı rota paketleri (GraphHopper 5.3 grafı). Veri © OpenStreetMap katkıda bulunanlar, ODbL 1.0 lisansıyla: https://www.openstreetmap.org/copyright"
@@ -39,7 +39,7 @@ jobs:
     timeout-minutes: 300
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 20
       matrix:
         ulke: ${{ fromJson(needs.hazirla.outputs.ulkeler) }}
     name: paket ${{ matrix.ulke.id }}
