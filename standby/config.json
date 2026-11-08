@@ -4,33 +4,932 @@
   "routingPacks": [
     {
       "id": "TR",
-      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-07/TR.zip",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/TR.zip",
       "bytes": 353380663,
-      "version": "2026-11-07"
-    },
-    {
-      "id": "AZ",
-      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-07/AZ.zip",
-      "bytes": 37608972,
-      "version": "2026-11-07"
-    },
-    {
-      "id": "GR",
-      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-07/GR.zip",
-      "bytes": 172867687,
-      "version": "2026-11-07"
-    },
-    {
-      "id": "NL",
-      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-07/NL.zip",
-      "bytes": 101877578,
-      "version": "2026-11-07"
+      "version": "2026-11-08"
     },
     {
       "id": "GB",
-      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-07/GB.zip",
-      "bytes": 419949958,
-      "version": "2026-11-07"
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/GB.zip",
+      "bytes": 419949959,
+      "version": "2026-11-08"
+    },
+    {
+      "id": "IT",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/IT.zip",
+      "bytes": 518212859,
+      "version": "2026-11-08"
+    },
+    {
+      "id": "ES",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/ES.zip",
+      "bytes": 504845293,
+      "version": "2026-11-08"
+    },
+    {
+      "id": "PL",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/PL.zip",
+      "bytes": 341804738,
+      "version": "2026-11-08"
+    },
+    {
+      "id": "NL",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/NL.zip",
+      "bytes": 101877581,
+      "version": "2026-11-08"
+    },
+    {
+      "id": "GR",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/GR.zip",
+      "bytes": 172867685,
+      "version": "2026-11-08"
+    },
+    {
+      "id": "AZ",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/AZ.zip",
+      "bytes": 37608972,
+      "version": "2026-11-08"
+    },
+    {
+      "id": "BR",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/BR.zip",
+      "bytes": 999549589,
+      "version": "2026-11-08"
+    },
+    {
+      "id": "MX",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/MX.zip",
+      "bytes": 521660005,
+      "version": "2026-11-08"
+    },
+    {
+      "id": "IN",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/IN.zip",
+      "bytes": 1296867531,
+      "version": "2026-11-08"
+    },
+    {
+      "id": "ID",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/ID.zip",
+      "bytes": 570696126,
+      "version": "2026-11-08"
+    },
+    {
+      "id": "JP",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/JP.zip",
+      "bytes": 790513246,
+      "version": "2026-11-08"
+    },
+    {
+      "id": "KR",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/KR.zip",
+      "bytes": 164800318,
+      "version": "2026-11-08"
+    },
+    {
+      "id": "AU",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/AU.zip",
+      "bytes": 258708274,
+      "version": "2026-11-08"
+    },
+    {
+      "id": "EG",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/EG.zip",
+      "bytes": 154761602,
+      "version": "2026-11-08"
+    },
+    {
+      "id": "DE-baden-wuerttemberg",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-baden-wuerttemberg.zip",
+      "bytes": 114393366,
+      "version": "2026-11-08",
+      "region": "Baden-Württemberg"
+    },
+    {
+      "id": "DE-bayern",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-bayern.zip",
+      "bytes": 158973546,
+      "version": "2026-11-08",
+      "region": "Bayern"
+    },
+    {
+      "id": "DE-berlin",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-berlin.zip",
+      "bytes": 11228991,
+      "version": "2026-11-08",
+      "region": "Berlin"
+    },
+    {
+      "id": "DE-brandenburg",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-brandenburg.zip",
+      "bytes": 39047168,
+      "version": "2026-11-08",
+      "region": "Brandenburg (mit Berlin)"
+    },
+    {
+      "id": "DE-bremen",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-bremen.zip",
+      "bytes": 2416637,
+      "version": "2026-11-08",
+      "region": "Bremen"
+    },
+    {
+      "id": "DE-hamburg",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-hamburg.zip",
+      "bytes": 5585741,
+      "version": "2026-11-08",
+      "region": "Hamburg"
+    },
+    {
+      "id": "DE-hessen",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-hessen.zip",
+      "bytes": 56186677,
+      "version": "2026-11-08",
+      "region": "Hessen"
+    },
+    {
+      "id": "DE-mecklenburg-vorpommern",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-mecklenburg-vorpommern.zip",
+      "bytes": 17691828,
+      "version": "2026-11-08",
+      "region": "Mecklenburg-Vorpommern"
+    },
+    {
+      "id": "DE-niedersachsen",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-niedersachsen.zip",
+      "bytes": 79337883,
+      "version": "2026-11-08",
+      "region": "Niedersachsen (mit Bremen)"
+    },
+    {
+      "id": "DE-nordrhein-westfalen",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-nordrhein-westfalen.zip",
+      "bytes": 119006852,
+      "version": "2026-11-08",
+      "region": "Nordrhein-Westfalen"
+    },
+    {
+      "id": "DE-rheinland-pfalz",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-rheinland-pfalz.zip",
+      "bytes": 49537602,
+      "version": "2026-11-08",
+      "region": "Rheinland-Pfalz"
+    },
+    {
+      "id": "DE-saarland",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-saarland.zip",
+      "bytes": 7422822,
+      "version": "2026-11-08",
+      "region": "Saarland"
+    },
+    {
+      "id": "DE-sachsen",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-sachsen.zip",
+      "bytes": 42167281,
+      "version": "2026-11-08",
+      "region": "Sachsen"
+    },
+    {
+      "id": "DE-sachsen-anhalt",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-sachsen-anhalt.zip",
+      "bytes": 24803081,
+      "version": "2026-11-08",
+      "region": "Sachsen-Anhalt"
+    },
+    {
+      "id": "DE-schleswig-holstein",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-schleswig-holstein.zip",
+      "bytes": 23707334,
+      "version": "2026-11-08",
+      "region": "Schleswig-Holstein"
+    },
+    {
+      "id": "DE-thueringen",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/DE-thueringen.zip",
+      "bytes": 27636607,
+      "version": "2026-11-08",
+      "region": "Thüringen"
+    },
+    {
+      "id": "FR-alsace",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-alsace.zip",
+      "bytes": 20467772,
+      "version": "2026-11-08",
+      "region": "Alsace"
+    },
+    {
+      "id": "FR-aquitaine",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-aquitaine.zip",
+      "bytes": 59148807,
+      "version": "2026-11-08",
+      "region": "Aquitaine"
+    },
+    {
+      "id": "FR-auvergne",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-auvergne.zip",
+      "bytes": 36996788,
+      "version": "2026-11-08",
+      "region": "Auvergne"
+    },
+    {
+      "id": "FR-basse-normandie",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-basse-normandie.zip",
+      "bytes": 27502565,
+      "version": "2026-11-08",
+      "region": "Basse-Normandie"
+    },
+    {
+      "id": "FR-bourgogne",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-bourgogne.zip",
+      "bytes": 35376391,
+      "version": "2026-11-08",
+      "region": "Bourgogne"
+    },
+    {
+      "id": "FR-bretagne",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-bretagne.zip",
+      "bytes": 52367139,
+      "version": "2026-11-08",
+      "region": "Bretagne"
+    },
+    {
+      "id": "FR-centre",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-centre.zip",
+      "bytes": 42378390,
+      "version": "2026-11-08",
+      "region": "Centre"
+    },
+    {
+      "id": "FR-champagne-ardenne",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-champagne-ardenne.zip",
+      "bytes": 22689571,
+      "version": "2026-11-08",
+      "region": "Champagne Ardenne"
+    },
+    {
+      "id": "FR-corse",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-corse.zip",
+      "bytes": 7019217,
+      "version": "2026-11-08",
+      "region": "Corse"
+    },
+    {
+      "id": "FR-franche-comte",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-franche-comte.zip",
+      "bytes": 24194366,
+      "version": "2026-11-08",
+      "region": "Franche Comte"
+    },
+    {
+      "id": "FR-guadeloupe",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-guadeloupe.zip",
+      "bytes": 4008963,
+      "version": "2026-11-08",
+      "region": "Guadeloupe"
+    },
+    {
+      "id": "FR-guyane",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-guyane.zip",
+      "bytes": 1876968,
+      "version": "2026-11-08",
+      "region": "Guyane"
+    },
+    {
+      "id": "FR-haute-normandie",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-haute-normandie.zip",
+      "bytes": 18481703,
+      "version": "2026-11-08",
+      "region": "Haute-Normandie"
+    },
+    {
+      "id": "FR-ile-de-france",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-ile-de-france.zip",
+      "bytes": 39675860,
+      "version": "2026-11-08",
+      "region": "Ile-de-France"
+    },
+    {
+      "id": "FR-languedoc-roussillon",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-languedoc-roussillon.zip",
+      "bytes": 54000039,
+      "version": "2026-11-08",
+      "region": "Languedoc-Roussillon"
+    },
+    {
+      "id": "FR-limousin",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-limousin.zip",
+      "bytes": 22369392,
+      "version": "2026-11-08",
+      "region": "Limousin"
+    },
+    {
+      "id": "FR-lorraine",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-lorraine.zip",
+      "bytes": 30679017,
+      "version": "2026-11-08",
+      "region": "Lorraine"
+    },
+    {
+      "id": "FR-martinique",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-martinique.zip",
+      "bytes": 3600519,
+      "version": "2026-11-08",
+      "region": "Martinique"
+    },
+    {
+      "id": "FR-mayotte",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-mayotte.zip",
+      "bytes": 838359,
+      "version": "2026-11-08",
+      "region": "Mayotte"
+    },
+    {
+      "id": "FR-midi-pyrenees",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-midi-pyrenees.zip",
+      "bytes": 70293038,
+      "version": "2026-11-08",
+      "region": "Midi-Pyrenees"
+    },
+    {
+      "id": "FR-nord-pas-de-calais",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-nord-pas-de-calais.zip",
+      "bytes": 29145860,
+      "version": "2026-11-08",
+      "region": "Nord-Pas-de-Calais"
+    },
+    {
+      "id": "FR-pays-de-la-loire",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-pays-de-la-loire.zip",
+      "bytes": 55692206,
+      "version": "2026-11-08",
+      "region": "Pays de la Loire"
+    },
+    {
+      "id": "FR-picardie",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-picardie.zip",
+      "bytes": 21840542,
+      "version": "2026-11-08",
+      "region": "Picardie"
+    },
+    {
+      "id": "FR-poitou-charentes",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-poitou-charentes.zip",
+      "bytes": 37704279,
+      "version": "2026-11-08",
+      "region": "Poitou-Charentes"
+    },
+    {
+      "id": "FR-provence-alpes-cote-d-azur",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-provence-alpes-cote-d-azur.zip",
+      "bytes": 65788957,
+      "version": "2026-11-08",
+      "region": "Provence Alpes-Cote-d'Azur"
+    },
+    {
+      "id": "FR-reunion",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-reunion.zip",
+      "bytes": 5625031,
+      "version": "2026-11-08",
+      "region": "Reunion"
+    },
+    {
+      "id": "FR-rhone-alpes",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/FR-rhone-alpes.zip",
+      "bytes": 92201530,
+      "version": "2026-11-08",
+      "region": "Rhone-Alpes"
+    },
+    {
+      "id": "RU-central-fed-district",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/RU-central-fed-district.zip",
+      "bytes": 199303001,
+      "version": "2026-11-08",
+      "region": "Central Federal District"
+    },
+    {
+      "id": "RU-crimean-fed-district",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/RU-crimean-fed-district.zip",
+      "bytes": 12568507,
+      "version": "2026-11-08",
+      "region": "Crimean Federal District"
+    },
+    {
+      "id": "RU-far-eastern-fed-district",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/RU-far-eastern-fed-district.zip",
+      "bytes": 61728103,
+      "version": "2026-11-08",
+      "region": "Far Eastern Federal District"
+    },
+    {
+      "id": "RU-kaliningrad",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/RU-kaliningrad.zip",
+      "bytes": 4876431,
+      "version": "2026-11-08",
+      "region": "Kaliningrad"
+    },
+    {
+      "id": "RU-north-caucasus-fed-district",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/RU-north-caucasus-fed-district.zip",
+      "bytes": 29423315,
+      "version": "2026-11-08",
+      "region": "North Caucasus Federal District"
+    },
+    {
+      "id": "RU-northwestern-fed-district",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/RU-northwestern-fed-district.zip",
+      "bytes": 103071483,
+      "version": "2026-11-08",
+      "region": "Northwestern Federal District"
+    },
+    {
+      "id": "RU-siberian-fed-district",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/RU-siberian-fed-district.zip",
+      "bytes": 119777659,
+      "version": "2026-11-08",
+      "region": "Siberian Federal District"
+    },
+    {
+      "id": "RU-south-fed-district",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/RU-south-fed-district.zip",
+      "bytes": 88759932,
+      "version": "2026-11-08",
+      "region": "South Federal District"
+    },
+    {
+      "id": "RU-ural-fed-district",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/RU-ural-fed-district.zip",
+      "bytes": 82234168,
+      "version": "2026-11-08",
+      "region": "Ural Federal District"
+    },
+    {
+      "id": "RU-volga-fed-district",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/RU-volga-fed-district.zip",
+      "bytes": 183888641,
+      "version": "2026-11-08",
+      "region": "Volga Federal District"
+    },
+    {
+      "id": "CA-alberta",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/CA-alberta.zip",
+      "bytes": 48239049,
+      "version": "2026-11-08",
+      "region": "Alberta"
+    },
+    {
+      "id": "CA-british-columbia",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/CA-british-columbia.zip",
+      "bytes": 56880270,
+      "version": "2026-11-08",
+      "region": "British Columbia"
+    },
+    {
+      "id": "CA-manitoba",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/CA-manitoba.zip",
+      "bytes": 13708853,
+      "version": "2026-11-08",
+      "region": "Manitoba"
+    },
+    {
+      "id": "CA-new-brunswick",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/CA-new-brunswick.zip",
+      "bytes": 8633534,
+      "version": "2026-11-08",
+      "region": "New Brunswick"
+    },
+    {
+      "id": "CA-newfoundland-and-labrador",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/CA-newfoundland-and-labrador.zip",
+      "bytes": 9001094,
+      "version": "2026-11-08",
+      "region": "Newfoundland and Labrador"
+    },
+    {
+      "id": "CA-northwest-territories",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/CA-northwest-territories.zip",
+      "bytes": 986409,
+      "version": "2026-11-08",
+      "region": "Northwest Territories"
+    },
+    {
+      "id": "CA-nova-scotia",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/CA-nova-scotia.zip",
+      "bytes": 14761396,
+      "version": "2026-11-08",
+      "region": "Nova Scotia"
+    },
+    {
+      "id": "CA-nunavut",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/CA-nunavut.zip",
+      "bytes": 703065,
+      "version": "2026-11-08",
+      "region": "Nunavut"
+    },
+    {
+      "id": "CA-ontario",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/CA-ontario.zip",
+      "bytes": 89079043,
+      "version": "2026-11-08",
+      "region": "Ontario"
+    },
+    {
+      "id": "CA-prince-edward-island",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/CA-prince-edward-island.zip",
+      "bytes": 1918197,
+      "version": "2026-11-08",
+      "region": "Prince Edward Island"
+    },
+    {
+      "id": "CA-quebec",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/CA-quebec.zip",
+      "bytes": 65242541,
+      "version": "2026-11-08",
+      "region": "Quebec"
+    },
+    {
+      "id": "CA-saskatchewan",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/CA-saskatchewan.zip",
+      "bytes": 21640202,
+      "version": "2026-11-08",
+      "region": "Saskatchewan"
+    },
+    {
+      "id": "CA-yukon",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/CA-yukon.zip",
+      "bytes": 1743715,
+      "version": "2026-11-08",
+      "region": "Yukon"
+    },
+    {
+      "id": "US-alabama",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-alabama.zip",
+      "bytes": 69079779,
+      "version": "2026-11-08",
+      "region": "Alabama"
+    },
+    {
+      "id": "US-alaska",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-alaska.zip",
+      "bytes": 14895674,
+      "version": "2026-11-08",
+      "region": "Alaska"
+    },
+    {
+      "id": "US-arizona",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-arizona.zip",
+      "bytes": 89645415,
+      "version": "2026-11-08",
+      "region": "Arizona"
+    },
+    {
+      "id": "US-arkansas",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-arkansas.zip",
+      "bytes": 50963787,
+      "version": "2026-11-08",
+      "region": "Arkansas"
+    },
+    {
+      "id": "US-california",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-california.zip",
+      "bytes": 274911377,
+      "version": "2026-11-08",
+      "region": "California"
+    },
+    {
+      "id": "US-colorado",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-colorado.zip",
+      "bytes": 81575504,
+      "version": "2026-11-08",
+      "region": "Colorado"
+    },
+    {
+      "id": "US-connecticut",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-connecticut.zip",
+      "bytes": 33669442,
+      "version": "2026-11-08",
+      "region": "Connecticut"
+    },
+    {
+      "id": "US-delaware",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-delaware.zip",
+      "bytes": 9465133,
+      "version": "2026-11-08",
+      "region": "Delaware"
+    },
+    {
+      "id": "US-district-of-columbia",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-district-of-columbia.zip",
+      "bytes": 2354057,
+      "version": "2026-11-08",
+      "region": "District of Columbia"
+    },
+    {
+      "id": "US-florida",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-florida.zip",
+      "bytes": 167174697,
+      "version": "2026-11-08",
+      "region": "Florida"
+    },
+    {
+      "id": "US-georgia",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-georgia.zip",
+      "bytes": 114605345,
+      "version": "2026-11-08",
+      "region": "Georgia"
+    },
+    {
+      "id": "US-hawaii",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-hawaii.zip",
+      "bytes": 6994531,
+      "version": "2026-11-08",
+      "region": "Hawaii"
+    },
+    {
+      "id": "US-idaho",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-idaho.zip",
+      "bytes": 49586108,
+      "version": "2026-11-08",
+      "region": "Idaho"
+    },
+    {
+      "id": "US-illinois",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-illinois.zip",
+      "bytes": 113890407,
+      "version": "2026-11-08",
+      "region": "Illinois"
+    },
+    {
+      "id": "US-indiana",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-indiana.zip",
+      "bytes": 84085020,
+      "version": "2026-11-08",
+      "region": "Indiana"
+    },
+    {
+      "id": "US-iowa",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-iowa.zip",
+      "bytes": 42892615,
+      "version": "2026-11-08",
+      "region": "Iowa"
+    },
+    {
+      "id": "US-kansas",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-kansas.zip",
+      "bytes": 54963277,
+      "version": "2026-11-08",
+      "region": "Kansas"
+    },
+    {
+      "id": "US-kentucky",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-kentucky.zip",
+      "bytes": 65128638,
+      "version": "2026-11-08",
+      "region": "Kentucky"
+    },
+    {
+      "id": "US-louisiana",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-louisiana.zip",
+      "bytes": 47125231,
+      "version": "2026-11-08",
+      "region": "Louisiana"
+    },
+    {
+      "id": "US-maine",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-maine.zip",
+      "bytes": 25994575,
+      "version": "2026-11-08",
+      "region": "Maine"
+    },
+    {
+      "id": "US-maryland",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-maryland.zip",
+      "bytes": 56284158,
+      "version": "2026-11-08",
+      "region": "Maryland"
+    },
+    {
+      "id": "US-massachusetts",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-massachusetts.zip",
+      "bytes": 55695710,
+      "version": "2026-11-08",
+      "region": "Massachusetts"
+    },
+    {
+      "id": "US-michigan",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-michigan.zip",
+      "bytes": 114446889,
+      "version": "2026-11-08",
+      "region": "Michigan"
+    },
+    {
+      "id": "US-minnesota",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-minnesota.zip",
+      "bytes": 67984168,
+      "version": "2026-11-08",
+      "region": "Minnesota"
+    },
+    {
+      "id": "US-mississippi",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-mississippi.zip",
+      "bytes": 42993826,
+      "version": "2026-11-08",
+      "region": "Mississippi"
+    },
+    {
+      "id": "US-missouri",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-missouri.zip",
+      "bytes": 91812627,
+      "version": "2026-11-08",
+      "region": "Missouri"
+    },
+    {
+      "id": "US-montana",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-montana.zip",
+      "bytes": 41084193,
+      "version": "2026-11-08",
+      "region": "Montana"
+    },
+    {
+      "id": "US-nebraska",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-nebraska.zip",
+      "bytes": 33704166,
+      "version": "2026-11-08",
+      "region": "Nebraska"
+    },
+    {
+      "id": "US-nevada",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-nevada.zip",
+      "bytes": 50771637,
+      "version": "2026-11-08",
+      "region": "Nevada"
+    },
+    {
+      "id": "US-new-hampshire",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-new-hampshire.zip",
+      "bytes": 23508170,
+      "version": "2026-11-08",
+      "region": "New Hampshire"
+    },
+    {
+      "id": "US-new-jersey",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-new-jersey.zip",
+      "bytes": 54917129,
+      "version": "2026-11-08",
+      "region": "New Jersey"
+    },
+    {
+      "id": "US-new-mexico",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-new-mexico.zip",
+      "bytes": 51328584,
+      "version": "2026-11-08",
+      "region": "New Mexico"
+    },
+    {
+      "id": "US-new-york",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-new-york.zip",
+      "bytes": 107786802,
+      "version": "2026-11-08",
+      "region": "New York"
+    },
+    {
+      "id": "US-north-carolina",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-north-carolina.zip",
+      "bytes": 146599592,
+      "version": "2026-11-08",
+      "region": "North Carolina"
+    },
+    {
+      "id": "US-north-dakota",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-north-dakota.zip",
+      "bytes": 28911790,
+      "version": "2026-11-08",
+      "region": "North Dakota"
+    },
+    {
+      "id": "US-ohio",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-ohio.zip",
+      "bytes": 125836828,
+      "version": "2026-11-08",
+      "region": "Ohio"
+    },
+    {
+      "id": "US-oklahoma",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-oklahoma.zip",
+      "bytes": 63871270,
+      "version": "2026-11-08",
+      "region": "Oklahoma"
+    },
+    {
+      "id": "US-oregon",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-oregon.zip",
+      "bytes": 80081650,
+      "version": "2026-11-08",
+      "region": "Oregon"
+    },
+    {
+      "id": "US-pennsylvania",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-pennsylvania.zip",
+      "bytes": 129274131,
+      "version": "2026-11-08",
+      "region": "Pennsylvania"
+    },
+    {
+      "id": "US-puerto-rico",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-puerto-rico.zip",
+      "bytes": 18611961,
+      "version": "2026-11-08",
+      "region": "Puerto Rico"
+    },
+    {
+      "id": "US-rhode-island",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-rhode-island.zip",
+      "bytes": 7971780,
+      "version": "2026-11-08",
+      "region": "Rhode Island"
+    },
+    {
+      "id": "US-south-carolina",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-south-carolina.zip",
+      "bytes": 63544748,
+      "version": "2026-11-08",
+      "region": "South Carolina"
+    },
+    {
+      "id": "US-south-dakota",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-south-dakota.zip",
+      "bytes": 22397021,
+      "version": "2026-11-08",
+      "region": "South Dakota"
+    },
+    {
+      "id": "US-tennessee",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-tennessee.zip",
+      "bytes": 84692233,
+      "version": "2026-11-08",
+      "region": "Tennessee"
+    },
+    {
+      "id": "US-texas",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-texas.zip",
+      "bytes": 311985565,
+      "version": "2026-11-08",
+      "region": "Texas"
+    },
+    {
+      "id": "US-us-virgin-islands",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-us-virgin-islands.zip",
+      "bytes": 1011696,
+      "version": "2026-11-08",
+      "region": "US Virgin Islands"
+    },
+    {
+      "id": "US-utah",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-utah.zip",
+      "bytes": 44320241,
+      "version": "2026-11-08",
+      "region": "Utah"
+    },
+    {
+      "id": "US-vermont",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-vermont.zip",
+      "bytes": 12876342,
+      "version": "2026-11-08",
+      "region": "Vermont"
+    },
+    {
+      "id": "US-virginia",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-virginia.zip",
+      "bytes": 112439416,
+      "version": "2026-11-08",
+      "region": "Virginia"
+    },
+    {
+      "id": "US-washington",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-washington.zip",
+      "bytes": 90509135,
+      "version": "2026-11-08",
+      "region": "Washington"
+    },
+    {
+      "id": "US-west-virginia",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-west-virginia.zip",
+      "bytes": 32137237,
+      "version": "2026-11-08",
+      "region": "West Virginia"
+    },
+    {
+      "id": "US-wisconsin",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-wisconsin.zip",
+      "bytes": 77431576,
+      "version": "2026-11-08",
+      "region": "Wisconsin"
+    },
+    {
+      "id": "US-wyoming",
+      "url": "https://github.com/yigitkalaycioglu/yigitkalaycioglu.github.io/releases/download/rota-2026-11-08/US-wyoming.zip",
+      "bytes": 35670002,
+      "version": "2026-11-08",
+      "region": "Wyoming"
     }
   ]
 }
